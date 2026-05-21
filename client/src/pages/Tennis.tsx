@@ -168,7 +168,7 @@ export default function Tennis() {
               </ul>
             </div>
             <a
-              href="https://www.tier1nw.com/tier1-core"
+              href="https://www.tier1nw.com/tennis/intro-classes"
               target="_blank"
               rel="noopener noreferrer"
               className="text-ink text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt pb-[3px]"
