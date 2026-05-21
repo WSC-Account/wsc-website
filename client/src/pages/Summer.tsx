@@ -1228,9 +1228,7 @@ export default function Summer() {
               Register Now <ChevronRight size={14} />
             </Link>
             <Link
-              href="https://app.courtreserve.com/Online/Portal/Index/6689"
-                target="_blank"
-                rel="noopener noreferrer"
+              href="/contact"
               className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline text-ink border border-wsc-border px-8 py-3.5 hover:border-volt transition-colors duration-200"
             >
               Contact Us

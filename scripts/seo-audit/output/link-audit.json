@@ -1,0 +1,4689 @@
+{
+  "generatedAt": "2026-05-21T04:32:56.685Z",
+  "routeCount": 40,
+  "routes": [
+    "/",
+    "/tennis",
+    "/golf",
+    "/gym",
+    "/pickleball",
+    "/summer",
+    "/membership",
+    "/sessions",
+    "/events",
+    "/food-trucks",
+    "/careers",
+    "/blog",
+    "/blog/categories/golf",
+    "/blog/categories/tennis",
+    "/blog/categories/summer",
+    "/blog/categories/fitness",
+    "/blog/categories/membership",
+    "/blog/categories/policies",
+    "/post/bellevue-golfers-looking-for-a-top-notch-driving-range-near-you",
+    "/post/bothell-driving-range-woodinville-sports-club-golf",
+    "/post/elevate-your-fitness-game-at-woodinville-sports-club",
+    "/post/join-woodinville-sports-club-for-premier-sports-facilities",
+    "/post/kirkland-driving-range-woodinville-sports-club",
+    "/post/kirkland-parents-give-your-kids-the-ultimate-summer-at-woodinville-sports-club",
+    "/post/premier-tennis-courts-classes-in-woodinville-wa",
+    "/post/redmond-driving-range-toptracer-golf-at-wsc",
+    "/post/summer-camps-near-me-woodinville-wa",
+    "/post/top-summer-camps-near-bellevue-for-2025",
+    "/post/top-tennis-courts-classes-near-bothell-wa",
+    "/post/training-in-the-pacific-northwest-making-the-most-of-covered-bay-practice",
+    "/post/uncovering-the-ultimate-golf-experience-explore-our-woodinville-driving-range-today",
+    "/post/wsc-2025-pricing-and-policy-changes",
+    "/post/wsc-updated-court-booking-guide",
+    "/about",
+    "/contact",
+    "/pro-shop",
+    "/faq",
+    "/policies",
+    "/privacy",
+    "/accessibility"
+  ],
+  "anchorCount": 1970,
+  "uniqueLinkTextHrefCount": 203,
+  "uniqueDestinationCount": 77,
+  "pageErrors": [
+    {
+      "route": "/",
+      "surface": "mobile-menu",
+      "error": "viewportClean is not defined"
+    }
+  ],
+  "issues": [],
+  "warnings": [],
+  "externalMissingTarget": [],
+  "semanticIssues": [],
+  "fixesApplied": [
+    "Membership View Agreement now links to /policies#membership.",
+    "Membership View Policies now links to /policies.",
+    "Summer Contact Us now links to /contact.",
+    "Tennis adult CTA label now says View Adult Tennis Schedule for the CourtReserve destination.",
+    "Tier 1 Core link now points to the live Tier 1 Core page at /tennis/intro-classes."
+  ],
+  "uniqueLinks": [
+    {
+      "rawHref": "/",
+      "href": "http://localhost:4174/",
+      "text": "Woodinville Sports Club home",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/about",
+      "href": "http://localhost:4174/about",
+      "text": "ABOUT",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/about",
+      "href": "http://localhost:4174/about",
+      "text": "ABOUT WSC",
+      "target": "",
+      "rel": "",
+      "count": 3,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/membership",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/accessibility",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/about",
+      "href": "http://localhost:4174/about",
+      "text": "About WSC",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/accessibility",
+      "href": "http://localhost:4174/accessibility",
+      "text": "Accessibility",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/accessibility",
+      "href": "http://localhost:4174/accessibility",
+      "text": "ACCESSIBILITY",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/privacy",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/blog",
+      "href": "http://localhost:4174/blog",
+      "text": "Blog & Resources",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/blog",
+      "href": "http://localhost:4174/blog",
+      "text": "ALL RESOURCES",
+      "target": "",
+      "rel": "",
+      "count": 21,
+      "examples": [
+        {
+          "route": "/blog/categories/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/summer",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/fitness",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/membership",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/blog/categories/fitness",
+      "href": "http://localhost:4174/blog/categories/fitness",
+      "text": "Fitness Fitness resources covering the WSC gym, personal training, APL athletic performance, strength classes, recovery, member access, goals, and training.",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/blog/categories/fitness",
+      "href": "http://localhost:4174/blog/categories/fitness",
+      "text": "FITNESS",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/elevate-your-fitness-game-at-woodinville-sports-club",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/blog/categories/golf",
+      "href": "http://localhost:4174/blog/categories/golf",
+      "text": "Golf Golf resources for Woodinville and Eastside players covering range practice, Toptracer, Swing Lab simulators, lessons, and year-round training.",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/blog/categories/golf",
+      "href": "http://localhost:4174/blog/categories/golf",
+      "text": "GOLF",
+      "target": "",
+      "rel": "",
+      "count": 12,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/blog/categories/golf",
+      "href": "http://localhost:4174/blog/categories/golf",
+      "text": "VIEW CATEGORY",
+      "target": "",
+      "rel": "",
+      "count": 6,
+      "examples": [
+        {
+          "route": "/post/bellevue-golfers-looking-for-a-top-notch-driving-range-near-you",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/bothell-driving-range-woodinville-sports-club-golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/kirkland-driving-range-woodinville-sports-club",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/redmond-driving-range-toptracer-golf-at-wsc",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/training-in-the-pacific-northwest-making-the-most-of-covered-bay-practice",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/blog/categories/membership",
+      "href": "http://localhost:4174/blog/categories/membership",
+      "text": "Membership Membership resources for current and future WSC members covering pricing, access levels, booking, campus benefits, family use, and planning.",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/blog/categories/membership",
+      "href": "http://localhost:4174/blog/categories/membership",
+      "text": "MEMBERSHIP",
+      "target": "",
+      "rel": "",
+      "count": 4,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/join-woodinville-sports-club-for-premier-sports-facilities",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/wsc-2025-pricing-and-policy-changes",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/blog/categories/membership",
+      "href": "http://localhost:4174/blog/categories/membership",
+      "text": "VIEW CATEGORY",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/post/join-woodinville-sports-club-for-premier-sports-facilities",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/wsc-2025-pricing-and-policy-changes",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/blog/categories/policies",
+      "href": "http://localhost:4174/blog/categories/policies",
+      "text": "Policies Policy resources for WSC members and guests covering court booking, cancellations, guest access, CourtReserve use, and facility expectations.",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/blog/categories/policies",
+      "href": "http://localhost:4174/blog/categories/policies",
+      "text": "POLICIES",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/wsc-updated-court-booking-guide",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/blog/categories/summer",
+      "href": "http://localhost:4174/blog/categories/summer",
+      "text": "Summer Summer resources for families comparing WSC tennis, golf, Adventure Club, camp schedules, bundled days, and active youth programs in Woodinville.",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/blog/categories/summer",
+      "href": "http://localhost:4174/blog/categories/summer",
+      "text": "SUMMER",
+      "target": "",
+      "rel": "",
+      "count": 6,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/kirkland-parents-give-your-kids-the-ultimate-summer-at-woodinville-sports-club",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/summer-camps-near-me-woodinville-wa",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/blog/categories/summer",
+      "href": "http://localhost:4174/blog/categories/summer",
+      "text": "VIEW CATEGORY",
+      "target": "",
+      "rel": "",
+      "count": 3,
+      "examples": [
+        {
+          "route": "/post/kirkland-parents-give-your-kids-the-ultimate-summer-at-woodinville-sports-club",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/summer-camps-near-me-woodinville-wa",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/top-summer-camps-near-bellevue-for-2025",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/blog/categories/tennis",
+      "href": "http://localhost:4174/blog/categories/tennis",
+      "text": "Tennis Tennis resources for Woodinville and Eastside players covering indoor courts, lessons, adult classes, junior pathways, and team opportunities.",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/blog/categories/tennis",
+      "href": "http://localhost:4174/blog/categories/tennis",
+      "text": "TENNIS",
+      "target": "",
+      "rel": "",
+      "count": 4,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/premier-tennis-courts-classes-in-woodinville-wa",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/top-tennis-courts-classes-near-bothell-wa",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/blog/categories/tennis",
+      "href": "http://localhost:4174/blog/categories/tennis",
+      "text": "VIEW CATEGORY",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/post/premier-tennis-courts-classes-in-woodinville-wa",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/top-tennis-courts-classes-near-bothell-wa",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/careers",
+      "href": "http://localhost:4174/careers",
+      "text": "Careers",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/careers",
+      "href": "http://localhost:4174/careers",
+      "text": "Careers Explore open departments and work opportunities at WSC.",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/contact",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/contact",
+      "href": "http://localhost:4174/contact",
+      "text": "CONTACT",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/contact",
+      "href": "http://localhost:4174/contact",
+      "text": "Contact Us",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/contact",
+      "href": "http://localhost:4174/contact",
+      "text": "CONTACT US",
+      "target": "",
+      "rel": "",
+      "count": 6,
+      "examples": [
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/summer",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/faq",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/policies",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/privacy",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/contact",
+      "href": "http://localhost:4174/contact",
+      "text": "CONTACT WSC",
+      "target": "",
+      "rel": "",
+      "count": 3,
+      "examples": [
+        {
+          "route": "/sessions",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/food-trucks",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/careers",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/contact",
+      "href": "http://localhost:4174/contact",
+      "text": "GET IN TOUCH",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/events",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/contact",
+      "href": "http://localhost:4174/contact",
+      "text": "ASK A QUESTION",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/contact",
+      "href": "http://localhost:4174/contact",
+      "text": "DROP OFF A RACQUET",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/pro-shop",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/contact",
+      "href": "http://localhost:4174/contact",
+      "text": "CONTACT PRO SHOP",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/pro-shop",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/events",
+      "href": "http://localhost:4174/events",
+      "text": "Private Events",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/events",
+      "href": "http://localhost:4174/events",
+      "text": "Private Events Plan a party, corporate event, wedding, or family celebration.",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/contact",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/faq",
+      "href": "http://localhost:4174/faq",
+      "text": "FAQ",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/faq",
+      "href": "http://localhost:4174/faq",
+      "text": "VIEW FAQ",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/policies",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/food-trucks",
+      "href": "http://localhost:4174/food-trucks",
+      "text": "Food Trucks",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/food-trucks",
+      "href": "http://localhost:4174/food-trucks",
+      "text": "Food Trucks See rotating local food trucks and vendor contact details.",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/contact",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/golf",
+      "href": "http://localhost:4174/golf",
+      "text": "GOLF",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/golf",
+      "href": "http://localhost:4174/golf",
+      "text": "GOLF PROGRAMS",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/golf",
+      "href": "http://localhost:4174/golf",
+      "text": "EXPLORE GOLF",
+      "target": "",
+      "rel": "",
+      "count": 3,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/bellevue-golfers-looking-for-a-top-notch-driving-range-near-you",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/golf",
+      "href": "http://localhost:4174/golf",
+      "text": "LEARN MORE ON GOLF PAGE",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/golf",
+      "href": "http://localhost:4174/golf",
+      "text": "FULL GOLF PAGE",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/golf",
+      "href": "http://localhost:4174/golf",
+      "text": "Golf",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/golf",
+      "href": "http://localhost:4174/golf",
+      "text": "VISIT GOLF",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/post/bothell-driving-range-woodinville-sports-club-golf",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/golf",
+      "href": "http://localhost:4174/golf",
+      "text": "PLAN GOLF PRACTICE",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/post/kirkland-driving-range-woodinville-sports-club",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/golf",
+      "href": "http://localhost:4174/golf",
+      "text": "SEE GOLF DETAILS",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/post/redmond-driving-range-toptracer-golf-at-wsc",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/golf",
+      "href": "http://localhost:4174/golf",
+      "text": "TRAIN AT WSC GOLF",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/post/training-in-the-pacific-northwest-making-the-most-of-covered-bay-practice",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/golf",
+      "href": "http://localhost:4174/golf",
+      "text": "EXPLORE GOLF AT WSC",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/post/uncovering-the-ultimate-golf-experience-explore-our-woodinville-driving-range-today",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/gym",
+      "href": "http://localhost:4174/gym",
+      "text": "GYM",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/gym",
+      "href": "http://localhost:4174/gym",
+      "text": "EXPLORE PERFORMANCE",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/gym",
+      "href": "http://localhost:4174/gym",
+      "text": "Gym & Fitness",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/gym",
+      "href": "http://localhost:4174/gym",
+      "text": "LEARN MORE ABOUT APL",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/summer",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/gym",
+      "href": "http://localhost:4174/gym",
+      "text": "EXPLORE GYM",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/post/elevate-your-fitness-game-at-woodinville-sports-club",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/membership",
+      "href": "http://localhost:4174/membership",
+      "text": "MEMBERSHIP",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/membership",
+      "href": "http://localhost:4174/membership",
+      "text": "BECOME A MEMBER",
+      "target": "",
+      "rel": "",
+      "count": 3,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pro-shop",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/membership",
+      "href": "http://localhost:4174/membership",
+      "text": "VIEW ALL OPTIONS",
+      "target": "",
+      "rel": "",
+      "count": 3,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/membership",
+      "href": "http://localhost:4174/membership",
+      "text": "Membership",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/membership",
+      "href": "http://localhost:4174/membership",
+      "text": "MEMBERSHIP SIGN UP",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/membership",
+      "href": "http://localhost:4174/membership",
+      "text": "VIEW MEMBERSHIP",
+      "target": "",
+      "rel": "",
+      "count": 4,
+      "examples": [
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/about",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/membership",
+      "href": "http://localhost:4174/membership",
+      "text": "VIEW ALL MEMBERSHIP OPTIONS",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/membership",
+      "href": "http://localhost:4174/membership",
+      "text": "MEMBERSHIP OPTIONS",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/membership",
+      "href": "http://localhost:4174/membership",
+      "text": "COMPARE MEMBERSHIPS",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/post/join-woodinville-sports-club-for-premier-sports-facilities",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/pickleball",
+      "href": "http://localhost:4174/pickleball",
+      "text": "PICKLEBALL",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/pickleball",
+      "href": "http://localhost:4174/pickleball",
+      "text": "EXPLORE PICKLEBALL",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/pickleball",
+      "href": "http://localhost:4174/pickleball",
+      "text": "Pickleball",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/policies",
+      "href": "http://localhost:4174/policies",
+      "text": "Policies & Terms",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/policies",
+      "href": "http://localhost:4174/policies",
+      "text": "VIEW POLICIES",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/membership",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/policies",
+      "href": "http://localhost:4174/policies",
+      "text": "READ POLICIES",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/post/wsc-2025-pricing-and-policy-changes",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/policies",
+      "href": "http://localhost:4174/policies",
+      "text": "VIEW CLUB POLICIES",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/faq",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/policies#membership",
+      "href": "http://localhost:4174/policies#membership",
+      "text": "VIEW AGREEMENT",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/membership",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/bellevue-golfers-looking-for-a-top-notch-driving-range-near-you",
+      "href": "http://localhost:4174/post/bellevue-golfers-looking-for-a-top-notch-driving-range-near-you",
+      "text": "Golf resource from Woodinville Sports Club",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/golf",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/bellevue-golfers-looking-for-a-top-notch-driving-range-near-you",
+      "href": "http://localhost:4174/post/bellevue-golfers-looking-for-a-top-notch-driving-range-near-you",
+      "text": "Bellevue Golfers: Practice Year-Round at WSC",
+      "target": "",
+      "rel": "",
+      "count": 7,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/bothell-driving-range-woodinville-sports-club-golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/kirkland-driving-range-woodinville-sports-club",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/redmond-driving-range-toptracer-golf-at-wsc",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/bellevue-golfers-looking-for-a-top-notch-driving-range-near-you",
+      "href": "http://localhost:4174/post/bellevue-golfers-looking-for-a-top-notch-driving-range-near-you",
+      "text": "READ RESOURCE",
+      "target": "",
+      "rel": "",
+      "count": 7,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/bothell-driving-range-woodinville-sports-club-golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/kirkland-driving-range-woodinville-sports-club",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/redmond-driving-range-toptracer-golf-at-wsc",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/bothell-driving-range-woodinville-sports-club-golf",
+      "href": "http://localhost:4174/post/bothell-driving-range-woodinville-sports-club-golf",
+      "text": "Golf resource from Woodinville Sports Club",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/golf",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/bothell-driving-range-woodinville-sports-club-golf",
+      "href": "http://localhost:4174/post/bothell-driving-range-woodinville-sports-club-golf",
+      "text": "Bothell Driving Range Guide: WSC Golf",
+      "target": "",
+      "rel": "",
+      "count": 7,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/bellevue-golfers-looking-for-a-top-notch-driving-range-near-you",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/kirkland-driving-range-woodinville-sports-club",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/redmond-driving-range-toptracer-golf-at-wsc",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/bothell-driving-range-woodinville-sports-club-golf",
+      "href": "http://localhost:4174/post/bothell-driving-range-woodinville-sports-club-golf",
+      "text": "READ RESOURCE",
+      "target": "",
+      "rel": "",
+      "count": 7,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/bellevue-golfers-looking-for-a-top-notch-driving-range-near-you",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/kirkland-driving-range-woodinville-sports-club",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/redmond-driving-range-toptracer-golf-at-wsc",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/elevate-your-fitness-game-at-woodinville-sports-club",
+      "href": "http://localhost:4174/post/elevate-your-fitness-game-at-woodinville-sports-club",
+      "text": "Fitness resource from Woodinville Sports Club",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/fitness",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/elevate-your-fitness-game-at-woodinville-sports-club",
+      "href": "http://localhost:4174/post/elevate-your-fitness-game-at-woodinville-sports-club",
+      "text": "Your Fitness Home at Woodinville Sports Club",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/fitness",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/elevate-your-fitness-game-at-woodinville-sports-club",
+      "href": "http://localhost:4174/post/elevate-your-fitness-game-at-woodinville-sports-club",
+      "text": "READ RESOURCE",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/fitness",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/join-woodinville-sports-club-for-premier-sports-facilities",
+      "href": "http://localhost:4174/post/join-woodinville-sports-club-for-premier-sports-facilities",
+      "text": "Membership resource from Woodinville Sports Club",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/membership",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/join-woodinville-sports-club-for-premier-sports-facilities",
+      "href": "http://localhost:4174/post/join-woodinville-sports-club-for-premier-sports-facilities",
+      "text": "Where Community and Active Lifestyle Meet",
+      "target": "",
+      "rel": "",
+      "count": 3,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/membership",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/wsc-2025-pricing-and-policy-changes",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/join-woodinville-sports-club-for-premier-sports-facilities",
+      "href": "http://localhost:4174/post/join-woodinville-sports-club-for-premier-sports-facilities",
+      "text": "READ RESOURCE",
+      "target": "",
+      "rel": "",
+      "count": 3,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/membership",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/wsc-2025-pricing-and-policy-changes",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/kirkland-driving-range-woodinville-sports-club",
+      "href": "http://localhost:4174/post/kirkland-driving-range-woodinville-sports-club",
+      "text": "Golf resource from Woodinville Sports Club",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/golf",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/kirkland-driving-range-woodinville-sports-club",
+      "href": "http://localhost:4174/post/kirkland-driving-range-woodinville-sports-club",
+      "text": "Kirkland Driving Range: Practice at WSC",
+      "target": "",
+      "rel": "",
+      "count": 7,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/bellevue-golfers-looking-for-a-top-notch-driving-range-near-you",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/bothell-driving-range-woodinville-sports-club-golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/redmond-driving-range-toptracer-golf-at-wsc",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/kirkland-driving-range-woodinville-sports-club",
+      "href": "http://localhost:4174/post/kirkland-driving-range-woodinville-sports-club",
+      "text": "READ RESOURCE",
+      "target": "",
+      "rel": "",
+      "count": 7,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/bellevue-golfers-looking-for-a-top-notch-driving-range-near-you",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/bothell-driving-range-woodinville-sports-club-golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/redmond-driving-range-toptracer-golf-at-wsc",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/kirkland-parents-give-your-kids-the-ultimate-summer-at-woodinville-sports-club",
+      "href": "http://localhost:4174/post/kirkland-parents-give-your-kids-the-ultimate-summer-at-woodinville-sports-club",
+      "text": "Summer resource from Woodinville Sports Club",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/summer",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/kirkland-parents-give-your-kids-the-ultimate-summer-at-woodinville-sports-club",
+      "href": "http://localhost:4174/post/kirkland-parents-give-your-kids-the-ultimate-summer-at-woodinville-sports-club",
+      "text": "Kirkland Parents: Summer Training at WSC",
+      "target": "",
+      "rel": "",
+      "count": 4,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/summer",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/summer-camps-near-me-woodinville-wa",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/top-summer-camps-near-bellevue-for-2025",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/kirkland-parents-give-your-kids-the-ultimate-summer-at-woodinville-sports-club",
+      "href": "http://localhost:4174/post/kirkland-parents-give-your-kids-the-ultimate-summer-at-woodinville-sports-club",
+      "text": "READ RESOURCE",
+      "target": "",
+      "rel": "",
+      "count": 4,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/summer",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/summer-camps-near-me-woodinville-wa",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/top-summer-camps-near-bellevue-for-2025",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/premier-tennis-courts-classes-in-woodinville-wa",
+      "href": "http://localhost:4174/post/premier-tennis-courts-classes-in-woodinville-wa",
+      "text": "Tennis resource from Woodinville Sports Club",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/tennis",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/premier-tennis-courts-classes-in-woodinville-wa",
+      "href": "http://localhost:4174/post/premier-tennis-courts-classes-in-woodinville-wa",
+      "text": "Premier Tennis Courts and Classes in Woodinville",
+      "target": "",
+      "rel": "",
+      "count": 3,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/top-tennis-courts-classes-near-bothell-wa",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/premier-tennis-courts-classes-in-woodinville-wa",
+      "href": "http://localhost:4174/post/premier-tennis-courts-classes-in-woodinville-wa",
+      "text": "READ RESOURCE",
+      "target": "",
+      "rel": "",
+      "count": 3,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/top-tennis-courts-classes-near-bothell-wa",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/redmond-driving-range-toptracer-golf-at-wsc",
+      "href": "http://localhost:4174/post/redmond-driving-range-toptracer-golf-at-wsc",
+      "text": "Golf resource from Woodinville Sports Club",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/golf",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/redmond-driving-range-toptracer-golf-at-wsc",
+      "href": "http://localhost:4174/post/redmond-driving-range-toptracer-golf-at-wsc",
+      "text": "Redmond Driving Range with Toptracer at WSC",
+      "target": "",
+      "rel": "",
+      "count": 5,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/bellevue-golfers-looking-for-a-top-notch-driving-range-near-you",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/bothell-driving-range-woodinville-sports-club-golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/kirkland-driving-range-woodinville-sports-club",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/redmond-driving-range-toptracer-golf-at-wsc",
+      "href": "http://localhost:4174/post/redmond-driving-range-toptracer-golf-at-wsc",
+      "text": "READ RESOURCE",
+      "target": "",
+      "rel": "",
+      "count": 5,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/bellevue-golfers-looking-for-a-top-notch-driving-range-near-you",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/bothell-driving-range-woodinville-sports-club-golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/kirkland-driving-range-woodinville-sports-club",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/summer-camps-near-me-woodinville-wa",
+      "href": "http://localhost:4174/post/summer-camps-near-me-woodinville-wa",
+      "text": "Summer resource from Woodinville Sports Club",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/summer",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/summer-camps-near-me-woodinville-wa",
+      "href": "http://localhost:4174/post/summer-camps-near-me-woodinville-wa",
+      "text": "Woodinville Summer Camps for Active Kids",
+      "target": "",
+      "rel": "",
+      "count": 4,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/summer",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/kirkland-parents-give-your-kids-the-ultimate-summer-at-woodinville-sports-club",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/top-summer-camps-near-bellevue-for-2025",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/summer-camps-near-me-woodinville-wa",
+      "href": "http://localhost:4174/post/summer-camps-near-me-woodinville-wa",
+      "text": "READ RESOURCE",
+      "target": "",
+      "rel": "",
+      "count": 4,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/summer",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/kirkland-parents-give-your-kids-the-ultimate-summer-at-woodinville-sports-club",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/top-summer-camps-near-bellevue-for-2025",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/top-summer-camps-near-bellevue-for-2025",
+      "href": "http://localhost:4174/post/top-summer-camps-near-bellevue-for-2025",
+      "text": "Summer resource from Woodinville Sports Club",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/summer",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/top-summer-camps-near-bellevue-for-2025",
+      "href": "http://localhost:4174/post/top-summer-camps-near-bellevue-for-2025",
+      "text": "Top Summer Camps Near Bellevue: WSC Guide",
+      "target": "",
+      "rel": "",
+      "count": 4,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/summer",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/kirkland-parents-give-your-kids-the-ultimate-summer-at-woodinville-sports-club",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/summer-camps-near-me-woodinville-wa",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/top-summer-camps-near-bellevue-for-2025",
+      "href": "http://localhost:4174/post/top-summer-camps-near-bellevue-for-2025",
+      "text": "READ RESOURCE",
+      "target": "",
+      "rel": "",
+      "count": 4,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/summer",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/kirkland-parents-give-your-kids-the-ultimate-summer-at-woodinville-sports-club",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/summer-camps-near-me-woodinville-wa",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/top-tennis-courts-classes-near-bothell-wa",
+      "href": "http://localhost:4174/post/top-tennis-courts-classes-near-bothell-wa",
+      "text": "Tennis resource from Woodinville Sports Club",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/tennis",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/top-tennis-courts-classes-near-bothell-wa",
+      "href": "http://localhost:4174/post/top-tennis-courts-classes-near-bothell-wa",
+      "text": "Top Tennis Courts and Classes Near Bothell",
+      "target": "",
+      "rel": "",
+      "count": 3,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/premier-tennis-courts-classes-in-woodinville-wa",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/top-tennis-courts-classes-near-bothell-wa",
+      "href": "http://localhost:4174/post/top-tennis-courts-classes-near-bothell-wa",
+      "text": "READ RESOURCE",
+      "target": "",
+      "rel": "",
+      "count": 3,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/premier-tennis-courts-classes-in-woodinville-wa",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/training-in-the-pacific-northwest-making-the-most-of-covered-bay-practice",
+      "href": "http://localhost:4174/post/training-in-the-pacific-northwest-making-the-most-of-covered-bay-practice",
+      "text": "Golf resource from Woodinville Sports Club",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/golf",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/training-in-the-pacific-northwest-making-the-most-of-covered-bay-practice",
+      "href": "http://localhost:4174/post/training-in-the-pacific-northwest-making-the-most-of-covered-bay-practice",
+      "text": "Pacific Northwest Golf: Covered Bay Practice",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/golf",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/training-in-the-pacific-northwest-making-the-most-of-covered-bay-practice",
+      "href": "http://localhost:4174/post/training-in-the-pacific-northwest-making-the-most-of-covered-bay-practice",
+      "text": "READ RESOURCE",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/golf",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/uncovering-the-ultimate-golf-experience-explore-our-woodinville-driving-range-today",
+      "href": "http://localhost:4174/post/uncovering-the-ultimate-golf-experience-explore-our-woodinville-driving-range-today",
+      "text": "Golf resource from Woodinville Sports Club",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/golf",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/uncovering-the-ultimate-golf-experience-explore-our-woodinville-driving-range-today",
+      "href": "http://localhost:4174/post/uncovering-the-ultimate-golf-experience-explore-our-woodinville-driving-range-today",
+      "text": "Explore the WSC Woodinville Driving Range",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/golf",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/uncovering-the-ultimate-golf-experience-explore-our-woodinville-driving-range-today",
+      "href": "http://localhost:4174/post/uncovering-the-ultimate-golf-experience-explore-our-woodinville-driving-range-today",
+      "text": "READ RESOURCE",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/golf",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/wsc-2025-pricing-and-policy-changes",
+      "href": "http://localhost:4174/post/wsc-2025-pricing-and-policy-changes",
+      "text": "Membership resource from Woodinville Sports Club",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/membership",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/wsc-2025-pricing-and-policy-changes",
+      "href": "http://localhost:4174/post/wsc-2025-pricing-and-policy-changes",
+      "text": "WSC Pricing and Policy Updates for Members",
+      "target": "",
+      "rel": "",
+      "count": 3,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/membership",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/join-woodinville-sports-club-for-premier-sports-facilities",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/wsc-2025-pricing-and-policy-changes",
+      "href": "http://localhost:4174/post/wsc-2025-pricing-and-policy-changes",
+      "text": "READ RESOURCE",
+      "target": "",
+      "rel": "",
+      "count": 3,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/membership",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/join-woodinville-sports-club-for-premier-sports-facilities",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/wsc-updated-court-booking-guide",
+      "href": "http://localhost:4174/post/wsc-updated-court-booking-guide",
+      "text": "Policies resource from Woodinville Sports Club",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/policies",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/wsc-updated-court-booking-guide",
+      "href": "http://localhost:4174/post/wsc-updated-court-booking-guide",
+      "text": "WSC Court Booking Guide for Members",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/policies",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/post/wsc-updated-court-booking-guide",
+      "href": "http://localhost:4174/post/wsc-updated-court-booking-guide",
+      "text": "READ RESOURCE",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/blog",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/blog/categories/policies",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/privacy",
+      "href": "http://localhost:4174/privacy",
+      "text": "Privacy Policy",
+      "target": "",
+      "rel": "",
+      "count": 41,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/pro-shop",
+      "href": "http://localhost:4174/pro-shop",
+      "text": "PRO SHOP",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/pro-shop",
+      "href": "http://localhost:4174/pro-shop",
+      "text": "Pro Shop",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/sessions",
+      "href": "http://localhost:4174/sessions",
+      "text": "VIEW 2026 SESSION DATES",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/sessions",
+      "href": "http://localhost:4174/sessions",
+      "text": "2026 Session Dates",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/sessions",
+      "href": "http://localhost:4174/sessions",
+      "text": "Session Dates View 2026 registration windows and program calendars.",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/contact",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/summer",
+      "href": "http://localhost:4174/summer",
+      "text": "SUMMER",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/summer",
+      "href": "http://localhost:4174/summer",
+      "text": "EXPLORE SUMMER",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/summer",
+      "href": "http://localhost:4174/summer",
+      "text": "Summer Training",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/summer",
+      "href": "http://localhost:4174/summer",
+      "text": "VIEW SUMMER PROGRAMS",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/post/kirkland-parents-give-your-kids-the-ultimate-summer-at-woodinville-sports-club",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/summer",
+      "href": "http://localhost:4174/summer",
+      "text": "PLAN SUMMER",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/post/summer-camps-near-me-woodinville-wa",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/summer",
+      "href": "http://localhost:4174/summer",
+      "text": "COMPARE SUMMER OPTIONS",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/post/top-summer-camps-near-bellevue-for-2025",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/tennis",
+      "href": "http://localhost:4174/tennis",
+      "text": "TENNIS",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/tennis",
+      "href": "http://localhost:4174/tennis",
+      "text": "TENNIS PROGRAMS",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/tennis",
+      "href": "http://localhost:4174/tennis",
+      "text": "EXPLORE TENNIS",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/post/premier-tennis-courts-classes-in-woodinville-wa",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/tennis",
+      "href": "http://localhost:4174/tennis",
+      "text": "Tennis",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "/tennis",
+      "href": "http://localhost:4174/tennis",
+      "text": "VIEW TENNIS PROGRAMS",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/post/top-tennis-courts-classes-near-bothell-wa",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "#cancellation",
+      "href": "http://localhost:4174/policies?audit=1779337975206#cancellation",
+      "text": "CANCELLATIONS",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/policies",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "#classes",
+      "href": "http://localhost:4174/policies?audit=1779337975206#classes",
+      "text": "CLASSES",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/policies",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "#court-booking",
+      "href": "http://localhost:4174/policies?audit=1779337975206#court-booking",
+      "text": "COURT BOOKING",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/policies",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "#court-usage",
+      "href": "http://localhost:4174/policies?audit=1779337975206#court-usage",
+      "text": "COURT RULES",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/policies",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "#facility",
+      "href": "http://localhost:4174/policies?audit=1779337975206#facility",
+      "text": "FACILITY",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/policies",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "#guest",
+      "href": "http://localhost:4174/policies?audit=1779337975206#guest",
+      "text": "GUESTS",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/policies",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "#main-content",
+      "href": "http://localhost:4174/?audit=1779337956106#main-content",
+      "text": "Skip to main content",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "#membership",
+      "href": "http://localhost:4174/policies?audit=1779337975206#membership",
+      "text": "MEMBERSHIP",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/policies",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "#pricing",
+      "href": "http://localhost:4174/policies?audit=1779337975206#pricing",
+      "text": "FEES",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/policies",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "#sample-days",
+      "href": "http://localhost:4174/summer?audit=1779337959026#sample-days",
+      "text": "SEE SAMPLE DAYS",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/summer",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "href": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "text": "COURTRESERVE",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "href": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "text": "BOOK NOW",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "href": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "text": "SCHEDULE A TOUR",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/about",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "href": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "text": "BOOK YOUR FIRST VISIT",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "href": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "text": "START YOUR MEMBERSHIP",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "href": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "text": "Book a Court",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "href": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "text": "Book a Simulator",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "href": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "text": "VIEW ADULT TENNIS SCHEDULE",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "href": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "text": "REGISTER",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 5,
+      "examples": [
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/summer",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "href": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "text": "BOOK A COURT",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 3,
+      "examples": [
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "href": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "text": "BOOK A SIMULATOR",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "href": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "text": "PRIVATE LESSON INQUIRY",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "href": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "text": "BROWSE S&C CLASSES",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "href": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "text": "BROWSE & REGISTER",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "href": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "text": "ENQUIRE",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 3,
+      "examples": [
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "href": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "text": "REQUEST TRAINING",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "href": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "text": "BOOK YOUR ASSESSMENT",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "href": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "text": "RESERVE A COURT",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "href": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "text": "SIGN UP",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 8,
+      "examples": [
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/membership",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/membership",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/membership",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "href": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "text": "REGISTER NOW",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 4,
+      "examples": [
+        {
+          "route": "/summer",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/summer",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/summer",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/summer",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "href": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "text": "REGISTER FOR TENNIS",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/summer",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "href": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "text": "SIGN UP NOW",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/membership",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "href": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "text": "OPEN COURTRESERVE",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/sessions",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "href": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "text": "BOOK ONLINE",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/post/wsc-updated-court-booking-guide",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "href": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "text": "CourtReserve",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/about",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://www.instagram.com/p/DPm-xfbElqx/",
+      "href": "https://www.instagram.com/p/DPm-xfbElqx/",
+      "text": "71 View WSC's Tier 1 Coach Filipp traveled with Daniel Malacek to the ITF J200 Corpus Christi Tournament. JAN 2026",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://www.instagram.com/p/DS3g2B2Fu1p/",
+      "href": "https://www.instagram.com/p/DS3g2B2Fu1p/",
+      "text": "94 View Four state-of-the-art indoor golf simulators are arriving at WSC — just in time for the launch of our Tier 1 Junior Golf Academy. JAN 2026",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://www.instagram.com/p/DU4OMwDkl_E/",
+      "href": "https://www.instagram.com/p/DU4OMwDkl_E/",
+      "text": "56 View Welcome Stella Kim to the WSC golf family! Stella is a certified LPGA Teaching Professional with nearly a decade of experience. FEB 2026",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://www.instagram.com/p/DUwoAj-jmb3/",
+      "href": "https://www.instagram.com/p/DUwoAj-jmb3/",
+      "text": "33 View Our first Tier 1 Women's Golf Clinic is in the books! Great turnout and even better swings. FEB 2026",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://www.instagram.com/p/DVOo-q-EgdB/",
+      "href": "https://www.instagram.com/p/DVOo-q-EgdB/",
+      "text": "62 View Summer 2026 registration is open for Tennis, Golf, and Adventure Club programs across the 9-week summer session. FEB 2026",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://www.instagram.com/p/DVPyb55Dclm/",
+      "href": "https://www.instagram.com/p/DVPyb55Dclm/",
+      "text": "45 View All-Access memberships include gym and fitness access, court and range privileges, class registration access, sauna, and locker rooms. FEB 2026",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://www.instagram.com/p/DVUAJfyErsA/",
+      "href": "https://www.instagram.com/p/DVUAJfyErsA/",
+      "text": "87 View The range is open to the public daily, with covered bays, free Toptracer, grass tees, and a 2.5-acre short-game practice area. FEB 2026",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://www.instagram.com/reel/DMdnKqVhvlp/",
+      "href": "https://www.instagram.com/reel/DMdnKqVhvlp/",
+      "text": "142 View This club has it all. Welcome to Woodinville Sports Club — 67 acres of tennis, golf, fitness, and pickleball. REEL MAR 2026",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://www.instagram.com/woodinvillesportsclub",
+      "href": "https://www.instagram.com/woodinvillesportsclub",
+      "text": "FOLLOW ON INSTAGRAM",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/contact",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://www.instagram.com/woodinvillesportsclub",
+      "href": "https://www.instagram.com/woodinvillesportsclub",
+      "text": "@woodinvillesportsclub",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://www.instagram.com/woodinvillesportsclub",
+      "href": "https://www.instagram.com/woodinvillesportsclub",
+      "text": "FOLLOW UPDATES",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/food-trucks",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://www.tier1nw.com",
+      "href": "https://www.tier1nw.com/",
+      "text": "EXPLORE TIER 1 PROGRAMS",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 43,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://www.tier1nw.com",
+      "href": "https://www.tier1nw.com/",
+      "text": "EXPLORE TIER 1 TENNIS",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://www.tier1nw.com",
+      "href": "https://www.tier1nw.com/",
+      "text": "EXPLORE TIER 1 GOLF",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://www.tier1nw.com",
+      "href": "https://www.tier1nw.com/",
+      "text": "Tier 1 Performance NW",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://www.tier1nw.com",
+      "href": "https://www.tier1nw.com/",
+      "text": "LEARN MORE ABOUT TIER 1 PERFORMANCE",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://www.tier1nw.com",
+      "href": "https://www.tier1nw.com/",
+      "text": "EXPLORE TIER 1",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 3,
+      "examples": [
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/about",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://www.tier1nw.com/tennis/intro-classes",
+      "href": "https://www.tier1nw.com/tennis/intro-classes",
+      "text": "LEARN MORE ABOUT TIER 1 CORE",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "https://www.w3.org/WAI/standards-guidelines/wcag/",
+      "href": "https://www.w3.org/WAI/standards-guidelines/wcag/",
+      "text": "W3C Web Accessibility Initiative",
+      "target": "_blank",
+      "rel": "noopener noreferrer",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/accessibility",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "mailto:dgraham@woodinvillesportsclub.com",
+      "href": "mailto:dgraham@woodinvillesportsclub.com",
+      "text": "EMAIL DON GRAHAM",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "mailto:info@woodinvillesportsclub.com",
+      "href": "mailto:info@woodinvillesportsclub.com",
+      "text": "info@woodinvillesportsclub.com",
+      "target": "",
+      "rel": "",
+      "count": 44,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "mailto:info@woodinvillesportsclub.com?subject=Privacy%20Policy%20Inquiry",
+      "href": "mailto:info@woodinvillesportsclub.com?subject=Privacy%20Policy%20Inquiry",
+      "text": "INFO@WOODINVILLESPORTSCLUB.COM",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/privacy",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "mailto:info@woodinvillesportsclub.com?subject=Website%20Accessibility%20Feedback",
+      "href": "mailto:info@woodinvillesportsclub.com?subject=Website%20Accessibility%20Feedback",
+      "text": "INFO@WOODINVILLESPORTSCLUB.COM",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/accessibility",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "mailto:pickleballisgreat.paul@gmail.com",
+      "href": "mailto:pickleballisgreat.paul@gmail.com",
+      "text": "pickleballisgreat.paul@gmail.com",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "mailto:shenson@woodinvillesportsclub.com",
+      "href": "mailto:shenson@woodinvillesportsclub.com",
+      "text": "BRING A TRUCK",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/food-trucks",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "mailto:Tier1@woodinvillesportsclub.com",
+      "href": "mailto:Tier1@woodinvillesportsclub.com",
+      "text": "QUESTIONS? EMAIL US",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/summer",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "tel:+14254814686",
+      "href": "tel:+14254814686",
+      "text": "(425) 481-4686",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "tel:+14254857319",
+      "href": "tel:+14254857319",
+      "text": "(425) 485-7319",
+      "target": "",
+      "rel": "",
+      "count": 40,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "tel:+14254871090",
+      "href": "tel:+14254871090",
+      "text": "(425) 487-1090",
+      "target": "",
+      "rel": "",
+      "count": 43,
+      "examples": [
+        {
+          "route": "/",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/tennis",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/golf",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/gym",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "tel:+14254871090",
+      "href": "tel:+14254871090",
+      "text": "CALL FRONT DESK",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/pro-shop",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "tel:+14258706540",
+      "href": "tel:+14258706540",
+      "text": "(425) 870-6540",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/pickleball",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "tel:4254857319",
+      "href": "tel:4254857319",
+      "text": "(425) 485-7319",
+      "target": "",
+      "rel": "",
+      "count": 1,
+      "examples": [
+        {
+          "route": "/contact",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "rawHref": "tel:4254871090",
+      "href": "tel:4254871090",
+      "text": "(425) 487-1090",
+      "target": "",
+      "rel": "",
+      "count": 2,
+      "examples": [
+        {
+          "route": "/about",
+          "surface": "desktop",
+          "visible": true
+        },
+        {
+          "route": "/contact",
+          "surface": "desktop",
+          "visible": true
+        }
+      ]
+    }
+  ]
+}

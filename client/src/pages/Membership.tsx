@@ -337,28 +337,24 @@ export default function Membership() {
             <p className="text-ink-mid text-[14px] leading-[1.72] mb-4">
               Review the full membership agreement including terms, conditions, and cancellation policies.
             </p>
-            <a
-              href="https://app.courtreserve.com/Online/Portal/Index/6689"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/policies#membership"
               className="text-ink text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt pb-[3px]"
             >
               View Agreement
-            </a>
+            </Link>
           </div>
           <div className="bg-parchment p-8">
             <h3 className="text-[18px] font-light tracking-[-0.01em] mb-3">Membership Policies</h3>
             <p className="text-ink-mid text-[14px] leading-[1.72] mb-4">
               Review our membership policies including guest policies, code of conduct, and facility rules.
             </p>
-            <a
-              href="https://app.courtreserve.com/Online/Portal/Index/6689"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/policies"
               className="text-ink text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt pb-[3px]"
             >
               View Policies
-            </a>
+            </Link>
           </div>
         </div>
       </section>
