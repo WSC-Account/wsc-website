@@ -14,7 +14,15 @@ interface FullWidthImageProps {
   ctaLabel?: string;
   ctaHref?: string;
   ctaExternal?: boolean;
+  imagePosition?: string;
 }
+
+const FULL_WIDTH_IMAGE_POSITIONS: Record<string, string> = {
+  "/images/wsc/apl-training.webp": "center 12%",
+  "/images/wsc/summer-camp.webp": "center 32%",
+  "/images/wsc/tennis-courts.webp": "25% 24%",
+  "/images/wsc/tennis-player.webp": "center 24%",
+};
 
 export default function FullWidthImage({
   src,
@@ -26,6 +34,7 @@ export default function FullWidthImage({
   ctaLabel,
   ctaHref,
   ctaExternal = false,
+  imagePosition = FULL_WIDTH_IMAGE_POSITIONS[src] ?? "center",
 }: FullWidthImageProps) {
   const heightClass =
     height === "short"
@@ -49,6 +58,7 @@ export default function FullWidthImage({
         width={1800}
         height={1200}
         className="absolute inset-0 w-full h-full object-cover object-center"
+        style={{ objectPosition: imagePosition }}
         loading="lazy"
       />
       {overlay !== "none" && <div className={`absolute inset-0 ${overlayClass}`} />}

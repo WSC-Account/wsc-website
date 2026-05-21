@@ -48,6 +48,7 @@ const heroCollageImages = [
     width: 1800,
     height: 1200,
     objectPosition: "center 12%",
+    imageClassName: "lg:translate-y-[22%]",
     className: "col-span-1 row-span-2 lg:col-span-3 lg:row-span-3",
   },
   {
@@ -283,7 +284,7 @@ export default function Home() {
                   loading={index === 0 ? "eager" : "lazy"}
                   fetchPriority={index === 0 ? "high" : "auto"}
                   decoding="async"
-                  className="h-full w-full object-cover saturate-[0.72] brightness-[0.68] contrast-[1.05] lg:scale-[1.02]"
+                  className={`h-full w-full object-cover saturate-[0.72] brightness-[0.68] contrast-[1.05] lg:scale-[1.02] ${tile.imageClassName ?? ""}`}
                   style={{ objectPosition: tile.objectPosition }}
                 />
               </picture>
