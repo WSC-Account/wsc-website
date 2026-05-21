@@ -47,7 +47,7 @@ const heroCollageImages = [
     alt: "Tennis player training at Woodinville Sports Club",
     width: 1800,
     height: 1200,
-    objectPosition: "center 28%",
+    objectPosition: "center 12%",
     className: "col-span-1 row-span-2 lg:col-span-3 lg:row-span-3",
   },
   {

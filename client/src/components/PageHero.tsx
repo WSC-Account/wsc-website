@@ -16,7 +16,7 @@ const HERO_IMAGE_POSITIONS: Record<string, string> = {
   "/images/wsc/apl-training.webp": "center 12%",
   "/images/wsc/summer-camp.webp": "center 32%",
   "/images/wsc/tennis-courts.webp": "25% 24%",
-  "/images/wsc/tennis-player.webp": "center 28%",
+  "/images/wsc/tennis-player.webp": "center 12%",
 };
 
 export default function PageHero({
