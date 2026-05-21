@@ -281,6 +281,11 @@
       "permanent": true
     },
     {
+      "source": "/terms",
+      "destination": "/policies",
+      "permanent": true
+    },
+    {
       "source": "/testimonials",
       "destination": "/about",
       "permanent": true

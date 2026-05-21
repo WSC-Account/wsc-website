@@ -29,6 +29,7 @@ const pageImages: Record<string, string> = {
   "/membership": "/images/wsc/campus-dome.webp",
   "/sessions": "/images/wsc/campus-sunset.webp",
   "/events": "/images/wsc/contact-campus.webp",
+  "/food-trucks": "/images/wsc/campus-sunset.webp",
   "/careers": "/images/wsc/apl-training.webp",
   "/blog": "/images/wsc/campus-dome.webp",
   "/about": "/images/wsc/campus-sunset.webp",

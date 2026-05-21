@@ -57,6 +57,12 @@ export const SEO = {
       "Host private events at WSC in Woodinville Wine Country, including weddings, birthdays, corporate outings, family celebrations, sports parties and cabin rentals.",
     path: "/events",
   },
+  foodTrucks: {
+    title: "Food Trucks & Campus Dining",
+    description:
+      "Woodinville Sports Club hosts rotating local food trucks on campus. Grab dinner before golf, tennis, pickleball, fitness, or private events.",
+    path: "/food-trucks",
+  },
   careers: {
     title: "Careers at WSC Sports Campus",
     description:
@@ -72,7 +78,7 @@ export const SEO = {
   about: {
     title: "About WSC 67-Acre Campus",
     description:
-      "Learn about WSC's 67-acre Woodinville campus, founded in 1979 and built for tennis, golf, pickleball, fitness, and events.",
+      "Learn about WSC's 67-acre Woodinville campus, founded in 1979 and built for tennis, golf, pickleball, fitness, private events, camps, and community programs.",
     path: "/about",
   },
   contact: {

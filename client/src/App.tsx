@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { Route, Switch, useLocation } from "wouter";
+import { Redirect, Route, Switch, useLocation } from "wouter";
 import Analytics from "./components/Analytics";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
@@ -20,6 +20,7 @@ const Summer = lazy(() => import("./pages/Summer"));
 const Membership = lazy(() => import("./pages/Membership"));
 const Sessions = lazy(() => import("./pages/Sessions"));
 const Events = lazy(() => import("./pages/Events"));
+const FoodTrucks = lazy(() => import("./pages/FoodTrucks"));
 const Careers = lazy(() => import("./pages/Careers"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogCategory = lazy(() => import("./pages/BlogCategory"));
@@ -70,6 +71,7 @@ function Router() {
         <Route path="/membership" component={Membership} />
         <Route path="/sessions" component={Sessions} />
         <Route path="/events" component={Events} />
+        <Route path="/food-trucks" component={FoodTrucks} />
         <Route path="/careers" component={Careers} />
         <Route path="/blog" component={Blog} />
         <Route path="/blog/categories/:category" component={BlogCategory} />
@@ -81,8 +83,8 @@ function Router() {
         <Route path="/policies" component={Policies} />
         <Route path="/faq" component={FAQ} />
         <Route path="/pro-shop" component={ProShop} />
-        <Route path="/terms" component={Policies} />
-        <Route path="/fitness" component={Gym} />
+        <Route path="/terms">{() => <Redirect to="/policies" />}</Route>
+        <Route path="/fitness">{() => <Redirect to="/gym" />}</Route>
         <Route path="/404" component={NotFound} />
         <Route component={NotFound} />
       </Switch>

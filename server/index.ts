@@ -7,6 +7,10 @@ import { handleFormSubmissionRequest } from "./form-submissions";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const canonicalRedirects: Record<string, string> = {
+  "/fitness": "/gym",
+  "/terms": "/policies",
+};
 
 async function startServer() {
   const app = express();
@@ -23,6 +27,14 @@ async function startServer() {
 
   app.get("/healthz", (_req, res) => {
     res.status(200).json({ ok: true });
+  });
+
+  app.get(Object.keys(canonicalRedirects), (req, res) => {
+    const destination = canonicalRedirects[req.path];
+    const queryIndex = req.originalUrl.indexOf("?");
+    const query = queryIndex >= 0 ? req.originalUrl.slice(queryIndex) : "";
+
+    res.redirect(301, `${destination}${query}`);
   });
 
   app.post("/api/forms", (req, res) => {
