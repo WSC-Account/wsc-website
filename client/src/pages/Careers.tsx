@@ -88,7 +88,7 @@ export default function Careers() {
             <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
               Tell us where you would like to contribute.
             </h2>
-            <p className="text-parchment/65 text-[15px] leading-[1.75] max-w-[620px]">
+            <p className="text-parchment/80 text-[15px] leading-[1.75] max-w-[620px]">
               The legacy application collected contact details, department interest, availability, resume upload, authorization to work in the United States, and sponsorship needs. Use the contact page to start the application conversation.
             </p>
           </div>

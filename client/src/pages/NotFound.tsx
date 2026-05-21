@@ -35,7 +35,7 @@ export default function NotFound() {
             <p className="text-parchment/80 text-[20px] font-light tracking-[-0.01em] leading-[1.4] mb-3">
               Page not found.
             </p>
-            <p className="text-parchment/50 text-[15px] leading-[1.72] mb-10 max-w-[440px]">
+            <p className="text-parchment/70 text-[15px] leading-[1.72] mb-10 max-w-[440px]">
               The page you're looking for may have been moved, renamed, or doesn't exist.
               Head back to the homepage or explore one of our programs below.
             </p>
@@ -56,7 +56,7 @@ export default function NotFound() {
             </div>
 
             <div className="border-t border-parchment/10 pt-8">
-              <p className="text-parchment/40 text-[10px] tracking-[0.2em] uppercase mb-4">
+              <p className="text-parchment/80 text-[10px] tracking-[0.2em] uppercase mb-4">
                 Quick Links
               </p>
               <div className="flex flex-wrap gap-x-6 gap-y-2">
@@ -64,7 +64,7 @@ export default function NotFound() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="text-parchment/60 text-[13px] no-underline hover:text-volt-bright transition-colors duration-200"
+                    className="text-parchment/75 text-[13px] no-underline hover:text-volt-bright transition-colors duration-200"
                   >
                     {link.label}
                   </Link>

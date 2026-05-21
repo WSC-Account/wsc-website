@@ -750,7 +750,7 @@ export default function Policies() {
             className={`text-[12px] tracking-[0.12em] uppercase py-4 px-6 border-b-2 transition-colors duration-200 bg-transparent cursor-pointer ${
               activeTab === "policies"
                 ? "text-parchment border-volt-bright font-medium"
-                : "text-parchment/55 border-transparent hover:text-parchment/80"
+                : "text-parchment/70 border-transparent hover:text-parchment/80"
             }`}
           >
             Club Policies
@@ -762,7 +762,7 @@ export default function Policies() {
             className={`text-[12px] tracking-[0.12em] uppercase py-4 px-6 border-b-2 transition-colors duration-200 bg-transparent cursor-pointer ${
               activeTab === "terms"
                 ? "text-parchment border-volt-bright font-medium"
-                : "text-parchment/55 border-transparent hover:text-parchment/80"
+                : "text-parchment/70 border-transparent hover:text-parchment/80"
             }`}
           >
             Terms of Service
@@ -780,7 +780,7 @@ export default function Policies() {
           <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
             We're here to help.
           </h2>
-          <p className="text-parchment/65 text-[15px] leading-[1.72] mb-10 max-w-[500px] mx-auto">
+          <p className="text-parchment/80 text-[15px] leading-[1.72] mb-10 max-w-[500px] mx-auto">
             If you have questions about any of our policies or terms, please don't hesitate to reach out.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -797,7 +797,7 @@ export default function Policies() {
               View FAQ
             </Link>
           </div>
-          <p className="text-parchment/50 text-[12px] mt-8">
+          <p className="text-parchment/70 text-[12px] mt-8">
             Policies last updated September 14, 2025. Terms last updated March 4, 2026.
           </p>
         </div>

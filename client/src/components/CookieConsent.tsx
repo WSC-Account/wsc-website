@@ -103,7 +103,7 @@ export default function CookieConsent() {
                 <p className="text-parchment text-[14px] font-light leading-[1.65] mb-1">
                   We use cookies to enhance your experience, analyze site traffic, and support our marketing efforts.
                 </p>
-                <p className="text-parchment/55 text-[12px] leading-[1.6]">
+                <p className="text-parchment/70 text-[12px] leading-[1.6]">
                   By clicking "Accept All," you consent to our use of cookies. You can manage your preferences or decline non-essential cookies.{" "}
                   <Link
                     href="/privacy"
@@ -120,7 +120,7 @@ export default function CookieConsent() {
               <button
                 type="button"
                 onClick={() => setExpanded(!expanded)}
-                className="text-parchment/65 text-[11px] tracking-[0.1em] uppercase no-underline hover:text-parchment transition-colors duration-200 flex items-center gap-1.5 min-h-[44px] px-2"
+                className="text-parchment/80 text-[11px] tracking-[0.1em] uppercase no-underline hover:text-parchment transition-colors duration-200 flex items-center gap-1.5 min-h-[44px] px-2"
                 aria-expanded={expanded}
                 aria-controls={expanded ? "cookie-preferences" : undefined}
               >
@@ -147,7 +147,7 @@ export default function CookieConsent() {
             <button
               type="button"
               onClick={declineAll}
-              className="absolute top-3 right-3 lg:static text-parchment/40 hover:text-parchment transition-colors duration-200 min-w-[44px] min-h-[44px] flex items-center justify-center"
+              className="absolute top-3 right-3 lg:static text-parchment/80 hover:text-parchment transition-colors duration-200 min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Close cookie banner and decline non-essential cookies"
             >
               <X size={16} />
@@ -167,7 +167,7 @@ export default function CookieConsent() {
                     <span className="text-parchment text-[12px] tracking-[0.1em] uppercase">Necessary</span>
                     <span className="text-volt-bright text-[10px] tracking-[0.12em] uppercase">Always On</span>
                   </div>
-                  <p className="text-parchment/55 text-[12px] leading-[1.65]">
+                  <p className="text-parchment/70 text-[12px] leading-[1.65]">
                     Essential cookies that enable core site functionality like navigation, security, and accessibility preferences.
                   </p>
                 </div>
@@ -196,7 +196,7 @@ export default function CookieConsent() {
                       />
                     </button>
                   </div>
-                  <p className="text-parchment/55 text-[12px] leading-[1.65]">
+                  <p className="text-parchment/70 text-[12px] leading-[1.65]">
                     Help us understand how visitors interact with our website by collecting anonymous usage data.
                   </p>
                 </div>
@@ -225,7 +225,7 @@ export default function CookieConsent() {
                       />
                     </button>
                   </div>
-                  <p className="text-parchment/55 text-[12px] leading-[1.65]">
+                  <p className="text-parchment/70 text-[12px] leading-[1.65]">
                     Used to deliver relevant advertisements and track campaign effectiveness across platforms.
                   </p>
                 </div>

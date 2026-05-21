@@ -57,7 +57,7 @@ export default function Gym() {
               <div className="text-volt-bright text-[36px] font-light tracking-[-0.03em] leading-none mb-2">
                 {m.val}
               </div>
-              <div className="text-parchment/60 text-[11px] tracking-[0.14em] uppercase leading-[1.5]">
+              <div className="text-parchment/75 text-[11px] tracking-[0.14em] uppercase leading-[1.5]">
                 {m.label}
               </div>
             </div>
@@ -115,12 +115,12 @@ export default function Gym() {
               <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light leading-[1.1] tracking-[-0.02em] mb-6">
                 Built for serious<br />strength training.
               </h2>
-              <p className="text-parchment/65 text-[15px] leading-[1.8] max-w-[420px] mb-6">
+              <p className="text-parchment/80 text-[15px] leading-[1.8] max-w-[420px] mb-6">
                 Our dedicated weight room features power racks, Olympic lifting platforms, a full dumbbell range, cable machines, and kettlebells. Whether you're training for competition or general fitness, you'll find the equipment you need.
               </p>
               <div className="flex flex-wrap gap-3">
                 {["Power Racks", "Olympic Platforms", "Dumbbells", "Cable Machines", "Kettlebells"].map((e) => (
-                  <span key={e} className="text-[11px] tracking-[0.1em] uppercase text-parchment/60 border border-parchment/20 px-4 py-2">{e}</span>
+                  <span key={e} className="text-[11px] tracking-[0.1em] uppercase text-parchment/75 border border-parchment/20 px-4 py-2">{e}</span>
                 ))}
               </div>
             </div>
@@ -181,10 +181,10 @@ export default function Gym() {
               <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light leading-[1.1] tracking-[-0.02em] mb-6">
                 Where champions<br />are built.
               </h2>
-              <p className="text-parchment/65 text-[15px] leading-[1.8] max-w-[420px] mb-6">
+              <p className="text-parchment/80 text-[15px] leading-[1.8] max-w-[420px] mb-6">
                 Our new Athletic Performance Lab (APL) Training Center is a dedicated space for elite strength and conditioning. Small-group classes, sport-specific programming, and expert coaching for youth and adult athletes.
               </p>
-              <p className="text-parchment/65 text-[15px] leading-[1.8] max-w-[420px] mb-8">
+              <p className="text-parchment/80 text-[15px] leading-[1.8] max-w-[420px] mb-8">
                 The goal of our APL training program is to develop more well-rounded athletes — improving strength, speed, power, agility, and endurance through structured programming.
               </p>
               <a
@@ -217,7 +217,7 @@ export default function Gym() {
                 <div className="text-volt-bright text-[40px] font-light tracking-[-0.03em] leading-none mb-2">
                   {m.val}
                 </div>
-                <div className="text-parchment/55 text-[11px] tracking-[0.14em] uppercase leading-[1.5]">
+                <div className="text-parchment/70 text-[11px] tracking-[0.14em] uppercase leading-[1.5]">
                   {m.label}
                 </div>
               </div>
@@ -362,7 +362,7 @@ export default function Gym() {
             <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light leading-[1.1] tracking-[-0.02em] mb-6">
               Performance-based training for youth and adults.
             </h2>
-            <p className="text-parchment/65 text-[15px] leading-[1.8] max-w-[520px]">
+            <p className="text-parchment/80 text-[15px] leading-[1.8] max-w-[520px]">
               The Athletic Performance Lab offers one-on-one training for competitive athletes and anyone who wants to move, feel, and perform better. Sessions are built around assessment, data-driven metrics, and measurable progress.
             </p>
           </div>
@@ -371,7 +371,7 @@ export default function Gym() {
             <div className="bg-dark-mid p-8 lg:p-10">
               <p className="text-volt-bright text-[10px] tracking-[0.2em] uppercase mb-3">Youth & Adult Athletes</p>
               <h3 className="text-parchment text-[20px] font-light tracking-[-0.01em] mb-4">Sport-specific personal training</h3>
-              <p className="text-parchment/65 text-[14px] leading-[1.72] mb-6">
+              <p className="text-parchment/80 text-[14px] leading-[1.72] mb-6">
                 Build speed, power, endurance, confidence, and injury resilience through programming tailored to your sport and goals.
               </p>
               <a
@@ -386,7 +386,7 @@ export default function Gym() {
             <div className="bg-dark-mid p-8 lg:p-10">
               <p className="text-volt-bright text-[10px] tracking-[0.2em] uppercase mb-3">Team Training</p>
               <h3 className="text-parchment text-[20px] font-light tracking-[-0.01em] mb-4">Youth club and school teams</h3>
-              <p className="text-parchment/65 text-[14px] leading-[1.72] mb-6">
+              <p className="text-parchment/80 text-[14px] leading-[1.72] mb-6">
                 WSC's Performance Training Team is available for sport and conditioning sessions for youth athletic clubs and school athletic departments.
               </p>
               <a
@@ -503,7 +503,7 @@ export default function Gym() {
                   <span className="text-ink-mid text-[15px]">{h.hours}</span>
                 </div>
               ))}
-              <p className="text-ink-mid/60 text-[13px] leading-[1.7] pt-4">
+              <p className="text-ink-mid/85 text-[13px] leading-[1.7] pt-4">
                 Hours may vary on holidays. Please check the front desk or CourtReserve for holiday schedules. Gym access requires an active membership with gym privileges.
               </p>
             </div>

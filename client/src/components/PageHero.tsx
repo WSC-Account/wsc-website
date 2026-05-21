@@ -45,7 +45,7 @@ export default function PageHero({ eyebrow, headline, subtitle, image }: PageHer
           {headline}
         </h1>
         {subtitle && (
-          <p className="text-parchment/65 text-[16px] leading-[1.72] max-w-[500px]">
+          <p className="text-parchment/80 text-[16px] leading-[1.72] max-w-[500px]">
             {subtitle}
           </p>
         )}

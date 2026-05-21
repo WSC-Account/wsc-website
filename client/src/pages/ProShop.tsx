@@ -180,7 +180,7 @@ export default function ProShop() {
           <h2 className="text-parchment text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
             Choose the right tier<br />for your game.
           </h2>
-          <p className="text-parchment/65 text-[15px] leading-[1.75] max-w-[640px] mb-14">
+          <p className="text-parchment/80 text-[15px] leading-[1.75] max-w-[640px] mb-14">
             Each tier includes stringing service labor and a set of strings. Bring your own strings or have your string selection decided and ready to share with the front desk when you drop off your racket.
           </p>
 
@@ -193,7 +193,7 @@ export default function ProShop() {
                 </div>
                 <h3 className="text-parchment text-[20px] font-light tracking-[-0.01em] mb-2">{option.category}</h3>
                 <p className="text-volt-bright text-[22px] font-light mb-4">{option.price}</p>
-                <p className="text-parchment/65 text-[14px] leading-[1.6]">{option.description}</p>
+                <p className="text-parchment/80 text-[14px] leading-[1.6]">{option.description}</p>
               </div>
             ))}
           </div>
@@ -238,7 +238,7 @@ export default function ProShop() {
               <p className="text-ink-mid text-[15px] leading-[1.75] mb-6">
                 Current WSC stringing tiers include both stringing service labor and a set of strings. Final price depends on the selected tier and string choice.
               </p>
-              <p className="text-ink-mid/70 text-[13px] leading-[1.6] italic">
+              <p className="text-ink-mid/85 text-[13px] leading-[1.6] italic">
                 Bring your racket to the front desk with your own strings or with your preferred string selection ready.
               </p>
             </div>
@@ -271,19 +271,19 @@ export default function ProShop() {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-[720px] mx-auto mb-10">
             <div className="border border-white/[0.08] p-6">
-              <p className="text-parchment/55 text-[11px] tracking-[0.16em] uppercase mb-2">Tennis & Gym</p>
+              <p className="text-parchment/70 text-[11px] tracking-[0.16em] uppercase mb-2">Tennis & Gym</p>
               <p className="text-parchment text-[18px] font-light">Weekdays 6 AM - 11 PM</p>
             </div>
             <div className="border border-white/[0.08] p-6">
-              <p className="text-parchment/55 text-[11px] tracking-[0.16em] uppercase mb-2">Tennis & Gym</p>
+              <p className="text-parchment/70 text-[11px] tracking-[0.16em] uppercase mb-2">Tennis & Gym</p>
               <p className="text-parchment text-[18px] font-light">Weekends 7 AM - 10 PM</p>
             </div>
             <div className="border border-white/[0.08] p-6">
-              <p className="text-parchment/55 text-[11px] tracking-[0.16em] uppercase mb-2">Golf</p>
+              <p className="text-parchment/70 text-[11px] tracking-[0.16em] uppercase mb-2">Golf</p>
               <p className="text-parchment text-[18px] font-light">Everyday 9 AM - 10 PM</p>
             </div>
           </div>
-          <p className="text-parchment/60 text-[14px] leading-[1.7] max-w-[540px] mx-auto mb-10">
+          <p className="text-parchment/75 text-[14px] leading-[1.7] max-w-[540px] mx-auto mb-10">
             Located inside the main clubhouse at Woodinville Sports Club. Bring your racket to the front desk with your preferred string choice or your own strings.
           </p>
           <div className="flex flex-wrap justify-center gap-4">

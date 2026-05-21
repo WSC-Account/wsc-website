@@ -39,11 +39,11 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-dark-bg" aria-label="Main navigation">
       {/* Caliber Sports top bar with phone */}
       <div className="bg-dark-mid px-6 lg:px-14 py-1.5 flex items-center justify-between border-b border-white/[0.05]">
-        <span className="text-parchment/50 text-[10px] tracking-[0.16em] uppercase">A Caliber Sports Facility</span>
+        <span className="text-parchment/70 text-[10px] tracking-[0.16em] uppercase">A Caliber Sports Facility</span>
         <div className="flex items-center gap-6">
           <a
             href="tel:+14254814686"
-            className="hidden sm:flex items-center gap-1.5 text-parchment/50 text-[10px] tracking-[0.1em] uppercase no-underline hover:text-parchment/70 transition-colors duration-200"
+            className="hidden sm:flex items-center gap-1.5 text-parchment/70 text-[10px] tracking-[0.1em] uppercase no-underline hover:text-parchment transition-colors duration-200"
           >
             <Phone size={10} />
             (425) 481-4686
@@ -52,7 +52,7 @@ export default function Navbar() {
             href={CALIBER_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-parchment/50 text-[10px] tracking-[0.1em] uppercase no-underline hover:text-parchment/70 transition-colors duration-200"
+            className="text-parchment/70 text-[10px] tracking-[0.1em] uppercase no-underline hover:text-parchment transition-colors duration-200"
           >
             calibersports.com
           </a>
@@ -165,7 +165,7 @@ export default function Navbar() {
             <li className="mt-1">
               <a
                 href="tel:+14254814686"
-                className="flex items-center gap-1.5 text-parchment/50 text-[11px] tracking-[0.1em] uppercase no-underline"
+                className="flex items-center gap-1.5 text-parchment/70 text-[11px] tracking-[0.1em] uppercase no-underline"
               >
                 <Phone size={11} />
                 (425) 481-4686

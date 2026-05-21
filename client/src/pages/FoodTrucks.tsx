@@ -103,7 +103,7 @@ export default function FoodTrucks() {
             <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
               Food, range balls, courts, and community.
             </h2>
-            <p className="text-parchment/65 text-[15px] leading-[1.75] max-w-[620px]">
+            <p className="text-parchment/80 text-[15px] leading-[1.75] max-w-[620px]">
               Pair dinner with the driving range, mini-golf, tennis, pickleball, or a private event on campus.
             </p>
           </div>

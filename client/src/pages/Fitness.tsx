@@ -55,10 +55,10 @@ export default function Fitness() {
               <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light leading-[1.1] tracking-[-0.02em] mb-6">
                 Building more<br />well-rounded athletes.
               </h2>
-              <p className="text-parchment/65 text-[15px] leading-[1.8] max-w-[420px] mb-6">
+              <p className="text-parchment/80 text-[15px] leading-[1.8] max-w-[420px] mb-6">
                 We've recently launched an all-new lineup of APL Group Strength & Conditioning Classes for kids and adults. Training sessions benefit athletes of all levels and are tailored to your sport, improving strength, speed, power, agility, and endurance.
               </p>
-              <p className="text-parchment/65 text-[15px] leading-[1.8] max-w-[420px] mb-8">
+              <p className="text-parchment/80 text-[15px] leading-[1.8] max-w-[420px] mb-8">
                 The goal of our APL training program is to develop more well-rounded athletes, giving you the competitive edge to perform at the highest level in your sport.
               </p>
               <a
@@ -91,7 +91,7 @@ export default function Fitness() {
                 <div className="text-volt-bright text-[36px] font-light tracking-[-0.03em] leading-none mb-2">
                   {m.val}
                 </div>
-                <div className="text-parchment/55 text-[11px] tracking-[0.14em] uppercase leading-[1.5]">
+                <div className="text-parchment/70 text-[11px] tracking-[0.14em] uppercase leading-[1.5]">
                   {m.label}
                 </div>
               </div>

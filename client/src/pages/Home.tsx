@@ -301,13 +301,13 @@ export default function Home() {
             </p>
             <h1 className="text-parchment text-[clamp(40px,5.2vw,76px)] font-light leading-[1.06] tracking-[-0.025em] mb-7">
               Level Up Your<br className="hidden lg:block" />
-              Game at WSC.
+              {" "}Game at WSC.
             </h1>
-            <p className="text-parchment/60 text-[16px] leading-[1.72] max-w-[440px] mb-5">
+            <p className="text-parchment/75 text-[16px] leading-[1.72] max-w-[440px] mb-5">
               The definitive destination in the Pacific Northwest for athletes and families seeking unparalleled sports training, holistic development, and a thriving community.
             </p>
-            <p className="text-parchment/45 text-[13px] leading-[1.65] max-w-[440px] mb-8">
-              Home to <strong className="text-parchment/65 font-normal">Tier 1 Sports by Caliber</strong> — one of the nation's leading developmental programs in tennis, golf, and athletic performance.
+            <p className="text-parchment/80 text-[13px] leading-[1.65] max-w-[440px] mb-8">
+              Home to <strong className="text-parchment/80 font-normal">Tier 1 Sports by Caliber</strong> — one of the nation's leading developmental programs in tennis, golf, and athletic performance.
             </p>
             <div className="flex flex-wrap gap-5 items-center">
               <Link
@@ -329,7 +329,7 @@ export default function Home() {
                 href="https://app.courtreserve.com/Online/Portal/Index/6689"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[12px] tracking-[0.14em] uppercase no-underline text-parchment/65 hover:text-parchment transition-colors duration-200"
+                className="text-[12px] tracking-[0.14em] uppercase no-underline text-parchment/80 hover:text-parchment transition-colors duration-200"
               >
                 Schedule a Tour
               </a>
@@ -345,7 +345,7 @@ export default function Home() {
                     i < metrics.length - 1 ? "border-b border-parchment/[0.08]" : ""
                   }`}
                 >
-                  <span className="text-parchment/60 text-[12px] tracking-[0.12em] uppercase">
+                  <span className="text-parchment/75 text-[12px] tracking-[0.12em] uppercase">
                     {m.label}
                   </span>
                   <span className="text-right">
@@ -353,7 +353,7 @@ export default function Home() {
                       {m.val}
                     </span>
                     {m.unit && (
-                      <span className="text-parchment/50 text-[12px] tracking-[0.1em] uppercase ml-2">
+                      <span className="text-parchment/70 text-[12px] tracking-[0.1em] uppercase ml-2">
                         {m.unit}
                       </span>
                     )}
@@ -390,10 +390,10 @@ export default function Home() {
                 <h3 className="text-parchment text-[17px] font-light tracking-[-0.01em] mb-2.5">
                   {item.title}
                 </h3>
-                <p className="text-parchment/60 text-[13px] leading-[1.65] mb-4">
+                <p className="text-parchment/75 text-[13px] leading-[1.65] mb-4">
                   {item.desc}
                 </p>
-                <div className="text-parchment/50 text-[11px] tracking-[0.08em] uppercase">
+                <div className="text-parchment/70 text-[11px] tracking-[0.08em] uppercase">
                   {item.date}{item.time && ` · ${item.time}`}
                 </div>
               </div>
@@ -648,7 +648,7 @@ export default function Home() {
                       <div className="flex-1">
                         <span
                           className={`block text-[18px] font-light tracking-[-0.01em] mb-1.5 transition-colors duration-300 ${
-                            activeDayStep === i ? "text-ink" : "text-ink/70"
+                            activeDayStep === i ? "text-ink" : "text-ink/85"
                           }`}
                         >
                           {step.title}
@@ -796,7 +796,7 @@ export default function Home() {
                 </p>
                 <div className="border-t border-parchment/[0.08] pt-5">
                   <p className="text-parchment text-[14px] font-light mb-1">{t.name}</p>
-                  <p className="text-parchment/60 text-[11px] tracking-[0.1em] uppercase">
+                  <p className="text-parchment/75 text-[11px] tracking-[0.1em] uppercase">
                     {t.role}
                   </p>
                 </div>
@@ -908,7 +908,7 @@ export default function Home() {
           <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
             Get the WSC Newsletter.
           </h2>
-          <p className="text-parchment/60 text-[15px] leading-[1.75] mb-8">
+          <p className="text-parchment/75 text-[15px] leading-[1.75] mb-8">
             Weekly schedules, open play times, registration deadlines, and member-only updates — delivered to your inbox every Monday.
           </p>
           <form onSubmit={handleNewsletterSubmit}>
@@ -920,7 +920,7 @@ export default function Home() {
                 required
                 placeholder="Your email address"
                 aria-label="Email address for newsletter subscription"
-                className="flex-1 bg-dark-bg border border-parchment/[0.15] px-5 py-3 text-[14px] text-parchment placeholder:text-parchment/50 focus:border-volt-bright focus:outline-none transition-colors"
+                className="flex-1 bg-dark-bg border border-parchment/[0.15] px-5 py-3 text-[14px] text-parchment placeholder:text-parchment/70 focus:border-volt-bright focus:outline-none transition-colors"
               />
               <button
                 type="submit"
@@ -937,9 +937,9 @@ export default function Home() {
             >
               {newsletterStatus}
             </p>
-            <p className="text-parchment/30 text-[11px] leading-[1.6] mt-4">
+            <p className="text-parchment/75 text-[11px] leading-[1.6] mt-4">
               Unsubscribe at any time. See our{" "}
-              <Link href="/privacy" className="text-parchment/50 underline hover:text-parchment/70 transition-colors">Privacy Policy</Link>.
+              <Link href="/privacy" className="text-parchment/70 underline hover:text-parchment transition-colors">Privacy Policy</Link>.
             </p>
           </form>
         </div>

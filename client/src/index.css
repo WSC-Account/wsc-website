@@ -54,8 +54,8 @@
   --color-parchment-mid: oklch(0.88 0.02 80);
   --color-parchment-dark: oklch(0.85 0.02 80);
   --color-ink: oklch(0.15 0.01 60);
-  --color-ink-mid: oklch(0.38 0.02 60);
-  --color-ink-light: oklch(0.58 0.02 60);
+  --color-ink-mid: oklch(0.30 0.02 60);
+  --color-ink-light: oklch(0.42 0.02 60);
   --color-volt: oklch(0.62 0.13 248);
   --color-volt-bright: oklch(0.72 0.15 248);
   --color-dark-bg: oklch(0.13 0.01 60);
@@ -76,9 +76,9 @@
   --primary: oklch(0.67 0.15 248);
   --primary-foreground: oklch(0.13 0.01 60);
   --secondary: oklch(0.88 0.02 80);
-  --secondary-foreground: oklch(0.38 0.02 60);
+  --secondary-foreground: oklch(0.30 0.02 60);
   --muted: oklch(0.85 0.02 80);
-  --muted-foreground: oklch(0.58 0.02 60);
+  --muted-foreground: oklch(0.42 0.02 60);
   --accent: oklch(0.59 0.13 248);
   --accent-foreground: oklch(0.13 0.01 60);
   --destructive: oklch(0.577 0.245 27.325);

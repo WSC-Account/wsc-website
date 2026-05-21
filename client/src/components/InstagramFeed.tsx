@@ -152,7 +152,7 @@ export default function InstagramFeed() {
 
             {/* Instagram icon */}
             <div className="absolute bottom-3 right-3">
-              <Instagram size={14} className="text-parchment/60" />
+              <Instagram size={14} className="text-parchment/75" />
             </div>
           </div>
 

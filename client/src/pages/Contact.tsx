@@ -261,7 +261,7 @@ export default function Contact() {
           <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
             @woodinvillesportsclub
           </h2>
-          <p className="text-parchment/60 text-[15px] leading-[1.75] max-w-[480px] mx-auto mb-8">
+          <p className="text-parchment/75 text-[15px] leading-[1.75] max-w-[480px] mx-auto mb-8">
             Follow us on Instagram for updates, event highlights, and community stories.
           </p>
           <a

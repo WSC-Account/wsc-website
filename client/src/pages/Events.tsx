@@ -126,7 +126,7 @@ export default function Events() {
             <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
               Tell us what you are planning.
             </h2>
-            <p className="text-parchment/65 text-[15px] leading-[1.75] max-w-[620px]">
+            <p className="text-parchment/80 text-[15px] leading-[1.75] max-w-[620px]">
               WSC can help shape the right combination of venue, food, service, and sports activities for your group.
             </p>
           </div>

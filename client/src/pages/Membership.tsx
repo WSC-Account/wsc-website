@@ -373,7 +373,7 @@ export default function Membership() {
           <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
             Ready to join the campus?
           </h2>
-          <p className="text-parchment/65 text-[15px] leading-[1.75] max-w-[480px] mx-auto mb-8">
+          <p className="text-parchment/80 text-[15px] leading-[1.75] max-w-[480px] mx-auto mb-8">
             Contact us to learn more about membership options or to schedule a tour of our facilities.
           </p>
           <div className="flex flex-wrap justify-center gap-5">

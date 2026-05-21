@@ -332,7 +332,7 @@ export default function Pickleball() {
             <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
               Four major tournaments per year.
             </h2>
-            <p className="text-parchment/65 text-[15px] leading-[1.75] max-w-[560px] mx-auto">
+            <p className="text-parchment/80 text-[15px] leading-[1.75] max-w-[560px] mx-auto">
               We partner with Pickleball is Great (PIG) to host tournaments. Round Robin format, skills 3.0–5.0 in age events (under 50 and 50+).
             </p>
           </div>
@@ -350,21 +350,21 @@ export default function Pickleball() {
               >
                 <p className="text-volt-bright text-[10px] tracking-[0.2em] uppercase mb-3">{t.season}</p>
                 <h3 className="text-parchment text-[18px] font-light tracking-[-0.01em] mb-2">{t.name}</h3>
-                <p className="text-parchment/55 text-[13px]">{t.date}</p>
+                <p className="text-parchment/70 text-[13px]">{t.date}</p>
               </div>
             ))}
           </div>
 
           <div className="mt-8 p-6 bg-dark-bg border-l-2 border-volt-bright">
-            <p className="text-parchment/65 text-[14px] leading-[1.7]">
+            <p className="text-parchment/80 text-[14px] leading-[1.7]">
               <span className="text-parchment font-normal">Tournament Contact:</span> Paul Matthewson, Pickleball is Great (PIG)
             </p>
-            <p className="text-parchment/55 text-[13px] mt-1">
+            <p className="text-parchment/70 text-[13px] mt-1">
               <a href="mailto:pickleballisgreat.paul@gmail.com" className="text-volt-bright no-underline hover:text-parchment transition-colors duration-200">
                 pickleballisgreat.paul@gmail.com
               </a>
               {" · "}
-              <a href="tel:+14258706540" className="text-parchment/55 no-underline hover:text-parchment transition-colors duration-200">
+              <a href="tel:+14258706540" className="text-parchment/70 no-underline hover:text-parchment transition-colors duration-200">
                 (425) 870-6540
               </a>
             </p>
@@ -485,7 +485,7 @@ export default function Pickleball() {
           <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
             Ready to play?
           </h2>
-          <p className="text-parchment/65 text-[15px] leading-[1.75] max-w-[480px] mx-auto mb-8">
+          <p className="text-parchment/80 text-[15px] leading-[1.75] max-w-[480px] mx-auto mb-8">
             Join our open play sessions, sign up for classes, or reserve a private court. No membership required for open play.
           </p>
           <div className="flex flex-wrap justify-center gap-5">

@@ -458,7 +458,7 @@ export default function Privacy() {
           <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
             Your trust is important to us.
           </h2>
-          <p className="text-parchment/65 text-[15px] leading-[1.75] max-w-[480px] mx-auto mb-8">
+          <p className="text-parchment/80 text-[15px] leading-[1.75] max-w-[480px] mx-auto mb-8">
             We are committed to transparency and protecting your personal information at every step.
           </p>
           <div className="flex flex-wrap justify-center gap-5">

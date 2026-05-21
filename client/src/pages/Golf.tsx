@@ -72,8 +72,8 @@ function PrivateLessonForm() {
   };
 
   const inputClass =
-    "w-full bg-dark-bg border border-parchment/15 px-4 py-3 text-[14px] text-parchment placeholder:text-parchment/30 focus:border-volt-bright focus:outline-none transition-colors duration-200";
-  const labelClass = "block text-parchment/55 text-[11px] tracking-[0.14em] uppercase mb-2";
+    "w-full bg-dark-bg border border-parchment/15 px-4 py-3 text-[14px] text-parchment placeholder:text-parchment/75 focus:border-volt-bright focus:outline-none transition-colors duration-200";
+  const labelClass = "block text-parchment/70 text-[11px] tracking-[0.14em] uppercase mb-2";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
@@ -125,7 +125,7 @@ function PrivateLessonForm() {
           id="lesson-skill"
           value={form.skillLevel}
           onChange={(e) => setForm({ ...form, skillLevel: e.target.value })}
-          className={`${inputClass} appearance-none cursor-pointer ${!form.skillLevel ? "text-parchment/30" : ""}`}
+          className={`${inputClass} appearance-none cursor-pointer ${!form.skillLevel ? "text-parchment/75" : ""}`}
           required
         >
           <option value="" disabled>Select your skill level</option>
@@ -156,14 +156,14 @@ function PrivateLessonForm() {
         disabled={submitted}
         className={`text-[12px] tracking-[0.14em] uppercase px-8 py-3.5 transition-colors duration-200 ${
           submitted
-            ? "bg-parchment/20 text-parchment/50 cursor-default"
+            ? "bg-parchment/20 text-parchment/70 cursor-default"
             : "bg-volt-bright text-dark-bg hover:bg-parchment hover:text-dark-bg"
         }`}
       >
         {submitted ? "Request Submitted" : "Submit Lesson Request"}
       </button>
 
-      <p className="text-parchment/35 text-[12px] leading-[1.6]">
+      <p className="text-parchment/75 text-[12px] leading-[1.6]">
         Our golf staff will review your request and reach out within 1–2 business days to schedule your lesson.
       </p>
     </form>
@@ -251,7 +251,7 @@ export default function Golf() {
             <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light leading-[1.1] tracking-[-0.02em] mb-6">
               Swing Lab<br />Golf Simulators.
             </h2>
-            <p className="text-parchment/65 text-[15px] leading-[1.8] max-w-[420px] mb-6">
+            <p className="text-parchment/80 text-[15px] leading-[1.8] max-w-[420px] mb-6">
               Four professional-grade Uneekor simulators with GSPRO software. 24 data points captured in real time, providing feedback on every aspect of your swing and ball flight. Over 2,000 high-quality, user-created courses.
             </p>
             <ul className="space-y-2 mb-8">
@@ -262,7 +262,7 @@ export default function Golf() {
                 "Tables, seating and TVs",
                 "Coming soon: Tournaments through Simulator Golf Tour (SGT)",
               ].map((item, i) => (
-                <li key={i} className="text-parchment/65 text-[13px] leading-[1.72] flex items-start gap-2">
+                <li key={i} className="text-parchment/80 text-[13px] leading-[1.72] flex items-start gap-2">
                   <span className="text-volt-bright text-[10px] mt-1">—</span> {item}
                 </li>
               ))}
@@ -288,7 +288,7 @@ export default function Golf() {
                   <div className="text-volt-bright text-[32px] font-light tracking-[-0.02em] leading-none mb-2">
                     {m.val}
                   </div>
-                  <div className="text-parchment/55 text-[11px] tracking-[0.14em] uppercase leading-[1.5]">
+                  <div className="text-parchment/70 text-[11px] tracking-[0.14em] uppercase leading-[1.5]">
                     {m.label}
                   </div>
                 </div>
@@ -296,7 +296,7 @@ export default function Golf() {
             </div>
             <div className="bg-dark-bg p-6 border-l-2 border-volt-bright">
               <p className="text-volt-bright text-[11px] tracking-[0.18em] uppercase mb-2">Trial Access</p>
-              <p className="text-parchment/65 text-[14px] leading-[1.72]">
+              <p className="text-parchment/80 text-[14px] leading-[1.72]">
                 Trial golf simulator access is available for $20 + tax. Trial members can book simulator sessions at regular rates with a 7-day booking window and may upgrade at any time.
               </p>
             </div>
@@ -531,7 +531,7 @@ export default function Golf() {
             <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.1] mb-6">
               Request a<br />private lesson.
             </h2>
-            <p className="text-parchment/65 text-[15px] leading-[1.8] mb-8 max-w-[420px]">
+            <p className="text-parchment/80 text-[15px] leading-[1.8] mb-8 max-w-[420px]">
               Interested in one-on-one instruction? Fill out the form and our golf staff will reach out to match you with the right coach for your goals and skill level.
             </p>
             <div className="space-y-5">
@@ -544,7 +544,7 @@ export default function Golf() {
                   <span className="text-volt-bright text-[10px] mt-1.5">—</span>
                   <div>
                     <p className="text-parchment text-[14px] font-medium mb-0.5">{item.label}</p>
-                    <p className="text-parchment/50 text-[13px]">{item.desc}</p>
+                    <p className="text-parchment/70 text-[13px]">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -608,7 +608,7 @@ export default function Golf() {
           <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
             Elevate your game.
           </h2>
-          <p className="text-parchment/65 text-[15px] leading-[1.75] max-w-[480px] mx-auto mb-8">
+          <p className="text-parchment/80 text-[15px] leading-[1.75] max-w-[480px] mx-auto mb-8">
             Visit today to experience our driving range, Swing Lab simulators, and Tier 1 Golf Academy.
           </p>
           <div className="flex flex-wrap justify-center gap-5">
