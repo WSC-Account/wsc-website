@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-05-13T05:38:29.349Z",
+  "generated_at": "2026-05-21T05:07:00.995Z",
   "detected_host": "vercel",
-  "redirect_count": 63,
+  "redirect_count": 64,
   "all_permanent_301": true,
   "exact_path_sources": true,
   "single_hop_internal": true,
@@ -92,7 +92,7 @@
       "permanent": true
     },
     {
-      "source": "/pickleball-camp",
+      "source": "/copy-of-golf-camp",
       "destination": "/summer",
       "permanent": true
     },
@@ -229,6 +229,11 @@
     {
       "source": "/personal-training-interest-form",
       "destination": "/gym",
+      "permanent": true
+    },
+    {
+      "source": "/pickleball-camp",
+      "destination": "/summer",
       "permanent": true
     },
     {

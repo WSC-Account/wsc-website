@@ -92,10 +92,6 @@ const reviewNeededRules = [
     test: (pathname) => pathname.startsWith("/post/"),
     reason: "Individual blog article content has no 1:1 page in the new build.",
   },
-  {
-    test: (pathname) => pathname === "/copy-of-golf-camp",
-    reason: "Youth pickleball camp content has no 1:1 page in the new build.",
-  },
 ];
 
 function normalizePathname(rawUrlOrPath) {
@@ -231,7 +227,7 @@ async function main() {
   const oldPathnames = new Set();
 
   for (const record of records) {
-    const oldUrl = record.final_url || record.source_url;
+    const oldUrl = record.source_url || record.final_url;
     const pathname = normalizePathname(oldUrl);
     oldPathnames.add(pathname);
     const classification = classifyOldUrl(pathname, routes, redirects);

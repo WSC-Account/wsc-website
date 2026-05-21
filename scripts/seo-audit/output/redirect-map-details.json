@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-05-13T05:38:29.345Z",
+  "generated_at": "2026-05-21T05:07:00.923Z",
   "old_url_count": 90,
-  "old_unique_path_count": 89,
+  "old_unique_path_count": 90,
   "new_route_count": 20,
   "counts": {
     "exact": 26,
@@ -187,7 +187,7 @@
       "old_word_count": 327
     },
     {
-      "old_url": "https://www.woodinvillesportsclub.com/pickleball-camp",
+      "old_url": "https://www.woodinvillesportsclub.com/copy-of-golf-camp",
       "new_url": "https://www.woodinvillesportsclub.com/summer",
       "match_type": "redirect-needed",
       "review_reason": "",

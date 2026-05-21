@@ -15,6 +15,7 @@ const HERO_IMG = "/images/wsc/campus-dome.webp";
 const TENNIS_IMG = "/images/wsc/summer-camp.webp";
 const GOLF_IMG = "/images/wsc/golf-practice-area.webp";
 const PERF_IMG = "/images/wsc/apl-training.webp";
+const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689";
 
 /* ─── Program Explorer Types ─── */
 type ProgramKey = "tennis" | "golf" | "adventure";
@@ -91,6 +92,25 @@ const PROGRAMS: Record<ProgramKey, {
     contact: "info@woodinvillesportsclub.com",
   },
 };
+
+const REGISTRATION_STEPS = [
+  {
+    title: "Choose your membership",
+    text: "All summer training participants need a WSC membership. The minimum required option is a Class Registration Pass, while other tiers unlock gym access, court booking, range discounts, and beverage discounts.",
+  },
+  {
+    title: "Purchase through CourtReserve",
+    text: "Use CourtReserve to purchase the membership, create your account, and sign the required waiver during checkout.",
+  },
+  {
+    title: "Pick your sessions",
+    text: "Browse by Tennis, Golf, or Adventure Club, or use the class finder in CourtReserve to filter by class type, level, and half-day or full-day options.",
+  },
+  {
+    title: "Finalize details",
+    text: "Select the dates that work for your family, complete checkout, and enter your child's age and t-shirt size so the team can prepare for their first day.",
+  },
+];
 
 /* ─── Schedule Data — Real times from WSC sub-pages ─── */
 type ScheduleKey = string;
@@ -498,7 +518,7 @@ export default function Summer() {
             </p>
             <div className="hero-actions flex flex-wrap gap-4">
               <Link
-                href="https://app.courtreserve.com/Online/Portal/Index/6689"
+                href={COURT_RESERVE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment transition-colors duration-200"
@@ -549,7 +569,7 @@ export default function Summer() {
             </span>
           </div>
           <Link
-            href="https://app.courtreserve.com/Online/Portal/Index/6689"
+            href={COURT_RESERVE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
             className="text-dark-bg text-[11px] tracking-[0.14em] uppercase no-underline border border-dark-bg/30 px-5 py-2 hover:bg-dark-bg hover:text-volt-bright transition-colors duration-200"
@@ -665,7 +685,7 @@ export default function Summer() {
                 </div>
                 <div className="flex flex-col sm:flex-row gap-3 mt-10">
                   <Link
-                    href="https://app.courtreserve.com/Online/Portal/Index/6689"
+                    href={COURT_RESERVE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment transition-colors duration-200"
@@ -901,7 +921,7 @@ export default function Summer() {
                       )}
                     </div>
                     <Link
-                      href="https://app.courtreserve.com/Online/Portal/Index/6689"
+                      href={COURT_RESERVE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-6 py-2.5 hover:bg-parchment transition-colors duration-200 shrink-0"
@@ -985,6 +1005,79 @@ export default function Summer() {
             </a>{" "}
             (include your t-shirt size and the classes you wish to bundle) and we can get you registered.
           </p>
+        </div>
+      </section>
+
+      {/* Registration Instructions */}
+      <section id="registration-instructions" className="bg-parchment px-6 lg:px-14 py-24 lg:py-28 scroll-mt-24">
+        <div className="max-w-[1440px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.5fr] gap-12 lg:gap-20 items-start">
+            <div>
+              <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Registration Instructions</p>
+              <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-5">
+                Start with your membership, then choose sessions.
+              </h2>
+              <p className="text-ink-mid text-[15px] leading-[1.78] mb-5">
+                Every summer training participant needs an active WSC membership before registration. The Class Registration Pass is the minimum required option, and higher membership tiers can add gym access, court booking, and range benefits.
+              </p>
+              <p className="text-ink-light text-[13px] leading-[1.7] mb-8">
+                Current WSC members can skip straight to session selection. New families should create their CourtReserve account, complete the waiver, and then select the weeks that fit their athlete.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Link
+                  href={COURT_RESERVE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-7 py-3.5 hover:bg-parchment-dark transition-colors duration-200"
+                >
+                  Open CourtReserve <ChevronRight size={14} />
+                </Link>
+                <Link
+                  href="/membership"
+                  className="inline-flex items-center gap-2 text-[12px] tracking-[0.14em] uppercase no-underline text-ink border border-wsc-border px-7 py-3.5 hover:border-volt transition-colors duration-200"
+                >
+                  View Memberships
+                </Link>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-[3px]">
+              {REGISTRATION_STEPS.map((step, i) => (
+                <div key={step.title} className="bg-parchment-mid p-7 lg:p-8">
+                  <div className="w-9 h-9 bg-dark-bg text-volt-bright text-[13px] font-light flex items-center justify-center mb-5">
+                    {i + 1}
+                  </div>
+                  <h3 className="text-ink text-[19px] font-light tracking-[-0.01em] mb-3">{step.title}</h3>
+                  <p className="text-ink-mid text-[14px] leading-[1.72]">{step.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-[3px] mt-12">
+            <div className="bg-dark-bg p-7 lg:p-8">
+              <p className="text-volt-bright text-[11px] tracking-[0.18em] uppercase mb-4">New to WSC</p>
+              <p className="text-parchment/80 text-[14px] leading-[1.72]">
+                Choose a membership, complete checkout in CourtReserve, sign the waiver, and then register for Tennis, Golf, Adventure Club, or a bundled full-day schedule.
+              </p>
+            </div>
+            <div className="bg-dark-bg p-7 lg:p-8">
+              <p className="text-volt-bright text-[11px] tracking-[0.18em] uppercase mb-4">Already a Member</p>
+              <p className="text-parchment/80 text-[14px] leading-[1.72]">
+                Your membership is already set. Go straight to session selection in CourtReserve and pick the weeks, class level, and half-day or full-day format.
+              </p>
+            </div>
+            <div className="bg-dark-bg p-7 lg:p-8">
+              <p className="text-volt-bright text-[11px] tracking-[0.18em] uppercase mb-4">Bundles & Academy</p>
+              <p className="text-parchment/80 text-[14px] leading-[1.72]">
+                For AM/PM bundles, email{" "}
+                <a href="mailto:info@woodinvillesportsclub.com" className="text-volt-bright underline underline-offset-2">
+                  info@woodinvillesportsclub.com
+                </a>
+                . Tier 1 Tennis Academy requires coach approval; Core Tennis does not.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1123,7 +1216,7 @@ export default function Summer() {
                                 Week {w.week} · {w.dates} · Ages 5–12
                               </p>
                               <Link
-                                href="https://app.courtreserve.com/Online/Portal/Index/6689"
+                                href={COURT_RESERVE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                                 className="inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase no-underline text-volt hover:text-ink transition-colors duration-200"
@@ -1147,7 +1240,7 @@ export default function Summer() {
                   <p className="text-parchment/75 text-[12px] mt-1">Full-day, half-day, and bundle options are available through CourtReserve</p>
                 </div>
                 <Link
-                  href="https://app.courtreserve.com/Online/Portal/Index/6689"
+                  href={COURT_RESERVE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment transition-colors duration-200 shrink-0"
@@ -1220,7 +1313,7 @@ export default function Summer() {
           <p className="text-ink-light text-[12px] mb-8">For bundle help, email info@woodinvillesportsclub.com.</p>
           <div className="flex flex-wrap justify-center gap-5">
             <Link
-              href="https://app.courtreserve.com/Online/Portal/Index/6689"
+              href={COURT_RESERVE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment-dark transition-colors duration-200"

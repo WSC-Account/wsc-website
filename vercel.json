@@ -91,7 +91,7 @@
       "permanent": true
     },
     {
-      "source": "/pickleball-camp",
+      "source": "/copy-of-golf-camp",
       "destination": "/summer",
       "permanent": true
     },
@@ -228,6 +228,11 @@
     {
       "source": "/personal-training-interest-form",
       "destination": "/gym",
+      "permanent": true
+    },
+    {
+      "source": "/pickleball-camp",
+      "destination": "/summer",
       "permanent": true
     },
     {
