@@ -33,7 +33,6 @@ async function main() {
     { path: SEO.membership.path, changefreq: "monthly", priority: "0.7" },
     { path: SEO.sessions.path, changefreq: "weekly", priority: "0.7" },
     { path: SEO.events.path, changefreq: "monthly", priority: "0.6" },
-    { path: SEO.foodTrucks.path, changefreq: "weekly", priority: "0.5" },
     { path: SEO.careers.path, changefreq: "monthly", priority: "0.5" },
     { path: SEO.blog.path, changefreq: "weekly", priority: "0.7" },
     ...BLOG_CATEGORIES.map((category) => ({

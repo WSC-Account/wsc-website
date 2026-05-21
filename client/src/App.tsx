@@ -20,7 +20,6 @@ const Summer = lazy(() => import("./pages/Summer"));
 const Membership = lazy(() => import("./pages/Membership"));
 const Sessions = lazy(() => import("./pages/Sessions"));
 const Events = lazy(() => import("./pages/Events"));
-const FoodTrucks = lazy(() => import("./pages/FoodTrucks"));
 const Careers = lazy(() => import("./pages/Careers"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogCategory = lazy(() => import("./pages/BlogCategory"));
@@ -71,7 +70,6 @@ function Router() {
         <Route path="/membership" component={Membership} />
         <Route path="/sessions" component={Sessions} />
         <Route path="/events" component={Events} />
-        <Route path="/food-trucks" component={FoodTrucks} />
         <Route path="/careers" component={Careers} />
         <Route path="/blog" component={Blog} />
         <Route path="/blog/categories/:category" component={BlogCategory} />

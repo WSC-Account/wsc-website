@@ -57,12 +57,6 @@ export const SEO = {
       "Host private events at WSC in Woodinville Wine Country, including weddings, birthdays, corporate outings, family celebrations, sports parties and cabin rentals.",
     path: "/events",
   },
-  foodTrucks: {
-    title: "Food Trucks & Campus Dining",
-    description:
-      "Woodinville Sports Club hosts rotating local food trucks on campus. Grab dinner before golf, tennis, pickleball, fitness, or private events.",
-    path: "/food-trucks",
-  },
   careers: {
     title: "Careers at WSC Sports Campus",
     description:

@@ -47,7 +47,6 @@ export default function Footer() {
               { href: "/summer", label: "Summer Training" },
               { href: "/pro-shop", label: "Pro Shop" },
               { href: "/events", label: "Private Events" },
-              { href: "/food-trucks", label: "Food Trucks" },
             ].map((link) => (
               <li key={link.href}>
                 <Link
