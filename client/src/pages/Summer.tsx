@@ -494,10 +494,11 @@ export default function Summer() {
           <img
             src={HERO_IMG}
             alt="Summer camp activities at Woodinville Sports Club"
-            width={1388}
-            height={1667}
+            width={1800}
+            height={1202}
             loading="eager"
             className="w-full h-full object-cover brightness-[0.44] saturate-[0.78]"
+            style={{ objectPosition: "center 8%" }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[rgba(22,19,16,0.75)] via-[rgba(22,19,16,0.45)] to-transparent" />
         </div>
