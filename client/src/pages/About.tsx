@@ -54,6 +54,8 @@ export default function About() {
         headline="Elevating Athletic Excellence Since 1979."
         subtitle="Where passion meets performance, and community thrives through sport."
         image={HERO_IMG}
+        imagePosition="center top"
+        avoidHeaderCrop
       />
 
       {/* Story */}
