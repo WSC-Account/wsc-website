@@ -18,7 +18,7 @@ export const SEO = {
   golf: {
     title: "WSC Golf Training Grounds",
     description:
-      "Practice all day at WSC Golf Training Grounds in Woodinville with driving range bays, putting grounds, chipping areas, turf putting green, and lessons.",
+      "Practice all day at WSC Golf Training Grounds in Woodinville with public driving range access, putting grounds, chipping areas, turf putting green, and lessons.",
     path: "/golf",
   },
   gym: {

@@ -810,7 +810,7 @@ export default function Home() {
       <FullWidthImage
         src={GALLERY_GOLF}
         alt="WSC driving range at golden hour"
-        caption="23 covered bays with free Toptracer, grass tees, and short-game practice."
+        caption="23 covered bays with free Toptracer. Open to the public."
         subcaption="Driving Range"
         height="medium"
         ctaLabel="Explore Golf"

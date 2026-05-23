@@ -244,11 +244,11 @@ export default function Golf() {
               WSC is the golf training grounds of the Pacific Northwest: a large, open practice environment where golfers can work through the full game instead of just hitting a quick bucket. Come for the range, stay for putting, chipping, turf green reps, and focused short-game work.
             </p>
             <p className="text-ink-mid text-[14px] leading-[1.72] mb-6">
-              The grounds include 23 covered driving bays with free Toptracer, seasonal grass tees, putting grounds, a chipping area, turf putting green, and a 2.5-acre short-game training area.
+              The driving range is open to the public, and the grounds include 23 covered driving bays with free Toptracer, seasonal grass tees, putting grounds, a chipping area, turf putting green, and a 2.5-acre short-game training area.
             </p>
             <div className="grid grid-cols-3 gap-6">
               {[
-                { val: "Daily", label: "Range Access" },
+                { val: "Public", label: "Range Access" },
                 { val: "2.5", label: "Acre Short Game" },
                 { val: "23", label: "Covered Bays" },
               ].map((m, i) => (
@@ -434,7 +434,7 @@ export default function Golf() {
         >
           <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Range Pricing</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-14">
-            Practice by the bucket.
+            Open to the public.
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-[3px] mb-8">
@@ -488,7 +488,7 @@ export default function Golf() {
       <FullWidthImage
         src={GOLF_SUNSET}
         alt="WSC driving range at golden hour"
-        caption="Putting grounds, chipping area, driving range, and turf putting green."
+        caption="Driving range open to the public, plus putting grounds, chipping area, and turf putting green."
         subcaption="Golf Training Grounds"
         height="medium"
       />

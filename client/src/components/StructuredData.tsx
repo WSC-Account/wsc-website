@@ -89,7 +89,7 @@ export function getLocalBusinessSchema() {
           name: "Golf Programs",
           itemListElement: [
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "Tier 1 Golf Academy", description: "Junior and adult golf instruction with WGTF Master Certified coaching" } },
-            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Driving Range", description: "23 covered bays with free Toptracer technology and daily range bucket access" } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Driving Range", description: "23 covered bays with free Toptracer technology, open to the public" } },
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "Swing Lab Golf Simulators", description: "4 Uneekor simulators capturing 24 data points with 2,000+ courses" } },
           ],
         },
@@ -276,7 +276,7 @@ export function getFAQSchema() {
         name: "Do I need a membership to use the facilities?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "WSC offers both membership and non-member options. Range buckets are available at the driving range. Court bookings, classes, and programs are available to members with various annual and monthly membership tiers. Contact the front desk at (425) 487-1090 for membership information.",
+          text: "WSC offers both membership and non-member options. The driving range is open to the public. Court bookings, classes, and programs are available to members with various annual and monthly membership tiers. Contact the front desk at (425) 487-1090 for membership information.",
         },
       },
       {

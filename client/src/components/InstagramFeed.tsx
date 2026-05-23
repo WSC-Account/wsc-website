@@ -29,7 +29,7 @@ const POSTS: InstaPost[] = [
   {
     id: "2",
     url: "https://www.instagram.com/p/DVUAJfyErsA/",
-    caption: "The range is open daily, with covered bays, free Toptracer, grass tees, and a 2.5-acre short-game practice area.",
+    caption: "The range is open to the public daily, with covered bays, free Toptracer, grass tees, and a 2.5-acre short-game practice area.",
     type: "image",
     thumbnail: "/images/wsc/golf-practice-area.webp",
     likes: "87",
