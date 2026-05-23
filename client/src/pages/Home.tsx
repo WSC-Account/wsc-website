@@ -68,6 +68,7 @@ const heroCollageImages = [
     width: 1800,
     height: 1218,
     objectPosition: "25% 24%",
+    imageClassName: "lg:translate-y-[28%]",
     className: "col-span-1 row-span-2 lg:col-span-3 lg:row-span-3",
   },
   {
@@ -809,7 +810,7 @@ export default function Home() {
       <FullWidthImage
         src={GALLERY_GOLF}
         alt="WSC driving range at golden hour"
-        caption="23 covered bays with free Toptracer. Open to the public."
+        caption="23 covered bays with free Toptracer, grass tees, and short-game practice."
         subcaption="Driving Range"
         height="medium"
         ctaLabel="Explore Golf"

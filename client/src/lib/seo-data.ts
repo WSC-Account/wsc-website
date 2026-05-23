@@ -16,9 +16,9 @@ export const SEO = {
     path: "/tennis",
   },
   golf: {
-    title: "Golf Range & Swing Lab Simulators",
+    title: "WSC Golf Training Grounds",
     description:
-      "Practice at 23 covered golf bays with Toptracer, 4 Swing Lab simulators, short-game space, mini-golf, lessons, and Tier 1 Golf Academy in Woodinville.",
+      "Practice all day at WSC Golf Training Grounds in Woodinville with driving range bays, putting grounds, chipping areas, turf putting green, and lessons.",
     path: "/golf",
   },
   gym: {

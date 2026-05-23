@@ -518,7 +518,7 @@ function TermsContent() {
             ]} />
             <SubHeading>Golf Facilities</SubHeading>
             <BulletList items={[
-              "Driving range (23 covered bays with Toptracer) open to members and public",
+              "Driving range (23 covered bays with Toptracer) available during posted hours",
               "Swing Lab simulators must be reserved in advance; cancellation within 4 hours may incur a fee",
               "Proper golf attire and footwear required",
             ]} />

@@ -31,6 +31,25 @@ const SKILL_LEVELS = [
   "Junior — Youth player (under 18)",
 ];
 
+const GOLF_TRAINING_GROUNDS = [
+  {
+    name: "Putting Grounds",
+    desc: "Dedicated putting surfaces for pace control, start-line work, and pre-round warmups.",
+  },
+  {
+    name: "Chipping Area",
+    desc: "Open short-game space for touch shots, trajectories, wedges, and recovery practice.",
+  },
+  {
+    name: "Driving Range",
+    desc: "23 covered bays with Toptracer, plus grass tees when seasonal conditions allow.",
+  },
+  {
+    name: "Turf Putting Green",
+    desc: "A durable all-weather turf green for repeatable reps and focused practice sessions.",
+  },
+];
+
 function PrivateLessonForm() {
   const [form, setForm] = useState({
     name: "",
@@ -204,34 +223,34 @@ export default function Golf() {
         { name: "Golf", url: "https://www.woodinvillesportsclub.com/golf" },
       ])]} />
       <PageHero
-        eyebrow="Tier 1 Golf"
-        headline="Woodinville's Best Golf Driving Range and Practice Area."
-        subtitle="Practice at our driving range and state-of-the-art facility featuring 23 covered driving bays, grass tees, an expansive 2.5-acre short game training area, new indoor golf simulators, and an 18-hole mini-golf course."
+        eyebrow="WSC Golf Training Grounds"
+        headline="The PNW's Golf Training Grounds."
+        subtitle="Practice all day on expansive golf grounds built for real improvement: putting grounds, chipping area, 23-bay driving range, turf putting green, grass tees, and Swing Lab simulators."
         image={GOLF_IMG}
       />
 
-      {/* Driving Range */}
+      {/* Golf Training Grounds */}
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div
           ref={rangeRef}
           className={`max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start transition-all duration-700 ease-out ${rangeVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
           <div>
-            <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Driving Range</p>
+            <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">WSC Golf Training Grounds</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-8">
-              23 covered bays.<br />Free Toptracer.
+              Expansive golf grounds<br />for all-day practice.
             </h2>
             <p className="text-ink-mid text-[16px] leading-[1.82] mb-8">
-              Open to the public — no club membership is required to enjoy our range. Scenic driving range with covered bays, grass tees, and a comprehensive 2.5-acre short-game practice area. Free Toptracer technology at every bay. Expert private and group training for juniors and adults.
+              WSC is the golf training grounds of the Pacific Northwest: a large, open practice environment where golfers can work through the full game instead of just hitting a quick bucket. Come for the range, stay for putting, chipping, turf green reps, and focused short-game work.
             </p>
             <p className="text-ink-mid text-[14px] leading-[1.72] mb-6">
-              WSC is one of the few public ranges in the area that offer grass tees and 2.5 acres of dedicated short game training greens. Access is included with the purchase of a bucket. Seasonal availability due to weather conditions.
+              The grounds include 23 covered driving bays with free Toptracer, seasonal grass tees, putting grounds, a chipping area, turf putting green, and a 2.5-acre short-game training area.
             </p>
             <div className="grid grid-cols-3 gap-6">
               {[
-                { val: "23", label: "Covered Bays" },
+                { val: "Daily", label: "Range Access" },
                 { val: "2.5", label: "Acre Short Game" },
-                { val: "Free", label: "Toptracer" },
+                { val: "23", label: "Covered Bays" },
               ].map((m, i) => (
                 <div key={i} className="py-4 border-t border-wsc-border">
                   <div className="text-volt-bright text-[28px] font-light tracking-[-0.02em] leading-none mb-1">
@@ -250,6 +269,15 @@ export default function Golf() {
             loading="lazy"
             className="w-full aspect-[4/3] object-cover saturate-[0.55] brightness-[0.85]"
           />
+        </div>
+
+        <div className="max-w-[1440px] mx-auto mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[3px]">
+          {GOLF_TRAINING_GROUNDS.map((ground) => (
+            <article key={ground.name} className="bg-parchment-mid p-7 border-t-2 border-transparent hover:border-volt transition-colors duration-300">
+              <h3 className="text-[20px] font-light tracking-[-0.01em] mb-3">{ground.name}</h3>
+              <p className="text-ink-mid text-[14px] leading-[1.72]">{ground.desc}</p>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -406,7 +434,7 @@ export default function Golf() {
         >
           <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Range Pricing</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-14">
-            Open to the public.
+            Practice by the bucket.
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-[3px] mb-8">
@@ -460,8 +488,8 @@ export default function Golf() {
       <FullWidthImage
         src={GOLF_SUNSET}
         alt="WSC driving range at golden hour"
-        caption="23 covered bays with free Toptracer. Open to the public."
-        subcaption="Driving Range"
+        caption="Putting grounds, chipping area, driving range, and turf putting green."
+        subcaption="Golf Training Grounds"
         height="medium"
       />
 
@@ -474,15 +502,15 @@ export default function Golf() {
           <div>
             <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Why WSC Golf</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15]">
-              A unique golf<br />experience.
+              Built for real<br />practice days.
             </h2>
           </div>
           <div>
             <p className="text-ink-mid text-[16px] leading-[1.82] mb-6">
-              Our property offers a unique golf experience in Woodinville, WA, unlike anything else in the Pacific Northwest. From our advanced driving range with grass tees to our spacious practice area, we provide an exceptional 2.5-acre environment for anyone wanting to improve their game.
+              WSC Golf Training Grounds gives players room to practice the way golf actually works: full swings, wedges, chips, putting speed, and repeatable reps across a large outdoor campus. It is a golf training destination in Woodinville for anyone who wants to settle in and work on their game.
             </p>
             <p className="text-ink-mid text-[16px] leading-[1.82]">
-              Our newest offerings, Tier 1 Golf Academy and Swing Lab indoor golf simulators, round out our golf offerings, making premium instruction and cutting-edge technology accessible to golfers at every skill level. Explore our membership options — our facilities are ideal for golf outings, events, and leagues.
+              Swing Lab indoor simulators, Tier 1 Golf Academy, and private instruction add coaching and technology to the grounds, making WSC a complete training home for beginners, juniors, adults, and competitive players throughout the Pacific Northwest.
             </p>
           </div>
         </div>
@@ -619,10 +647,10 @@ export default function Golf() {
         >
           <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-5">Get Started</p>
           <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
-            Elevate your game.
+            Train all day at WSC.
           </h2>
           <p className="text-parchment/80 text-[15px] leading-[1.75] max-w-[480px] mx-auto mb-8">
-            Visit today to experience our driving range, Swing Lab simulators, and Tier 1 Golf Academy.
+            Visit the Golf Training Grounds for range work, putting, chipping, turf green reps, Swing Lab simulators, and Tier 1 Golf Academy.
           </p>
           <div className="flex flex-wrap justify-center gap-5">
             <Link

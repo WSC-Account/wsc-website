@@ -82,7 +82,7 @@ const FAQS: FAQItem[] = [
   },
   {
     category: "booking",
-    q: "Is public court usage available?",
+    q: "Is recreational court usage available?",
     a: "WSC is primarily a training facility. Court time is prioritized for academy programming through Tier 1 Sports. Recreational and member play is welcome — just check CourtReserve for current availability or call the front desk at (425) 487-1090.",
   },
   {

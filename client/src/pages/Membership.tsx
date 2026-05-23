@@ -140,7 +140,7 @@ const FAQ_ITEMS = [
       },
       {
         q: "Do I need a membership to use the driving range?",
-        a: "No. The driving range is open to the public — no membership required. Simply purchase a bucket of balls at the range. Membership holders receive $4 off each bucket.",
+        a: "No. Membership is not required to use the driving range. Simply purchase a bucket of balls at the range. Membership holders receive $4 off each bucket.",
       },
       {
         q: "Can I bring guests to the facility?",

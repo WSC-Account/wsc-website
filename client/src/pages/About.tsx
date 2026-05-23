@@ -116,7 +116,7 @@ export default function About() {
             A 67-acre training campus in the heart of Woodinville.
           </h2>
           <p className="text-ink-mid text-[16px] leading-[1.82] mb-14 max-w-[680px]">
-            Our campus is purpose-built for athlete development. Every court, bay, and training space is designed to support structured programming — from junior development through elite competition. Facility access is managed through CourtReserve to balance academy training with member and public play.
+            Our campus is purpose-built for athlete development. Every court, bay, and training space is designed to support structured programming — from junior development through elite competition. Facility access is managed through CourtReserve to balance academy training with member, guest, and program play.
           </p>
 
           <div className="grid grid-cols-2 lg:grid-cols-5 gap-6">
