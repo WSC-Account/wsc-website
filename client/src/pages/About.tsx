@@ -9,6 +9,35 @@ import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
 
 const HERO_IMG = "/images/wsc/campus-dome.webp";
+const VISION_IMAGES = [
+  {
+    src: "/images/wsc/tennis-player.webp",
+    alt: "Tennis athlete training at Woodinville Sports Club",
+    label: "Practice the craft",
+    className: "col-span-2 md:col-span-1 md:row-span-2 min-h-[360px] md:min-h-[560px]",
+    imageClassName: "object-[center_24%]",
+  },
+  {
+    src: "/images/wsc/golf-practice-area.webp",
+    alt: "Golf short game practice grounds at Woodinville Sports Club",
+    label: "Expand the grounds",
+    className: "min-h-[220px] md:min-h-[278px]",
+    imageClassName: "object-[center_44%]",
+  },
+  {
+    src: "/images/wsc/apl-training.webp",
+    alt: "Athletes training in the Athletic Performance Lab at Woodinville Sports Club",
+    label: "Build the athlete",
+    className: "min-h-[220px] md:min-h-[278px]",
+    imageClassName: "object-[center_35%]",
+  },
+] as const;
+
+const VISION_PILLARS = [
+  "Tennis",
+  "Golf",
+  "Athletic Performance",
+] as const;
 
 export default function About() {
   return (
@@ -48,6 +77,59 @@ export default function About() {
                 "Woodinville Sports Club: Where every swing, serve, and step is an opportunity to rise higher."
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Vision */}
+      <section className="bg-dark-bg px-6 lg:px-14 py-24 lg:py-28 overflow-hidden">
+        <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[0.95fr_1.25fr] gap-12 lg:gap-20 items-center">
+          <div>
+            <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Where We're Going</p>
+            <h2 className="text-parchment text-[clamp(28px,3.2vw,48px)] font-light tracking-[-0.025em] leading-[1.08] mb-6">
+              A multi-sport training ground built for athletes, by athletes.
+            </h2>
+            <p className="text-parchment/80 text-[16px] leading-[1.82] mb-6">
+              We are building WSC into a true training ground for athletes across sports. A place where people can show up, feel comfortable, and put in the daily work required to sharpen their craft.
+            </p>
+            <p className="text-parchment/80 text-[16px] leading-[1.82] mb-8">
+              The vision is bigger than one court, one range, or one gym. We are building an environment where tennis players, golfers, strength athletes, juniors, adults, coaches, and families can train with purpose and grow together.
+            </p>
+            <div className="border-l-2 border-volt-bright pl-6 py-4 mb-10">
+              <p className="text-parchment text-[clamp(22px,2.4vw,34px)] font-light tracking-[-0.02em] leading-[1.15] mb-3">
+                For Athletes, By Athletes.
+              </p>
+              <p className="text-parchment/70 text-[14px] leading-[1.72]">
+                Built from the ground up, brick by brick, step by step.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-[1px] bg-parchment/10">
+              {VISION_PILLARS.map((pillar) => (
+                <div key={pillar} className="bg-dark-mid px-5 py-4">
+                  <p className="text-volt-bright text-[12px] tracking-[0.16em] uppercase">{pillar}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-[3px]">
+            {VISION_IMAGES.map((image) => (
+              <figure key={image.src} className={`relative overflow-hidden ${image.className}`}>
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  width={1800}
+                  height={1200}
+                  loading="lazy"
+                  className={`absolute inset-0 h-full w-full object-cover brightness-[0.72] saturate-[0.72] ${image.imageClassName}`}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[rgba(22,19,16,0.72)] via-[rgba(22,19,16,0.12)] to-transparent" />
+                <figcaption className="absolute bottom-0 left-0 right-0 p-5 lg:p-6">
+                  <p className="text-parchment text-[13px] tracking-[0.18em] uppercase">{image.label}</p>
+                </figcaption>
+              </figure>
+            ))}
           </div>
         </div>
       </section>

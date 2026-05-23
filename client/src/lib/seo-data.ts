@@ -78,7 +78,7 @@ export const SEO = {
   about: {
     title: "About WSC 67-Acre Campus",
     description:
-      "Learn about WSC's 67-acre Woodinville campus, founded in 1979 and built for tennis, golf, pickleball, fitness, private events, camps, and community programs.",
+      "Learn about WSC's 67-acre Woodinville campus and the multi-sport training ground being built for tennis, golf, athletic performance, camps, and community programs.",
     path: "/about",
   },
   contact: {
