@@ -365,14 +365,12 @@ export default function Home() {
                 Explore Tier 1 Programs
                 <ChevronRight size={13} />
               </a>
-              <a
-                href="https://app.courtreserve.com/Online/Portal/Index/6689"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/contact"
                 className="text-[12px] tracking-[0.14em] uppercase no-underline text-parchment/80 hover:text-parchment transition-colors duration-200"
               >
                 Schedule a Tour
-              </a>
+              </Link>
             </div>
           </div>
 

@@ -290,14 +290,12 @@ export default function About() {
             >
               Explore Tier 1 Programs
             </a>
-            <a
-              href="https://app.courtreserve.com/Online/Portal/Index/6689"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contact"
               className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline text-parchment/75 text-[12px] tracking-[0.14em] uppercase hover:text-parchment transition-colors duration-200"
             >
               Schedule a Tour
-            </a>
+            </Link>
           </div>
         </div>
       </section>
