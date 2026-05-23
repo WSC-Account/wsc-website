@@ -219,10 +219,10 @@ export default function Tennis() {
           <div>
             <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Facilities</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-8">
-              Eight indoor courts.<br />Climate controlled.
+              Eight indoor courts.<br />One outdoor court.
             </h2>
             <p className="text-ink-mid text-[16px] leading-[1.82] mb-8">
-              Our indoor tennis facility provides year-round play regardless of Pacific Northwest weather. Professional-grade surfaces, consistent lighting, and a controlled environment for optimal training conditions.
+              Our indoor tennis facility provides year-round play through Pacific Northwest weather, with one outdoor court available for fresh-air hitting when conditions allow. Professional-grade surfaces and consistent indoor lighting support focused training conditions.
             </p>
             <div className="grid grid-cols-2 gap-6">
               {[

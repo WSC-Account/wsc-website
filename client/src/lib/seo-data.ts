@@ -12,7 +12,7 @@ export const SEO = {
   tennis: {
     title: "Tennis Programs & Courts",
     description:
-      "Book 8 indoor tennis courts, Tier 1 junior training, adult classes, private lessons, USTA teams, and CourtReserve access at Woodinville Sports Club.",
+      "Book 8 indoor tennis courts and 1 outdoor court, Tier 1 junior training, adult classes, private lessons, USTA teams, and CourtReserve access at WSC.",
     path: "/tennis",
   },
   golf: {

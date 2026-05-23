@@ -98,7 +98,7 @@ const heroCollageImages = [
 ];
 
 const metrics = [
-  { label: "Indoor Tennis Courts", val: "8", unit: "climate controlled" },
+  { label: "Tennis Courts", val: "8 + 1", unit: "indoor / outdoor" },
   { label: "Covered Driving Bays", val: "23", unit: "with free Toptracer" },
   { label: "Founded", val: "1979", unit: "" },
   { label: "Campus Acres", val: "67", unit: "" },
@@ -137,10 +137,10 @@ const disciplines = [
     tag: "Tennis",
     name: "Tier 1 Tennis",
     desc: "World-class tennis academy for junior players bound for the collegiate and professional ranks. Junior tennis classes for ages 3 and up, with pathways for recreational and elite development.",
-    detail: "8 indoor climate-controlled courts. UTR matchplay. Adult group classes and tournaments.",
+    detail: "8 indoor courts and 1 outdoor court. UTR matchplay. Adult group classes and tournaments.",
     img: TENNIS_IMG,
     href: "/tennis",
-    stat: "8 Indoor Courts",
+    stat: "8+1 Courts",
   },
   {
     num: "02",
@@ -227,7 +227,7 @@ const testimonials = [
 
 const galleryImages = [
   { src: GALLERY_AERIAL, alt: "WSC campus aerial view", caption: "67 acres of world-class athletic facilities in the heart of Woodinville", span: "wide" as const },
-  { src: TENNIS_IMG, alt: "Indoor tennis courts", caption: "8 climate-controlled indoor tennis courts", span: "normal" as const },
+  { src: TENNIS_IMG, alt: "Indoor tennis courts", caption: "8 indoor tennis courts + 1 outdoor court", span: "normal" as const },
   { src: SWINGLAB_IMG, alt: "Swing Lab simulators", caption: "Swing Lab — 4 Uneekor simulators with 24 data points", span: "normal" as const },
   { src: GALLERY_TENNIS, alt: "Tennis match in action", caption: "Tier 1 Tennis — training future champions", span: "normal" as const },
   { src: GALLERY_YOUTH, alt: "Youth athletic training", caption: "APL youth strength and conditioning", span: "normal" as const },
@@ -491,7 +491,7 @@ export default function Home() {
               <div>
                 <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-2">Facilities</p>
                 <p className="text-ink-mid text-[14px] leading-[1.72]">
-                  Eight indoor tennis courts, pickleball courts, comprehensive fitness facilities, and golf driving range on a scenic historic property.
+                  Eight indoor tennis courts, one outdoor tennis court, pickleball courts, comprehensive fitness facilities, and golf driving range on a scenic historic property.
                 </p>
               </div>
             </div>

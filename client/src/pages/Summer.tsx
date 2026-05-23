@@ -36,7 +36,7 @@ const PROGRAMS: Record<ProgramKey, {
     icon: Trophy,
     desc: "Tier 1 Academy and Core (formerly RPM) tracks for ages 3–18. Tier 1 Academy requires coach approval (Core does not). Includes daily APL athletic development training.",
     features: [
-      "8 indoor climate-controlled courts",
+      "8 indoor courts + 1 outdoor court",
       "Former world-ranked, D1, and professional coaches",
       "Academy and recreational pathways",
       "Daily APL athletic development integrated",

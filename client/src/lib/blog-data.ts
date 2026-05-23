@@ -357,7 +357,7 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         heading: "Indoor courts make training consistent",
         paragraphs: [
-          "Woodinville Sports Club gives tennis players climate-controlled indoor courts, which matters in the Pacific Northwest. Consistent court access helps players keep lessons, team practice, matchplay, and independent hitting on schedule.",
+          "Woodinville Sports Club gives tennis players 8 indoor courts and 1 outdoor court, which matters in the Pacific Northwest. Consistent court access helps players keep lessons, team practice, matchplay, and independent hitting on schedule.",
           "Whether you are new to tennis or returning after time away, a predictable training environment makes progress easier to repeat.",
         ],
       },
@@ -529,7 +529,7 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         heading: "Indoor tennis near Bothell",
         paragraphs: [
-          "For Bothell players, indoor courts make tennis easier to keep on the calendar. Woodinville Sports Club offers a covered, climate-controlled tennis environment for lessons, team play, adult classes, junior training, and independent court time.",
+          "For Bothell players, indoor courts make tennis easier to keep on the calendar. Woodinville Sports Club offers 8 indoor courts and 1 outdoor court for lessons, team play, adult classes, junior training, and independent court time.",
           "That consistency helps new players build fundamentals and experienced players keep a steady training rhythm.",
         ],
       },
