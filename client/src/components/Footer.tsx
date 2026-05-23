@@ -35,7 +35,7 @@ export default function Footer() {
 
         {/* Campus */}
         <div>
-          <div className="text-volt-bright text-[11px] tracking-[0.18em] uppercase font-medium mb-5">
+          <div className="text-volt-bright text-[13px] tracking-[0.18em] uppercase font-medium mb-5">
             Campus
           </div>
           <ul className="list-none space-y-2.5">
@@ -62,7 +62,7 @@ export default function Footer() {
 
         {/* Quick Links */}
         <div>
-          <div className="text-volt-bright text-[11px] tracking-[0.18em] uppercase font-medium mb-5">
+          <div className="text-volt-bright text-[13px] tracking-[0.18em] uppercase font-medium mb-5">
             Quick Links
           </div>
           <ul className="list-none space-y-2.5">
@@ -125,7 +125,7 @@ export default function Footer() {
 
         {/* Contact */}
         <div>
-          <div className="text-volt-bright text-[11px] tracking-[0.18em] uppercase font-medium mb-5">
+          <div className="text-volt-bright text-[13px] tracking-[0.18em] uppercase font-medium mb-5">
             Contact
           </div>
           <ul className="list-none space-y-2.5">
@@ -186,7 +186,7 @@ export default function Footer() {
               </Link>
             </li>
             <li className="pt-4 border-t border-parchment/[0.06]">
-              <p className="text-volt-bright text-[10px] tracking-[0.14em] uppercase mb-2">Facility Hours</p>
+              <p className="text-volt-bright text-[12px] tracking-[0.14em] uppercase mb-2">Facility Hours</p>
               <div className="space-y-1 mb-3">
                 <p className="text-parchment/70 text-[12px]">Tennis: Weekdays 6AM–11PM, Weekends 7AM–10PM</p>
                 <p className="text-parchment/70 text-[12px]">Gym: Weekdays 6AM–11PM, Weekends 7AM–10PM</p>

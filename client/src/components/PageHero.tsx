@@ -53,7 +53,7 @@ export default function PageHero({
       </picture>
       <div className="absolute inset-0 bg-gradient-to-t from-[rgba(22,19,16,0.71)] via-[rgba(22,19,16,0.45)] to-[rgba(22,19,16,0.15)]" />
       <div className="hero-safe-content relative z-10 px-6 lg:px-14 pb-16 lg:pb-20 pt-10 max-w-[1440px] w-full mx-auto min-h-[60vh] lg:min-h-[70vh] flex flex-col justify-end">
-        <p className="hero-eyebrow text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-5">
+        <p className="hero-eyebrow text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">
           {eyebrow}
         </p>
         <h1 className="hero-title text-parchment text-[clamp(36px,5vw,64px)] font-light leading-[1.08] tracking-[-0.025em] mb-5 max-w-[700px]">

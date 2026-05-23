@@ -25,7 +25,7 @@ function BlogCard({ post, featured = false }: { post: BlogPost; featured?: boole
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-4">
           <Link
             href={`/blog/categories/${post.categorySlug}`}
-            className="text-volt text-[10px] tracking-[0.2em] uppercase no-underline hover:text-ink transition-colors duration-200"
+            className="text-volt text-[12px] tracking-[0.2em] uppercase no-underline hover:text-ink transition-colors duration-200"
           >
             {post.category}
           </Link>
@@ -71,7 +71,7 @@ export default function Blog() {
         <div className="max-w-[1440px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[0.72fr_1.28fr] gap-10 lg:gap-16 items-start mb-14">
             <div>
-              <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Resource Library</p>
+              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Resource Library</p>
               <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
                 Practical answers from the WSC campus.
               </h2>
@@ -104,7 +104,7 @@ export default function Blog() {
         <div className="max-w-[1440px] mx-auto">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-10">
             <div>
-              <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">All Resources</p>
+              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">All Resources</p>
               <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15]">
                 Latest WSC guides.
               </h2>

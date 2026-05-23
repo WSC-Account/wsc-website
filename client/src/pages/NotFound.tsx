@@ -26,7 +26,7 @@ export default function NotFound() {
       <section className="bg-dark-bg min-h-[80vh] flex items-center px-6 lg:px-14 pt-[130px] pb-20">
         <div className="max-w-[1440px] w-full mx-auto">
           <div className="max-w-[640px]">
-            <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-5">
+            <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">
               Error 404
             </p>
             <h1 className="text-parchment text-[clamp(48px,8vw,120px)] font-light leading-[1] tracking-[-0.03em] mb-6">

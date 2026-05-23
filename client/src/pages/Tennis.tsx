@@ -109,14 +109,14 @@ export default function Tennis() {
           ref={programsRef}
           className={`max-w-[1440px] mx-auto transition-all duration-700 ease-out ${programsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Top-Tier Coaching</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Top-Tier Coaching</p>
           <h2 className="text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15] mb-14">
             Training pathways<br />for every level.
           </h2>
 
           {/* Tier 1 Performance NW */}
           <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr_auto] gap-4 lg:gap-12 items-baseline py-8 border-b border-wsc-border">
-            <p className="text-volt text-[10px] tracking-[0.2em] uppercase">Elite</p>
+            <p className="text-volt text-[12px] tracking-[0.2em] uppercase">Elite</p>
             <div>
               <h3 className="text-[20px] font-light tracking-[-0.01em] mb-2">Tier 1 Performance NW</h3>
               <p className="text-ink-mid text-[14px] leading-[1.72] mb-3">
@@ -146,7 +146,7 @@ export default function Tennis() {
 
           {/* Tier 1 Core */}
           <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr_auto] gap-4 lg:gap-12 items-baseline py-8 border-b border-wsc-border">
-            <p className="text-volt text-[10px] tracking-[0.2em] uppercase">Juniors</p>
+            <p className="text-volt text-[12px] tracking-[0.2em] uppercase">Juniors</p>
             <div>
               <h3 className="text-[20px] font-light tracking-[-0.01em] mb-1">Tier 1 Core Tennis</h3>
               <p className="text-ink-light text-[11px] tracking-[0.08em] uppercase mb-3">Formerly RPM Tennis</p>
@@ -179,7 +179,7 @@ export default function Tennis() {
 
           {/* Adult Tennis */}
           <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr_auto] gap-4 lg:gap-12 items-baseline py-8 border-b border-wsc-border">
-            <p className="text-volt text-[10px] tracking-[0.2em] uppercase">Adults</p>
+            <p className="text-volt text-[12px] tracking-[0.2em] uppercase">Adults</p>
             <div>
               <h3 className="text-[20px] font-light tracking-[-0.01em] mb-2">Adult Tennis</h3>
               <p className="text-ink-mid text-[14px] leading-[1.72] mb-3">
@@ -217,7 +217,7 @@ export default function Tennis() {
           className={`max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start transition-all duration-700 ease-out ${facilitiesVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
           <div>
-            <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Facilities</p>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Facilities</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-8">
               Eight indoor courts.<br />Climate controlled.
             </h2>
@@ -255,7 +255,7 @@ export default function Tennis() {
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto">
           <div className="mb-14">
-            <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Our Coaches</p>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Our Coaches</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15]">
               Trained by the best.
             </h2>
@@ -290,7 +290,7 @@ export default function Tennis() {
                   <span className="text-volt text-[20px] font-light">{coach.name.charAt(0)}</span>
                 </div>
                 <h3 className="text-[18px] font-light tracking-[-0.01em] mb-1">{coach.name}</h3>
-                <p className="text-volt text-[10px] tracking-[0.2em] uppercase mb-1.5">{coach.title}</p>
+                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-1.5">{coach.title}</p>
                 <p className="text-ink-mid text-[11px] tracking-[0.08em] uppercase mb-5">{coach.credential}</p>
                 <p className="text-ink-mid text-[14px] leading-[1.72] italic">"{coach.philosophy}"</p>
               </div>
@@ -306,7 +306,7 @@ export default function Tennis() {
       {/* Tier 1 Core Pathway */}
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto">
-          <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Junior Pathway</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Junior Pathway</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
             Red-to-yellow ball development.
           </h2>
@@ -320,7 +320,7 @@ export default function Tennis() {
                 key={level.name}
                 className={`bg-parchment-mid p-7 transition-all duration-700 ease-out ${coreVisible[i] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
-                <p className="text-volt text-[10px] tracking-[0.2em] uppercase mb-3">{level.ages}</p>
+                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3">{level.ages}</p>
                 <h3 className="text-[18px] font-light tracking-[-0.01em] mb-3">{level.name}</h3>
                 <p className="text-ink-mid text-[13px] leading-[1.72]">{level.desc}</p>
               </article>
@@ -332,7 +332,7 @@ export default function Tennis() {
       {/* Adult Class Menu */}
       <section className="bg-parchment-mid px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto">
-          <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Adult Tennis</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Adult Tennis</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
             Classes, socials, and matchplay.
           </h2>
@@ -346,7 +346,7 @@ export default function Tennis() {
                 key={classItem.name}
                 className={`bg-parchment p-8 border-t-2 border-transparent hover:border-volt transition-all duration-700 ease-out ${adultVisible[i] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
-                <p className="text-volt text-[10px] tracking-[0.2em] uppercase mb-3">{classItem.level}</p>
+                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3">{classItem.level}</p>
                 <h3 className="text-[18px] font-light tracking-[-0.01em] mb-3">{classItem.name}</h3>
                 <p className="text-ink-mid text-[14px] leading-[1.72]">{classItem.desc}</p>
               </article>
@@ -355,7 +355,7 @@ export default function Tennis() {
 
           <div className="mt-10 bg-parchment p-8 grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-center">
             <div>
-              <p className="text-volt text-[10px] tracking-[0.2em] uppercase mb-3">Friday Night UTR Matchplay</p>
+              <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3">Friday Night UTR Matchplay</p>
               <h3 className="text-[20px] font-light tracking-[-0.01em] mb-3">Verified singles matches for juniors and adults.</h3>
               <p className="text-ink-mid text-[14px] leading-[1.72]">
                 Friday nights alternate between juniors 18 and under and adults 19+. Registration closes Wednesday night, draws post Thursday at 1:00 PM, and matches use Fast 4 scoring with opponents near each player's UTR level.
@@ -380,7 +380,7 @@ export default function Tennis() {
           className={`max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20 items-start transition-all duration-700 ease-out ${bookingVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
           <div>
-            <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Court Booking</p>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Court Booking</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15]">
               Court Booking<br />Access Pass.
             </h2>
@@ -433,7 +433,7 @@ export default function Tennis() {
           className={`max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[0.85fr_1.35fr] gap-12 lg:gap-20 items-start transition-all duration-700 ease-out ${leagueVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
           <div>
-            <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">USTA & SACT</p>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">USTA & SACT</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-8">
               Team tennis at WSC.
             </h2>
@@ -462,7 +462,7 @@ export default function Tennis() {
               },
             ].map((item) => (
               <article key={item.label} className="bg-parchment-mid p-8">
-                <p className="text-volt text-[10px] tracking-[0.2em] uppercase mb-3">{item.label}</p>
+                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3">{item.label}</p>
                 <p className="text-ink-mid text-[14px] leading-[1.72]">{item.desc}</p>
               </article>
             ))}
@@ -488,7 +488,7 @@ export default function Tennis() {
           ref={ctaRef}
           className={`max-w-[1440px] mx-auto text-center transition-all duration-700 ease-out ${ctaVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
         >
-          <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-5">Get Started</p>
+          <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Get Started</p>
           <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-8">
             Ready to step on court?
           </h2>

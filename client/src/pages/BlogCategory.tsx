@@ -70,7 +70,7 @@ export default function BlogCategory({ params }: RouteComponentProps<{ category:
                 </Link>
                 <div className="p-7">
                   <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-4">
-                    <span className="text-volt text-[10px] tracking-[0.2em] uppercase">
+                    <span className="text-volt text-[12px] tracking-[0.2em] uppercase">
                       {post.category}
                     </span>
                     <span className="text-ink-light text-[12px]">{post.readTime}</span>

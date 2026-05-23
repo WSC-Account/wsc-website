@@ -37,7 +37,7 @@ export default function FacilityGallery({
       <div className="max-w-[1440px] mx-auto">
         {/* Header */}
         <div className="mb-10 lg:mb-14">
-          <p className={`${eyebrowClass} text-[11px] tracking-[0.22em] uppercase mb-4`}>
+          <p className={`${eyebrowClass} text-[13px] tracking-[0.22em] uppercase mb-4`}>
             {eyebrow}
           </p>
           <h2 className={`${titleClass} text-[clamp(28px,3vw,46px)] font-light tracking-[-0.02em] leading-[1.1]`}>

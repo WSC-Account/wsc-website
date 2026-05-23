@@ -70,7 +70,7 @@ export default function Events() {
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[0.85fr_1.35fr] gap-12 lg:gap-20 items-start">
           <div>
-            <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">What We Offer</p>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">What We Offer</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-8">
               Event packages built around your group.
             </h2>
@@ -93,7 +93,7 @@ export default function Events() {
 
       <section className="bg-parchment-mid px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto">
-          <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Venue Options</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Venue Options</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-14">
             Choose the right setting.
           </h2>
@@ -122,7 +122,7 @@ export default function Events() {
       <section className="bg-dark-mid px-6 lg:px-14 py-20 lg:py-24">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-center">
           <div>
-            <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-5">Plan Your Event</p>
+            <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Plan Your Event</p>
             <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
               Tell us what you are planning.
             </h2>

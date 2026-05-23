@@ -83,7 +83,7 @@ export default function Gym() {
               />
             </div>
             <div className="order-1 lg:order-2">
-              <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Main Gym</p>
+              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Main Gym</p>
               <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-8">
                 Full-service strength<br />and cardio.
               </h2>
@@ -111,7 +111,7 @@ export default function Gym() {
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
-              <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-6">Weight Room</p>
+              <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-6">Weight Room</p>
               <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light leading-[1.1] tracking-[-0.02em] mb-6">
                 Built for serious<br />strength training.
               </h2>
@@ -154,7 +154,7 @@ export default function Gym() {
               />
             </div>
             <div className="order-1 lg:order-2">
-              <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Functional Training</p>
+              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Functional Training</p>
               <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-8">
                 Move better.<br />Perform better.
               </h2>
@@ -177,7 +177,7 @@ export default function Gym() {
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start mb-16">
             <div>
-              <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-6">Athletic Performance Lab</p>
+              <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-6">Athletic Performance Lab</p>
               <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light leading-[1.1] tracking-[-0.02em] mb-6">
                 Where champions<br />are built.
               </h2>
@@ -229,7 +229,7 @@ export default function Gym() {
       {/* APL Class Listings */}
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto">
-          <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">APL Group Classes</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">APL Group Classes</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
             Our all-new lineup of<br />S&C classes.
           </h2>
@@ -286,7 +286,7 @@ export default function Gym() {
                 key={i}
                 className={`bg-parchment-mid p-8 border-t-2 border-transparent hover:border-volt transition-all duration-700 ease-out ${classesVisible[i] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
-                <p className="text-volt text-[10px] tracking-[0.2em] uppercase mb-3">{c.who}</p>
+                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3">{c.who}</p>
                 <h3 className="text-[18px] font-light tracking-[-0.01em] mb-3">{c.name}</h3>
                 <p className="text-ink-mid text-[14px] leading-[1.72] mb-5">{c.desc}</p>
                 <div className="space-y-1.5 pt-4 border-t border-wsc-border">
@@ -320,7 +320,7 @@ export default function Gym() {
       {/* Monthly Packages */}
       <section className="bg-parchment-mid px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto">
-          <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Flexible Training Packages</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Flexible Training Packages</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
             Monthly packages for<br />more scheduling flexibility.
           </h2>
@@ -358,7 +358,7 @@ export default function Gym() {
       <section className="bg-dark-bg px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[0.85fr_1.35fr] gap-12 lg:gap-20 items-start">
           <div>
-            <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-6">Personal Training</p>
+            <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-6">Personal Training</p>
             <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light leading-[1.1] tracking-[-0.02em] mb-6">
               Performance-based training for youth and adults.
             </h2>
@@ -369,7 +369,7 @@ export default function Gym() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[3px]">
             <div className="bg-dark-mid p-8 lg:p-10">
-              <p className="text-volt-bright text-[10px] tracking-[0.2em] uppercase mb-3">Youth & Adult Athletes</p>
+              <p className="text-volt-bright text-[12px] tracking-[0.2em] uppercase mb-3">Youth & Adult Athletes</p>
               <h3 className="text-parchment text-[20px] font-light tracking-[-0.01em] mb-4">Sport-specific personal training</h3>
               <p className="text-parchment/80 text-[14px] leading-[1.72] mb-6">
                 Build speed, power, endurance, confidence, and injury resilience through programming tailored to your sport and goals.
@@ -384,7 +384,7 @@ export default function Gym() {
               </a>
             </div>
             <div className="bg-dark-mid p-8 lg:p-10">
-              <p className="text-volt-bright text-[10px] tracking-[0.2em] uppercase mb-3">Team Training</p>
+              <p className="text-volt-bright text-[12px] tracking-[0.2em] uppercase mb-3">Team Training</p>
               <h3 className="text-parchment text-[20px] font-light tracking-[-0.01em] mb-4">Youth club and school teams</h3>
               <p className="text-parchment/80 text-[14px] leading-[1.72] mb-6">
                 WSC's Performance Training Team is available for sport and conditioning sessions for youth athletic clubs and school athletic departments.
@@ -404,7 +404,7 @@ export default function Gym() {
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[0.8fr_1.4fr] gap-12 lg:gap-20 items-start">
           <div>
-            <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Free Fitness Assessment</p>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Free Fitness Assessment</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-8">
               Expert guidance for WSC gym members.
             </h2>
@@ -452,7 +452,7 @@ export default function Gym() {
       {/* Amenities Grid */}
       <section className="bg-parchment-mid px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto">
-          <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Amenities</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Amenities</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-14">
             Everything you need,<br />all under one roof.
           </h2>
@@ -485,7 +485,7 @@ export default function Gym() {
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
             <div>
-              <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Gym Hours</p>
+              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Gym Hours</p>
               <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-8">
                 Open early.<br />Close late.
               </h2>
@@ -517,7 +517,7 @@ export default function Gym() {
           ref={ctaRef}
           className={`max-w-[1440px] mx-auto text-center transition-all duration-700 ease-out ${ctaVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
         >
-          <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Get Started</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Get Started</p>
           <h2 className="text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
             Ready to train at WSC?
           </h2>

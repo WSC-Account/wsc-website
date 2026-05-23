@@ -31,7 +31,7 @@ export default function About() {
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20 items-start">
           <div>
-            <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Our Story</p>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Our Story</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15]">
               From a modest<br />tennis facility<br />to a premier campus.
             </h2>
@@ -60,7 +60,7 @@ export default function About() {
               <svg className="w-5 h-5 text-volt shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
               </svg>
-              <p className="text-volt text-[11px] tracking-[0.22em] uppercase font-medium">Court Scheduling</p>
+              <p className="text-volt text-[13px] tracking-[0.22em] uppercase font-medium">Court Scheduling</p>
             </div>
             <p className="text-ink-mid text-[15px] leading-[1.75]">
               As a training-focused facility, court time at WSC is prioritized for academy programming through Tier 1 Sports. Recreational and member play is welcome and available — we recommend checking <a href="https://app.courtreserve.com/Online/Portal/Index/6689" target="_blank" rel="noopener noreferrer" className="text-volt hover:text-ink transition-colors duration-200 underline">CourtReserve</a> for current availability or calling us at <a href="tel:4254871090" className="text-volt hover:text-ink transition-colors duration-200 underline">(425) 487-1090</a>.
@@ -72,7 +72,7 @@ export default function About() {
       {/* Elevate Philosophy */}
       <section className="bg-dark-mid px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto">
-          <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-6">The Elevate Experience</p>
+          <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-6">The Elevate Experience</p>
           <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light leading-[1.1] tracking-[-0.02em] mb-6">
             Elevation in every discipline.
           </h2>
@@ -111,7 +111,7 @@ export default function About() {
       {/* Facilities */}
       <section className="bg-parchment-mid px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto">
-          <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Our Facilities</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Our Facilities</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
             A 67-acre training campus in the heart of Woodinville.
           </h2>
@@ -148,7 +148,7 @@ export default function About() {
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20 items-start">
           <div>
-            <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Community at Our Core</p>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Community at Our Core</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15]">
               More than<br />a sports club.
             </h2>
@@ -165,7 +165,7 @@ export default function About() {
             </p>
             <div className="bg-[#0d1b2a] p-6 lg:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
-                <p className="text-volt-bright text-[10px] tracking-[0.2em] uppercase mb-1.5">Tier 1 Sports</p>
+                <p className="text-volt-bright text-[12px] tracking-[0.2em] uppercase mb-1.5">Tier 1 Sports</p>
                 <p className="text-white text-[15px] font-light">Discover our world-class developmental programming.</p>
               </div>
               <a
@@ -184,7 +184,7 @@ export default function About() {
       {/* CTA */}
       <section className="bg-dark-mid px-6 lg:px-14 py-20 lg:py-24">
         <div className="max-w-[1440px] mx-auto text-center">
-          <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-5">Join Us</p>
+          <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Join Us</p>
           <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
             Ready to elevate your game?
           </h2>

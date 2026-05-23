@@ -13,7 +13,7 @@ import { SEO } from "@/lib/seo-data";
 const HERO_IMG = "/images/wsc/campus-dome.webp";
 
 function SectionEyebrow({ children }: { children: React.ReactNode }) {
-  return <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">{children}</p>;
+  return <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">{children}</p>;
 }
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
@@ -155,7 +155,7 @@ export default function Privacy() {
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-ink text-[14px] font-medium">Necessary Cookies</span>
-                    <span className="text-volt text-[10px] tracking-[0.12em] uppercase">Always Active</span>
+                    <span className="text-volt text-[12px] tracking-[0.12em] uppercase">Always Active</span>
                   </div>
                   <p className="text-ink-mid text-[14px] leading-[1.72]">
                     Essential for the Site to function properly. These cookies enable core features such as page navigation, security, accessibility preferences (high-contrast mode), and cookie consent storage. Without these cookies, the Site cannot function as intended. These cookies do not collect personally identifiable information.
@@ -448,7 +448,7 @@ export default function Privacy() {
       {/* CTA */}
       <section className="bg-dark-mid px-6 lg:px-14 py-20 lg:py-24">
         <div className="max-w-[1440px] mx-auto text-center">
-          <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-5">Learn More</p>
+          <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Learn More</p>
           <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
             Your trust is important to us.
           </h2>
