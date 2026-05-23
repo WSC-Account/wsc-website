@@ -336,7 +336,7 @@ export default function Home() {
 
         <div className="relative z-10 px-6 lg:px-14 pb-0 max-w-[1440px] w-full mx-auto grid grid-cols-1 lg:grid-cols-[minmax(0,0.95fr)_minmax(360px,0.7fr)] gap-10 lg:gap-16 items-end">
           <div className="pb-16 lg:pb-20">
-            <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-7">
+            <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-7">
               Woodinville, Washington — Pacific Northwest
             </p>
             <h1 className="text-parchment text-[clamp(40px,5.2vw,76px)] font-light leading-[1.06] tracking-[-0.025em] mb-7">
@@ -410,7 +410,7 @@ export default function Home() {
         <div className="max-w-[1440px] mx-auto">
           <div className="flex items-center gap-3 mb-8">
             <div className="w-2 h-2 rounded-full bg-volt-bright animate-pulse" />
-            <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase">
+            <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase">
               This Week at WSC
             </p>
           </div>
@@ -423,7 +423,7 @@ export default function Home() {
               >
                 <div className="flex items-center gap-2.5 mb-4">
                   <item.icon size={14} className="text-volt-bright" />
-                  <span className="text-volt-bright text-[10px] tracking-[0.2em] uppercase">
+                  <span className="text-volt-bright text-[12px] tracking-[0.2em] uppercase">
                     {item.tag}
                   </span>
                 </div>
@@ -466,7 +466,7 @@ export default function Home() {
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-32">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20 items-start">
           <div>
-            <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">The Club</p>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">The Club</p>
             <h2 className="text-[clamp(28px,3vw,44px)] font-light leading-[1.12] tracking-[-0.02em]">
               Elevate Your Game.<br />Enrich Your Life.
             </h2>
@@ -477,19 +477,19 @@ export default function Home() {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-wsc-border">
               <div>
-                <p className="text-volt text-[10px] tracking-[0.2em] uppercase mb-2">Memberships</p>
+                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-2">Memberships</p>
                 <p className="text-ink-mid text-[14px] leading-[1.72]">
                   Annual and monthly membership options for court booking, class registration, golf, and fitness.
                 </p>
               </div>
               <div>
-                <p className="text-volt text-[10px] tracking-[0.2em] uppercase mb-2">Training</p>
+                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-2">Training</p>
                 <p className="text-ink-mid text-[14px] leading-[1.72]">
                   Private and group training in tennis, fitness, and golf from expert coaches for athletes of all ages and levels.
                 </p>
               </div>
               <div>
-                <p className="text-volt text-[10px] tracking-[0.2em] uppercase mb-2">Facilities</p>
+                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-2">Facilities</p>
                 <p className="text-ink-mid text-[14px] leading-[1.72]">
                   Eight indoor tennis courts, pickleball courts, comprehensive fitness facilities, and golf driving range on a scenic historic property.
                 </p>
@@ -504,7 +504,7 @@ export default function Home() {
         <div className="max-w-[1440px] mx-auto">
           <div className="flex flex-col lg:flex-row justify-between lg:items-end mb-14 pb-8 border-b border-wsc-border">
             <div>
-              <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Campus Programs</p>
+              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Campus Programs</p>
               <h2 className="text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15]">
                 World-class facilities.<br />Expert coaching.
               </h2>
@@ -550,14 +550,14 @@ export default function Home() {
                     }`}
                   >
                     <div className="bg-dark-bg/80 backdrop-blur-sm px-5 py-3">
-                      <span className="text-volt-bright text-[13px] tracking-[0.12em] uppercase font-light">
+                      <span className="text-volt-bright text-[15px] tracking-[0.12em] uppercase font-light">
                         {d.stat}
                       </span>
                     </div>
                   </div>
                 </div>
                 <div className="p-7 pb-9">
-                  <p className="text-volt text-[10px] tracking-[0.2em] uppercase mb-2.5">
+                  <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-2.5">
                     {d.num} — {d.tag}
                   </p>
                   <h3 className="text-[22px] font-light tracking-[-0.01em] mb-3">{d.name}</h3>
@@ -595,7 +595,7 @@ export default function Home() {
             }`}
           >
             <div className="max-w-[600px]">
-              <p className="text-volt text-[10px] tracking-[0.2em] uppercase mb-2.5">05 — Summer Training</p>
+              <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-2.5">05 — Summer Training</p>
               <h3 className="text-[22px] font-light tracking-[-0.01em] mb-3">Summer Training Camp</h3>
               <p className="text-ink-mid text-[14px] leading-[1.72]">
                 Our year-round Tennis and Golf Academy programs continue throughout the summer with the same amazing coaches our kids know and love. Plus Adventure Club, a multi-sport offering where kids learn about athletes from around the world. Ages 3–18, June 29 – August 30.
@@ -630,7 +630,7 @@ export default function Home() {
           <div className={`grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-12 lg:gap-20 transition-all duration-800 ease-out ${dayVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
             {/* Left: intro */}
             <div className="lg:sticky lg:top-32 lg:self-start">
-              <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Experience</p>
+              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Experience</p>
               <h2 className="text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15] mb-5">
                 Your Saturday<br />at WSC.
               </h2>
@@ -704,7 +704,7 @@ export default function Home() {
                           </span>
                           <span className="flex items-center gap-1.5">
                             <MapPin size={11} className="text-volt" />
-                            <span className="text-volt text-[11px] tracking-[0.12em] uppercase">
+                            <span className="text-volt text-[13px] tracking-[0.12em] uppercase">
                               {step.location}
                             </span>
                           </span>
@@ -747,7 +747,7 @@ export default function Home() {
                 />
               </div>
               <div className="p-8">
-                <p className="text-volt text-[10px] tracking-[0.2em] uppercase mb-3">Now Open</p>
+                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3">Now Open</p>
                 <h3 className="text-[22px] font-light tracking-[-0.01em] mb-3">Swing Lab Golf Simulators</h3>
                 <p className="text-ink-mid text-[14px] leading-[1.72] mb-5">
                   Four professional-grade Uneekor simulators capturing 24 data points in real time. Over 2,000 courses. Train with the same precision technology used by tour professionals.
@@ -778,7 +778,7 @@ export default function Home() {
                 />
               </div>
               <div className="p-8">
-                <p className="text-volt text-[10px] tracking-[0.2em] uppercase mb-3">Tier 1 Golf Academy</p>
+                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3">Tier 1 Golf Academy</p>
                 <h3 className="text-[22px] font-light tracking-[-0.01em] mb-3">Junior & Adult Golf Programs</h3>
                 <p className="text-ink-mid text-[14px] leading-[1.72] mb-5">
                   Classes for all levels, from first swing to elite golfers. Junior Academy for ages 7–18. Led by WGTF Master Certified Coach, Daniel Jarvie. Full-time youth academy launching in 2026.
@@ -821,7 +821,7 @@ export default function Home() {
       <section className="bg-dark-bg px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto">
           <div className="mb-14">
-            <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-5">Community</p>
+            <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Community</p>
             <h2 className="text-parchment text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15]">
               Why they stay.
             </h2>
@@ -861,7 +861,7 @@ export default function Home() {
           {/* Aspirational lead */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-end mb-6">
             <div>
-              <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Membership</p>
+              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Membership</p>
               <h2 className="text-[clamp(26px,2.6vw,38px)] font-light tracking-[-0.02em] leading-[1.15]">
                 Train Without Limits.
               </h2>
@@ -881,7 +881,7 @@ export default function Home() {
                 { label: "Belong", desc: "Tournaments, social events, and a community of athletes who push each other." },
               ].map((item, i) => (
                 <div key={i}>
-                  <p className="text-volt text-[10px] tracking-[0.2em] uppercase mb-2">{item.label}</p>
+                  <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-2">{item.label}</p>
                   <p className="text-ink-mid text-[13px] leading-[1.65]">{item.desc}</p>
                 </div>
               ))}
@@ -914,7 +914,7 @@ export default function Home() {
                 key={i}
                 className="bg-parchment-mid p-8 lg:p-10 border-t-2 border-transparent hover:border-volt transition-colors duration-300"
               >
-                <p className="text-volt text-[10px] tracking-[0.2em] uppercase mb-3.5">{m.type}</p>
+                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3.5">{m.type}</p>
                 <h3 className="text-[20px] font-light tracking-[-0.01em] mb-1">{m.name}</h3>
                 <p className="text-volt-bright text-[18px] font-light mb-4">{m.price}</p>
                 <p className="text-ink-mid text-[14px] leading-[1.7] mb-6">{m.desc}</p>
@@ -944,7 +944,7 @@ export default function Home() {
       {/* ── NEWSLETTER SIGNUP ── */}
       <section className="bg-dark-mid px-6 lg:px-14 py-20 lg:py-28">
         <div className="max-w-[640px] mx-auto text-center">
-          <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-5">Stay Connected</p>
+          <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Stay Connected</p>
           <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
             Get the WSC Newsletter.
           </h2>
@@ -1000,7 +1000,7 @@ export default function Home() {
         <div className="max-w-[1440px] mx-auto">
           <div className="flex flex-col gap-5 mb-10 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-3">Follow Us</p>
+              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-3">Follow Us</p>
               <h2 className="text-[clamp(22px,2.4vw,32px)] font-light tracking-[-0.02em] leading-[1.15]">
                 @woodinvillesportsclub
               </h2>

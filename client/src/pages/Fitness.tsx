@@ -26,7 +26,7 @@ export default function Fitness() {
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           <div>
-            <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Main Gym</p>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Main Gym</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-8">
               Full-service strength<br />and cardio.
             </h2>
@@ -35,7 +35,7 @@ export default function Fitness() {
             </p>
           </div>
           <div>
-            <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">APL Training Center</p>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">APL Training Center</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-8">
               Dedicated S&C<br />for athletes.
             </h2>
@@ -51,7 +51,7 @@ export default function Fitness() {
         <div className="max-w-[1440px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start mb-16">
             <div>
-              <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-6">Group S&C Training</p>
+              <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-6">Group S&C Training</p>
               <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light leading-[1.1] tracking-[-0.02em] mb-6">
                 Building more<br />well-rounded athletes.
               </h2>
@@ -103,7 +103,7 @@ export default function Fitness() {
       {/* Monthly Packages */}
       <section className="bg-parchment-mid px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto">
-          <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Flexible Training Packages</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Flexible Training Packages</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
             Monthly packages for<br />more scheduling flexibility.
           </h2>
@@ -137,7 +137,7 @@ export default function Fitness() {
       {/* CTA */}
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto text-center">
-          <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Membership</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Membership</p>
           <h2 className="text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
             Explore our membership options.
           </h2>

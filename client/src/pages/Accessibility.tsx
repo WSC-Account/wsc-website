@@ -28,7 +28,7 @@ export default function Accessibility() {
       {/* Statement */}
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[800px] mx-auto">
-          <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Accessibility Statement</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Accessibility Statement</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-8">
             Web Content Accessibility Guidelines (WCAG) 2.2
           </h2>
@@ -76,7 +76,7 @@ export default function Accessibility() {
       {/* Contact */}
       <section className="bg-parchment-mid px-6 lg:px-14 py-20 lg:py-24">
         <div className="max-w-[800px] mx-auto">
-          <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Report a Barrier</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Report a Barrier</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-8">
             Contact us about accessibility.
           </h2>
@@ -119,7 +119,7 @@ export default function Accessibility() {
       {/* Standards */}
       <section className="bg-parchment px-6 lg:px-14 py-20 lg:py-24">
         <div className="max-w-[800px] mx-auto">
-          <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Compliance</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Compliance</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-8">
             Standards and guidelines.
           </h2>
@@ -149,7 +149,7 @@ export default function Accessibility() {
       {/* CTA */}
       <section className="bg-dark-mid px-6 lg:px-14 py-20 lg:py-24">
         <div className="max-w-[1440px] mx-auto text-center">
-          <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-5">Visit Us</p>
+          <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Visit Us</p>
           <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
             Everyone is welcome at WSC.
           </h2>

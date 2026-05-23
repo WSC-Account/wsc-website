@@ -110,7 +110,7 @@ export default function Sessions() {
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[0.75fr_1.45fr] gap-12 lg:gap-20 items-start">
           <div>
-            <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Programming Calendar</p>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Programming Calendar</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
               Registration is handled through CourtReserve.
             </h2>
@@ -184,7 +184,7 @@ export default function Sessions() {
       <section className="bg-dark-mid px-6 lg:px-14 py-20 lg:py-24">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-center">
           <div>
-            <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-5">Need Help Choosing?</p>
+            <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Need Help Choosing?</p>
             <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
               Find the right program before registration opens.
             </h2>

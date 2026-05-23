@@ -61,7 +61,7 @@ export default function FoodTrucks() {
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[0.8fr_1.4fr] gap-12 lg:gap-20 items-start">
           <div>
-            <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Rotating Schedule</p>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Rotating Schedule</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-8">
               Follow WSC for the latest truck calendar.
             </h2>
@@ -106,7 +106,7 @@ export default function FoodTrucks() {
       <section className="bg-dark-mid px-6 lg:px-14 py-20 lg:py-24">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-center">
           <div>
-            <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-5">Make a Night of It</p>
+            <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Make a Night of It</p>
             <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
               Food, range balls, courts, and community.
             </h2>

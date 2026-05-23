@@ -195,7 +195,7 @@ function FAQSection() {
         className={`max-w-[1440px] mx-auto transition-all duration-700 ease-out ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
       >
         <div className="mb-14 pb-8 border-b border-wsc-border">
-          <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Frequently Asked Questions</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Frequently Asked Questions</p>
           <h2 className="text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15]">
             Common questions,<br />clear answers.
           </h2>
@@ -204,7 +204,7 @@ function FAQSection() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-14">
           {FAQ_ITEMS.map((cat) => (
             <div key={cat.category}>
-              <p className="text-volt text-[10px] tracking-[0.2em] uppercase mb-6">{cat.category}</p>
+              <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-6">{cat.category}</p>
               <div className="space-y-0">
                 {cat.items.map((item, i) => {
                   const id = `${cat.category}-${i}`;
@@ -279,7 +279,7 @@ export default function Membership() {
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto">
           <div className="mb-14 pb-8 border-b border-wsc-border">
-            <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Membership Options</p>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Membership Options</p>
             <h2 className="text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15]">
               Six tiers. One campus.
             </h2>
@@ -291,7 +291,7 @@ export default function Membership() {
                 key={i}
                 className="bg-parchment-mid p-8 lg:p-10 border-t-2 border-transparent hover:border-volt transition-colors duration-300"
               >
-                <p className="text-volt text-[10px] tracking-[0.2em] uppercase mb-3">{t.type}</p>
+                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3">{t.type}</p>
                 <h3 className="text-[20px] font-light tracking-[-0.01em] mb-1">{t.name}</h3>
                 <div className="mb-2">
                   <span className="text-volt-bright text-[28px] font-light">{t.price}</span>
@@ -365,7 +365,7 @@ export default function Membership() {
       {/* CTA */}
       <section className="bg-dark-mid px-6 lg:px-14 py-20 lg:py-24">
         <div className="max-w-[1440px] mx-auto text-center">
-          <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-5">Get Started</p>
+          <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Get Started</p>
           <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
             Ready to join the campus?
           </h2>

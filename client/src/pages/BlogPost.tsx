@@ -132,7 +132,7 @@ export default function BlogPost({ params }: RouteComponentProps<{ slug: string 
           </div>
 
           <div className="mt-14 bg-dark-bg px-7 py-8 md:px-10 md:py-10">
-            <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-4">Next Step</p>
+            <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-4">Next Step</p>
             <h2 className="text-parchment text-[clamp(24px,2.4vw,34px)] font-light tracking-[-0.02em] leading-[1.16] mb-4">
               {post.cta.text}
             </h2>
@@ -164,7 +164,7 @@ export default function BlogPost({ params }: RouteComponentProps<{ slug: string 
           <div className="max-w-[1440px] mx-auto">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-10">
               <div>
-                <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Related</p>
+                <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Related</p>
                 <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15]">
                   More {post.category.toLowerCase()} resources.
                 </h2>
@@ -180,7 +180,7 @@ export default function BlogPost({ params }: RouteComponentProps<{ slug: string 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-[3px]">
               {relatedPosts.map((related) => (
                 <article key={related.slug} className="bg-parchment p-7">
-                  <p className="text-volt text-[10px] tracking-[0.18em] uppercase mb-4">
+                  <p className="text-volt text-[12px] tracking-[0.18em] uppercase mb-4">
                     {related.category}
                   </p>
                   <h3 className="text-[21px] font-light tracking-[-0.02em] leading-[1.16] mb-4">

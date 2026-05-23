@@ -165,7 +165,7 @@ export default function CookieConsent() {
                 <div className="bg-dark-mid p-5">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-parchment text-[12px] tracking-[0.1em] uppercase">Necessary</span>
-                    <span className="text-volt-bright text-[10px] tracking-[0.12em] uppercase">Always On</span>
+                    <span className="text-volt-bright text-[12px] tracking-[0.12em] uppercase">Always On</span>
                   </div>
                   <p className="text-parchment/70 text-[12px] leading-[1.65]">
                     Essential cookies that enable core site functionality like navigation, security, and accessibility preferences.

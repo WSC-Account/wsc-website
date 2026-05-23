@@ -17,7 +17,7 @@ const HERO_IMG = "/images/wsc/campus-dome.webp";
 /* ── Shared UI ────────────────────────────────────────────── */
 
 function SectionEyebrow({ children }: { children: React.ReactNode }) {
-  return <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">{children}</p>;
+  return <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">{children}</p>;
 }
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
@@ -776,7 +776,7 @@ export default function Policies() {
       {/* CTA */}
       <section className="bg-dark-bg px-6 lg:px-14 py-20 lg:py-24">
         <div className="max-w-[800px] mx-auto text-center">
-          <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-5">Questions?</p>
+          <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Questions?</p>
           <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
             We're here to help.
           </h2>

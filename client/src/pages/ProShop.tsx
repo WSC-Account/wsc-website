@@ -113,7 +113,7 @@ export default function ProShop() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Text */}
             <div>
-              <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Expert Stringing</p>
+              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Expert Stringing</p>
               <h2 className="text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
                 Professional racquet<br />stringing services.
               </h2>
@@ -176,7 +176,7 @@ export default function ProShop() {
       {/* String Options */}
       <section className="bg-dark-bg px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto">
-          <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-5">String Selection</p>
+          <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">String Selection</p>
           <h2 className="text-parchment text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
             Choose the right tier<br />for your game.
           </h2>
@@ -188,7 +188,7 @@ export default function ProShop() {
             {STRING_OPTIONS.map((option, i) => (
               <div key={i} className="border border-white/[0.08] p-8 hover:border-volt-bright/30 transition-colors duration-300">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-volt-bright text-[11px] tracking-[0.18em] uppercase font-medium">0{i + 1}</span>
+                  <span className="text-volt-bright text-[13px] tracking-[0.18em] uppercase font-medium">0{i + 1}</span>
                   <div className="h-px flex-1 bg-white/[0.08]" />
                 </div>
                 <h3 className="text-parchment text-[20px] font-light tracking-[-0.01em] mb-2">{option.category}</h3>
@@ -203,7 +203,7 @@ export default function ProShop() {
       {/* Pro Shop Categories */}
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto">
-          <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Shop the Pro Shop</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Shop the Pro Shop</p>
           <h2 className="text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
             Everything for your game,<br />all in one place.
           </h2>
@@ -231,7 +231,7 @@ export default function ProShop() {
         <div className="max-w-[1440px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-20 items-start">
             <div>
-              <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Stringing Pricing</p>
+              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Stringing Pricing</p>
               <h2 className="text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
                 Transparent pricing,<br />no surprises.
               </h2>
@@ -265,7 +265,7 @@ export default function ProShop() {
       {/* Drop-Off CTA */}
       <section className="bg-dark-bg px-6 lg:px-14 py-20 lg:py-24">
         <div className="max-w-[1440px] mx-auto text-center">
-          <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-5">Visit Us</p>
+          <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Visit Us</p>
           <h2 className="text-parchment text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
             Drop off at the front desk.
           </h2>

@@ -79,7 +79,7 @@ export default function Contact() {
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
           {/* Form */}
           <div>
-            <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Send a Message</p>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Send a Message</p>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-2 gap-4">
                 <div>
@@ -156,7 +156,7 @@ export default function Contact() {
 
           {/* Contact Info */}
           <div>
-            <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Information</p>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Information</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-10">
               Woodinville<br />Sports Club
             </h2>
@@ -206,7 +206,7 @@ export default function Contact() {
       {/* More Ways to Connect */}
       <section className="bg-parchment px-6 lg:px-14 pb-24 lg:pb-28">
         <div className="max-w-[1440px] mx-auto">
-          <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">More Ways to Connect</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">More Ways to Connect</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-[3px]">
             {[
               { href: "/sessions", title: "Session Dates", desc: "View 2026 registration windows and program calendars." },
@@ -225,7 +225,7 @@ export default function Contact() {
       {/* Hours */}
       <section className="bg-parchment-mid px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto">
-          <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Hours of Operation</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Hours of Operation</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-14">
             When we're open.
           </h2>
@@ -272,7 +272,7 @@ export default function Contact() {
       {/* Follow */}
       <section className="bg-dark-mid px-6 lg:px-14 py-20 lg:py-24">
         <div className="max-w-[1440px] mx-auto text-center">
-          <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-5">Follow Us</p>
+          <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Follow Us</p>
           <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
             @woodinvillesportsclub
           </h2>

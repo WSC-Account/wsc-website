@@ -490,7 +490,7 @@ export default function Summer() {
 
       {/* Hero — Full bleed with overlay */}
       <section className="relative overflow-hidden pt-[var(--site-header-height,130px)]">
-        <div className="absolute inset-0">
+        <div className="absolute inset-x-0 bottom-0 top-[var(--site-header-height,130px)]">
           <img
             src={HERO_IMG}
             alt="Summer camp activities at Woodinville Sports Club"
@@ -508,7 +508,7 @@ export default function Summer() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <p className="hero-eyebrow text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">
+            <p className="hero-eyebrow text-volt-bright text-[15px] tracking-[0.22em] uppercase mb-5">
               Summer Training @ WSC
             </p>
             <h1 className="hero-title text-parchment text-[clamp(36px,5.5vw,72px)] font-light tracking-[-0.03em] leading-[1.05] mb-5">
@@ -583,7 +583,7 @@ export default function Summer() {
       {/* Interactive Program Explorer */}
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto">
-          <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Programs</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Programs</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
             Three tracks. One campus.
           </h2>
@@ -656,7 +656,7 @@ export default function Summer() {
                 <div>
                   <div className="flex items-center gap-3 mb-6">
                     <program.icon size={18} className="text-volt-bright" />
-                    <span className="text-volt-bright text-[11px] tracking-[0.18em] uppercase">
+                    <span className="text-volt-bright text-[13px] tracking-[0.18em] uppercase">
                       {program.name} — {program.ages}
                     </span>
                   </div>
@@ -729,7 +729,7 @@ export default function Summer() {
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.8fr] gap-12 lg:gap-16">
             {/* Left: Program + Schedule Selector */}
             <div>
-              <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-5">Sample Day Schedules</p>
+              <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Sample Day Schedules</p>
               <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.1] mb-4">
                 What does a<br />day look like?
               </h2>
@@ -857,7 +857,7 @@ export default function Summer() {
                         <p className="text-parchment/70 text-[13px] mt-1">{schedule.subtitle}</p>
                       </div>
                       <div className="text-right shrink-0">
-                        <p className="text-volt-bright text-[12px] tracking-[0.1em] uppercase">{PROGRAMS[schedule.program].name}</p>
+                        <p className="text-volt-bright text-[14px] tracking-[0.1em] uppercase">{PROGRAMS[schedule.program].name}</p>
                         <p className="text-parchment/70 text-[11px] mt-0.5">{schedule.ageNote}</p>
                       </div>
                     </div>
@@ -898,7 +898,7 @@ export default function Summer() {
                                   {block.activity}
                                 </p>
                               </div>
-                              <span className={`text-[9px] tracking-[0.14em] uppercase px-2.5 py-1 border ${typeColors[block.type]} shrink-0`}>
+                              <span className={`text-[12px] tracking-[0.14em] uppercase px-2.5 py-1 border ${typeColors[block.type]} shrink-0`}>
                                 {typeLabels[block.type]}
                               </span>
                             </div>
@@ -941,7 +941,7 @@ export default function Summer() {
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20 items-start">
           <div>
-            <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Elite Coaching & Facilities</p>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Elite Coaching & Facilities</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15]">
               The same coaches.<br />Year-round excellence.
             </h2>
@@ -968,7 +968,7 @@ export default function Summer() {
       {/* Flexible Options */}
       <section className="bg-parchment-mid px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto">
-          <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Flexible Options</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Flexible Options</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-12">
             Build the summer that fits your athlete.
           </h2>
@@ -1014,7 +1014,7 @@ export default function Summer() {
         <div className="max-w-[1440px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.5fr] gap-12 lg:gap-20 items-start">
             <div>
-              <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Registration Instructions</p>
+              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Registration Instructions</p>
               <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-5">
                 Start with your membership, then choose sessions.
               </h2>
@@ -1057,19 +1057,19 @@ export default function Summer() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-[3px] mt-12">
             <div className="bg-dark-bg p-7 lg:p-8">
-              <p className="text-volt-bright text-[11px] tracking-[0.18em] uppercase mb-4">New to WSC</p>
+              <p className="text-volt-bright text-[13px] tracking-[0.18em] uppercase mb-4">New to WSC</p>
               <p className="text-parchment/80 text-[14px] leading-[1.72]">
                 Choose a membership, complete checkout in CourtReserve, sign the waiver, and then register for Tennis, Golf, Adventure Club, or a bundled full-day schedule.
               </p>
             </div>
             <div className="bg-dark-bg p-7 lg:p-8">
-              <p className="text-volt-bright text-[11px] tracking-[0.18em] uppercase mb-4">Already a Member</p>
+              <p className="text-volt-bright text-[13px] tracking-[0.18em] uppercase mb-4">Already a Member</p>
               <p className="text-parchment/80 text-[14px] leading-[1.72]">
                 Your membership is already set. Go straight to session selection in CourtReserve and pick the weeks, class level, and half-day or full-day format.
               </p>
             </div>
             <div className="bg-dark-bg p-7 lg:p-8">
-              <p className="text-volt-bright text-[11px] tracking-[0.18em] uppercase mb-4">Bundles & Academy</p>
+              <p className="text-volt-bright text-[13px] tracking-[0.18em] uppercase mb-4">Bundles & Academy</p>
               <p className="text-parchment/80 text-[14px] leading-[1.72]">
                 For AM/PM bundles, email{" "}
                 <a href="mailto:info@woodinvillesportsclub.com" className="text-volt-bright underline underline-offset-2">
@@ -1088,7 +1088,7 @@ export default function Summer() {
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 lg:gap-20 items-start">
             {/* Left: Intro */}
             <div className="lg:sticky lg:top-28">
-              <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Adventure Club</p>
+              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Adventure Club</p>
               <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
                 9 weeks.<br />9 regions.<br />One world tour.
               </h2>
@@ -1185,21 +1185,21 @@ export default function Summer() {
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-[3px]">
                               {/* Tennis Legend */}
                               <div className="bg-parchment p-5">
-                                <p className="text-volt text-[10px] tracking-[0.16em] uppercase mb-2">Tennis Legend</p>
+                                <p className="text-volt text-[12px] tracking-[0.16em] uppercase mb-2">Tennis Legend</p>
                                 <p className="text-ink text-[18px] font-light tracking-[-0.01em] mb-1">{w.tennisLegend}</p>
                                 <p className="text-ink-light text-[12px]">Featured athlete of the week</p>
                               </div>
 
                               {/* Golf Legend */}
                               <div className="bg-parchment p-5">
-                                <p className="text-volt text-[10px] tracking-[0.16em] uppercase mb-2">Golf Legend</p>
+                                <p className="text-volt text-[12px] tracking-[0.16em] uppercase mb-2">Golf Legend</p>
                                 <p className="text-ink text-[18px] font-light tracking-[-0.01em] mb-1">{w.golfLegend}</p>
                                 <p className="text-ink-light text-[12px]">Featured athlete of the week</p>
                               </div>
 
                               {/* Activities */}
                               <div className="bg-parchment p-5">
-                                <p className="text-volt text-[10px] tracking-[0.16em] uppercase mb-2">Sample Activities</p>
+                                <p className="text-volt text-[12px] tracking-[0.16em] uppercase mb-2">Sample Activities</p>
                                 <ul className="space-y-1.5">
                                   {w.activities.map((a, i) => (
                                     <li key={i} className="text-ink-mid text-[13px] flex items-start gap-2">
@@ -1220,7 +1220,7 @@ export default function Summer() {
                                 href={COURT_RESERVE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase no-underline text-volt hover:text-ink transition-colors duration-200"
+                                className="inline-flex items-center gap-2 text-[13px] tracking-[0.14em] uppercase no-underline text-volt hover:text-ink transition-colors duration-200"
                                 onClick={(e: React.MouseEvent) => e.stopPropagation()}
                               >
                                 Register for Week {w.week} <ChevronRight size={12} />
@@ -1258,7 +1258,7 @@ export default function Summer() {
       <section className="bg-dark-mid px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           <div>
-            <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-6">APL Athletic Development</p>
+            <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-6">APL Athletic Development</p>
             <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light leading-[1.1] tracking-[-0.02em] mb-6">
               Building complete<br />athletes.
             </h2>
@@ -1304,7 +1304,7 @@ export default function Summer() {
       {/* Final CTA */}
       <section className="bg-parchment px-6 lg:px-14 py-20 lg:py-24">
         <div className="max-w-[1440px] mx-auto text-center">
-          <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Registration is Open</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Registration is Open</p>
           <h2 className="text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
             Build your summer schedule.
           </h2>

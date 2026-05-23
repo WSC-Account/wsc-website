@@ -424,7 +424,7 @@ export default function FAQ() {
         <div className="max-w-[900px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-parchment p-8">
-              <p className="text-volt text-[11px] tracking-[0.18em] uppercase mb-3">Need More Detail?</p>
+              <p className="text-volt text-[13px] tracking-[0.18em] uppercase mb-3">Need More Detail?</p>
               <h3 className="text-ink text-[22px] font-light tracking-[-0.01em] mb-3">
                 Read the full policies.
               </h3>
@@ -439,7 +439,7 @@ export default function FAQ() {
               </Link>
             </div>
             <div className="bg-parchment p-8">
-              <p className="text-volt text-[11px] tracking-[0.18em] uppercase mb-3">Still Have Questions?</p>
+              <p className="text-volt text-[13px] tracking-[0.18em] uppercase mb-3">Still Have Questions?</p>
               <h3 className="text-ink text-[22px] font-light tracking-[-0.01em] mb-3">
                 We're here to help.
               </h3>

@@ -46,7 +46,7 @@ export default function Pickleball() {
           className={`max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start transition-all duration-700 ease-out ${courtsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
           <div>
-            <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Open Play</p>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Open Play</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-8">
               Eight indoor courts.<br />Seven days a week.
             </h2>
@@ -79,7 +79,7 @@ export default function Pickleball() {
               className="w-full aspect-[4/3] object-cover saturate-[0.55] brightness-[0.85] mb-6"
             />
             <div className="bg-parchment-mid p-6 border-l-2 border-volt">
-              <p className="text-volt text-[10px] tracking-[0.2em] uppercase mb-2">Court Capacity</p>
+              <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-2">Court Capacity</p>
               <div className="space-y-2">
                 <p className="text-ink-mid text-[13px] leading-[1.6]">
                   <span className="text-ink font-normal">Court 7 (4 PB courts):</span> Max 16 players, 22 registrants
@@ -99,7 +99,7 @@ export default function Pickleball() {
           ref={scheduleRef}
           className={`max-w-[1440px] mx-auto transition-all duration-700 ease-out ${scheduleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Open Play Schedule</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Open Play Schedule</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-14">
             Fall / Winter / Spring hours.
           </h2>
@@ -162,7 +162,7 @@ export default function Pickleball() {
           ref={pricingRef}
           className={`max-w-[1440px] mx-auto transition-all duration-700 ease-out ${pricingVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Pricing</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Pricing</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-14">
             Open session pricing.
           </h2>
@@ -207,7 +207,7 @@ export default function Pickleball() {
           className={`max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20 items-start transition-all duration-700 ease-out ${rentalVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
           <div>
-            <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Private Court Rental</p>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Private Court Rental</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15]">
               Reserve your<br />own court.
             </h2>
@@ -227,7 +227,7 @@ export default function Pickleball() {
               </div>
             </div>
             <div className="bg-parchment p-6 border-l-2 border-volt mb-6">
-              <p className="text-volt text-[10px] tracking-[0.2em] uppercase mb-2">Available Hours</p>
+              <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-2">Available Hours</p>
               <div className="space-y-1.5">
                 <p className="text-ink-mid text-[13px] leading-[1.6]">Mon – Thu: 8:00 PM – 11:00 PM</p>
                 <p className="text-ink-mid text-[13px] leading-[1.6]">Friday: 7:00 PM – 11:00 PM</p>
@@ -252,7 +252,7 @@ export default function Pickleball() {
           ref={classesRef}
           className={`max-w-[1440px] mx-auto transition-all duration-700 ease-out ${classesVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Instructional Classes</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Instructional Classes</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
             Learn and improve.
           </h2>
@@ -262,7 +262,7 @@ export default function Pickleball() {
 
           <div className="space-y-0">
             <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr_auto] gap-4 lg:gap-12 items-baseline py-8 border-b border-wsc-border">
-              <p className="text-volt text-[10px] tracking-[0.2em] uppercase">Level 2.0</p>
+              <p className="text-volt text-[12px] tracking-[0.2em] uppercase">Level 2.0</p>
               <div>
                 <h3 className="text-[20px] font-light tracking-[-0.01em] mb-2">Intro to Pickleball</h3>
                 <p className="text-ink-mid text-[14px] leading-[1.72] mb-3">
@@ -292,7 +292,7 @@ export default function Pickleball() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr_auto] gap-4 lg:gap-12 items-baseline py-8 border-b border-wsc-border">
-              <p className="text-volt text-[10px] tracking-[0.2em] uppercase">Level 2.5</p>
+              <p className="text-volt text-[12px] tracking-[0.2em] uppercase">Level 2.5</p>
               <div>
                 <h3 className="text-[20px] font-light tracking-[-0.01em] mb-2">Advanced Beginner: Developing Skills & Strategy</h3>
                 <p className="text-ink-mid text-[14px] leading-[1.72] mb-3">
@@ -328,7 +328,7 @@ export default function Pickleball() {
       <section className="bg-dark-mid px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto">
           <div className="text-center mb-14">
-            <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-5">Tournaments</p>
+            <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Tournaments</p>
             <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
               Four major tournaments per year.
             </h2>
@@ -348,7 +348,7 @@ export default function Pickleball() {
                 key={i}
                 className={`bg-dark-bg p-8 border-t-2 border-transparent hover:border-volt-bright transition-all duration-700 ease-out ${tournamentsVisible[i] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
-                <p className="text-volt-bright text-[10px] tracking-[0.2em] uppercase mb-3">{t.season}</p>
+                <p className="text-volt-bright text-[12px] tracking-[0.2em] uppercase mb-3">{t.season}</p>
                 <h3 className="text-parchment text-[18px] font-light tracking-[-0.01em] mb-2">{t.name}</h3>
                 <p className="text-parchment/70 text-[13px]">{t.date}</p>
               </div>
@@ -379,7 +379,7 @@ export default function Pickleball() {
           className={`max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start transition-all duration-700 ease-out ${duprVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
           <div>
-            <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">DUPR Ladders</p>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">DUPR Ladders</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-8">
               Competitive play.<br />Every Saturday.
             </h2>
@@ -431,7 +431,7 @@ export default function Pickleball() {
           ref={guidelinesRef}
           className={`max-w-[1440px] mx-auto transition-all duration-700 ease-out ${guidelinesVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Open Play Guidelines</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Open Play Guidelines</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
             How open play works.
           </h2>
@@ -481,7 +481,7 @@ export default function Pickleball() {
           ref={ctaRef}
           className={`max-w-[1440px] mx-auto text-center transition-all duration-700 ease-out ${ctaVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
         >
-          <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-5">Get Started</p>
+          <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Get Started</p>
           <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
             Ready to play?
           </h2>

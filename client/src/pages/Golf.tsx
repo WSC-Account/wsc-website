@@ -236,7 +236,7 @@ export default function Golf() {
           className={`max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start transition-all duration-700 ease-out ${rangeVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
           <div>
-            <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">WSC Golf Training Grounds</p>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">WSC Golf Training Grounds</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-8">
               Expansive golf grounds<br />for all-day practice.
             </h2>
@@ -288,7 +288,7 @@ export default function Golf() {
           className={`max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start transition-all duration-700 ease-out ${swingLabVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
           <div>
-            <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-6">Now Open</p>
+            <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-6">Now Open</p>
             <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light leading-[1.1] tracking-[-0.02em] mb-6">
               Swing Lab<br />Golf Simulators.
             </h2>
@@ -336,7 +336,7 @@ export default function Golf() {
               ))}
             </div>
             <div className="bg-dark-bg p-6 border-l-2 border-volt-bright">
-              <p className="text-volt-bright text-[11px] tracking-[0.18em] uppercase mb-2">Trial Access</p>
+              <p className="text-volt-bright text-[13px] tracking-[0.18em] uppercase mb-2">Trial Access</p>
               <p className="text-parchment/80 text-[14px] leading-[1.72]">
                 Trial golf simulator access is available for $20 + tax. Trial members can book simulator sessions at regular rates with a 7-day booking window and may upgrade at any time.
               </p>
@@ -377,7 +377,7 @@ export default function Golf() {
           ref={academyRef}
           className={`max-w-[1440px] mx-auto transition-all duration-700 ease-out ${academyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Tier 1 Golf Academy</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Tier 1 Golf Academy</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
             Registration is open.
           </h2>
@@ -407,7 +407,7 @@ export default function Golf() {
                 key={i}
                 className="grid grid-cols-1 lg:grid-cols-[200px_1fr_auto] gap-4 lg:gap-12 items-baseline py-8 border-b border-wsc-border"
               >
-                <p className="text-volt text-[10px] tracking-[0.2em] uppercase">{p.tag}</p>
+                <p className="text-volt text-[12px] tracking-[0.2em] uppercase">{p.tag}</p>
                 <div>
                   <h3 className="text-[20px] font-light tracking-[-0.01em] mb-2">{p.name}</h3>
                   <p className="text-ink-mid text-[14px] leading-[1.72]">{p.desc}</p>
@@ -432,7 +432,7 @@ export default function Golf() {
           ref={pricingRef}
           className={`max-w-[1440px] mx-auto transition-all duration-700 ease-out ${pricingVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Range Pricing</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Range Pricing</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-14">
             Open to the public.
           </h2>
@@ -500,7 +500,7 @@ export default function Golf() {
           className={`max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20 items-start transition-all duration-700 ease-out ${whyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
           <div>
-            <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Why WSC Golf</p>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Why WSC Golf</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15]">
               Built for real<br />practice days.
             </h2>
@@ -520,7 +520,7 @@ export default function Golf() {
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto">
           <div className="mb-14">
-            <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Our Coaches</p>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Our Coaches</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15]">
               Expert instruction<br />at every level.
             </h2>
@@ -549,7 +549,7 @@ export default function Golf() {
                   <span className="text-volt text-[20px] font-light">{coach.name.charAt(0)}</span>
                 </div>
                 <h3 className="text-[18px] font-light tracking-[-0.01em] mb-1">{coach.name}</h3>
-                <p className="text-volt text-[10px] tracking-[0.2em] uppercase mb-1.5">{coach.title}</p>
+                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-1.5">{coach.title}</p>
                 <p className="text-ink-mid text-[11px] tracking-[0.08em] uppercase mb-5">{coach.credential}</p>
                 <p className="text-ink-mid text-[14px] leading-[1.72] italic">"{coach.philosophy}"</p>
               </div>
@@ -568,7 +568,7 @@ export default function Golf() {
         >
           {/* Info side */}
           <div>
-            <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-5">Private Lessons</p>
+            <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Private Lessons</p>
             <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.1] mb-6">
               Request a<br />private lesson.
             </h2>
@@ -604,7 +604,7 @@ export default function Golf() {
           className={`max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20 items-start transition-all duration-700 ease-out ${accessVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
           <div>
-            <p className="text-volt text-[11px] tracking-[0.22em] uppercase mb-5">Member Benefits</p>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Member Benefits</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15]">
               Court & Range<br />Access Pass.            </h2>
           </div>
@@ -645,7 +645,7 @@ export default function Golf() {
           ref={ctaRef}
           className={`max-w-[1440px] mx-auto text-center transition-all duration-700 ease-out ${ctaVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
         >
-          <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase mb-5">Get Started</p>
+          <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Get Started</p>
           <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
             Train all day at WSC.
           </h2>

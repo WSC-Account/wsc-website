@@ -18,7 +18,7 @@ export default function Tier1Banner({ variant = "full" }: Tier1BannerProps) {
         <div className="absolute inset-0 bg-gradient-to-r from-[#1a3a5c]/30 via-transparent to-[#1a3a5c]/30" />
         <div className="max-w-[1440px] mx-auto relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
           <div>
-            <p className="text-volt-bright text-[10px] tracking-[0.22em] uppercase mb-3">
+            <p className="text-volt-bright text-[12px] tracking-[0.22em] uppercase mb-3">
               Tier 1 Sports
             </p>
             <h3 className="text-white text-[clamp(20px,2.2vw,28px)] font-light tracking-[-0.02em] leading-[1.2]">
@@ -54,7 +54,7 @@ export default function Tier1Banner({ variant = "full" }: Tier1BannerProps) {
           <div>
             <div className="flex items-center gap-3 mb-6">
               <div className="w-[3px] h-8 bg-volt-bright" />
-              <p className="text-volt-bright text-[11px] tracking-[0.22em] uppercase">
+              <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase">
                 Tier 1 Sports
               </p>
             </div>
