@@ -1,7 +1,7 @@
 /*
  * 4B Design — WSC Gym & APL Page (Merged)
  * Covers: Main Gym, Weight Room, Functional Training, APL Training Center,
- * Group S&C Classes, Monthly Packages, Amenities, Hours
+ * Group S&C Classes, Amenities, Hours
  * Scroll reveal animations for consistent UX
  */
 import { Link } from "wouter";
@@ -16,6 +16,7 @@ const GYM_WEIGHTS = "/images/wsc/gym-floor.webp";
 const GYM_FUNCTIONAL = "/images/wsc/apl-training.webp";
 const PERF_IMG = "/images/wsc/gym-main.webp";
 const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689";
+const TIER1_APL_URL = "https://www.tier1nw.com/apl";
 
 export default function Gym() {
   // Scroll-reveal hooks
@@ -24,7 +25,6 @@ export default function Gym() {
   const { ref: functionalRef, isVisible: functionalVisible } = useScrollReveal({ threshold: 0.08 });
   const { ref: aplRef, isVisible: aplVisible } = useScrollReveal({ threshold: 0.08 });
   const { containerRef: classesRef, visibleItems: classesVisible } = useStaggerReveal(7, { staggerDelay: 100, threshold: 0.06 });
-  const { containerRef: packagesRef, visibleItems: packagesVisible } = useStaggerReveal(3, { staggerDelay: 140, threshold: 0.1 });
   const { containerRef: amenitiesRef, visibleItems: amenitiesVisible } = useStaggerReveal(6, { staggerDelay: 100, threshold: 0.06 });
   const { ref: hoursRef, isVisible: hoursVisible } = useScrollReveal({ threshold: 0.1 });
   const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal({ threshold: 0.15 });
@@ -45,15 +45,14 @@ export default function Gym() {
 
       {/* Overview Stats */}
       <section className="bg-dark-bg px-6 lg:px-14 py-16">
-        <div className="max-w-[1440px] mx-auto grid grid-cols-2 lg:grid-cols-5 gap-y-8">
+        <div className="max-w-[1440px] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-y-8">
           {[
             { val: "2", label: "Training Facilities" },
             { val: "67", label: "Acre Campus" },
             { val: "6am", label: "Early Open" },
             { val: "S&C", label: "Group Classes" },
-            { val: "4/8/∞", label: "Monthly Packages" },
           ].map((m, i) => (
-            <div key={i} className={`pr-10 ${i < 4 ? "lg:border-r border-parchment/[0.08]" : ""}`}>
+            <div key={i} className={`pr-10 ${i < 3 ? "lg:border-r border-parchment/[0.08]" : ""}`}>
               <div className="text-volt-bright text-[36px] font-light tracking-[-0.03em] leading-none mb-2">
                 {m.val}
               </div>
@@ -206,14 +205,13 @@ export default function Gym() {
             />
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 border-t border-parchment/[0.1] pt-12 gap-y-8">
+          <div className="grid grid-cols-2 lg:grid-cols-3 border-t border-parchment/[0.1] pt-12 gap-y-8">
             {[
               { val: "2", label: "Training Facilities" },
               { val: "S&C", label: "Small Group Classes" },
               { val: "Youth", label: "& Adult Programs" },
-              { val: "4/8/∞", label: "Monthly Packages" },
             ].map((m, i) => (
-              <div key={i} className={`pr-10 ${i < 3 ? "lg:border-r border-parchment/[0.08]" : ""}`}>
+              <div key={i} className={`pr-10 ${i < 2 ? "lg:border-r border-parchment/[0.08]" : ""}`}>
                 <div className="text-volt-bright text-[40px] font-light tracking-[-0.03em] leading-none mb-2">
                   {m.val}
                 </div>
@@ -307,49 +305,20 @@ export default function Gym() {
             >
               Browse & Register
             </a>
+            <a
+              href={TIER1_APL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline text-ink border border-ink/20 px-8 py-3.5 hover:bg-ink/5 transition-colors duration-200"
+            >
+              Explore Tier 1 APL
+            </a>
             <Link
               href="/membership"
               className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline text-ink border border-ink/20 px-8 py-3.5 hover:bg-ink/5 transition-colors duration-200"
             >
               Membership Options
             </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Monthly Packages */}
-      <section className="bg-parchment-mid px-6 lg:px-14 py-24 lg:py-28">
-        <div className="max-w-[1440px] mx-auto">
-          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Flexible Training Packages</p>
-          <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
-            Monthly packages for<br />more scheduling flexibility.
-          </h2>
-          <p className="text-ink-mid text-[16px] leading-[1.82] mb-14 max-w-[680px]">
-            APL Small Group Classes can be purchased in monthly packages of 4, 8, or unlimited classes. Browse from our range of APL strength and conditioning small group classes for adults and youth.
-          </p>
-
-          <div ref={packagesRef} className="grid grid-cols-1 md:grid-cols-3 gap-[3px]">
-            {[
-              { name: "4 Classes/Month", desc: "One session per week. Ideal for supplementing sport-specific training with structured S&C work." },
-              { name: "8 Classes/Month", desc: "Two sessions per week. The standard for consistent athletic development and measurable progress." },
-              { name: "Unlimited", desc: "Full access to all group S&C classes. For the dedicated athlete committed to peak performance." },
-            ].map((c, i) => (
-              <div
-                key={i}
-                className={`bg-parchment p-8 border-t-2 border-transparent hover:border-volt transition-all duration-700 ease-out ${packagesVisible[i] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-              >
-                <h3 className="text-[20px] font-light tracking-[-0.01em] mb-3">{c.name}</h3>
-                <p className="text-ink-mid text-[14px] leading-[1.72] mb-5">{c.desc}</p>
-                <a
-                  href={COURT_RESERVE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-ink text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt pb-[3px]"
-                >
-                  Enquire
-                </a>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -390,10 +359,12 @@ export default function Gym() {
                 WSC's Performance Training Team is available for sport and conditioning sessions for youth athletic clubs and school athletic departments.
               </p>
               <a
-                href="mailto:dgraham@woodinvillesportsclub.com"
+                href={COURT_RESERVE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-parchment text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt-bright pb-[3px]"
               >
-                Email Don Graham
+                Request Team Training
               </a>
             </div>
           </div>

@@ -1,7 +1,7 @@
 /*
  * 4B Design: Dark nav bar (#161310), Inter 500 logo, 12px uppercase links
  * Volt-bright CTA button, subtle border-bottom on nav-inner
- * Simplified: Gym is now a single link (no dropdown), Fitness merged into Gym page
+ * Simplified: Fitness Centers is now a single link (no dropdown)
  */
 import { Link, useLocation } from "wouter";
 import { useLayoutEffect, useRef, useState } from "react";
@@ -13,7 +13,7 @@ const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689
 const navLinks = [
   { href: "/tennis", label: "Tennis" },
   { href: "/golf", label: "Golf" },
-  { href: "/gym", label: "Gym" },
+  { href: "/gym", label: "Fitness Centers" },
   { href: "/pickleball", label: "Pickleball" },
   { href: "/summer", label: "Summer" },
   { href: "/pro-shop", label: "Pro Shop" },

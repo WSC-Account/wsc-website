@@ -4,6 +4,7 @@
  * Tier 1 Sports branding
  * Scroll reveal animations for consistent UX
  */
+import { ArrowUpRight } from "lucide-react";
 import { Link } from "wouter";
 import PageHero from "@/components/PageHero";
 import Tier1Banner from "@/components/Tier1Banner";
@@ -16,32 +17,33 @@ import { SEO } from "@/lib/seo-data";
 const TENNIS_IMG = "/images/wsc/tennis-courts.webp";
 const TENNIS_ACTION = "/images/wsc/tennis-player.webp";
 const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689";
+const TIER1_CORE_URL = "https://www.tier1nw.com/tennis/intro-classes";
 
 const corePathway = [
   {
     name: "JumpStart",
     ages: "Ages 3-5",
-    desc: "Hand-eye coordination, fundamental skills, and lots of fun for the youngest players.",
+    color: "#4da3ff",
   },
   {
     name: "Red Ball",
     ages: "Ages 5-8",
-    desc: "Scaled courts and red balls for basic strokes, movement, confidence, and a love for the game.",
+    color: "#ef4444",
   },
   {
     name: "Orange Ball",
     ages: "Ages 9-10",
-    desc: "Orange balls and modified court sizes for technique, footwork, and early strategy.",
+    color: "#f97316",
   },
   {
     name: "Green Ball",
     ages: "Ages 10-12",
-    desc: "Stroke development, tactical awareness, and match play fundamentals on standard court sizes.",
+    color: "#22c55e",
   },
   {
     name: "Yellow Ball",
     ages: "Ages 12+",
-    desc: "Full-court training with standard balls, advanced technique, match strategy, and competitive play.",
+    color: "#facc15",
   },
 ];
 
@@ -168,7 +170,7 @@ export default function Tennis() {
               </ul>
             </div>
             <a
-              href="https://www.tier1nw.com/tennis/intro-classes"
+              href={TIER1_CORE_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="text-ink text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt pb-[3px]"
@@ -304,27 +306,65 @@ export default function Tennis() {
       </section>
 
       {/* Tier 1 Core Pathway */}
-      <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
-        <div className="max-w-[1440px] mx-auto">
-          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Junior Pathway</p>
-          <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
-            Red-to-yellow ball development.
-          </h2>
-          <p className="text-ink-mid text-[16px] leading-[1.82] mb-14 max-w-[720px]">
-            Tier 1 Core Tennis, formerly RPM, uses the red-to-yellow ball pathway followed by the USTA. Classes are built for ages 3 and up, with age-appropriate equipment, modified court sizes, and progressive skill development.
-          </p>
+      <section className="bg-dark-bg px-6 lg:px-14 py-24 lg:py-28 overflow-hidden">
+        <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[0.82fr_1.18fr] gap-12 lg:gap-20 items-center">
+          <div>
+            <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Junior Pathway</p>
+            <h2 className="text-parchment text-[clamp(30px,3.6vw,54px)] font-light tracking-[-0.03em] leading-[1.03] mb-6">
+              A first look at the Tier 1 pathway.
+            </h2>
+            <p className="text-parchment/78 text-[16px] leading-[1.82] mb-8 max-w-[560px]">
+              Tier 1 Core Tennis introduces players ages 3 and up to the red-to-yellow ball progression with age-appropriate courts, equipment, movement, and rally skills. WSC shows the pathway here; Tier 1 has the full class details, schedules, and next steps.
+            </p>
+            <div className="flex flex-wrap gap-3 mb-9">
+              {["Ages 3+", "Red to Yellow", "Core Tennis"].map((item) => (
+                <span key={item} className="text-parchment/75 text-[11px] tracking-[0.14em] uppercase border border-parchment/15 px-4 py-2">
+                  {item}
+                </span>
+              ))}
+            </div>
+            <a
+              href={TIER1_CORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment transition-colors duration-200"
+            >
+              Explore the Junior Pathway at Tier 1
+              <ArrowUpRight className="h-4 w-4" aria-hidden="true" strokeWidth={1.8} />
+            </a>
+          </div>
 
-          <div ref={coreRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-[3px]">
-            {corePathway.map((level, i) => (
-              <article
-                key={level.name}
-                className={`bg-parchment-mid p-7 transition-all duration-700 ease-out ${coreVisible[i] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+          <div ref={coreRef} className="relative">
+            <div className="absolute left-6 right-6 top-[39px] hidden h-px bg-parchment/15 md:block" />
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
+              {corePathway.map((level, i) => (
+                <article
+                  key={level.name}
+                  className={`relative bg-white/[0.045] border border-parchment/10 p-6 min-h-[176px] transition-all duration-700 ease-out hover:border-volt-bright/45 ${coreVisible[i] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                >
+                  <div
+                    className="relative z-10 h-8 w-8 rounded-full border border-white/30 shadow-[0_0_24px_rgba(77,163,255,0.18)] mb-8"
+                    style={{ backgroundColor: level.color }}
+                  />
+                  <p className="text-volt-bright text-[11px] tracking-[0.18em] uppercase mb-3">{level.ages}</p>
+                  <h3 className="text-parchment text-[19px] font-light tracking-[-0.01em] leading-[1.2]">{level.name}</h3>
+                </article>
+              ))}
+            </div>
+            <div className="mt-5 flex flex-col gap-3 border border-volt-bright/20 bg-volt-bright/[0.08] p-6 md:flex-row md:items-center md:justify-between">
+              <p className="text-parchment/78 text-[13px] leading-[1.7] max-w-[620px]">
+                Want class formats, placement notes, and current availability? Continue to Tier 1 for the complete junior tennis overview.
+              </p>
+              <a
+                href={TIER1_CORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex shrink-0 items-center gap-2 text-volt-bright text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt-bright pb-[3px]"
               >
-                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3">{level.ages}</p>
-                <h3 className="text-[18px] font-light tracking-[-0.01em] mb-3">{level.name}</h3>
-                <p className="text-ink-mid text-[13px] leading-[1.72]">{level.desc}</p>
-              </article>
-            ))}
+                View Details
+                <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" strokeWidth={1.8} />
+              </a>
+            </div>
           </div>
         </div>
       </section>

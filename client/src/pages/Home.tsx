@@ -35,6 +35,7 @@ const SWINGLAB_IMG = "/images/wsc/swing-lab-simulators.webp";
 const TENNIS_LESSON_IMG = "/images/wsc/tennis-player.webp";
 const FITNESS_TRAINING_IMG = "/images/wsc/apl-training.webp";
 const SUMMER_KIDS_IMG = "/images/wsc/summer-camp.webp";
+const COURT_RESERVE_SIGN_UP_URL = "https://app.courtreserve.com/Online/Account/Register/6689";
 
 const heroCollageImages = [
   {
@@ -100,6 +101,8 @@ const heroCollageImages = [
 const metrics = [
   { label: "Tennis Courts", val: "8 + 1", unit: "indoor / outdoor" },
   { label: "Covered Driving Bays", val: "23", unit: "with free Toptracer" },
+  { label: "Indoor Golf Sims", val: "4", unit: "Swing Lab" },
+  { label: "Fitness Centers", val: "2", unit: "Main Gym + APL" },
   { label: "Founded", val: "1979", unit: "" },
   { label: "Campus Acres", val: "67", unit: "" },
 ];
@@ -128,6 +131,10 @@ const thisWeekItems = [
     desc: "Summer training programs are live: Tennis, Golf, and Adventure Club camps for ages 3-18. Early registration recommended.",
     date: "June 29 - Aug 30",
     time: "",
+    actions: [
+      { label: "Summer Page", href: "/summer" },
+      { label: "Sign Up", href: COURT_RESERVE_SIGN_UP_URL, external: true },
+    ],
   },
 ];
 
@@ -417,7 +424,7 @@ export default function Home() {
             {thisWeekItems.map((item, i) => (
               <div
                 key={i}
-                className="bg-dark-bg p-7 lg:p-8 group hover:bg-dark-mid transition-colors duration-300"
+                className="bg-dark-bg p-7 lg:p-8 group hover:bg-dark-mid transition-colors duration-300 flex flex-col"
               >
                 <div className="flex items-center gap-2.5 mb-4">
                   <item.icon size={14} className="text-volt-bright" />
@@ -434,6 +441,33 @@ export default function Home() {
                 <div className="text-parchment/70 text-[11px] tracking-[0.08em] uppercase">
                   {item.date}{item.time && ` · ${item.time}`}
                 </div>
+                {item.actions && (
+                  <div className="flex flex-wrap gap-2 pt-5 mt-auto">
+                    {item.actions.map((action) =>
+                      action.external ? (
+                        <a
+                          key={action.label}
+                          href={action.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex min-h-10 items-center justify-center gap-1.5 bg-volt-bright px-4 py-2.5 text-[11px] tracking-[0.14em] uppercase text-dark-bg no-underline transition-colors duration-200 hover:bg-parchment hover:text-ink"
+                        >
+                          {action.label}
+                          <ChevronRight size={12} />
+                        </a>
+                      ) : (
+                        <Link
+                          key={action.label}
+                          href={action.href}
+                          className="inline-flex min-h-10 items-center justify-center gap-1.5 border border-parchment/20 px-4 py-2.5 text-[11px] tracking-[0.14em] uppercase text-parchment no-underline transition-colors duration-200 hover:border-volt-bright hover:text-volt-bright"
+                        >
+                          {action.label}
+                          <ChevronRight size={12} />
+                        </Link>
+                      ),
+                    )}
+                  </div>
+                )}
               </div>
             ))}
           </div>

@@ -9,6 +9,7 @@
     "start": "NODE_ENV=production node dist/index.js",
     "preview": "vite preview --host",
     "check": "tsc --noEmit",
+    "content:test": "node --test scripts/content-regression.test.mjs",
     "verify": "pnpm check && pnpm build",
     "seo:test-deployed": "node scripts/seo-audit/test-deployed-redirects.mjs",
     "seo:prelaunch-report": "node scripts/seo-audit/generate-prelaunch-report.mjs",

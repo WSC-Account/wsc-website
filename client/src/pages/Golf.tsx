@@ -22,6 +22,7 @@ const GOLF_SUNSET = "/images/wsc/campus-sunset.webp";
 const SIM_BAY_IMG = "/images/wsc/swing-lab-simulators.webp";
 const SIM_SCREEN_IMG = "/images/wsc/swing-lab-simulators.webp";
 const SIM_LOUNGE_IMG = "/images/wsc/swing-lab-simulators.webp";
+const TIER1_GOLF_URL = "https://www.tier1nw.com/golf";
 
 const SKILL_LEVELS = [
   "Beginner — Never played or just starting",
@@ -336,9 +337,9 @@ export default function Golf() {
               ))}
             </div>
             <div className="bg-dark-bg p-6 border-l-2 border-volt-bright">
-              <p className="text-volt-bright text-[13px] tracking-[0.18em] uppercase mb-2">Trial Access</p>
+              <p className="text-volt-bright text-[13px] tracking-[0.18em] uppercase mb-2">Simulator Access</p>
               <p className="text-parchment/80 text-[14px] leading-[1.72]">
-                Trial golf simulator access is available for $20 + tax. Trial members can book simulator sessions at regular rates with a 7-day booking window and may upgrade at any time.
+                Members can reserve Swing Lab bays through CourtReserve for indoor practice, league play, private lessons, and academy training.
               </p>
             </div>
           </div>
@@ -413,12 +414,12 @@ export default function Golf() {
                   <p className="text-ink-mid text-[14px] leading-[1.72]">{p.desc}</p>
                 </div>
                 <a
-                  href="https://app.courtreserve.com/Online/Portal/Index/6689"
+                  href={TIER1_GOLF_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-ink text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt pb-[3px]"
                 >
-                  Register
+                  Explore Tier 1 Golf
                 </a>
               </div>
             ))}
