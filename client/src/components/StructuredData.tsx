@@ -65,7 +65,7 @@ export function getLocalBusinessSchema() {
     priceRange: "$$",
     currenciesAccepted: "USD",
     paymentAccepted: "Cash, Credit Card",
-    foundingDate: "1979",
+    foundingDate: "1976",
     areaServed: {
       "@type": "GeoCircle",
       geoMidpoint: WSC_GEO,

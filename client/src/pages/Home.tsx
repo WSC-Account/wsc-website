@@ -103,7 +103,7 @@ const metrics = [
   { label: "Covered Driving Bays", val: "23", unit: "with free Toptracer" },
   { label: "Indoor Golf Sims", val: "4", unit: "Swing Lab" },
   { label: "Fitness Centers", val: "2", unit: "Main Gym + APL" },
-  { label: "Founded", val: "1979", unit: "" },
+  { label: "Founded", val: "1976", unit: "" },
   { label: "Campus Acres", val: "67", unit: "" },
 ];
 

@@ -51,7 +51,7 @@ export default function About() {
       ]} />
       <PageHero
         eyebrow="About WSC"
-        headline="Elevating Athletic Excellence Since 1979."
+        headline="Elevating Athletic Excellence Since 1976."
         subtitle="Where passion meets performance, and community thrives through sport."
         image={HERO_IMG}
         imagePosition="center top"
@@ -72,7 +72,7 @@ export default function About() {
               Welcome to Woodinville Sports Club — a dedicated <strong>training facility</strong> where passion meets performance and community thrives through sport. For over four decades, we've been the heart of athletic pursuit in the Pacific Northwest, fostering a legacy of excellence that continues to shape the future of sports and fitness in our region.
             </p>
             <p className="text-ink-mid text-[16px] leading-[1.82] mb-8">
-              Founded in 1979, Woodinville Sports Club began as a modest tennis facility with a big dream: to create a space where athletes of all levels could come together, challenge themselves, and grow. As our community evolved, so did we. Today, we stand as a premier <strong>multi-sport training campus</strong>, offering world-class facilities for tennis, golf, pickleball, and comprehensive fitness programs — all anchored by <strong>Tier 1 Sports</strong>, one of the nation's leading developmental programs.
+              Founded in 1976, Woodinville Sports Club began as a modest tennis facility with a big dream: to create a space where athletes of all levels could come together, challenge themselves, and grow. As our community evolved, so did we. Today, we stand as a premier <strong>multi-sport training campus</strong>, offering world-class facilities for tennis, golf, pickleball, and comprehensive fitness programs — all anchored by <strong>Tier 1 Sports</strong>, one of the nation's leading developmental programs.
             </p>
             <div className="border-l-2 border-volt pl-6 py-4">
               <p className="text-ink-mid text-[15px] leading-[1.7] italic">

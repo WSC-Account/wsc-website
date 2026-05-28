@@ -56,3 +56,20 @@ test("home facility chart includes golf sims and both fitness centers", () => {
   assert.match(home, /Fitness Centers/);
   assert.match(home, /Main Gym \+ APL/);
 });
+
+test("founded year is 1976 across visible and structured content", () => {
+  const files = [
+    "client/src/pages/Home.tsx",
+    "client/src/pages/About.tsx",
+    "client/src/components/Footer.tsx",
+    "client/src/components/StructuredData.tsx",
+    "client/index.html",
+  ];
+
+  for (const file of files) {
+    const source = read(file);
+
+    assert.match(source, /1976/, `${file} should reference 1976`);
+    assert.doesNotMatch(source, /1979/, `${file} should not reference 1979`);
+  }
+});

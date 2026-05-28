@@ -21,7 +21,7 @@ export default function Footer() {
             Woodinville, Washington — Pacific Northwest
           </div>
           <p className="text-parchment/70 text-[13px] leading-[1.7] max-w-[260px] mb-4">
-            A hybrid performance campus for tennis, golf, and athletic development. Serving the Woodinville community since 1979.
+            A hybrid performance campus for tennis, golf, and athletic development. Serving the Woodinville community since 1976.
           </p>
           <a
             href="https://www.instagram.com/woodinvillesportsclub"
