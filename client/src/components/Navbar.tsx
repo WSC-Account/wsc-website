@@ -1,7 +1,7 @@
 /*
  * 4B Design: Dark nav bar (#161310), Inter 500 logo, 12px uppercase links
  * Volt-bright CTA button, subtle border-bottom on nav-inner
- * Simplified: Fitness Centers is now a single link (no dropdown)
+ * Fitness Center includes a nested APL page for performance programming.
  */
 import { Link, useLocation } from "wouter";
 import { useLayoutEffect, useRef, useState } from "react";
@@ -13,7 +13,11 @@ const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689
 const navLinks = [
   { href: "/tennis", label: "Tennis" },
   { href: "/golf", label: "Golf" },
-  { href: "/gym", label: "Fitness Centers" },
+  {
+    href: "/gym",
+    label: "Fitness Center",
+    children: [{ href: "/fitness", label: "Athletic Performance Lab" }],
+  },
   { href: "/pickleball", label: "Pickleball" },
   { href: "/summer", label: "Summer" },
   { href: "/pro-shop", label: "Pro Shop" },
@@ -63,11 +67,11 @@ export default function Navbar() {
         <span className="text-parchment/70 text-[10px] tracking-[0.16em] uppercase">Woodinville Sports Club</span>
         <div className="flex items-center gap-6">
           <a
-            href="tel:+14254814686"
+            href="tel:+14254871090"
             className="hidden sm:flex items-center gap-1.5 text-parchment/70 text-[10px] tracking-[0.1em] uppercase no-underline hover:text-parchment transition-colors duration-200"
           >
             <Phone size={10} />
-            (425) 481-4686
+            (425) 487-1090
           </a>
           <a
             href={COURT_RESERVE_URL}
@@ -97,21 +101,46 @@ export default function Navbar() {
 
         {/* Desktop links */}
         <ul className="hidden lg:flex gap-9 list-none">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                aria-current={location === link.href ? "page" : undefined}
-                className={`text-[12px] tracking-[0.1em] uppercase no-underline transition-colors duration-200 py-2 ${
-                  location === link.href
-                    ? "text-parchment font-medium"
-                    : "text-parchment/75 hover:text-parchment"
-                }`}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = location === link.href || link.children?.some((child) => location === child.href);
+
+            return (
+              <li key={link.href} className={link.children ? "relative group" : undefined}>
+                <Link
+                  href={link.href}
+                  aria-current={location === link.href ? "page" : undefined}
+                  className={`text-[12px] tracking-[0.1em] uppercase no-underline transition-colors duration-200 py-2 ${
+                    isActive
+                      ? "text-parchment font-medium"
+                      : "text-parchment/75 hover:text-parchment"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+                {link.children && (
+                  <div className="absolute left-1/2 top-full z-[55] min-w-[240px] -translate-x-1/2 pt-4 opacity-0 pointer-events-none transition-all duration-200 group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto">
+                    <ul className="list-none bg-dark-bg border border-parchment/15 shadow-xl">
+                      {link.children.map((child) => (
+                        <li key={child.href}>
+                          <Link
+                            href={child.href}
+                            aria-current={location === child.href ? "page" : undefined}
+                            className={`block px-5 py-3 text-[11px] tracking-[0.1em] uppercase no-underline transition-colors duration-200 ${
+                              location === child.href
+                                ? "bg-parchment/10 text-parchment"
+                                : "text-parchment/75 hover:bg-parchment/10 hover:text-parchment"
+                            }`}
+                          >
+                            {child.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </li>
+            );
+          })}
         </ul>
 
         {/* Desktop CTAs — Book Now + Membership */}
@@ -149,22 +178,46 @@ export default function Navbar() {
       {mobileOpen && (
         <div id={mobileMenuId} className="lg:hidden bg-dark-bg border-t border-white/[0.08] px-6 py-6">
           <ul className="flex flex-col gap-5 list-none">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  aria-current={location === link.href ? "page" : undefined}
-                  className={`text-[13px] tracking-[0.1em] uppercase no-underline py-2 block ${
-                    location === link.href
-                      ? "text-parchment font-medium"
-                      : "text-parchment/75"
-                  }`}
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = location === link.href || link.children?.some((child) => location === child.href);
+
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    aria-current={location === link.href ? "page" : undefined}
+                    className={`text-[13px] tracking-[0.1em] uppercase no-underline py-2 block ${
+                      isActive
+                        ? "text-parchment font-medium"
+                        : "text-parchment/75"
+                    }`}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                  {link.children && (
+                    <ul className="list-none mt-2 ml-4 pl-4 border-l border-parchment/15 space-y-2">
+                      {link.children.map((child) => (
+                        <li key={child.href}>
+                          <Link
+                            href={child.href}
+                            aria-current={location === child.href ? "page" : undefined}
+                            className={`text-[12px] tracking-[0.1em] uppercase no-underline py-2 block ${
+                              location === child.href
+                                ? "text-parchment font-medium"
+                                : "text-parchment/65"
+                            }`}
+                            onClick={() => setMobileOpen(false)}
+                          >
+                            {child.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              );
+            })}
             <li className="flex gap-3 mt-2">
               <a
                 href={COURT_RESERVE_URL}
@@ -185,11 +238,11 @@ export default function Navbar() {
             </li>
             <li className="mt-1">
               <a
-                href="tel:+14254814686"
+                href="tel:+14254871090"
                 className="flex items-center gap-1.5 text-parchment/70 text-[11px] tracking-[0.1em] uppercase no-underline"
               >
                 <Phone size={11} />
-                (425) 481-4686
+                (425) 487-1090
               </a>
             </li>
           </ul>

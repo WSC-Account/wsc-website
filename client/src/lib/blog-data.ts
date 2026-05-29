@@ -205,9 +205,9 @@ export const BLOG_POSTS: BlogPost[] = [
       },
     ],
     cta: {
-      label: "Explore Gym",
+      label: "Explore Fitness Center",
       href: "/gym",
-      text: "See gym, APL training, membership, and personal training options.",
+      text: "See fitness center access, amenities, membership, and training support.",
     },
   },
   {

@@ -104,7 +104,13 @@ const REGISTRATION_STEPS = [
   },
   {
     title: "Pick your sessions",
-    text: "Browse by Tennis, Golf, or Adventure Club, or use the class finder in CourtReserve to filter by class type, level, and half-day or full-day options.",
+    text: (
+      <>
+        Browse by Tennis, Golf, or Adventure Club, or use the class finder in CourtReserve to filter by class type, level, and half-day or full-day options.{" "}
+        <strong className="font-semibold text-ink">Week-to-week</strong> and{" "}
+        <strong className="font-semibold text-ink">drop-ins</strong> are available, and pricing information is available in CourtReserve.
+      </>
+    ),
   },
   {
     title: "Finalize details",
@@ -1022,7 +1028,9 @@ export default function Summer() {
                 Every summer training participant needs an active WSC membership before registration. The Class Registration Pass is the minimum required option, and higher membership tiers can add gym access, court booking, and range benefits.
               </p>
               <p className="text-ink-light text-[13px] leading-[1.7] mb-8">
-                Current WSC members can skip straight to session selection. New families should create their CourtReserve account, complete the waiver, and then select the weeks that fit their athlete.
+                Current WSC members can skip straight to session selection. New families should create their CourtReserve account, complete the waiver, and then select the weeks that fit their athlete.{" "}
+                <strong className="font-semibold text-ink">Week-to-week</strong> and{" "}
+                <strong className="font-semibold text-ink">drop-ins</strong> are available, with pricing information in CourtReserve.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
@@ -1269,7 +1277,7 @@ export default function Summer() {
               Athletes work on key areas such as basic movement skills, strength, speed, balance, and coordination through age-appropriate training. Sessions emphasize proper technique and body control to reduce injury risk while supporting long-term physical development.
             </p>
             <Link
-              href="/gym"
+              href="/fitness"
               className="inline-flex items-center gap-2 text-parchment text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt-bright pb-[3px] mt-8 hover:text-volt-bright transition-colors duration-200"
             >
               Learn more about APL <ChevronRight size={12} />
@@ -1310,6 +1318,11 @@ export default function Summer() {
           </h2>
           <p className="text-ink-mid text-[15px] leading-[1.75] max-w-[480px] mx-auto mb-3">
             Summer registration is open for Tennis, Golf, and Adventure Club programs. Bundles can pair a half-day of Adventure Club with Golf Club or Core Tennis for a full-day multi-sport experience.
+          </p>
+          <p className="text-ink-mid text-[14px] leading-[1.7] max-w-[520px] mx-auto mb-3">
+            Sign-ups are available{" "}
+            <strong className="font-semibold text-ink">week-to-week</strong> or as{" "}
+            <strong className="font-semibold text-ink">drop-ins</strong>. Pricing information is available in CourtReserve.
           </p>
           <p className="text-ink-light text-[12px] mb-8">For bundle help, email info@woodinvillesportsclub.com.</p>
           <div className="flex flex-wrap justify-center gap-5">

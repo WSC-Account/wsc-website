@@ -15,6 +15,7 @@ const Home = lazy(() => import("./pages/Home"));
 const Tennis = lazy(() => import("./pages/Tennis"));
 const Golf = lazy(() => import("./pages/Golf"));
 const Gym = lazy(() => import("./pages/Gym"));
+const Fitness = lazy(() => import("./pages/Fitness"));
 const Pickleball = lazy(() => import("./pages/Pickleball"));
 const Summer = lazy(() => import("./pages/Summer"));
 const Membership = lazy(() => import("./pages/Membership"));
@@ -66,6 +67,7 @@ function Router() {
         <Route path="/tennis" component={Tennis} />
         <Route path="/golf" component={Golf} />
         <Route path="/gym" component={Gym} />
+        <Route path="/fitness" component={Fitness} />
         <Route path="/pickleball" component={Pickleball} />
         <Route path="/summer" component={Summer} />
         <Route path="/membership" component={Membership} />
@@ -84,7 +86,6 @@ function Router() {
         <Route path="/faq" component={FAQ} />
         <Route path="/pro-shop" component={ProShop} />
         <Route path="/terms">{() => <Redirect to="/policies" />}</Route>
-        <Route path="/fitness">{() => <Redirect to="/gym" />}</Route>
         <Route path="/404" component={NotFound} />
         <Route component={NotFound} />
       </Switch>

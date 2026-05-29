@@ -8,7 +8,8 @@ import SEOHead from "@/components/SEOHead";
 const quickLinks = [
   { label: "Tennis", href: "/tennis" },
   { label: "Golf", href: "/golf" },
-  { label: "Gym & Fitness", href: "/gym" },
+  { label: "Fitness Center", href: "/gym" },
+  { label: "APL", href: "/fitness" },
   { label: "Pickleball", href: "/pickleball" },
   { label: "Membership", href: "/membership" },
   { label: "Contact Us", href: "/contact" },

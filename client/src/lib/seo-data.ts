@@ -22,10 +22,16 @@ export const SEO = {
     path: "/golf",
   },
   gym: {
-    title: "Gym & Athletic Performance",
+    title: "Fitness Center",
     description:
-      "Train in WSC's gym with weights, functional space, sauna, locker rooms, APL strength classes, speed training, personal training, and all-access plans.",
+      "Train in WSC's fitness center with cardio equipment, free weights, power racks, functional training space, sauna, locker rooms, and all-access plans.",
     path: "/gym",
+  },
+  apl: {
+    title: "Athletic Performance Lab",
+    description:
+      "Explore WSC Athletic Performance Lab offerings for youth and adult athletes, including strength and conditioning, speed training, personal training, team training, and coaches.",
+    path: "/fitness",
   },
   pickleball: {
     title: "Pickleball Courts & Open Play",
