@@ -128,7 +128,13 @@ const thisWeekItems = [
     icon: Calendar,
     tag: "Summer",
     title: "Summer 2026 Registration Is Open",
-    desc: "Summer training programs are live: Tennis, Golf, and Adventure Club camps for ages 3-18. Early registration recommended.",
+    desc: (
+      <>
+        Summer training programs are live: Tennis, Golf, and Adventure Club camps for ages 3-18.{" "}
+        <strong className="font-semibold text-parchment">Week-to-week</strong> and{" "}
+        <strong className="font-semibold text-parchment">drop-ins</strong> are available, with pricing details in CourtReserve.
+      </>
+    ),
     date: "June 29 - Aug 30",
     time: "",
     actions: [
@@ -161,13 +167,13 @@ const disciplines = [
   },
   {
     num: "03",
-    tag: "Performance",
-    name: "Gym & Athletic Performance Lab",
-    desc: "Full-service gym plus elite-level strength and conditioning training for youth and adult athletes in the dedicated APL Training Center.",
-    detail: "Small-group S&C classes. Monthly packages of 4, 8, or unlimited sessions.",
+    tag: "Fitness",
+    name: "Fitness Center",
+    desc: "Full-service gym access with cardio equipment, free weights, power racks, functional training tools, sauna, and locker rooms.",
+    detail: "A separate Athletic Performance Lab page covers coached strength and conditioning programming.",
     img: PERF_IMG,
     href: "/gym",
-    stat: "Youth & Adult",
+    stat: "Train Daily",
   },
   {
     num: "04",

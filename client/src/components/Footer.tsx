@@ -42,7 +42,8 @@ export default function Footer() {
             {[
               { href: "/tennis", label: "Tennis" },
               { href: "/golf", label: "Golf" },
-              { href: "/gym", label: "Gym & Fitness" },
+              { href: "/gym", label: "Fitness Center" },
+              { href: "/fitness", label: "Athletic Performance Lab" },
               { href: "/pickleball", label: "Pickleball" },
               { href: "/summer", label: "Summer Training" },
               { href: "/pro-shop", label: "Pro Shop" },
