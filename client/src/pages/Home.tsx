@@ -100,7 +100,7 @@ const heroCollageImages = [
 
 const metrics = [
   { label: "Tennis Courts", val: "8 + 1", unit: "indoor / outdoor" },
-  { label: "Covered Driving Bays", val: "23", unit: "with free Toptracer" },
+  { label: "Covered Driving Bays", val: "23+", unit: "with free Toptracer" },
   { label: "Indoor Golf Sims", val: "4", unit: "Swing Lab" },
   { label: "Fitness Centers", val: "2", unit: "Main Gym + APL" },
   { label: "Founded", val: "1976", unit: "" },
@@ -153,11 +153,11 @@ const disciplines = [
     num: "02",
     tag: "Golf",
     name: "Tier 1 Golf Academy",
-    desc: "Scenic driving range with 23 covered bays, free Toptracer technology, grass tees and a 2.5-acre short-game practice area. Tier 1 Golf Academy for youth and adults.",
+    desc: "Scenic driving range with more than 23 covered bays, free Toptracer technology, grass tees and a 2.5-acre short-game practice area. Tier 1 Golf Academy for youth and adults.",
     detail: "4 Swing Lab simulators capturing 24 data points. Expert coaching for juniors and adults.",
     img: GOLF_IMG,
     href: "/golf",
-    stat: "23 Covered Bays",
+    stat: "23+ Covered Bays",
   },
   {
     num: "03",
@@ -197,7 +197,7 @@ const dayAtWSC = [
   {
     time: "10:00 AM",
     title: "Grab a bucket at the range",
-    desc: "23 covered bays, Toptracer on every one. Work on your swing with the Cascades in the background.",
+    desc: "More than 23 covered bays with Toptracer. Work on your swing with the Cascades in the background.",
     location: "Driving Range",
   },
   {
@@ -238,7 +238,7 @@ const galleryImages = [
   { src: SWINGLAB_IMG, alt: "Swing Lab simulators", caption: "Swing Lab — 4 Uneekor simulators with 24 data points", span: "normal" as const },
   { src: GALLERY_TENNIS, alt: "Tennis match in action", caption: "Tier 1 Tennis — training future champions", span: "normal" as const },
   { src: GALLERY_YOUTH, alt: "Youth athletic training", caption: "APL youth strength and conditioning", span: "normal" as const },
-  { src: GALLERY_GOLF, alt: "Driving range at sunset", caption: "23 covered bays with free Toptracer technology", span: "wide" as const },
+  { src: GALLERY_GOLF, alt: "Driving range at sunset", caption: "More than 23 covered bays with free Toptracer technology", span: "wide" as const },
   { src: PICKLE_IMG, alt: "Pickleball dome", caption: "The Dome — open play 7 days a week", span: "normal" as const },
   { src: FITNESS_TRAINING_IMG, alt: "Fitness training", caption: "Full-service gym and APL Training Center", span: "normal" as const },
 ];
@@ -842,7 +842,7 @@ export default function Home() {
       <FullWidthImage
         src={GALLERY_GOLF}
         alt="WSC driving range at golden hour"
-        caption="23 covered bays with free Toptracer. Open to the public."
+        caption="More than 23 covered bays with free Toptracer. Open to the public."
         subcaption="Driving Range"
         height="medium"
         ctaLabel="Explore Golf"

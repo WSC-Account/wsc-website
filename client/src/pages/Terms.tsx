@@ -182,7 +182,7 @@ export default function Terms() {
 
             <SubHeading>Golf Facilities</SubHeading>
             <BulletList items={[
-              "The driving range (23 covered bays with Toptracer) is open to both members and the general public during posted hours",
+              "The driving range (more than 23 covered bays with Toptracer) is open to both members and the general public during posted hours",
               "Range balls are included with bay rental. Members receive priority bay access during peak hours",
               "The 2.5-acre short game area is available to members and program participants. Proper golf attire and footwear are required",
               "Swing Lab golf simulators (4 Uneekor bays) must be reserved in advance through CourtReserve. Cancellations within 4 hours of the reservation may incur a cancellation fee",

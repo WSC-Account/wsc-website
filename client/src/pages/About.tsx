@@ -206,7 +206,7 @@ export default function About() {
           <div className="grid grid-cols-2 lg:grid-cols-5 gap-6">
             {[
               { val: "8+1", label: "Indoor & Outdoor Tennis Courts" },
-              { val: "23", label: "Covered Driving Bays with Toptracer" },
+              { val: "23+", label: "Covered Driving Bays with Toptracer" },
               { val: "4", label: "Uneekor Golf Simulators" },
               { val: "8+", label: "Indoor & Outdoor Pickleball Courts" },
               { val: "2", label: "Fitness & Training Facilities" },

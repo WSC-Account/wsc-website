@@ -22,7 +22,7 @@ const GOLF_SUNSET = "/images/wsc/campus-sunset.webp";
 const SIM_BAY_IMG = "/images/wsc/swing-lab-simulators.webp";
 const SIM_SCREEN_IMG = "/images/wsc/swing-lab-simulators.webp";
 const SIM_LOUNGE_IMG = "/images/wsc/swing-lab-simulators.webp";
-const TIER1_GOLF_URL = "https://www.tier1nw.com/golf";
+const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689";
 
 const SKILL_LEVELS = [
   "Beginner — Never played or just starting",
@@ -43,7 +43,7 @@ const GOLF_TRAINING_GROUNDS = [
   },
   {
     name: "Driving Range",
-    desc: "23 covered bays with Toptracer, plus grass tees when seasonal conditions allow.",
+    desc: "More than 23 covered bays with Toptracer, plus grass tees when seasonal conditions allow.",
   },
   {
     name: "Turf Putting Green",
@@ -226,7 +226,7 @@ export default function Golf() {
       <PageHero
         eyebrow="WSC Golf Training Grounds"
         headline="The PNW's Golf Training Grounds."
-        subtitle="Practice all day on expansive golf grounds built for real improvement: putting grounds, chipping area, 23-bay driving range, turf putting green, grass tees, and Swing Lab simulators."
+        subtitle="Practice all day on expansive golf grounds built for real improvement: putting grounds, chipping area, a driving range with more than 23 covered bays, turf putting green, grass tees, and Swing Lab simulators."
         image={GOLF_IMG}
       />
 
@@ -245,13 +245,13 @@ export default function Golf() {
               WSC is the golf training grounds of the Pacific Northwest: a large, open practice environment where golfers can work through the full game instead of just hitting a quick bucket. Come for the range, stay for putting, chipping, turf green reps, and focused short-game work.
             </p>
             <p className="text-ink-mid text-[14px] leading-[1.72] mb-6">
-              The driving range is open to the public, and the grounds include 23 covered driving bays with free Toptracer, seasonal grass tees, putting grounds, a chipping area, turf putting green, and a 2.5-acre short-game training area.
+              The driving range is open to the public, and the grounds include more than 23 covered driving bays with free Toptracer, seasonal grass tees, putting grounds, a chipping area, turf putting green, and a 2.5-acre short-game training area.
             </p>
             <div className="grid grid-cols-3 gap-6">
               {[
                 { val: "Public", label: "Range Access" },
                 { val: "2.5", label: "Acre Short Game" },
-                { val: "23", label: "Covered Bays" },
+                { val: "23+", label: "Covered Bays" },
               ].map((m, i) => (
                 <div key={i} className="py-4 border-t border-wsc-border">
                   <div className="text-volt-bright text-[28px] font-light tracking-[-0.02em] leading-none mb-1">
@@ -310,7 +310,7 @@ export default function Golf() {
               ))}
             </ul>
             <a
-              href="https://app.courtreserve.com/Online/Portal/Index/6689"
+              href={COURT_RESERVE_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline text-parchment border border-volt-bright px-7 py-3 hover:bg-volt hover:border-volt transition-colors duration-200"
@@ -414,12 +414,12 @@ export default function Golf() {
                   <p className="text-ink-mid text-[14px] leading-[1.72]">{p.desc}</p>
                 </div>
                 <a
-                  href={TIER1_GOLF_URL}
+                  href={COURT_RESERVE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-ink text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt pb-[3px]"
                 >
-                  Explore Tier 1 Golf
+                  Register in CourtReserve
                 </a>
               </div>
             ))}
@@ -661,7 +661,7 @@ export default function Golf() {
               View Membership
             </Link>
             <a
-              href="https://app.courtreserve.com/Online/Portal/Index/6689"
+              href={COURT_RESERVE_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline text-parchment border border-volt-bright px-8 py-3.5 hover:bg-volt hover:border-volt transition-colors duration-200"

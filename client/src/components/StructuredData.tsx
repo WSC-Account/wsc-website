@@ -89,7 +89,7 @@ export function getLocalBusinessSchema() {
           name: "Golf Programs",
           itemListElement: [
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "Tier 1 Golf Academy", description: "Junior and adult golf instruction with WGTF Master Certified coaching" } },
-            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Driving Range", description: "23 covered bays with free Toptracer technology, open to the public" } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Driving Range", description: "More than 23 covered bays with free Toptracer technology, open to the public" } },
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "Swing Lab Golf Simulators", description: "4 Uneekor simulators capturing 24 data points with 2,000+ courses" } },
           ],
         },
@@ -112,7 +112,7 @@ export function getLocalBusinessSchema() {
     },
     amenityFeature: [
       { "@type": "LocationFeatureSpecification", name: "Tennis Courts", value: "8 indoor courts and 1 outdoor court" },
-      { "@type": "LocationFeatureSpecification", name: "Covered Driving Bays", value: "23 bays with free Toptracer" },
+      { "@type": "LocationFeatureSpecification", name: "Covered Driving Bays", value: "More than 23 bays with free Toptracer" },
       { "@type": "LocationFeatureSpecification", name: "Golf Simulators", value: "4 Uneekor Swing Lab simulators" },
       { "@type": "LocationFeatureSpecification", name: "Pickleball Dome", value: "Open play 7 days a week" },
       { "@type": "LocationFeatureSpecification", name: "Athletic Performance Lab", value: "Dedicated S&C training center" },
@@ -244,7 +244,7 @@ export function getFAQSchema() {
         name: "What sports does Woodinville Sports Club offer?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "WSC offers tennis (8 indoor courts and 1 outdoor court), golf (23 covered driving bays with Toptracer, 4 Swing Lab simulators, and a 2.5-acre short game area), pickleball (The Dome with open play 7 days a week), and athletic performance training (APL Training Center and full-service gym).",
+          text: "WSC offers tennis (8 indoor courts and 1 outdoor court), golf (more than 23 covered driving bays with Toptracer, 4 Swing Lab simulators, and a 2.5-acre short game area), pickleball (The Dome with open play 7 days a week), and athletic performance training (APL Training Center and full-service gym).",
         },
       },
       {

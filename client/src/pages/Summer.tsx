@@ -58,7 +58,7 @@ const PROGRAMS: Record<ProgramKey, {
     icon: Sun,
     desc: "Tier 1 Golf Academy training for beginners to advanced golfers ages 7–18. Access to our driving range, practice greens, new indoor golf simulators, and putt-putt course. Includes daily APL athletic development training.",
     features: [
-      "23-bay covered driving range with Toptracer",
+      "More than 23 covered driving bays with Toptracer",
       "NEW Swing Lab indoor golf simulators",
       "WGTF Master-certified Director of Golf, Daniel Jarvie",
       "Daily APL athletic development integrated",
