@@ -87,13 +87,18 @@ export async function handleFormSubmissionRequest(req: RequestWithBody, res: Ser
     const payload = await readJsonBody(req);
     const result = await processFormSubmission(payload, getRequestContext(req.headers));
 
-    if (result.email.status === "failed") {
-      console.error("Form email notification failed", result.email.error);
+    if (result.email.status !== "sent") {
+      if (result.email.status === "not_configured") {
+        console.error("Form email notification is not configured. Set RESEND_API_KEY before accepting submissions.");
+      } else {
+        console.error("Form email notification failed", result.email.error);
+      }
       sendJson(res, 502, {
         ok: false,
         recorded: result.recorded,
         emailed: false,
-        error: "Your submission was saved, but the email notification could not be sent. Please try again.",
+        emailStatus: result.email.status,
+        error: "Your submission was saved, but the email notification could not be sent. Please try again or email Info@woodinvillesportsclub.com.",
       });
       return;
     }

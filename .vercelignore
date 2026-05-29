@@ -1,0 +1,16 @@
+node_modules/
+.pnpm-store/
+dist/
+build/
+.vercel/
+.git/
+.scrape/
+.playwright-cli/
+.playwright-mcp/
+scripts/seo-audit/output/
+data/form-submissions/
+coverage/
+*.log
+*.tsbuildinfo
+*.tgz
+.DS_Store

@@ -91,6 +91,26 @@ test("policies page uses the full collapsible membership agreement", () => {
   assert.doesNotMatch(policies, /Using WSC facilities, services, or activities involves the risk of injury, ranging from minor to catastrophic injuries including death/);
 });
 
+test("membership auto-renewal is clearly disclosed", () => {
+  const membership = read("client/src/pages/Membership.tsx");
+  const policies = read("client/src/pages/Policies.tsx");
+
+  assert.match(membership, /All Memberships:[\s\S]*?Auto-renew/i);
+  assert.match(policies, /All memberships auto-renew/i);
+});
+
+test("website forms are routed to WSC email notifications", () => {
+  const apiRoute = read("api/forms.ts");
+  const formServer = read("server/form-submissions.ts");
+  const readme = read("README.md");
+
+  assert.match(apiRoute, /handleFormSubmissionRequest/);
+  assert.match(apiRoute, /from "\.\.\/server\/form-submissions\.js"/);
+  assert.match(formServer, /const DEFAULT_EMAIL_TO = "Info@woodinvillesportsclub\.com"/);
+  assert.match(formServer, /result\.email\.status !== "sent"/);
+  assert.match(readme, /FORM_EMAIL_TO=Info@woodinvillesportsclub\.com/);
+});
+
 test("gym page does not mention APL class programming", () => {
   const gym = read("client/src/pages/Gym.tsx");
 

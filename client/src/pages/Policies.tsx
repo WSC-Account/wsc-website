@@ -182,7 +182,7 @@ const MEMBERSHIP_AGREEMENT_SECTIONS: {
       { type: "heading", text: "Payment Terms" },
       {
         type: "paragraph",
-        text: "Member/Passholder agrees to make timely payment of ALL fees associated with their Member/Passholder agreement including on account retail payments. All payments will be done through Electronic Funds Transfer (EFT) from Member/Passholders financial account (Credit/Debit Card, Checking/Savings Account). Payment for Member/Passholder agreement dues and fees will be charged on join date and reoccurring based on type of Member/Passholder agreement or access pass. It is the responsibility of the Member/Passholder to keep ALL account information accurate and current.",
+        text: "Member/Passholder agrees to make timely payment of ALL fees associated with their Member/Passholder agreement including on account retail payments. All payments will be done through Electronic Funds Transfer (EFT) from Member/Passholders financial account (Credit/Debit Card, Checking/Savings Account). Payment for Member/Passholder agreement dues and fees will be charged on join date and reoccurring based on type of Member/Passholder agreement or access pass. All memberships auto-renew until cancelled under the applicable cancellation policy. It is the responsibility of the Member/Passholder to keep ALL account information accurate and current.",
       },
       { type: "heading", text: "Default and Late Payments" },
       {
@@ -768,6 +768,7 @@ function TermsContent() {
             <SubHeading>Fees & Payment</SubHeading>
             <BulletList items={[
               "Fees consist of a one-time initiation fee plus recurring dues",
+              "All memberships auto-renew unless cancelled under the applicable cancellation policy",
               "All fees are in U.S. dollars and subject to applicable taxes",
               "WSC may adjust fees with 30 days' written notice",
               "Failed payments: 7-day grace period before access suspension",

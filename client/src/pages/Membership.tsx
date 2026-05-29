@@ -123,7 +123,7 @@ const FAQ_ITEMS = [
       },
       {
         q: "Are there any hidden fees?",
-        a: "Monthly memberships require a one-time $50 + tax initiation fee. Annual passes have no initiation fee. All listed prices are subject to applicable sales tax. Court booking and class registration fees apply separately based on the activity.",
+        a: "Monthly memberships require a one-time $50 + tax initiation fee. Annual passes have no initiation fee. All listed prices are subject to applicable sales tax. Court booking and class registration fees apply separately based on the activity. All memberships auto-renew until cancelled under the applicable cancellation policy.",
       },
       {
         q: "Can I try the golf simulators before committing to a membership?",
@@ -157,7 +157,7 @@ const FAQ_ITEMS = [
     items: [
       {
         q: "How do I cancel my membership?",
-        a: "Monthly memberships can be cancelled by contacting the front desk or emailing info@woodinvillesportsclub.com. A 30-day written notice is required. Annual passes are non-refundable once purchased but will not auto-renew if cancelled before the renewal date.",
+        a: "All memberships auto-renew until cancelled under the applicable cancellation policy. Monthly memberships can be cancelled by contacting the front desk or emailing info@woodinvillesportsclub.com. A 30-day written notice is required. Annual passes are non-refundable once purchased but will not auto-renew if cancelled before the renewal date.",
       },
       {
         q: "Can I upgrade or downgrade my membership?",
@@ -318,6 +318,9 @@ export default function Membership() {
           </div>
 
           <div className="mt-8 p-6 bg-parchment-mid border-l-2 border-volt">
+            <p className="text-ink-mid text-[14px] leading-[1.7] mb-2">
+              <span className="text-ink font-normal">All Memberships:</span> Auto-renew until cancelled under the applicable cancellation policy.
+            </p>
             <p className="text-ink-mid text-[14px] leading-[1.7] mb-2">
               <span className="text-ink font-normal">Annual Passes:</span> Auto-renew each year.
             </p>
