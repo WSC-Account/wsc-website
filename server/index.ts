@@ -17,7 +17,7 @@ async function startServer() {
   const server = createServer(app);
 
   app.disable("x-powered-by");
-  app.use(express.json({ limit: "50kb" }));
+  app.use(express.json({ limit: "5.5mb" }));
 
   // Serve static files from dist/public in production
   const staticPath =

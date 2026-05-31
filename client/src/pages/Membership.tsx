@@ -316,7 +316,7 @@ export default function Membership() {
 
       {/* Resources */}
       <section className="bg-parchment-mid px-6 lg:px-14 py-16 lg:py-20">
-        <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-[3px]">
+        <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[3px]">
           <div className="bg-parchment p-8">
             <h3 className="text-[18px] font-light tracking-[-0.01em] mb-3">Membership Agreement</h3>
             <p className="text-ink-mid text-[14px] leading-[1.72] mb-4">
@@ -339,6 +339,18 @@ export default function Membership() {
               className="text-ink text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt pb-[3px]"
             >
               View Policies
+            </Link>
+          </div>
+          <div className="bg-parchment p-8">
+            <h3 className="text-[18px] font-light tracking-[-0.01em] mb-3">Cancellation Request</h3>
+            <p className="text-ink-mid text-[14px] leading-[1.72] mb-4">
+              Submit a membership cancellation request so the WSC team can review your account and follow up.
+            </p>
+            <Link
+              href="/member-request"
+              className="text-ink text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt pb-[3px]"
+            >
+              Open Form
             </Link>
           </div>
         </div>

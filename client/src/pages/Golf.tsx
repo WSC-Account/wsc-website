@@ -4,18 +4,15 @@
  * Tier 1 Sports branding
  * Scroll reveal animations for consistent UX
  */
-import { useState } from "react";
 import { Link } from "wouter";
-import { toast } from "sonner";
 import PageHero from "@/components/PageHero";
 import Tier1Banner from "@/components/Tier1Banner";
 import FullWidthImage from "@/components/FullWidthImage";
 import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData";
 import { useScrollReveal, useStaggerReveal } from "@/hooks/useScrollReveal";
-import { useFormProtection } from "@/hooks/useFormProtection";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
-import { submitWebsiteForm } from "@/lib/forms";
+import { GolfLessonInquiryForm } from "@/components/InquiryForms";
 
 const GOLF_HERO_IMG = "/images/wsc/golf-range-sunset.webp";
 const GOLF_RANGE_FIELD_IMG = "/images/wsc/golf-range-field.webp";
@@ -26,14 +23,6 @@ const SIM_LESSON_IMG = "/images/wsc/swing-lab-private-lesson.webp";
 const GOLF_INSTRUCTORS_IMG = "/images/wsc/golf-instructors-swing-lab.webp";
 const JUNIOR_ACADEMY_IMG = "/images/wsc/junior-golf-academy-group.webp";
 const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689";
-
-const SKILL_LEVELS = [
-  "Beginner — Never played or just starting",
-  "Novice — Played a few times, learning basics",
-  "Intermediate — Comfortable on the course, working on consistency",
-  "Advanced — Low handicap, competitive play",
-  "Junior — Youth player (under 18)",
-];
 
 const GOLF_TRAINING_GROUNDS = [
   {
@@ -53,179 +42,6 @@ const GOLF_TRAINING_GROUNDS = [
     desc: "A durable all-weather turf green for repeatable reps and focused practice sessions.",
   },
 ];
-
-function PrivateLessonForm() {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    skillLevel: "",
-    experience: "",
-  });
-  const [submitted, setSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formStatus, setFormStatus] = useState<{ type: "success" | "error"; message: string } | null>(null);
-  const { honeypotProps, validateSubmission } = useFormProtection();
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const check = validateSubmission();
-    if (!check.valid) {
-      if (check.reason === "honeypot" || check.reason === "too_fast") {
-        const message = "Lesson request submitted! Our golf staff will contact you within 1-2 business days.";
-        setFormStatus({ type: "success", message });
-        toast.success(message);
-        setForm({ name: "", email: "", phone: "", skillLevel: "", experience: "" });
-        return;
-      }
-      if (check.reason === "rate_limited") {
-        const message = "Please wait a moment before submitting another request.";
-        setFormStatus({ type: "error", message });
-        toast.error(message);
-        return;
-      }
-    }
-
-    setIsSubmitting(true);
-    setFormStatus(null);
-    try {
-      await submitWebsiteForm({
-        formType: "golf_lesson",
-        source: "/golf",
-        formName: "Golf Lesson Request",
-        name: form.name,
-        email: form.email,
-        phone: form.phone,
-        subject: `Golf lesson request from ${form.name}`,
-        message: form.experience || "No additional goals provided.",
-        metadata: {
-          skillLevel: form.skillLevel,
-        },
-      });
-
-      setSubmitted(true);
-      setForm({ name: "", email: "", phone: "", skillLevel: "", experience: "" });
-      const message = "Lesson request submitted! Our golf staff will contact you within 1-2 business days.";
-      setFormStatus({ type: "success", message });
-      toast.success(message);
-      setTimeout(() => setSubmitted(false), 4000);
-    } catch {
-      const message = "We could not send your lesson request right now. Please try again or email info@woodinvillesportsclub.com.";
-      setFormStatus({ type: "error", message });
-      toast.error(message);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const inputClass =
-    "w-full bg-dark-bg border border-parchment/15 px-4 py-3 text-[14px] text-parchment placeholder:text-parchment/75 focus:border-volt-bright focus:outline-none transition-colors duration-200";
-  const labelClass = "block text-parchment/70 text-[11px] tracking-[0.14em] uppercase mb-2";
-
-  return (
-    <form onSubmit={handleSubmit} data-form-name="Golf Lesson Request" className="space-y-5">
-      <div>
-        <label htmlFor="lesson-name" className={labelClass}>Full Name *</label>
-        <input
-          id="lesson-name"
-          type="text"
-          value={form.name}
-          onChange={(e) => setForm({ ...form, name: e.target.value })}
-          placeholder="Your full name"
-          className={inputClass}
-          required
-          autoComplete="name"
-        />
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label htmlFor="lesson-email" className={labelClass}>Email *</label>
-          <input
-            id="lesson-email"
-            type="email"
-            value={form.email}
-            onChange={(e) => setForm({ ...form, email: e.target.value })}
-            placeholder="you@email.com"
-            className={inputClass}
-            required
-            autoComplete="email"
-          />
-        </div>
-        <div>
-          <label htmlFor="lesson-phone" className={labelClass}>Phone</label>
-          <input
-            id="lesson-phone"
-            type="tel"
-            value={form.phone}
-            onChange={(e) => setForm({ ...form, phone: e.target.value })}
-            placeholder="(425) 555-0100"
-            className={inputClass}
-            autoComplete="tel"
-          />
-        </div>
-      </div>
-
-      <div>
-        <label htmlFor="lesson-skill" className={labelClass}>Skill Level *</label>
-        <select
-          id="lesson-skill"
-          value={form.skillLevel}
-          onChange={(e) => setForm({ ...form, skillLevel: e.target.value })}
-          className={`${inputClass} appearance-none cursor-pointer ${!form.skillLevel ? "text-parchment/75" : ""}`}
-          required
-        >
-          <option value="" disabled>Select your skill level</option>
-          {SKILL_LEVELS.map((level) => (
-            <option key={level} value={level} className="text-parchment bg-dark-bg">
-              {level}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div>
-        <label htmlFor="lesson-experience" className={labelClass}>Tell Us About Your Goals</label>
-        <textarea
-          id="lesson-experience"
-          value={form.experience}
-          onChange={(e) => setForm({ ...form, experience: e.target.value })}
-          rows={4}
-          placeholder="What are you hoping to improve? Any prior experience, upcoming events, or specific goals?"
-          className={`${inputClass} resize-none`}
-        />
-      </div>
-
-      {/* Honeypot — invisible to humans, bots fill it */}
-      <input {...honeypotProps} />
-      {formStatus ? (
-        <p
-          role={formStatus.type === "error" ? "alert" : "status"}
-          className={`text-[13px] leading-[1.6] ${
-            formStatus.type === "error" ? "text-red-200" : "text-parchment"
-          }`}
-        >
-          {formStatus.message}
-        </p>
-      ) : null}
-      <button
-        type="submit"
-        disabled={isSubmitting || submitted}
-        className={`text-[12px] tracking-[0.14em] uppercase px-8 py-3.5 transition-colors duration-200 ${
-          isSubmitting || submitted
-            ? "bg-parchment/20 text-parchment/70 cursor-default"
-            : "bg-volt-bright text-dark-bg hover:bg-parchment hover:text-dark-bg"
-        }`}
-      >
-        {isSubmitting ? "Sending..." : submitted ? "Request Submitted" : "Submit Lesson Request"}
-      </button>
-
-      <p className="text-parchment/75 text-[12px] leading-[1.6]">
-        Our golf staff will review your request and reach out within 1–2 business days to schedule your lesson.
-      </p>
-    </form>
-  );
-}
 
 export default function Golf() {
   // Scroll-reveal hooks
@@ -645,7 +461,7 @@ export default function Golf() {
           </div>
 
           {/* Form side */}
-          <PrivateLessonForm />
+          <GolfLessonInquiryForm tone="dark" source="/golf" />
         </div>
       </section>
 

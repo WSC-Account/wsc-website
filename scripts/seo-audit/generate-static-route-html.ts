@@ -31,6 +31,10 @@ const pageImages: Record<string, string> = {
   "/events": "/images/wsc/contact-campus.webp",
   "/food-trucks": "/images/wsc/campus-sunset.webp",
   "/careers": "/images/wsc/apl-training.webp",
+  "/member-request": "/images/wsc/campus-dome.webp",
+  "/personal-training-interest-form": "/images/wsc/apl-training.webp",
+  "/golf-coaching": "/images/wsc/swing-lab-private-lesson.webp",
+  "/newsletter-signup": "/images/wsc/contact-campus.webp",
   "/blog": "/images/wsc/campus-dome.webp",
   "/about": "/images/wsc/campus-sunset.webp",
   "/contact": "/images/wsc/contact-campus.webp",
@@ -115,6 +119,22 @@ function baseRoutes(): StaticRoute[] {
   }));
 }
 
+function aliasRoutes(): StaticRoute[] {
+  const byPath = new Map(baseRoutes().map((route) => [route.path, route]));
+  const eventRoute = byPath.get("/events");
+  const memberRoute = byPath.get("/member-request");
+  const trainingRoute = byPath.get("/personal-training-interest-form");
+  const golfRoute = byPath.get("/golf-coaching");
+
+  return [
+    eventRoute ? { ...eventRoute, path: "/events-1" } : null,
+    memberRoute ? { ...memberRoute, path: "/member-cancellation" } : null,
+    memberRoute ? { ...memberRoute, path: "/member-cancelation" } : null,
+    trainingRoute ? { ...trainingRoute, path: "/personal-training-request" } : null,
+    golfRoute ? { ...golfRoute, path: "/golf-lessons" } : null,
+  ].filter((route): route is StaticRoute => route !== null);
+}
+
 function blogRoutes(): StaticRoute[] {
   return [
     ...BLOG_CATEGORIES.map((category) => ({
@@ -142,6 +162,7 @@ async function main() {
   const baseHtml = await fs.readFile(path.join(DIST_DIR, "index.html"), "utf8");
   const routes: StaticRoute[] = [
     ...baseRoutes(),
+    ...aliasRoutes(),
     ...blogRoutes(),
     {
       path: "/404",

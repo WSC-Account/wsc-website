@@ -122,6 +122,93 @@ test("website forms are routed to WSC email notifications", () => {
   assert.match(readme, /FORM_ALERT_TO=Info@woodinvillesportsclub\.com/);
 });
 
+test("live website inquiry forms exist in the new build", () => {
+  const app = read("client/src/App.tsx");
+  const forms = read("client/src/components/InquiryForms.tsx");
+  const careers = read("client/src/pages/Careers.tsx");
+  const events = read("client/src/pages/Events.tsx");
+  const golf = read("client/src/pages/Golf.tsx");
+
+  assert.match(app, /<Route path="\/member-request" component=\{MemberCancellationFormPage\} \/>/);
+  assert.match(app, /<Route path="\/personal-training-interest-form" component=\{PersonalTrainingFormPage\} \/>/);
+  assert.match(app, /<Route path="\/golf-coaching" component=\{GolfLessonFormPage\} \/>/);
+  assert.match(app, /<Route path="\/newsletter-signup" component=\{NewsletterSignupPage\} \/>/);
+
+  assert.match(forms, /Membership Cancellation Requests/);
+  assert.match(forms, /What's the primary reason for canceling\?/);
+  assert.match(forms, /Are you open to discussing options before finalizing your cancellation\?/);
+
+  assert.match(forms, /Personal Training Interest Form/);
+  assert.match(forms, /Is this for an adult or child\?/);
+  assert.match(forms, /Are you open to Small Group Training\?/);
+
+  assert.match(forms, /Golf Lessons Inquiry/);
+  assert.match(forms, /Tell us a little about your golf experience and what you're looking for\./);
+  assert.match(forms, /Beginner/);
+  assert.match(forms, /Intermediate/);
+  assert.match(forms, /Advanced/);
+
+  assert.match(events, /PrivateEventsInquiryForm/);
+  assert.match(forms, /Tell Us About Your Event/);
+
+  assert.match(careers, /CareersApplicationForm/);
+  assert.match(forms, /Department Applying For/);
+  assert.match(forms, /Are you legally authorized to work in the United States\?/);
+  assert.match(forms, /Will you now or in the future require sponsorship for employment visa status\?/);
+  assert.match(forms, /Upload Resume/);
+
+  assert.match(golf, /GolfLessonInquiryForm/);
+  assert.match(forms, /Newsletter Signup/);
+  assert.match(forms, /Tennis updates/);
+  assert.match(forms, /Golf updates/);
+  assert.match(forms, /Summer camp updates/);
+});
+
+test("form submission API accepts all live website form types", () => {
+  const clientForms = read("client/src/lib/forms.ts");
+  const formServer = read("server/form-submissions.ts");
+
+  for (const formType of [
+    "member_cancellation",
+    "personal_training",
+    "golf_lesson",
+    "private_event",
+    "career_application",
+    "newsletter_signup",
+  ]) {
+    assert.match(clientForms, new RegExp(`"${formType}"`));
+    assert.match(formServer, new RegExp(`"${formType}"`));
+  }
+
+  assert.match(formServer, /Membership cancellation request from/);
+  assert.match(formServer, /Personal training request from/);
+  assert.match(formServer, /Private event inquiry from/);
+  assert.match(formServer, /Career application from/);
+});
+
+test("live website forms are discoverable from site clicks", () => {
+  const footer = read("client/src/components/Footer.tsx");
+  const membership = read("client/src/pages/Membership.tsx");
+  const gym = read("client/src/pages/Gym.tsx");
+  const fitness = read("client/src/pages/Fitness.tsx");
+
+  for (const href of [
+    "/member-request",
+    "/personal-training-interest-form",
+    "/golf-coaching",
+    "/newsletter-signup",
+  ]) {
+    assert.match(footer, new RegExp(`href="${href}"`));
+  }
+
+  assert.match(membership, /Cancellation Request/);
+  assert.match(membership, /href="\/member-request"/);
+  assert.match(gym, /Request Personal Training/);
+  assert.match(gym, /href="\/personal-training-interest-form"/);
+  assert.match(fitness, /Request Personal Training/);
+  assert.match(fitness, /href="\/personal-training-interest-form"/);
+});
+
 test("gym page does not mention APL class programming", () => {
   const gym = read("client/src/pages/Gym.tsx");
 

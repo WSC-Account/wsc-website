@@ -1,9 +1,9 @@
-import { Link } from "wouter";
-import { Dumbbell, Flag, GraduationCap, Megaphone, Send, Trophy } from "lucide-react";
+import { Dumbbell, Flag, GraduationCap, Megaphone, Trophy } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
+import { CareersApplicationForm } from "@/components/InquiryForms";
 
 const HERO_IMG = "/images/wsc/apl-training.webp";
 
@@ -82,23 +82,17 @@ export default function Careers() {
       </section>
 
       <section className="bg-dark-mid px-6 lg:px-14 py-20 lg:py-24">
-        <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-center">
+        <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-10 lg:gap-16 items-start">
           <div>
             <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Apply Today</p>
             <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
               Tell us where you would like to contribute.
             </h2>
             <p className="text-parchment/80 text-[15px] leading-[1.75] max-w-[620px]">
-              The legacy application collected contact details, department interest, availability, resume upload, authorization to work in the United States, and sponsorship needs. Use the contact page to start the application conversation.
+              Share your contact details, department interest, availability, resume, work authorization, and sponsorship needs. The WSC team will review your application and follow up when there is a potential fit.
             </p>
           </div>
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center gap-2 text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment transition-colors duration-200"
-          >
-            Contact WSC
-            <Send size={14} />
-          </Link>
+          <CareersApplicationForm tone="dark" source="/careers" />
         </div>
       </section>
     </div>
