@@ -35,6 +35,10 @@ async function main() {
     { path: SEO.events.path, changefreq: "monthly", priority: "0.6" },
     { path: SEO.foodTrucks.path, changefreq: "weekly", priority: "0.5" },
     { path: SEO.careers.path, changefreq: "monthly", priority: "0.5" },
+    { path: SEO.memberCancellation.path, changefreq: "monthly", priority: "0.4" },
+    { path: SEO.personalTrainingRequest.path, changefreq: "monthly", priority: "0.5" },
+    { path: SEO.golfLessons.path, changefreq: "monthly", priority: "0.5" },
+    { path: SEO.newsletterSignup.path, changefreq: "monthly", priority: "0.4" },
     { path: SEO.blog.path, changefreq: "weekly", priority: "0.7" },
     ...BLOG_CATEGORIES.map((category) => ({
       path: `/blog/categories/${category.slug}`,

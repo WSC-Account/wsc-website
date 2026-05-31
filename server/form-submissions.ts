@@ -4,7 +4,20 @@ import { ServerClient } from "postmark";
 import type { IncomingHttpHeaders, IncomingMessage, ServerResponse } from "http";
 import path from "path";
 
-type WebsiteFormType = "contact" | "golf_lesson" | "newsletter_signup";
+type WebsiteFormType =
+  | "contact"
+  | "golf_lesson"
+  | "newsletter_signup"
+  | "member_cancellation"
+  | "personal_training"
+  | "private_event"
+  | "career_application";
+
+type WebsiteFormAttachment = {
+  name: string;
+  contentType: string;
+  contentBase64: string;
+};
 
 type WebsiteFormPayload = {
   formType?: unknown;
@@ -20,6 +33,7 @@ type WebsiteFormPayload = {
   companyWebsite?: unknown;
   website_url?: unknown;
   metadata?: unknown;
+  attachments?: unknown;
 };
 
 type RequestContext = {
@@ -39,6 +53,7 @@ type FormSubmission = {
   subject: string;
   message: string;
   metadata: Record<string, string | number | boolean | null>;
+  attachments: WebsiteFormAttachment[];
   request: RequestContext;
 };
 
@@ -61,9 +76,18 @@ type RequestWithBody = IncomingMessage & {
 };
 
 const SUPPORT_EMAIL = "Info@woodinvillesportsclub.com";
-const VALID_FORM_TYPES = new Set<WebsiteFormType>(["contact", "golf_lesson", "newsletter_signup"]);
+const VALID_FORM_TYPES = new Set<WebsiteFormType>([
+  "contact",
+  "golf_lesson",
+  "newsletter_signup",
+  "member_cancellation",
+  "personal_training",
+  "private_event",
+  "career_application",
+]);
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const MAX_BODY_BYTES = 50_000;
+const MAX_BODY_BYTES = 5_500_000;
+const MAX_ATTACHMENT_BYTES = 2_500_000;
 
 class HttpError extends Error {
   statusCode: number;
@@ -180,6 +204,7 @@ function normalizePayload(rawPayload: unknown): Omit<FormSubmission, "id" | "sub
   const subject = cleanString(payload.subject, 180);
   const message = cleanString(payload.message, 5_000) || cleanString(payload.comments, 5_000);
   const metadata = cleanMetadata(payload.metadata);
+  const attachments = cleanAttachments(payload.attachments);
   const formName = cleanString(payload.formName, 120);
 
   if (formName) {
@@ -202,6 +227,21 @@ function normalizePayload(rawPayload: unknown): Omit<FormSubmission, "id" | "sub
     throw new HttpError(400, "Please include your name and skill level.");
   }
 
+  if (
+    formType === "member_cancellation" &&
+    (!name || !phone || !metadata.reason || !message || !metadata.improvements)
+  ) {
+    throw new HttpError(400, "Please include your contact information and cancellation details.");
+  }
+
+  if (formType === "personal_training" && (!name || !phone)) {
+    throw new HttpError(400, "Please include your name and phone number.");
+  }
+
+  if (formType === "career_application" && (!name || !phone || !metadata.department)) {
+    throw new HttpError(400, "Please include your contact information and department interest.");
+  }
+
   return {
     formType,
     source,
@@ -211,6 +251,7 @@ function normalizePayload(rawPayload: unknown): Omit<FormSubmission, "id" | "sub
     subject: subject || fallbackSubject(formType, name),
     message,
     metadata,
+    attachments,
   };
 }
 
@@ -271,6 +312,12 @@ async function sendNotificationEmail(submission: FormSubmission): Promise<EmailD
       TextBody: emailBody.text,
       HtmlBody: emailBody.html,
       MessageStream: messageStream,
+      Attachments: submission.attachments.map((attachment) => ({
+        Name: attachment.name,
+        Content: attachment.contentBase64,
+        ContentType: attachment.contentType,
+        ContentID: attachment.name,
+      })),
       Metadata: {
         submissionId: submission.id,
         formType: submission.formType,
@@ -370,6 +417,27 @@ function cleanMetadata(value: unknown): Record<string, string | number | boolean
     }, {});
 }
 
+function cleanAttachments(value: unknown): WebsiteFormAttachment[] {
+  if (!Array.isArray(value)) return [];
+
+  return value.slice(0, 1).flatMap((rawAttachment) => {
+    if (!isRecord(rawAttachment)) return [];
+
+    const name = cleanString(rawAttachment.name, 180).replace(/[\\/:*?"<>|]/g, "-");
+    const contentType = cleanString(rawAttachment.contentType, 120) || "application/octet-stream";
+    const contentBase64 = cleanString(rawAttachment.contentBase64, 4_000_000).replace(/\s/g, "");
+
+    if (!name || !contentBase64 || !/^[a-zA-Z0-9+/]+={0,2}$/.test(contentBase64)) return [];
+
+    const estimatedBytes = Math.floor((contentBase64.length * 3) / 4);
+    if (estimatedBytes > MAX_ATTACHMENT_BYTES) {
+      throw new HttpError(413, "Resume attachments must be smaller than 2.5 MB.");
+    }
+
+    return [{ name, contentType, contentBase64 }];
+  });
+}
+
 function cleanString(value: unknown, maxLength: number) {
   if (typeof value !== "string") return "";
   return value.replace(/\r\n?/g, "\n").trim().slice(0, maxLength);
@@ -377,7 +445,11 @@ function cleanString(value: unknown, maxLength: number) {
 
 function fallbackSubject(formType: WebsiteFormType, name: string) {
   if (formType === "contact") return `Website inquiry from ${name || "WSC website"}`;
-  if (formType === "golf_lesson") return `Golf lesson request from ${name || "WSC website"}`;
+  if (formType === "golf_lesson") return `Golf lesson inquiry from ${name || "WSC website"}`;
+  if (formType === "member_cancellation") return `Membership cancellation request from ${name || "WSC website"}`;
+  if (formType === "personal_training") return `Personal training request from ${name || "WSC website"}`;
+  if (formType === "private_event") return `Private event inquiry from ${name || "WSC website"}`;
+  if (formType === "career_application") return `Career application from ${name || "WSC website"}`;
   return "WSC newsletter signup";
 }
 

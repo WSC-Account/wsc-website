@@ -75,6 +75,30 @@ export const SEO = {
       "Explore WSC careers in tennis, golf, fitness, operations, youth camps, events, front desk service, and athletic programming in Woodinville, WA.",
     path: "/careers",
   },
+  memberCancellation: {
+    title: "Membership Cancellation Request",
+    description:
+      "Submit a Woodinville Sports Club membership cancellation request so the WSC team can review your account and follow up.",
+    path: "/member-request",
+  },
+  personalTrainingRequest: {
+    title: "Personal Training Request",
+    description:
+      "Request personal training at WSC and share your goals, schedule, injury notes, and training preferences with the fitness team.",
+    path: "/personal-training-interest-form",
+  },
+  golfLessons: {
+    title: "Golf Lessons Inquiry",
+    description:
+      "Request a golf lesson or golf assessment at WSC and share your skill level, golf experience, and training goals.",
+    path: "/golf-coaching",
+  },
+  newsletterSignup: {
+    title: "Newsletter Signup",
+    description:
+      "Sign up for Woodinville Sports Club email updates for tennis, golf, APL fitness, pickleball, summer camps, events, and club news.",
+    path: "/newsletter-signup",
+  },
   blog: {
     title: "Blog & Resource Guides Hub",
     description:

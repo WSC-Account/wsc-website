@@ -169,14 +169,22 @@ export default function Gym() {
             <p className="text-ink-mid text-[16px] leading-[1.82] mb-8">
               Get expert insight into your current routine, goals, and next steps with a complimentary 30-45 minute assessment from a certified WSC trainer.
             </p>
-            <a
-              href={COURT_RESERVE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment-dark transition-colors duration-200"
-            >
-              Book Your Assessment
-            </a>
+            <div className="flex flex-wrap gap-4">
+              <a
+                href={COURT_RESERVE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment-dark transition-colors duration-200"
+              >
+                Book Your Assessment
+              </a>
+              <Link
+                href="/personal-training-interest-form"
+                className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline text-ink border border-ink/20 px-8 py-3.5 hover:bg-ink/5 transition-colors duration-200"
+              >
+                Request Personal Training
+              </Link>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[3px]">

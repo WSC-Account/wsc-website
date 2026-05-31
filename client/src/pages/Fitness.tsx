@@ -137,6 +137,12 @@ export default function Fitness() {
               >
                 Explore Tier 1 APL
               </a>
+              <Link
+                href="/personal-training-interest-form"
+                className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline text-parchment border border-volt-bright px-8 py-3.5 hover:bg-volt hover:border-volt transition-colors duration-200"
+              >
+                Request Personal Training
+              </Link>
             </div>
           </div>
           <img
@@ -259,6 +265,12 @@ export default function Fitness() {
               className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline text-ink border border-ink/20 px-8 py-3.5 hover:bg-ink/5 transition-colors duration-200"
             >
               Membership Options
+            </Link>
+            <Link
+              href="/personal-training-interest-form"
+              className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline text-ink border border-ink/20 px-8 py-3.5 hover:bg-ink/5 transition-colors duration-200"
+            >
+              Request Personal Training
             </Link>
           </div>
         </div>

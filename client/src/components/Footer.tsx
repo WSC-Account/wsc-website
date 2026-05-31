@@ -105,6 +105,38 @@ export default function Footer() {
             </li>
             <li>
               <Link
+                href="/member-request"
+                className="text-parchment/75 text-[13px] no-underline hover:text-parchment transition-colors duration-200"
+              >
+                Membership Cancellation Form
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/personal-training-interest-form"
+                className="text-parchment/75 text-[13px] no-underline hover:text-parchment transition-colors duration-200"
+              >
+                Personal Training Request
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/golf-coaching"
+                className="text-parchment/75 text-[13px] no-underline hover:text-parchment transition-colors duration-200"
+              >
+                Golf Lessons Inquiry
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/newsletter-signup"
+                className="text-parchment/75 text-[13px] no-underline hover:text-parchment transition-colors duration-200"
+              >
+                Newsletter Signup
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="/blog"
                 className="text-parchment/75 text-[13px] no-underline hover:text-parchment transition-colors duration-200"
               >

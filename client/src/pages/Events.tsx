@@ -1,9 +1,9 @@
-import { Link } from "wouter";
 import { BriefcaseBusiness, Cake, GlassWater, PartyPopper, Trophy, Users } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
+import { PrivateEventsInquiryForm } from "@/components/InquiryForms";
 
 const HERO_IMG = "/images/wsc/campus-sunset.webp";
 const CABIN_IMG = "/images/wsc/campus-dome.webp";
@@ -120,7 +120,7 @@ export default function Events() {
       </section>
 
       <section className="bg-dark-mid px-6 lg:px-14 py-20 lg:py-24">
-        <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-center">
+        <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-10 lg:gap-16 items-start">
           <div>
             <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Plan Your Event</p>
             <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
@@ -129,14 +129,9 @@ export default function Events() {
             <p className="text-parchment/80 text-[15px] leading-[1.75] max-w-[620px]">
               WSC can help shape the right combination of venue, food, service, and sports activities for your group.
             </p>
+            <PartyPopper size={22} className="text-volt-bright mt-8" />
           </div>
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center gap-2 text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment transition-colors duration-200"
-          >
-            Get in Touch
-            <PartyPopper size={14} />
-          </Link>
+          <PrivateEventsInquiryForm tone="dark" source="/events" />
         </div>
       </section>
 
