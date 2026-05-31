@@ -265,11 +265,12 @@ test("personal training does not publish Dom's direct email", () => {
   assert.doesNotMatch(gym, /Email Don Graham/i);
 });
 
-test("junior tennis pathway sends deeper details to Tier 1", () => {
+test("junior tennis pathway sends performance-minded juniors to Tier 1 Tennis", () => {
   const tennis = read("client/src/pages/Tennis.tsx");
 
-  assert.match(tennis, /Explore the Junior Pathway at Tier 1/);
-  assert.match(tennis, /https:\/\/www\.tier1nw\.com\/tennis\/intro-classes/);
+  assert.match(tennis, /Junior Performance Development/);
+  assert.match(tennis, /Explore Tier 1 Tennis/);
+  assert.match(tennis, /https:\/\/www\.tier1nw\.com\/tennis/);
 });
 
 test("home facility chart includes golf sims and both fitness centers", () => {

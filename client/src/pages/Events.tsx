@@ -1,5 +1,6 @@
 import { BriefcaseBusiness, Cake, GlassWater, PartyPopper, Trophy, Users } from "lucide-react";
 import PageHero from "@/components/PageHero";
+import ResponsiveImage from "@/components/ResponsiveImage";
 import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
@@ -101,11 +102,9 @@ export default function Events() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-[3px]">
             {venues.map((venue) => (
               <article key={venue.name} className="bg-parchment">
-                <img
+                <ResponsiveImage
                   src={venue.image}
                   alt={`${venue.name} event venue at Woodinville Sports Club`}
-                  width={1800}
-                  height={1200}
                   loading="lazy"
                   className="w-full aspect-[4/3] object-cover saturate-[0.62] brightness-[0.9]"
                 />

@@ -4,6 +4,7 @@
  */
 import { Link } from "wouter";
 import PageHero from "@/components/PageHero";
+import ResponsiveImage from "@/components/ResponsiveImage";
 import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
@@ -155,11 +156,9 @@ export default function ProShop() {
             {/* Image */}
             <div className="relative">
               <div className="overflow-hidden">
-                <img
+                <ResponsiveImage
                   src={STRINGING_IMG}
                   alt="Professional racquet stringing machine at WSC Pro Shop with string spools and tools"
-                  width={1500}
-                  height={1245}
                   loading="lazy"
                   className="w-full h-[420px] lg:h-[520px] object-cover"
                 />

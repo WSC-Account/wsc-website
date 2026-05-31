@@ -1,6 +1,7 @@
 import { Link, type RouteComponentProps } from "wouter";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import PageHero from "@/components/PageHero";
+import ResponsiveImage from "@/components/ResponsiveImage";
 import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData";
 import SEOHead from "@/components/SEOHead";
 import { getBlogCategory, getPostsByCategory } from "@/lib/blog-data";
@@ -59,11 +60,9 @@ export default function BlogCategory({ params }: RouteComponentProps<{ category:
             {posts.map((post) => (
               <article key={post.slug} className="bg-parchment-mid">
                 <Link href={`/post/${post.slug}`} className="block overflow-hidden no-underline">
-                  <img
+                  <ResponsiveImage
                     src={post.image}
                     alt={`${post.category} resource from Woodinville Sports Club`}
-                    width={640}
-                    height={420}
                     loading="lazy"
                     className="w-full aspect-[16/10] object-cover grayscale-[0.12]"
                   />

@@ -2,7 +2,7 @@ import PageHero from "@/components/PageHero";
 import { PersonalTrainingRequestForm } from "@/components/InquiryForms";
 import SEOHead from "@/components/SEOHead";
 
-const HERO_IMG = "/images/wsc/apl-training.webp";
+const HERO_IMG = "/images/wsc/gym-main.webp";
 
 export default function PersonalTrainingFormPage() {
   return (

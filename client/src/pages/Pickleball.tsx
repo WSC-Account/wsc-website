@@ -6,6 +6,7 @@
  */
 import { Link } from "wouter";
 import PageHero from "@/components/PageHero";
+import ResponsiveImage from "@/components/ResponsiveImage";
 import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData";
 import { useScrollReveal, useStaggerReveal } from "@/hooks/useScrollReveal";
 import SEOHead from "@/components/SEOHead";
@@ -93,11 +94,9 @@ export default function Pickleball() {
             </div>
           </div>
           <div>
-            <img
+            <ResponsiveImage
               src={PICKLE_OPEN_PLAY_IMG}
               alt="Pickleball player tracking the ball during indoor play at Woodinville Sports Club"
-              width={1200}
-              height={1800}
               loading="lazy"
               className="w-full aspect-[4/3] lg:aspect-[4/5] object-cover saturate-[0.72] brightness-[0.9] mb-6"
               style={{ objectPosition: "center 45%" }}
@@ -235,11 +234,9 @@ export default function Pickleball() {
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15]">
               Reserve your<br />own court.
             </h2>
-            <img
+            <ResponsiveImage
               src={PICKLE_READY_IMG}
               alt="Pickleball player ready for the next shot on an indoor court"
-              width={1200}
-              height={1800}
               loading="lazy"
               className="mt-8 w-full max-w-[380px] aspect-[3/4] object-cover saturate-[0.72] brightness-[0.9]"
               style={{ objectPosition: "center 45%" }}
@@ -373,11 +370,9 @@ export default function Pickleball() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-10">
             {TOURNAMENT_PHOTOS.map((photo) => (
               <figure key={photo.src} className="group relative overflow-hidden bg-dark-bg">
-                <img
+                <ResponsiveImage
                   src={photo.src}
                   alt={photo.alt}
-                  width={1800}
-                  height={1200}
                   loading="lazy"
                   className="w-full aspect-[4/3] object-cover saturate-[0.72] brightness-[0.85] transition-transform duration-500 group-hover:scale-105"
                   style={{ objectPosition: "center 38%" }}

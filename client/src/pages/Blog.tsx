@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { ArrowRight, BookOpen } from "lucide-react";
 import PageHero from "@/components/PageHero";
+import ResponsiveImage from "@/components/ResponsiveImage";
 import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
@@ -12,11 +13,9 @@ function BlogCard({ post, featured = false }: { post: BlogPost; featured?: boole
   return (
     <article className={`bg-parchment-mid ${featured ? "grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr]" : ""}`}>
       <Link href={`/post/${post.slug}`} className="block overflow-hidden no-underline">
-        <img
+        <ResponsiveImage
           src={post.image}
           alt={`${post.category} resource from Woodinville Sports Club`}
-          width={featured ? 900 : 640}
-          height={featured ? 560 : 420}
           loading="lazy"
           className={`w-full object-cover grayscale-[0.12] ${featured ? "h-full min-h-[320px]" : "aspect-[16/10]"}`}
         />

@@ -4,6 +4,7 @@
  */
 import { Link } from "wouter";
 import PageHero from "@/components/PageHero";
+import ResponsiveImage from "@/components/ResponsiveImage";
 import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
@@ -118,11 +119,9 @@ export default function About() {
           <div className="grid grid-cols-2 gap-[3px]">
             {VISION_IMAGES.map((image) => (
               <figure key={image.src} className={`relative overflow-hidden ${image.className}`}>
-                <img
+                <ResponsiveImage
                   src={image.src}
                   alt={image.alt}
-                  width={1800}
-                  height={1200}
                   loading="lazy"
                   className={`absolute inset-0 h-full w-full object-cover brightness-[0.72] saturate-[0.72] ${image.imageClassName}`}
                 />

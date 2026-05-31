@@ -4,6 +4,7 @@
  */
 import { Link } from "wouter";
 import PageHero from "@/components/PageHero";
+import ResponsiveImage from "@/components/ResponsiveImage";
 import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
@@ -145,11 +146,9 @@ export default function Fitness() {
               </Link>
             </div>
           </div>
-          <img
+          <ResponsiveImage
             src={TRAINING_IMG}
             alt="Athletes training in the Athletic Performance Lab at WSC"
-            width={1800}
-            height={1350}
             loading="lazy"
             className="w-full aspect-[4/3] object-cover brightness-[0.78] saturate-[0.85]"
           />

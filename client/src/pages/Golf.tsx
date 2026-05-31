@@ -8,6 +8,7 @@ import { Link } from "wouter";
 import PageHero from "@/components/PageHero";
 import Tier1Banner from "@/components/Tier1Banner";
 import FullWidthImage from "@/components/FullWidthImage";
+import ResponsiveImage from "@/components/ResponsiveImage";
 import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData";
 import { useScrollReveal, useStaggerReveal } from "@/hooks/useScrollReveal";
 import SEOHead from "@/components/SEOHead";
@@ -103,11 +104,9 @@ export default function Golf() {
               ))}
             </div>
           </div>
-          <img
+          <ResponsiveImage
             src={GOLF_RANGE_FIELD_IMG}
             alt="Short-game practice green at Woodinville Sports Club"
-            width={1350}
-            height={1800}
             loading="lazy"
             className="w-full aspect-[4/3] object-cover saturate-[0.55] brightness-[0.85]"
             style={{ objectPosition: "center 66%" }}
@@ -198,11 +197,9 @@ export default function Golf() {
               key={i}
               className={`group relative overflow-hidden transition-all duration-700 ease-out ${simGalleryVisible[i] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             >
-              <img
+              <ResponsiveImage
                 src={img.src}
                 alt={img.alt}
-                width={1800}
-                height={1350}
                 loading="lazy"
                 className="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-105"
               />
@@ -230,11 +227,9 @@ export default function Golf() {
                 Classes for youth and adults of all levels, from first swing to elite golfers. Led by WGTF Master Certified Coach, Daniel Jarvie. Outdoor instruction on the range; indoor instruction in WSC's new Swing Lab indoor golf simulators.
               </p>
             </div>
-            <img
+            <ResponsiveImage
               src={JUNIOR_ACADEMY_IMG}
               alt="Junior golf academy students with coach Daniel Jarvie at Woodinville Sports Club"
-              width={1800}
-              height={1200}
               loading="lazy"
               className="w-full aspect-[16/10] object-cover saturate-[0.72] brightness-[0.92]"
               style={{ objectPosition: "center 42%" }}
@@ -385,11 +380,9 @@ export default function Golf() {
 
           <div className="grid grid-cols-1 lg:grid-cols-[minmax(320px,420px)_1fr] gap-[3px] items-stretch">
             <div className="relative mx-auto lg:mx-0 w-full max-w-[520px] lg:max-w-none aspect-[3/4] lg:aspect-auto lg:min-h-[520px] overflow-hidden bg-dark-bg">
-              <img
+              <ResponsiveImage
                 src={GOLF_INSTRUCTORS_IMG}
                 alt="Golf instructors Daniel Jarvie and Stella Kim in the Swing Lab"
-                width={768}
-                height={1024}
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover saturate-[0.72] brightness-[0.9]"
                 style={{ objectPosition: "center 36%" }}

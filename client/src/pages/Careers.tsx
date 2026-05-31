@@ -5,7 +5,7 @@ import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
 import { CareersApplicationForm } from "@/components/InquiryForms";
 
-const HERO_IMG = "/images/wsc/apl-training.webp";
+const HERO_IMG = "/images/wsc/campus-sunset.webp";
 
 const departments = [
   {

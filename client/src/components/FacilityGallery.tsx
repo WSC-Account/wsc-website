@@ -4,6 +4,7 @@
  * Used on homepage and about page for visual impact
  */
 import { useState } from "react";
+import ResponsiveImage from "@/components/ResponsiveImage";
 
 interface GalleryImage {
   src: string;
@@ -69,11 +70,9 @@ export default function FacilityGallery({
                 onMouseEnter={() => setActiveImg(i)}
                 onMouseLeave={() => setActiveImg(null)}
               >
-                <img
+                <ResponsiveImage
                   src={img.src}
                   alt={img.alt}
-                  width={1800}
-                  height={1200}
                   className={`w-full h-full object-cover ${aspectClass} transition-all duration-700 ease-out ${
                     activeImg === i
                       ? "scale-[1.04] brightness-[0.6]"

@@ -2,7 +2,7 @@
  * 4B Design: Image-led hero with restrained overlay
  * Green eyebrow label, large light headline, dim subtext
  */
-import { responsiveAvifSrcSet, responsiveWebpSrcSet } from "@/lib/responsive-image";
+import { imageDimensionsFor, responsiveAvifSrcSet, responsiveWebpSrcSet } from "@/lib/responsive-image";
 
 interface PageHeroProps {
   eyebrow: string;
@@ -31,6 +31,7 @@ export default function PageHero({
   const imageLayerClass = avoidHeaderCrop
     ? "absolute inset-x-0 bottom-0 top-[var(--site-header-height,130px)] block"
     : "absolute inset-0 block";
+  const imageDimensions = imageDimensionsFor(image);
 
   return (
     <section className="relative bg-dark-bg overflow-hidden pt-[var(--site-header-height,130px)]">
@@ -48,8 +49,8 @@ export default function PageHero({
         <img
           src={image}
           alt={`${eyebrow} at Woodinville Sports Club`}
-          width={1800}
-          height={1200}
+          width={imageDimensions.width}
+          height={imageDimensions.height}
           loading="eager"
           fetchPriority="high"
           decoding="async"

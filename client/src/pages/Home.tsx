@@ -11,12 +11,12 @@ import InstagramFeed from "@/components/InstagramFeed";
 import FacilityGallery from "@/components/FacilityGallery";
 import Tier1Banner from "@/components/Tier1Banner";
 import FullWidthImage from "@/components/FullWidthImage";
+import ResponsiveImage from "@/components/ResponsiveImage";
 import StructuredData, { getLocalBusinessSchema, getWebSiteSchema, getFAQSchema } from "@/components/StructuredData";
 import { useScrollReveal, useStaggerReveal } from "@/hooks/useScrollReveal";
 import { useFormProtection } from "@/hooks/useFormProtection";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
-import { responsiveAvifSrcSet, responsiveWebpSrcSet } from "@/lib/responsive-image";
 import { submitWebsiteForm } from "@/lib/forms";
 
 const TENNIS_IMG = "/images/wsc/tennis-courts.webp";
@@ -324,29 +324,17 @@ export default function Home() {
         >
           {heroCollageImages.map((tile, index) => (
             <div key={tile.src} className={`relative overflow-hidden ${tile.className}`}>
-              <picture className="block h-full w-full">
-                <source
-                  type="image/avif"
-                  srcSet={responsiveAvifSrcSet(tile.src)}
-                  sizes={index === 0 ? "(min-width: 1024px) 34vw, 100vw" : "(min-width: 1024px) 25vw, 50vw"}
-                />
-                <source
-                  type="image/webp"
-                  srcSet={responsiveWebpSrcSet(tile.src)}
-                  sizes={index === 0 ? "(min-width: 1024px) 34vw, 100vw" : "(min-width: 1024px) 25vw, 50vw"}
-                />
-                <img
-                  src={tile.src}
-                  alt={tile.alt}
-                  width={tile.width}
-                  height={tile.height}
-                  loading={index === 0 ? "eager" : "lazy"}
-                  fetchPriority={index === 0 ? "high" : "auto"}
-                  decoding="async"
-                  className={`h-full w-full object-cover saturate-[0.95] brightness-[0.92] contrast-[1.02] lg:scale-[1.02] ${tile.imageClassName ?? ""}`}
-                  style={{ objectPosition: tile.objectPosition }}
-                />
-              </picture>
+              <ResponsiveImage
+                src={tile.src}
+                alt={tile.alt}
+                sizes={index === 0 ? "(min-width: 1024px) 34vw, 100vw" : "(min-width: 1024px) 25vw, 50vw"}
+                pictureClassName="block h-full w-full"
+                loading={index === 0 ? "eager" : "lazy"}
+                fetchPriority={index === 0 ? "high" : "auto"}
+                decoding="async"
+                className={`h-full w-full object-cover saturate-[0.95] brightness-[0.92] contrast-[1.02] lg:scale-[1.02] ${tile.imageClassName ?? ""}`}
+                style={{ objectPosition: tile.objectPosition }}
+              />
               <div className="absolute inset-0 bg-dark-bg/5" />
             </div>
           ))}
@@ -576,11 +564,9 @@ export default function Home() {
                 onMouseLeave={() => setHoveredCard(null)}
               >
                 <div className="overflow-hidden relative">
-                  <img
+                  <ResponsiveImage
                     src={d.img}
                     alt={`${d.name} facilities at Woodinville Sports Club`}
-                    width={1800}
-                    height={1200}
                     loading="lazy"
                     className={`w-full aspect-[16/10] object-cover transition-all duration-[650ms] ease-out ${
                       hoveredCard === i
@@ -782,11 +768,9 @@ export default function Home() {
               className={`bg-parchment overflow-hidden group transition-all duration-700 ease-out ${swingLabVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             >
               <div className="overflow-hidden">
-                <img
+                <ResponsiveImage
                   src={SWINGLAB_IMG}
                   alt="Swing Lab Golf Simulators at WSC"
-                  width={1800}
-                  height={1350}
                   loading="lazy"
                   className="w-full aspect-[16/10] object-cover transition-transform duration-500 group-hover:scale-105"
                 />
@@ -813,11 +797,9 @@ export default function Home() {
               className={`bg-parchment overflow-hidden group transition-all duration-700 ease-out delay-150 ${tier1GolfVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             >
               <div className="overflow-hidden">
-                <img
+                <ResponsiveImage
                   src={GOLF_IMG}
                   alt="Tier 1 Golf Academy at WSC"
-                  width={1800}
-                  height={1200}
                   loading="lazy"
                   className="w-full aspect-[16/10] object-cover transition-transform duration-500 group-hover:scale-105"
                 />

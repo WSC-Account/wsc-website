@@ -2,7 +2,7 @@ import PageHero from "@/components/PageHero";
 import { GolfLessonInquiryForm } from "@/components/InquiryForms";
 import SEOHead from "@/components/SEOHead";
 
-const HERO_IMG = "/images/wsc/swing-lab-private-lesson.webp";
+const HERO_IMG = "/images/wsc/swing-lab-simulators.webp";
 
 export default function GolfLessonFormPage() {
   return (

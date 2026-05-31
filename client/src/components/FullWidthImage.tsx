@@ -3,6 +3,7 @@
  * Used as visual breaks between content sections for dramatic impact.
  * Optional overlay text for context.
  */
+import { imageDimensionsFor, responsiveAvifSrcSet, responsiveWebpSrcSet } from "@/lib/responsive-image";
 
 interface FullWidthImageProps {
   src: string;
@@ -36,6 +37,7 @@ export default function FullWidthImage({
   ctaExternal = false,
   imagePosition = FULL_WIDTH_IMAGE_POSITIONS[src] ?? "center",
 }: FullWidthImageProps) {
+  const imageDimensions = imageDimensionsFor(src);
   const heightClass =
     height === "short"
       ? "h-[35vh] lg:h-[40vh]"
@@ -52,15 +54,28 @@ export default function FullWidthImage({
 
   return (
     <section className={`relative ${heightClass} overflow-hidden`}>
-      <img
-        src={src}
-        alt={alt}
-        width={1800}
-        height={1200}
-        className="absolute inset-0 w-full h-full object-cover object-center"
-        style={{ objectPosition: imagePosition }}
-        loading="lazy"
-      />
+      <picture className="absolute inset-0 block">
+        <source
+          type="image/avif"
+          srcSet={responsiveAvifSrcSet(src)}
+          sizes="100vw"
+        />
+        <source
+          type="image/webp"
+          srcSet={responsiveWebpSrcSet(src)}
+          sizes="100vw"
+        />
+        <img
+          src={src}
+          alt={alt}
+          width={imageDimensions.width}
+          height={imageDimensions.height}
+          className="w-full h-full object-cover object-center"
+          style={{ objectPosition: imagePosition }}
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
       {overlay !== "none" && <div className={`absolute inset-0 ${overlayClass}`} />}
       {(caption || subcaption) && (
         <div className="absolute bottom-0 left-0 right-0 z-10 px-6 lg:px-14 pb-8 lg:pb-12">

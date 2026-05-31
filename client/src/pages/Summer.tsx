@@ -7,6 +7,7 @@ import { useState, useRef, type KeyboardEvent } from "react";
 import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight, Clock, Users, MapPin, Sun, Zap, Trophy, Calendar, ArrowRight, Globe } from "lucide-react";
+import ResponsiveImage from "@/components/ResponsiveImage";
 import StructuredData, { getSummerCampSchema, getBreadcrumbSchema } from "@/components/StructuredData";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
@@ -496,16 +497,18 @@ export default function Summer() {
 
       {/* Hero — Full bleed with overlay */}
       <section className="relative overflow-hidden pt-[var(--site-header-height,130px)]">
+        <ResponsiveImage
+          src={HERO_IMG}
+          alt="Summer camp activities at Woodinville Sports Club"
+          sizes="100vw"
+          pictureClassName="absolute inset-x-0 bottom-0 top-[var(--site-header-height,130px)] block"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          className="w-full h-full object-cover brightness-[0.94] saturate-[0.95]"
+          style={{ objectPosition: "center 8%" }}
+        />
         <div className="absolute inset-x-0 bottom-0 top-[var(--site-header-height,130px)]">
-          <img
-            src={HERO_IMG}
-            alt="Summer camp activities at Woodinville Sports Club"
-            width={1800}
-            height={1202}
-            loading="eager"
-            className="w-full h-full object-cover brightness-[0.94] saturate-[0.95]"
-            style={{ objectPosition: "center 8%" }}
-          />
           <div className="absolute inset-0 bg-gradient-to-t from-[rgba(22,19,16,0.42)] via-[rgba(22,19,16,0.18)] to-transparent" />
         </div>
         <div className="hero-safe-content relative z-10 w-full max-w-[1440px] mx-auto px-6 lg:px-14 pb-16 lg:pb-20 pt-10 min-h-[85vh] flex flex-col justify-end">
@@ -518,7 +521,7 @@ export default function Summer() {
               Summer Training @ WSC
             </p>
             <h1 className="hero-title text-parchment text-[clamp(36px,5.5vw,72px)] font-light tracking-[-0.03em] leading-[1.05] mb-5">
-              Join Us for an<br />Epic Summer.
+              Join Us for an{" "}<br />Epic Summer.
             </h1>
             <p className="hero-subtitle text-parchment/70 text-[17px] leading-[1.7] max-w-[520px] mb-8">
               Train where high-performance athletes train. Ages 3–18 on our 67-acre campus, June 29 – August 30.
@@ -708,11 +711,9 @@ export default function Summer() {
                 </div>
               </div>
               <div className="relative aspect-[4/3] lg:aspect-auto overflow-hidden">
-                <img
+                <ResponsiveImage
                   src={program.image}
                   alt={`${program.name} summer program at Woodinville Sports Club`}
-                  width={1800}
-                  height={1200}
                   loading="lazy"
                   className="w-full h-full object-cover brightness-[0.8] saturate-[0.85]"
                 />
@@ -1284,11 +1285,9 @@ export default function Summer() {
             </Link>
           </div>
           <div className="relative">
-            <img
+            <ResponsiveImage
               src={PERF_IMG}
               alt="Athletic Performance Lab training for summer athletes at WSC"
-              width={1185}
-              height={1800}
               loading="lazy"
               className="w-full aspect-[4/3] object-cover brightness-[0.7] saturate-[0.8]"
             />

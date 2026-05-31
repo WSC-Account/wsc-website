@@ -9,6 +9,7 @@ import { Link } from "wouter";
 import PageHero from "@/components/PageHero";
 import Tier1Banner from "@/components/Tier1Banner";
 import FullWidthImage from "@/components/FullWidthImage";
+import ResponsiveImage from "@/components/ResponsiveImage";
 import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData";
 import { useScrollReveal, useStaggerReveal } from "@/hooks/useScrollReveal";
 import SEOHead from "@/components/SEOHead";
@@ -17,6 +18,7 @@ import { SEO } from "@/lib/seo-data";
 const TENNIS_IMG = "/images/wsc/tennis-courts.webp";
 const TENNIS_ACTION = "/images/wsc/tennis-player.webp";
 const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689";
+const TIER1_TENNIS_URL = "https://www.tier1nw.com/tennis";
 const TIER1_CORE_URL = "https://www.tier1nw.com/tennis/intro-classes";
 
 const corePathway = [
@@ -137,12 +139,12 @@ export default function Tennis() {
               </ul>
             </div>
             <a
-              href="https://www.tier1nw.com"
+              href={TIER1_TENNIS_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="text-ink text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt pb-[3px]"
             >
-              Learn More About Tier 1 Performance
+              Explore Tier 1 Tennis
             </a>
           </div>
 
@@ -153,7 +155,7 @@ export default function Tennis() {
               <h3 className="text-[20px] font-light tracking-[-0.01em] mb-1">Tier 1 Core Tennis</h3>
               <p className="text-ink-light text-[11px] tracking-[0.08em] uppercase mb-3">Formerly RPM Tennis</p>
               <p className="text-ink-mid text-[14px] leading-[1.72] mb-3">
-                Junior tennis classes for ages 3 and up, with pathways for recreational and elite development.
+                Junior tennis classes for ages 3 and up, built around athletic movement, technical foundations, and the habits that prepare players for higher-performance training.
               </p>
               <ul className="space-y-1.5">
                 {[
@@ -242,11 +244,9 @@ export default function Tennis() {
               ))}
             </div>
           </div>
-          <img
+          <ResponsiveImage
             src={TENNIS_IMG}
             alt="Indoor tennis courts at Woodinville Sports Club"
-            width={1800}
-            height={1218}
             loading="lazy"
             className="w-full aspect-[4/3] object-cover saturate-[0.55] brightness-[0.85]"
           />
@@ -305,31 +305,31 @@ export default function Tennis() {
         </div>
       </section>
 
-      {/* Tier 1 Core Pathway */}
+      {/* Junior Performance Development */}
       <section className="bg-dark-bg px-6 lg:px-14 py-24 lg:py-28 overflow-hidden">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[0.82fr_1.18fr] gap-12 lg:gap-20 items-center">
           <div>
-            <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Junior Pathway</p>
+            <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Junior Performance Development</p>
             <h2 className="text-parchment text-[clamp(30px,3.6vw,54px)] font-light tracking-[-0.03em] leading-[1.03] mb-6">
-              A first look at the Tier 1 pathway.
+              Build the complete junior athlete.
             </h2>
             <p className="text-parchment/78 text-[16px] leading-[1.82] mb-8 max-w-[560px]">
-              Tier 1 Core Tennis introduces players ages 3 and up to the red-to-yellow ball progression with age-appropriate courts, equipment, movement, and rally skills. WSC shows the pathway here; Tier 1 has the full class details, schedules, and next steps.
+              Tier 1 develops junior players through age-aware technical progressions, athletic movement, live-ball reps, and competitive habits. WSC shows the entry points here; Tier 1 carries athletes into the full tennis pathway, academy evaluation, and performance training.
             </p>
             <div className="flex flex-wrap gap-3 mb-9">
-              {["Ages 3+", "Red to Yellow", "Core Tennis"].map((item) => (
+              {["Junior Athletes", "Performance Pathway", "Tier 1 Tennis"].map((item) => (
                 <span key={item} className="text-parchment/75 text-[11px] tracking-[0.14em] uppercase border border-parchment/15 px-4 py-2">
                   {item}
                 </span>
               ))}
             </div>
             <a
-              href={TIER1_CORE_URL}
+              href={TIER1_TENNIS_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment transition-colors duration-200"
             >
-              Explore the Junior Pathway at Tier 1
+              Explore Tier 1 Tennis
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" strokeWidth={1.8} />
             </a>
           </div>
@@ -353,15 +353,15 @@ export default function Tennis() {
             </div>
             <div className="mt-5 flex flex-col gap-3 border border-volt-bright/20 bg-volt-bright/[0.08] p-6 md:flex-row md:items-center md:justify-between">
               <p className="text-parchment/78 text-[13px] leading-[1.7] max-w-[620px]">
-                Want class formats, placement notes, and current availability? Continue to Tier 1 for the complete junior tennis overview.
+                Want age-group pathways, academy options, evaluation details, and current programming? Continue to Tier 1 for the complete tennis overview.
               </p>
               <a
-                href={TIER1_CORE_URL}
+                href={TIER1_TENNIS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex shrink-0 items-center gap-2 text-volt-bright text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt-bright pb-[3px]"
               >
-                View Details
+                View Tier 1 Tennis
                 <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" strokeWidth={1.8} />
               </a>
             </div>
