@@ -503,10 +503,10 @@ export default function Summer() {
             width={1800}
             height={1202}
             loading="eager"
-            className="w-full h-full object-cover brightness-[0.44] saturate-[0.78]"
+            className="w-full h-full object-cover brightness-[0.94] saturate-[0.95]"
             style={{ objectPosition: "center 8%" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[rgba(22,19,16,0.75)] via-[rgba(22,19,16,0.45)] to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[rgba(22,19,16,0.42)] via-[rgba(22,19,16,0.18)] to-transparent" />
         </div>
         <div className="hero-safe-content relative z-10 w-full max-w-[1440px] mx-auto px-6 lg:px-14 pb-16 lg:pb-20 pt-10 min-h-[85vh] flex flex-col justify-end">
           <motion.div

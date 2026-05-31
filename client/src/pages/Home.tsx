@@ -343,7 +343,7 @@ export default function Home() {
                   loading={index === 0 ? "eager" : "lazy"}
                   fetchPriority={index === 0 ? "high" : "auto"}
                   decoding="async"
-                  className={`h-full w-full object-cover saturate-[0.72] brightness-[0.68] contrast-[1.05] lg:scale-[1.02] ${tile.imageClassName ?? ""}`}
+                  className={`h-full w-full object-cover saturate-[0.95] brightness-[0.92] contrast-[1.02] lg:scale-[1.02] ${tile.imageClassName ?? ""}`}
                   style={{ objectPosition: tile.objectPosition }}
                 />
               </picture>
@@ -351,8 +351,8 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[rgba(22,19,16,0.6)] via-[rgba(22,19,16,0.44)] to-[rgba(22,19,16,0.14)] lg:via-[rgba(22,19,16,0.28)] lg:to-[rgba(22,19,16,0.05)]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[rgba(22,19,16,0.6)] via-[rgba(22,19,16,0.14)] to-[rgba(22,19,16,0.04)]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[rgba(22,19,16,0.42)] via-[rgba(22,19,16,0.24)] to-[rgba(22,19,16,0.05)] lg:via-[rgba(22,19,16,0.14)] lg:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[rgba(22,19,16,0.4)] via-[rgba(22,19,16,0.08)] to-transparent" />
 
         <div className="relative z-10 px-6 lg:px-14 pb-0 max-w-[1440px] w-full mx-auto grid grid-cols-1 lg:grid-cols-[minmax(0,0.95fr)_minmax(360px,0.7fr)] gap-10 lg:gap-16 items-end">
           <div className="pb-16 lg:pb-20">
@@ -395,7 +395,7 @@ export default function Home() {
           </div>
 
           <div className="pb-12 lg:pb-20">
-            <div className="border border-parchment/[0.1] bg-dark-bg/45 px-5 backdrop-blur-[2px] sm:px-8">
+            <div className="border border-parchment/[0.14] bg-dark-bg/68 px-5 backdrop-blur-[3px] sm:px-8">
               {metrics.map((m, i) => (
                 <div
                   key={i}
@@ -403,7 +403,7 @@ export default function Home() {
                     i < metrics.length - 1 ? "border-b border-parchment/[0.08]" : ""
                   }`}
                 >
-                  <span className="text-parchment/75 text-[12px] tracking-[0.12em] uppercase">
+                  <span className="text-parchment/85 text-[12px] tracking-[0.12em] uppercase">
                     {m.label}
                   </span>
                   <span className="text-right">
@@ -411,7 +411,7 @@ export default function Home() {
                       {m.val}
                     </span>
                     {m.unit && (
-                      <span className="text-parchment/70 text-[12px] tracking-[0.1em] uppercase ml-2">
+                      <span className="text-parchment/80 text-[12px] tracking-[0.1em] uppercase ml-2">
                         {m.unit}
                       </span>
                     )}
