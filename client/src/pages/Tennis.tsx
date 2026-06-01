@@ -21,6 +21,17 @@ const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689
 const TIER1_TENNIS_URL = "https://www.tier1nw.com/tennis";
 const TIER1_CORE_URL = "https://www.tier1nw.com/tennis/intro-classes";
 
+const academyTracks = [
+  {
+    name: "Tier 1 Afterschool Academy",
+    description: "Year-round training for junior players building technique, athletic habits, and match confidence after school.",
+  },
+  {
+    name: "Full Time Academy",
+    description: "A dedicated academy track for committed junior athletes pursuing a complete tennis and performance pathway.",
+  },
+];
+
 const corePathway = [
   {
     name: "JumpStart",
@@ -351,19 +362,45 @@ export default function Tennis() {
                 </article>
               ))}
             </div>
-            <div className="mt-5 flex flex-col gap-3 border border-volt-bright/20 bg-volt-bright/[0.08] p-6 md:flex-row md:items-center md:justify-between">
-              <p className="text-parchment/78 text-[13px] leading-[1.7] max-w-[620px]">
-                Want age-group pathways, academy options, evaluation details, and current programming? Continue to Tier 1 for the complete tennis overview.
-              </p>
-              <a
-                href={TIER1_TENNIS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex shrink-0 items-center gap-2 text-volt-bright text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt-bright pb-[3px]"
-              >
-                View Tier 1 Tennis
-                <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" strokeWidth={1.8} />
-              </a>
+            <div className="mt-5 border border-volt-bright/25 bg-volt-bright/[0.08] p-6 lg:p-7">
+              <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                <div>
+                  <p className="text-volt-bright text-[11px] tracking-[0.2em] uppercase mb-2">Primary academy tracks</p>
+                  <p className="text-parchment/78 text-[13px] leading-[1.7] max-w-[600px]">
+                    Want age-group pathways, academy options, evaluation details, and current programming? Continue to Tier 1 for the complete tennis overview.
+                  </p>
+                </div>
+                <a
+                  href={TIER1_TENNIS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex shrink-0 items-center gap-2 self-start text-volt-bright text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt-bright pb-[3px]"
+                >
+                  View Tier 1 Tennis
+                  <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" strokeWidth={1.8} />
+                </a>
+              </div>
+              <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                {academyTracks.map((track) => (
+                  <a
+                    key={track.name}
+                    href={TIER1_TENNIS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex min-h-[178px] flex-col justify-between border border-volt-bright/35 bg-dark-bg/60 p-5 no-underline transition-colors duration-200 hover:border-volt-bright hover:bg-dark-bg/80"
+                  >
+                    <div>
+                      <p className="text-volt-bright text-[11px] tracking-[0.18em] uppercase mb-4">Academy Track</p>
+                      <h3 className="text-parchment text-[clamp(22px,2vw,29px)] font-light tracking-[-0.02em] leading-[1.05]">{track.name}</h3>
+                      <p className="mt-4 text-parchment/70 text-[13px] leading-[1.6]">{track.description}</p>
+                    </div>
+                    <span className="mt-5 inline-flex items-center gap-2 text-volt-bright text-[11px] tracking-[0.14em] uppercase">
+                      View Tier 1
+                      <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" strokeWidth={1.8} />
+                    </span>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
