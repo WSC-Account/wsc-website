@@ -10,7 +10,7 @@ import { useScrollReveal, useStaggerReveal } from "@/hooks/useScrollReveal";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
 
-const GYM_HERO = "/images/wsc/gym-floor.webp";
+const GYM_HERO = "/images/wsc/fitness-center-hero.webp";
 const GYM_MAIN = "/images/wsc/gym-main.webp";
 const GYM_WEIGHTS = GYM_MAIN;
 const GYM_FUNCTIONAL = "/images/wsc/gym-floor.webp";

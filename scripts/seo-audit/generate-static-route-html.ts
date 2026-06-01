@@ -23,7 +23,7 @@ const pageImages: Record<string, string> = {
   "/": "/images/wsc/golf-range-aerial.webp",
   "/tennis": "/images/wsc/tennis-courts.webp",
   "/golf": "/images/wsc/golf-range-sunset.webp",
-  "/gym": "/images/wsc/gym-floor.webp",
+  "/gym": "/images/wsc/fitness-center-hero.webp",
   "/fitness": "/images/wsc/gym-main.webp",
   "/pickleball": "/images/wsc/pickleball-dome.webp",
   "/summer": "/images/wsc/campus-dome.webp",
