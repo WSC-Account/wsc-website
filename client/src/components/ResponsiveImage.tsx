@@ -10,7 +10,7 @@ type ResponsiveImageProps = Omit<ImgHTMLAttributes<HTMLImageElement>, "src" | "s
 export default function ResponsiveImage({
   src,
   sizes = "(min-width: 1024px) 50vw, 100vw",
-  pictureClassName = "contents",
+  pictureClassName = "block",
   width,
   height,
   ...imageProps
