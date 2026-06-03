@@ -5,12 +5,12 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import PageHero from "@/components/PageHero";
-import { toast } from "sonner";
 import StructuredData, { getContactPageSchema, getLocalBusinessSchema, getBreadcrumbSchema } from "@/components/StructuredData";
 import { useFormProtection } from "@/hooks/useFormProtection";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
 import { submitWebsiteForm } from "@/lib/forms";
+import { notifyError, notifySuccess } from "@/lib/notify";
 
 const HERO_IMG = "/images/wsc/contact-campus.webp";
 
@@ -28,14 +28,14 @@ export default function Contact() {
       if (check.reason === "honeypot" || check.reason === "too_fast") {
         const message = "Message sent! We'll be in touch shortly.";
         setFormStatus({ type: "success", message });
-        toast.success(message);
+        notifySuccess(message);
         setForm({ firstName: "", lastName: "", email: "", message: "" });
         return;
       }
       if (check.reason === "rate_limited") {
         const message = "Please wait a moment before sending another message.";
         setFormStatus({ type: "error", message });
-        toast.error(message);
+        notifyError(message);
         return;
       }
     }
@@ -56,12 +56,12 @@ export default function Contact() {
 
       const message = "Message sent! We'll be in touch shortly.";
       setFormStatus({ type: "success", message });
-      toast.success(message);
+      notifySuccess(message);
       setForm({ firstName: "", lastName: "", email: "", message: "" });
     } catch {
       const message = "We could not send your message right now. Please try again or email info@woodinvillesportsclub.com.";
       setFormStatus({ type: "error", message });
-      toast.error(message);
+      notifyError(message);
     } finally {
       setIsSubmitting(false);
     }

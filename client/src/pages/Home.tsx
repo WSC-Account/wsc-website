@@ -3,21 +3,23 @@
  * Removed duplicate Swing Lab gallery, Tier 1 Golf Academy detail, and APL Performance section.
  * These are now compact teasers linking to their respective pages.
  */
-import { useState } from "react";
+import { lazy, Suspense, useState, type ReactNode } from "react";
 import { Link } from "wouter";
 import { Instagram, Calendar, Clock, MapPin, ChevronRight, Quote } from "lucide-react";
-import { toast } from "sonner";
-import InstagramFeed from "@/components/InstagramFeed";
-import FacilityGallery from "@/components/FacilityGallery";
-import Tier1Banner from "@/components/Tier1Banner";
-import FullWidthImage from "@/components/FullWidthImage";
 import ResponsiveImage from "@/components/ResponsiveImage";
 import StructuredData, { getLocalBusinessSchema, getWebSiteSchema, getFAQSchema } from "@/components/StructuredData";
 import { useScrollReveal, useStaggerReveal } from "@/hooks/useScrollReveal";
 import { useFormProtection } from "@/hooks/useFormProtection";
+import { useDeferredMount } from "@/hooks/useDeferredMount";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
 import { submitWebsiteForm } from "@/lib/forms";
+import { notifyError, notifySuccess } from "@/lib/notify";
+
+const InstagramFeed = lazy(() => import("@/components/InstagramFeed"));
+const FacilityGallery = lazy(() => import("@/components/FacilityGallery"));
+const Tier1Banner = lazy(() => import("@/components/Tier1Banner"));
+const FullWidthImage = lazy(() => import("@/components/FullWidthImage"));
 
 const TENNIS_IMG = "/images/wsc/tennis-courts.webp";
 const GOLF_IMG = "/images/wsc/golf-practice-area.webp";
@@ -249,6 +251,13 @@ const galleryImages = [
   { src: FITNESS_TRAINING_IMG, alt: "Fitness training", caption: "Full-service gym and APL Training Center", span: "normal" as const },
 ];
 
+function DeferredHomeSection({ children, delayMs = 600 }: { children: ReactNode; delayMs?: number }) {
+  const ready = useDeferredMount(delayMs);
+  if (!ready) return null;
+
+  return <Suspense fallback={null}>{children}</Suspense>;
+}
+
 export default function Home() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [activeDayStep, setActiveDayStep] = useState(0);
@@ -295,17 +304,18 @@ export default function Home() {
         subject: "WSC newsletter signup",
         metadata: {
           signupLocation: "home_newsletter",
+          consent: "Submitted the WSC newsletter signup form.",
         },
       });
 
       setNewsletterStatus("Thank you for subscribing.");
       setNewsletterStatusType("success");
       setNewsletterEmail("");
-      toast.success("Thanks, you're on the WSC newsletter list.");
+      notifySuccess("Thanks, you're on the WSC newsletter list.");
     } catch {
       setNewsletterStatus("We could not subscribe you right now. Please try again.");
       setNewsletterStatusType("error");
-      toast.error("We could not subscribe you right now. Please try again.");
+      notifyError("We could not subscribe you right now. Please try again.");
     } finally {
       setIsNewsletterSubmitting(false);
     }
@@ -377,7 +387,7 @@ export default function Home() {
                 href="/contact"
                 className="text-[12px] tracking-[0.14em] uppercase no-underline text-parchment/80 hover:text-parchment transition-colors duration-200"
               >
-                Schedule a Tour
+                Book a Visit
               </Link>
             </div>
           </div>
@@ -484,16 +494,20 @@ export default function Home() {
       </section>
 
       {/* ── TIER 1 SPORTS — Full Banner ── */}
-      <Tier1Banner variant="full" />
+      <DeferredHomeSection>
+        <Tier1Banner variant="full" />
+      </DeferredHomeSection>
 
       {/* ── FULL-WIDTH VISUAL BREAK — Campus ── */}
-      <FullWidthImage
-        src={GALLERY_AERIAL}
-        alt="WSC campus from above"
-        caption="67 acres of athletic excellence in the Pacific Northwest."
-        subcaption="Woodinville, Washington"
-        height="tall"
-      />
+      <DeferredHomeSection>
+        <FullWidthImage
+          src={GALLERY_AERIAL}
+          alt="WSC campus from above"
+          caption="67 acres of athletic excellence in the Pacific Northwest."
+          subcaption="Woodinville, Washington"
+          height="tall"
+        />
+      </DeferredHomeSection>
 
       {/* ── ABOUT ── */}
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-32">
@@ -644,16 +658,18 @@ export default function Home() {
       </section>
 
       {/* ── FULL-WIDTH VISUAL BREAK — Tennis Action ── */}
-      <FullWidthImage
-        src={GALLERY_TENNIS}
-        alt="Indoor tennis match at WSC"
-        caption="Train with former world-ranked professionals and D1 standouts."
-        subcaption="Tier 1 Tennis Academy"
-        height="medium"
-        ctaLabel="Explore Tier 1 Tennis"
-        ctaHref="https://www.tier1nw.com"
-        ctaExternal
-      />
+      <DeferredHomeSection delayMs={800}>
+        <FullWidthImage
+          src={GALLERY_TENNIS}
+          alt="Indoor tennis match at WSC"
+          caption="Train with former world-ranked professionals and D1 standouts."
+          subcaption="Tier 1 Tennis Academy"
+          height="medium"
+          ctaLabel="Explore Tier 1 Tennis"
+          ctaHref="https://www.tier1nw.com"
+          ctaExternal
+        />
+      </DeferredHomeSection>
 
       {/* ── YOUR DAY AT WSC ── */}
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
@@ -751,12 +767,14 @@ export default function Home() {
       </section>
 
       {/* ── FACILITY GALLERY — Immersive Photo Grid ── */}
-      <FacilityGallery
-        images={galleryImages}
-        title="Our Campus."
-        eyebrow="67 Acres"
-        dark
-      />
+      <DeferredHomeSection delayMs={900}>
+        <FacilityGallery
+          images={galleryImages}
+          title="Our Campus."
+          eyebrow="67 Acres"
+          dark
+        />
+      </DeferredHomeSection>
 
       {/* ── SWING LAB + TIER 1 GOLF — Compact Teasers ── */}
       <section className="bg-parchment-mid px-6 lg:px-14 py-24 lg:py-28">
@@ -834,15 +852,17 @@ export default function Home() {
       </section>
 
       {/* ── FULL-WIDTH VISUAL BREAK — Golf Sunset ── */}
-      <FullWidthImage
-        src={GALLERY_GOLF}
-        alt="WSC driving range at golden hour"
-        caption="More than 23 covered bays with free Toptracer. Open to the public."
-        subcaption="Driving Range"
-        height="medium"
-        ctaLabel="Explore Golf"
-        ctaHref="/golf"
-      />
+      <DeferredHomeSection delayMs={1000}>
+        <FullWidthImage
+          src={GALLERY_GOLF}
+          alt="WSC driving range at golden hour"
+          caption="More than 23 covered bays with free Toptracer. Open to the public."
+          subcaption="Driving Range"
+          height="medium"
+          ctaLabel="Explore Golf"
+          ctaHref="/golf"
+        />
+      </DeferredHomeSection>
 
       {/* ── MEMBER TESTIMONIALS ── */}
       <section className="bg-dark-bg px-6 lg:px-14 py-24 lg:py-28">
@@ -874,13 +894,15 @@ export default function Home() {
       </section>
 
       {/* ── FULL-WIDTH VISUAL BREAK — Summer Kids ── */}
-      <FullWidthImage
-        src={SUMMER_KIDS_IMG}
-        alt="Summer camp kids at WSC"
-        caption="Summer Training Camp — ages 3 to 18, June 29 through August 30."
-        subcaption="Summer 2026"
-        height="short"
-      />
+      <DeferredHomeSection delayMs={1100}>
+        <FullWidthImage
+          src={SUMMER_KIDS_IMG}
+          alt="Summer camp kids at WSC"
+          caption="Summer Training Camp — ages 3 to 18, June 29 through August 30."
+          subcaption="Summer 2026"
+          height="short"
+        />
+      </DeferredHomeSection>
 
       {/* ── MEMBERSHIP — Experience-First ── */}
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
@@ -1027,28 +1049,30 @@ export default function Home() {
       </section>
 
       {/* ── INSTAGRAM FEED ── */}
-      <section className="bg-parchment px-6 lg:px-14 py-20 lg:py-24">
-        <div className="max-w-[1440px] mx-auto">
-          <div className="flex flex-col gap-5 mb-10 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-3">Follow Us</p>
-              <h2 className="text-[clamp(22px,2.4vw,32px)] font-light tracking-[-0.02em] leading-[1.15]">
-                @woodinvillesportsclub
-              </h2>
+      <DeferredHomeSection delayMs={1200}>
+        <section className="bg-parchment px-6 lg:px-14 py-20 lg:py-24">
+          <div className="max-w-[1440px] mx-auto">
+            <div className="flex flex-col gap-5 mb-10 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-3">Follow Us</p>
+                <h2 className="text-[clamp(22px,2.4vw,32px)] font-light tracking-[-0.02em] leading-[1.15]">
+                  @woodinvillesportsclub
+                </h2>
+              </div>
+              <a
+                href="https://www.instagram.com/woodinvillesportsclub"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 self-start text-[12px] tracking-[0.12em] uppercase no-underline text-ink border border-wsc-border px-6 py-2.5 hover:border-volt hover:text-volt transition-colors duration-200 sm:self-auto"
+              >
+                <Instagram size={14} />
+                Follow on Instagram
+              </a>
             </div>
-            <a
-              href="https://www.instagram.com/woodinvillesportsclub"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 self-start text-[12px] tracking-[0.12em] uppercase no-underline text-ink border border-wsc-border px-6 py-2.5 hover:border-volt hover:text-volt transition-colors duration-200 sm:self-auto"
-            >
-              <Instagram size={14} />
-              Follow on Instagram
-            </a>
+            <InstagramFeed />
           </div>
-          <InstagramFeed />
-        </div>
-      </section>
+        </section>
+      </DeferredHomeSection>
     </div>
   );
 }

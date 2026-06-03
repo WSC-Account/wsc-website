@@ -71,8 +71,32 @@ function fullTitle(title: string) {
   return `${title} | ${SITE_NAME}`;
 }
 
-function largestSrcSetUrl(srcSet: string) {
-  return srcSet.split(",").at(-1)?.trim().split(/\s+/)[0] ?? "";
+function srcSetCandidateUrl(srcSet: string, preferredWidth = 1200) {
+  const candidates = srcSet
+    .split(",")
+    .map((candidate) => {
+      const [url, widthDescriptor] = candidate.trim().split(/\s+/);
+      const width = Number(widthDescriptor?.replace(/w$/, ""));
+      return { url, width: Number.isFinite(width) ? width : 0 };
+    })
+    .filter((candidate) => candidate.url && candidate.width > 0)
+    .sort((a, b) => a.width - b.width);
+
+  return (
+    candidates.find((candidate) => candidate.width >= preferredWidth)?.url ??
+    candidates.at(-1)?.url ??
+    ""
+  );
+}
+
+function responsiveImagePreload(route: StaticRoute) {
+  const avif = responsiveAvifSrcSet(route.image);
+  if (!avif) {
+    return `    <link rel="preload" as="image" href="${route.image}" fetchpriority="high" />\n`;
+  }
+
+  const href = srcSetCandidateUrl(avif);
+  return `    <link rel="preload" as="image" href="${href}" type="image/avif" imagesrcset="${escapeHtml(avif)}" imagesizes="100vw" fetchpriority="high" />\n`;
 }
 
 function routeOutputPath(routePath: string) {
@@ -94,13 +118,7 @@ function replaceMeta(html: string, route: StaticRoute) {
   const description = escapeHtml(route.description);
   const canonical = `${BASE_URL}${route.path === "/" ? "/" : route.path}`;
   const image = absoluteUrl(route.image);
-  const avif = responsiveAvifSrcSet(route.image);
-  const preloadHref = avif ? largestSrcSetUrl(avif) : route.image;
-  const preloadType = avif ? ` type="image/avif"` : "";
-  const preloadTag =
-    route.path === "/"
-      ? ""
-      : `    <link rel="preload" as="image" href="${preloadHref}"${preloadType} fetchpriority="high" />\n`;
+  const preloadTag = responsiveImagePreload(route);
 
   return html
     .replace(/<title>.*?<\/title>/, `<title>${title}</title>`)

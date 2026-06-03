@@ -142,7 +142,10 @@ test("membership auto-renewal is clearly disclosed", () => {
 test("website forms are routed to WSC email notifications", () => {
   const apiRoute = read("api/contact.ts");
   const formServer = read("server/form-submissions.ts");
+  const packageJson = JSON.parse(read("package.json"));
   const readme = read("README.md");
+  const postmarkCheck = read("scripts/check-postmark-setup.mjs");
+  const postmarkSmoke = read("scripts/smoke-test-form-delivery.mjs");
 
   assert.match(apiRoute, /handleFormSubmissionRequest/);
   assert.match(apiRoute, /from "\.\.\/server\/form-submissions\.js"/);
@@ -150,7 +153,33 @@ test("website forms are routed to WSC email notifications", () => {
   assert.match(formServer, /FORM_ALERT_TO/);
   assert.match(formServer, /FORM_ALERT_FROM/);
   assert.match(formServer, /result\.email\.status !== "sent"/);
+  assert.match(formServer, /CONSTANT_CONTACT_CLIENT_ID/);
+  assert.match(formServer, /contacts\/sign_up_form/);
+  assert.match(formServer, /CONSTANT_CONTACT_LIST_IDS/);
+  assert.equal(packageJson.scripts["postmark:check"], "node scripts/check-postmark-setup.mjs");
+  assert.equal(packageJson.scripts["postmark:smoke-forms"], "tsx scripts/smoke-test-form-delivery.mjs");
+  assert.match(postmarkCheck, /POSTMARK_SERVER_TOKEN/);
+  assert.match(postmarkCheck, /FORM_ALERT_TO/);
+  assert.match(postmarkCheck, /FORM_ALERT_FROM/);
+  assert.match(postmarkCheck, /POSTMARK_TEST_TO/);
+  assert.match(postmarkCheck, /--send-test/);
+  assert.match(postmarkCheck, /ServerClient/);
+  assert.match(postmarkSmoke, /POSTMARK_API_TEST/);
+  assert.match(postmarkSmoke, /Info@woodinvillesportsclub\.com/);
+  assert.match(postmarkSmoke, /\/api\/contact/);
+  assert.match(postmarkSmoke, /--form=contact/);
+  assert.match(postmarkSmoke, /contact/);
+  assert.match(postmarkSmoke, /newsletter_signup/);
+  assert.match(postmarkSmoke, /golf_lesson/);
+  assert.match(postmarkSmoke, /member_cancellation/);
+  assert.match(postmarkSmoke, /personal_training/);
+  assert.match(postmarkSmoke, /private_event/);
+  assert.match(postmarkSmoke, /career_application/);
   assert.match(readme, /FORM_ALERT_TO=Info@woodinvillesportsclub\.com/);
+  assert.match(readme, /CONSTANT_CONTACT_REFRESH_TOKEN/);
+  assert.match(readme, /CONSTANT_CONTACT_INTEREST_LIST_MAP/);
+  assert.match(readme, /pnpm postmark:check/);
+  assert.match(readme, /pnpm postmark:smoke-forms/);
 });
 
 test("live website inquiry forms exist in the new build", () => {

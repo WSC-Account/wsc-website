@@ -1,16 +1,11 @@
 import { lazy, Suspense, useEffect } from "react";
-import { Toaster } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { Redirect, Route, Switch, useLocation } from "wouter";
-import Analytics from "./components/Analytics";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import BackToTop from "./components/BackToTop";
-import AccessibilityToggle from "./components/AccessibilityToggle";
-import CookieConsent from "./components/CookieConsent";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
+import DeferredAppServices from "./components/DeferredAppServices";
 
 const Tennis = lazy(() => import("./pages/Tennis"));
 const Golf = lazy(() => import("./pages/Golf"));
@@ -110,21 +105,15 @@ function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
-        <TooltipProvider>
-          <ScrollToTopOnRouteChange />
-          <Analytics />
-          <Toaster />
-          <header>
-            <Navbar />
-          </header>
-          <main id="main-content" tabIndex={-1}>
-            <Router />
-          </main>
-          <Footer />
-          <BackToTop />
-          <AccessibilityToggle />
-          <CookieConsent />
-        </TooltipProvider>
+        <ScrollToTopOnRouteChange />
+        <header>
+          <Navbar />
+        </header>
+        <main id="main-content" tabIndex={-1}>
+          <Router />
+        </main>
+        <Footer />
+        <DeferredAppServices />
       </ThemeProvider>
     </ErrorBoundary>
   );

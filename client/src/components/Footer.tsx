@@ -124,7 +124,7 @@ export default function Footer() {
                 href="/golf-coaching"
                 className="text-parchment/75 text-[13px] no-underline hover:text-parchment transition-colors duration-200"
               >
-                Golf Lessons Inquiry
+                Book Golf Lessons
               </Link>
             </li>
             <li>

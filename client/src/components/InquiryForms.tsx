@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
-import { toast } from "sonner";
 import { submitWebsiteForm, type WebsiteFormAttachment, type WebsiteFormType } from "@/lib/forms";
 import { useFormProtection } from "@/hooks/useFormProtection";
+import { notifyError, notifySuccess } from "@/lib/notify";
 
 type FormTone = "light" | "dark";
 type FormStatus = { type: "success" | "error"; message: string } | null;
@@ -159,7 +159,7 @@ function useInquirySubmit<T extends BaseState>(initialState: T, options: SubmitO
     if (!check.valid) {
       if (check.reason === "honeypot" || check.reason === "too_fast") {
         setStatus({ type: "success", message: options.successMessage });
-        toast.success(options.successMessage);
+        notifySuccess(options.successMessage);
         setForm(initialState);
         return;
       }
@@ -167,7 +167,7 @@ function useInquirySubmit<T extends BaseState>(initialState: T, options: SubmitO
       if (check.reason === "rate_limited") {
         const message = "Please wait a moment before submitting another request.";
         setStatus({ type: "error", message });
-        toast.error(message);
+        notifyError(message);
         return;
       }
     }
@@ -185,12 +185,12 @@ function useInquirySubmit<T extends BaseState>(initialState: T, options: SubmitO
       });
 
       setStatus({ type: "success", message: options.successMessage });
-      toast.success(options.successMessage);
+      notifySuccess(options.successMessage);
       setForm(initialState);
     } catch (error) {
       const message = error instanceof Error ? error.message : options.fallbackError;
       setStatus({ type: "error", message: message || options.fallbackError });
-      toast.error(message || options.fallbackError);
+      notifyError(message || options.fallbackError);
     } finally {
       setIsSubmitting(false);
     }
@@ -780,7 +780,10 @@ export function NewsletterSignupForm({ tone = "light", source = "/newsletter-sig
       subject: "WSC newsletter signup",
       message: "Newsletter signup request.",
       metadata: {
+        firstName: state.firstName,
+        lastName: state.lastName,
         interests: Array.isArray(state.interests) ? state.interests.join(", ") : "",
+        consent: "Submitted the WSC newsletter signup form.",
       },
     }),
   });

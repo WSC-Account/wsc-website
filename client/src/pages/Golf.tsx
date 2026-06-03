@@ -594,7 +594,7 @@ export default function Golf() {
               rel="noopener noreferrer"
               className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline text-parchment border border-volt-bright px-8 py-3.5 hover:bg-volt hover:border-volt transition-colors duration-200"
             >
-              Private Lesson Inquiry
+              Book a Private Lesson
             </a>
           </div>
         </div>

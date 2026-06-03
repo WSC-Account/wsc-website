@@ -90,10 +90,10 @@ export default function Navbar() {
       <div className="flex items-center justify-between px-6 lg:px-14 py-5 border-b border-white/[0.08]">
         <Link href="/" className="flex items-center no-underline" aria-label="Woodinville Sports Club home">
           <img
-            src="/logo.png"
+            src="/logo-small.png"
             alt="Woodinville Sports Club"
-            width={1200}
-            height={600}
+            width={240}
+            height={120}
             loading="eager"
             className="block h-9 sm:h-10 w-auto object-contain"
           />

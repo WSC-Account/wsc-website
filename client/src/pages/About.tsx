@@ -272,7 +272,7 @@ export default function About() {
             Ready to elevate your game?
           </h2>
           <p className="text-parchment/80 text-[15px] leading-[1.75] max-w-[480px] mx-auto mb-8">
-            Contact us today to learn more about membership options or to schedule a tour of our facilities.
+            Contact us today to learn more about membership options, or book your first visit when you are ready to get started.
           </p>
           <div className="flex flex-wrap justify-center gap-5">
             <Link
@@ -293,7 +293,7 @@ export default function About() {
               href="/contact"
               className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline text-parchment/75 text-[12px] tracking-[0.14em] uppercase hover:text-parchment transition-colors duration-200"
             >
-              Schedule a Tour
+              Book a Visit
             </Link>
           </div>
         </div>

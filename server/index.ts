@@ -1,3 +1,4 @@
+import compression from "compression";
 import express from "express";
 import fs from "fs";
 import { createServer } from "http";
@@ -26,6 +27,7 @@ async function startServer() {
     }
     next();
   });
+  app.use(compression({ threshold: 1024 }));
   app.use(express.json({ limit: "5.5mb" }));
 
   // Serve static files from dist/public in production
@@ -46,11 +48,11 @@ async function startServer() {
     res.redirect(301, `${destination}${query}`);
   });
 
-  app.post("/api/forms", (req, res) => {
+  app.all("/api/forms", (req, res) => {
     void handleFormSubmissionRequest(req, res);
   });
 
-  app.post("/api/contact", (req, res) => {
+  app.all("/api/contact", (req, res) => {
     void handleFormSubmissionRequest(req, res);
   });
 

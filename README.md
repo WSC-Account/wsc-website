@@ -90,6 +90,7 @@ Website forms submit to `/api/contact`, write JSONL records, and send notificati
 ```bash
 POSTMARK_SERVER_TOKEN=your-postmark-server-token
 POSTMARK_MESSAGE_STREAM=outbound
+POSTMARK_TEST_TO=
 FORM_ALERT_TO=Info@woodinvillesportsclub.com
 FORM_ALERT_FROM="WSC Website <Info@woodinvillesportsclub.com>"
 FORM_SUBMISSIONS_DIR=./data/form-submissions
@@ -97,6 +98,24 @@ FORM_WEBHOOK_URL=
 ```
 
 `FORM_ALERT_FROM` must use a sender signature or sender domain verified in Postmark. The visitor's email is sent as `ReplyTo`, never as the sender. `POSTMARK_MESSAGE_STREAM` defaults to `outbound`. `FORM_WEBHOOK_URL` is optional, but recommended for durable off-site records on serverless deployments because local JSONL storage can be temporary.
+
+Newsletter signups can also be added directly to Constant Contact. Create a Constant Contact V3 API app, complete the OAuth flow once, then configure:
+
+```bash
+CONSTANT_CONTACT_CLIENT_ID=your-api-key
+CONSTANT_CONTACT_CLIENT_SECRET=your-client-secret
+CONSTANT_CONTACT_REFRESH_TOKEN=your-refresh-token
+CONSTANT_CONTACT_LIST_IDS=primary-list-id
+CONSTANT_CONTACT_INTEREST_LIST_MAP='{"Tennis updates":"tennis-list-id","Golf updates":"golf-list-id"}'
+CONSTANT_CONTACT_TOKEN_CACHE_FILE=./data/constant-contact-token.json
+CONSTANT_CONTACT_TEST_EMAIL=
+```
+
+`CONSTANT_CONTACT_LIST_IDS` is the default list membership for every newsletter signup. `CONSTANT_CONTACT_INTEREST_LIST_MAP` is optional JSON that maps the site checkbox labels to additional Constant Contact list IDs. The server refreshes OAuth access tokens and writes the newest token pair to `CONSTANT_CONTACT_TOKEN_CACHE_FILE`; use durable storage for that file on production hosts where the filesystem is temporary. `CONSTANT_CONTACT_ACCESS_TOKEN` is supported only as a short-lived fallback when refresh-token credentials are not configured.
+
+Run `pnpm constant-contact:check` to validate the local Constant Contact env without touching the API. Run `pnpm constant-contact:check -- --refresh-token` to validate OAuth and write a fresh token cache. Run `pnpm constant-contact:check -- --sync-test --email=test@example.com` only when you intentionally want to create or update a test contact in the configured list.
+
+Run `pnpm postmark:check` before launch to confirm the required Postmark environment is present without sending an email. Run `pnpm postmark:check -- --send-test --test-api-token --to=Info@woodinvillesportsclub.com` to validate a single Postmark API send without delivering it. Run `pnpm postmark:smoke-forms` to submit every live website form type through `/api/contact` with Postmark's test API token and `Info@woodinvillesportsclub.com` as the configured recipient. The form smoke test disables Constant Contact by default so test payloads do not enter live newsletter lists; pass `--constant-contact --form=newsletter_signup` only for a deliberate Constant Contact sync test. After Postmark approves the account and the sender signature or domain is verified, run `pnpm postmark:check -- --send-test --to=you@example.com` or set `POSTMARK_TEST_TO` to send a deliberate real test message through the configured message stream.
 
 ## Forms
 
@@ -106,7 +125,7 @@ The active forms are:
 - Golf lesson request form on `/golf`
 - Newsletter signup form on `/`
 
-Client-side form submission is centralized in `client/src/lib/forms.ts`. Server-side validation, honeypot handling, JSONL recording, optional webhook forwarding, and Postmark delivery live in `server/form-submissions.ts`. `/api/forms` remains as a compatibility alias for older clients.
+Client-side form submission is centralized in `client/src/lib/forms.ts`. Server-side validation, honeypot handling, JSONL recording, optional webhook forwarding, optional Constant Contact newsletter sync, and Postmark delivery live in `server/form-submissions.ts`. `/api/forms` remains as a compatibility alias for older clients.
 
 ## SEO and Static Output
 

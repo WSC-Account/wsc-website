@@ -31,6 +31,7 @@ type WebsiteFormPayload = {
   comments?: unknown;
   formName?: unknown;
   companyWebsite?: unknown;
+  website?: unknown;
   website_url?: unknown;
   metadata?: unknown;
   attachments?: unknown;
@@ -65,10 +66,20 @@ type EmailDeliveryResult = {
   error?: string;
 };
 
+type ConstantContactSyncResult = {
+  status: "synced" | "not_configured" | "skipped" | "failed";
+  provider: "constant_contact";
+  contactId?: string;
+  action?: string;
+  listIds?: string[];
+  error?: string;
+};
+
 type FormProcessingResult = {
   id: string;
   recorded: boolean;
   email: EmailDeliveryResult;
+  constantContact?: ConstantContactSyncResult;
 };
 
 type RequestWithBody = IncomingMessage & {
@@ -130,6 +141,19 @@ export async function handleFormSubmissionRequest(req: RequestWithBody, res: Ser
 
     const result = await processFormSubmission(payload, getRequestContext(req.headers));
 
+    if (result.constantContact?.status === "failed") {
+      console.error("Constant Contact newsletter sync failed", result.constantContact.error);
+      sendJson(res, 502, {
+        ok: false,
+        recorded: result.recorded,
+        emailed: result.email.status === "sent",
+        emailStatus: result.email.status,
+        constantContactStatus: result.constantContact.status,
+        error: `Your submission was saved, but we could not add you to the newsletter list. Please try again or email ${SUPPORT_EMAIL}.`,
+      });
+      return;
+    }
+
     if (result.email.status !== "sent") {
       if (result.email.status === "not_configured") {
         console.error(
@@ -155,6 +179,8 @@ export async function handleFormSubmissionRequest(req: RequestWithBody, res: Ser
       emailed: result.email.status === "sent",
       emailStatus: result.email.status,
       emailId: result.email.id,
+      constantContactStatus: result.constantContact?.status,
+      constantContactAction: result.constantContact?.action,
     });
   } catch (error) {
     const statusCode = error instanceof HttpError ? error.statusCode : 500;
@@ -181,12 +207,14 @@ async function processFormSubmission(rawPayload: unknown, request: RequestContex
   };
 
   await recordSubmission(submission);
+  const constantContact = await syncNewsletterWithConstantContact(submission);
   const email = await sendNotificationEmail(submission);
 
   return {
     id: submission.id,
     recorded: true,
     email,
+    constantContact,
   };
 }
 
@@ -281,6 +309,123 @@ async function recordSubmission(submission: FormSubmission) {
   } catch (error) {
     console.error("Form recording webhook failed", error);
   }
+}
+
+async function syncNewsletterWithConstantContact(submission: FormSubmission): Promise<ConstantContactSyncResult> {
+  const provider = "constant_contact" as const;
+
+  if (submission.formType !== "newsletter_signup") {
+    return { status: "skipped", provider };
+  }
+
+  const listIds = resolveConstantContactListIds(submission);
+  if (!listIds.length) {
+    return { status: "not_configured", provider };
+  }
+
+  try {
+    const accessToken = await getConstantContactAccessToken();
+    if (!accessToken) {
+      return { status: "not_configured", provider, listIds };
+    }
+
+    const { firstName, lastName } = splitContactName(submission);
+    const body: Record<string, unknown> = {
+      email_address: submission.email,
+      list_memberships: listIds,
+    };
+
+    if (firstName) body.first_name = firstName;
+    if (lastName) body.last_name = lastName;
+
+    const response = await fetch("https://api.cc.email/v3/contacts/sign_up_form", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+
+    const responseBody = await readJsonResponse(response);
+    if (!response.ok) {
+      return {
+        status: "failed",
+        provider,
+        listIds,
+        error: formatApiError(response.status, responseBody),
+      };
+    }
+
+    return {
+      status: "synced",
+      provider,
+      listIds,
+      contactId: cleanString(responseBody.contact_id, 80),
+      action: cleanString(responseBody.action, 40),
+    };
+  } catch (error) {
+    return {
+      status: "failed",
+      provider,
+      listIds,
+      error: error instanceof Error ? error.message : "Unknown Constant Contact sync error.",
+    };
+  }
+}
+
+async function getConstantContactAccessToken() {
+  const cachedToken = await readConstantContactTokenCache();
+  if (cachedToken?.accessToken && cachedToken.expiresAt > Date.now() + 60_000) {
+    return cachedToken.accessToken;
+  }
+
+  const envAccessToken = process.env.CONSTANT_CONTACT_ACCESS_TOKEN?.trim();
+  const refreshToken = cachedToken?.refreshToken || process.env.CONSTANT_CONTACT_REFRESH_TOKEN?.trim();
+  const clientId = process.env.CONSTANT_CONTACT_CLIENT_ID?.trim();
+  const clientSecret = process.env.CONSTANT_CONTACT_CLIENT_SECRET?.trim();
+
+  if (!refreshToken || !clientId || !clientSecret) {
+    return envAccessToken || "";
+  }
+
+  const credentials = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
+  const body = new URLSearchParams({
+    refresh_token: refreshToken,
+    grant_type: "refresh_token",
+  });
+
+  const response = await fetch("https://authz.constantcontact.com/oauth2/default/v1/token", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/x-www-form-urlencoded",
+      Authorization: `Basic ${credentials}`,
+    },
+    body,
+  });
+  const responseBody = await readJsonResponse(response);
+
+  if (!response.ok) {
+    throw new Error(`Constant Contact token refresh failed: ${formatApiError(response.status, responseBody)}`);
+  }
+
+  const accessToken = cleanString(responseBody.access_token, 2_000);
+  const nextRefreshToken = cleanString(responseBody.refresh_token, 2_000) || refreshToken;
+  const expiresIn = typeof responseBody.expires_in === "number" ? responseBody.expires_in : 86_400;
+
+  if (!accessToken) {
+    throw new Error("Constant Contact token refresh did not return an access token.");
+  }
+
+  await writeConstantContactTokenCache({
+    accessToken,
+    refreshToken: nextRefreshToken,
+    expiresAt: Date.now() + Math.max(60, expiresIn - 60) * 1_000,
+  });
+
+  return accessToken;
 }
 
 async function sendNotificationEmail(submission: FormSubmission): Promise<EmailDeliveryResult> {
@@ -471,7 +616,11 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 
 function isHoneypotSubmission(value: unknown) {
   if (!isRecord(value)) return false;
-  return Boolean(cleanString(value.companyWebsite, 200) || cleanString(value.website_url, 200));
+  return Boolean(
+    cleanString(value.companyWebsite, 200) ||
+      cleanString(value.website, 200) ||
+      cleanString(value.website_url, 200),
+  );
 }
 
 function labelize(value: string) {
@@ -497,6 +646,137 @@ function cleanEmailHeader(value: string) {
 
 function cleanPostmarkMessageStream(value: string) {
   return cleanEmailHeader(value).replace(/[^a-zA-Z0-9._-]/g, "").slice(0, 40) || "outbound";
+}
+
+function resolveConstantContactListIds(submission: FormSubmission) {
+  const listIds = new Set(parseListIds(process.env.CONSTANT_CONTACT_LIST_IDS || ""));
+  const interestMap = parseConstantContactInterestMap();
+  const selectedInterests = cleanString(submission.metadata.interests, 1_000)
+    .split(",")
+    .map((interest) => interest.trim())
+    .filter(Boolean);
+
+  for (const interest of selectedInterests) {
+    for (const listId of interestMap[interest] || []) {
+      listIds.add(listId);
+    }
+  }
+
+  return Array.from(listIds);
+}
+
+function parseConstantContactInterestMap() {
+  const rawMap = process.env.CONSTANT_CONTACT_INTEREST_LIST_MAP?.trim();
+  if (!rawMap) return {} as Record<string, string[]>;
+
+  try {
+    const parsed = JSON.parse(rawMap);
+    if (!isRecord(parsed)) return {};
+
+    return Object.entries(parsed).reduce<Record<string, string[]>>((map, [interest, rawListIds]) => {
+      const cleanInterest = cleanString(interest, 160);
+      if (!cleanInterest) return map;
+
+      if (Array.isArray(rawListIds)) {
+        const listIds = rawListIds.flatMap((value) => parseListIds(String(value)));
+        if (listIds.length) map[cleanInterest] = listIds;
+        return map;
+      }
+
+      const listIds = parseListIds(String(rawListIds));
+      if (listIds.length) map[cleanInterest] = listIds;
+      return map;
+    }, {});
+  } catch {
+    console.error("CONSTANT_CONTACT_INTEREST_LIST_MAP must be valid JSON.");
+    return {};
+  }
+}
+
+function parseListIds(value: string) {
+  return value
+    .split(/[,\s]+/)
+    .map((listId) => cleanString(listId, 80))
+    .filter(Boolean);
+}
+
+function splitContactName(submission: FormSubmission) {
+  const metadataFirstName = cleanString(submission.metadata.firstName, 80);
+  const metadataLastName = cleanString(submission.metadata.lastName, 80);
+  if (metadataFirstName || metadataLastName) {
+    return { firstName: metadataFirstName, lastName: metadataLastName };
+  }
+
+  const parts = submission.name.split(/\s+/).filter(Boolean);
+  return {
+    firstName: cleanString(parts[0] || "", 80),
+    lastName: cleanString(parts.slice(1).join(" "), 80),
+  };
+}
+
+type ConstantContactTokenCache = {
+  accessToken: string;
+  refreshToken: string;
+  expiresAt: number;
+};
+
+async function readConstantContactTokenCache(): Promise<ConstantContactTokenCache | null> {
+  try {
+    const rawCache = await fs.readFile(getConstantContactTokenCachePath(), "utf8");
+    const parsed = JSON.parse(rawCache);
+    if (!isRecord(parsed)) return null;
+
+    const accessToken = cleanString(parsed.accessToken, 2_000);
+    const refreshToken = cleanString(parsed.refreshToken, 2_000);
+    const expiresAt = typeof parsed.expiresAt === "number" ? parsed.expiresAt : 0;
+
+    if (!accessToken || !refreshToken || !expiresAt) return null;
+    return { accessToken, refreshToken, expiresAt };
+  } catch {
+    return null;
+  }
+}
+
+async function writeConstantContactTokenCache(cache: ConstantContactTokenCache) {
+  const cachePath = getConstantContactTokenCachePath();
+  await fs.mkdir(path.dirname(cachePath), { recursive: true });
+  await fs.writeFile(cachePath, `${JSON.stringify(cache)}\n`, { encoding: "utf8", mode: 0o600 });
+}
+
+function getConstantContactTokenCachePath() {
+  return (
+    process.env.CONSTANT_CONTACT_TOKEN_CACHE_FILE?.trim() ||
+    (process.env.VERCEL
+      ? "/tmp/wsc-constant-contact-token.json"
+      : path.resolve(process.cwd(), "data", "constant-contact-token.json"))
+  );
+}
+
+async function readJsonResponse(response: Response): Promise<Record<string, unknown>> {
+  const text = await response.text();
+  if (!text) return {};
+
+  try {
+    const parsed = JSON.parse(text);
+    return isRecord(parsed) ? parsed : { response: parsed };
+  } catch {
+    return { response: text.slice(0, 500) };
+  }
+}
+
+function formatApiError(status: number, body: Record<string, unknown>) {
+  const message = cleanString(body.error_description, 500) || cleanString(body.error, 500);
+  if (message) return `${status} ${message}`;
+  if (Array.isArray(body.response)) {
+    const messages = body.response
+      .flatMap((item) => {
+        if (!isRecord(item)) return [];
+        return cleanString(item.error_message, 500) || cleanString(item.message, 500);
+      })
+      .filter(Boolean);
+    if (messages.length) return `${status} ${messages.join("; ")}`;
+  }
+  return `${status} ${JSON.stringify(body).slice(0, 500)}`;
 }
 
 function escapeHtml(value: string) {
