@@ -21,25 +21,36 @@ const FacilityGallery = lazy(() => import("@/components/FacilityGallery"));
 const Tier1Banner = lazy(() => import("@/components/Tier1Banner"));
 const FullWidthImage = lazy(() => import("@/components/FullWidthImage"));
 
-const TENNIS_IMG = "/images/wsc/tennis-courts.webp";
+const TENNIS_IMG = "/images/wsc/tennis-adult-clinic.webp";
+const TENNIS_CARD_IMG = "/images/wsc/tennis-junior-trophy.webp";
 const GOLF_IMG = "/images/wsc/golf-practice-area.webp";
 const PERF_IMG = "/images/wsc/gym-main.webp";
 const PICKLE_IMG = "/images/wsc/pickleball-dome.webp";
 
 /* Generated gallery images */
-const GALLERY_TENNIS = "/images/wsc/tennis-player.webp";
+const GALLERY_TENNIS = "/images/wsc/tennis-core-group.webp";
 const GALLERY_GOLF = "/images/wsc/campus-sunset.webp";
 const GALLERY_YOUTH = "/images/wsc/apl-training.webp";
 const GALLERY_AERIAL = "/images/wsc/golf-range-aerial.webp";
 
 /* Real facility photos */
 const SWINGLAB_IMG = "/images/wsc/swing-lab-simulators.webp";
-const TENNIS_LESSON_IMG = "/images/wsc/tennis-player.webp";
+const TENNIS_LESSON_IMG = "/images/wsc/tennis-junior-backhand.webp";
 const FITNESS_TRAINING_IMG = "/images/wsc/apl-training.webp";
 const SUMMER_KIDS_IMG = "/images/wsc/summer-camp.webp";
 const COURT_RESERVE_SIGN_UP_URL = "https://app.courtreserve.com/Online/Account/Register/6689";
 
-const heroCollageImages = [
+type HeroCollageImage = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  objectPosition: string;
+  className: string;
+  imageClassName?: string;
+};
+
+const heroCollageImages: HeroCollageImage[] = [
   {
     src: GALLERY_AERIAL,
     alt: "Aerial view of the Woodinville Sports Club golf range and campus",
@@ -51,10 +62,9 @@ const heroCollageImages = [
   {
     src: TENNIS_LESSON_IMG,
     alt: "Tennis player training at Woodinville Sports Club",
-    width: 1800,
-    height: 1200,
-    objectPosition: "center 12%",
-    imageClassName: "lg:translate-y-[22%]",
+    width: 1200,
+    height: 1800,
+    objectPosition: "center 18%",
     className: "col-span-1 row-span-2 lg:col-span-3 lg:row-span-3",
   },
   {
@@ -67,11 +77,10 @@ const heroCollageImages = [
   },
   {
     src: TENNIS_IMG,
-    alt: "Indoor tennis courts at Woodinville Sports Club",
+    alt: "Adult tennis clinic at Woodinville Sports Club",
     width: 1800,
-    height: 1218,
-    objectPosition: "25% 24%",
-    imageClassName: "lg:translate-y-[28%]",
+    height: 1200,
+    objectPosition: "center 28%",
     className: "col-span-1 row-span-2 lg:col-span-3 lg:row-span-3",
   },
   {
@@ -153,7 +162,9 @@ const disciplines = [
     name: "Tier 1 Tennis",
     desc: "World-class tennis academy for junior players bound for the collegiate and professional ranks. Junior tennis classes for ages 3 and up, with pathways for recreational and elite development.",
     detail: "8 indoor courts and 1 outdoor court. UTR matchplay. Adult group classes and tournaments.",
-    img: TENNIS_IMG,
+    img: TENNIS_CARD_IMG,
+    imageAlt: "Junior Tier 1 tennis player holding a trophy on court at Woodinville Sports Club",
+    imagePosition: "center 34%",
     href: "/tennis",
     stat: "8+1 Courts",
   },
@@ -164,6 +175,8 @@ const disciplines = [
     desc: "Scenic driving range with more than 23 covered bays, free Toptracer technology, grass tees and a 2.5-acre short-game practice area. Tier 1 Golf Academy for youth and adults.",
     detail: "4 Swing Lab simulators capturing 24 data points. Expert coaching for juniors and adults.",
     img: GOLF_IMG,
+    imageAlt: "Tier 1 Golf Academy facilities at Woodinville Sports Club",
+    imagePosition: "center",
     href: "/golf",
     stat: "23+ Covered Bays",
   },
@@ -174,6 +187,8 @@ const disciplines = [
     desc: "Full-service gym access with cardio equipment, free weights, power racks, functional training tools, sauna, and locker rooms.",
     detail: "A separate Athletic Performance Lab page covers coached strength and conditioning programming.",
     img: PERF_IMG,
+    imageAlt: "Fitness Center facilities at Woodinville Sports Club",
+    imagePosition: "center",
     href: "/gym",
     stat: "Train Daily",
   },
@@ -184,6 +199,8 @@ const disciplines = [
     desc: "Play the nation's fastest-growing sport in our iconic dome. Open play 7 days a week, private court rentals, and classes for all levels.",
     detail: "Four major tournaments per year in partnership with Pickleball is Great (PIG).",
     img: PICKLE_IMG,
+    imageAlt: "The Dome pickleball facilities at Woodinville Sports Club",
+    imagePosition: "center",
     href: "/pickleball",
     stat: "Open 7 Days",
   },
@@ -242,9 +259,9 @@ const testimonials = [
 
 const galleryImages = [
   { src: GALLERY_AERIAL, alt: "WSC campus aerial view", caption: "67 acres of world-class athletic facilities in the heart of Woodinville", span: "wide" as const },
-  { src: TENNIS_IMG, alt: "Indoor tennis courts", caption: "8 indoor tennis courts + 1 outdoor court", span: "normal" as const },
+  { src: TENNIS_IMG, alt: "Adult tennis clinic at WSC", caption: "Tier 1 Tennis instruction across juniors and adults", span: "normal" as const },
   { src: SWINGLAB_IMG, alt: "Swing Lab simulators", caption: "Swing Lab — 4 Uneekor simulators with 24 data points", span: "normal" as const },
-  { src: GALLERY_TENNIS, alt: "Tennis match in action", caption: "Tier 1 Tennis — training future champions", span: "normal" as const },
+  { src: GALLERY_TENNIS, alt: "Junior tennis players training with WSC coaches", caption: "Tier 1 Tennis — training future champions", span: "normal" as const },
   { src: GALLERY_YOUTH, alt: "Youth athletic training", caption: "APL youth strength and conditioning", span: "normal" as const },
   { src: GALLERY_GOLF, alt: "Driving range at sunset", caption: "More than 23 covered bays with free Toptracer technology", span: "wide" as const },
   { src: PICKLE_IMG, alt: "Pickleball dome", caption: "The Dome — open play 7 days a week", span: "normal" as const },
@@ -580,13 +597,14 @@ export default function Home() {
                 <div className="overflow-hidden relative">
                   <ResponsiveImage
                     src={d.img}
-                    alt={`${d.name} facilities at Woodinville Sports Club`}
+                    alt={d.imageAlt}
                     loading="lazy"
                     className={`w-full aspect-[16/10] object-cover transition-all duration-[650ms] ease-out ${
                       hoveredCard === i
                         ? "scale-[1.06] saturate-[0.7] brightness-[0.75]"
                         : "saturate-[0.55] brightness-[0.85]"
                     }`}
+                    style={{ objectPosition: d.imagePosition }}
                   />
                   {/* Hover overlay with stat */}
                   <div

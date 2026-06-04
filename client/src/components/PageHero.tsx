@@ -16,7 +16,9 @@ interface PageHeroProps {
 const HERO_IMAGE_POSITIONS: Record<string, string> = {
   "/images/wsc/apl-training.webp": "center 12%",
   "/images/wsc/summer-camp.webp": "center 32%",
+  "/images/wsc/tennis-adult-clinic.webp": "center 24%",
   "/images/wsc/tennis-courts.webp": "25% 24%",
+  "/images/wsc/tennis-core-group.webp": "center 35%",
   "/images/wsc/tennis-player.webp": "center 12%",
 };
 
@@ -63,11 +65,11 @@ export default function PageHero({
         <p className="hero-eyebrow text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">
           {eyebrow}
         </p>
-        <h1 className="hero-title text-parchment text-[clamp(36px,5vw,64px)] font-light leading-[1.08] tracking-[-0.025em] mb-5 max-w-[700px]">
+        <h1 className="hero-title max-w-[320px] text-parchment text-[clamp(32px,5vw,64px)] font-light leading-[1.08] tracking-[-0.025em] mb-5 sm:max-w-[700px]">
           {headline}
         </h1>
         {subtitle && (
-          <p className="hero-subtitle text-parchment/80 text-[16px] leading-[1.72] max-w-[500px]">
+          <p className="hero-subtitle max-w-[320px] text-parchment/80 text-[16px] leading-[1.72] sm:max-w-[500px]">
             {subtitle}
           </p>
         )}

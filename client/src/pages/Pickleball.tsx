@@ -134,7 +134,6 @@ export default function Pickleball() {
               <div className="space-y-3">
                 {[
                   { day: "Mon, Wed, Fri", time: "8:00 PM – 11:00 PM", note: "4 courts on Tennis Court 7" },
-                  { day: "Wednesdays", time: "Advanced players only", note: "DUPR 3.5+ required" },
                   { day: "Tue, Thu", time: "10:00 AM – 1:00 PM", note: "4 courts on Tennis Court 7" },
                   { day: "Tue, Thu", time: "8:00 PM – 11:00 PM", note: "4 courts on Tennis Court 7" },
                 ].map((s, i) => (
@@ -433,9 +432,6 @@ export default function Pickleball() {
             <p className="text-ink-mid text-[16px] leading-[1.82] mb-6">
               DUPR Ladder sessions run every Saturday from 7:00 AM – 9:30 AM. Players are grouped by skill level for competitive, structured play. Results are tracked through DUPR for official ratings.
             </p>
-            <p className="text-ink-mid text-[16px] leading-[1.82]">
-              Wednesday evening sessions (8:00 PM – 11:00 PM) are gated for advanced players with a DUPR rating of 3.5 or higher.
-            </p>
           </div>
           <div className="space-y-[3px]">
             <div className="bg-parchment p-8">
@@ -452,19 +448,6 @@ export default function Pickleball() {
                 <div className="flex justify-between py-2">
                   <span className="text-ink-mid text-[14px]">Ratings</span>
                   <span className="text-ink text-[14px]">Tracked via DUPR</span>
-                </div>
-              </div>
-            </div>
-            <div className="bg-parchment p-8">
-              <h3 className="text-[18px] font-light tracking-[-0.01em] mb-3">Wednesday Advanced Play</h3>
-              <div className="space-y-2">
-                <div className="flex justify-between py-2 border-b border-wsc-border">
-                  <span className="text-ink-mid text-[14px]">Time</span>
-                  <span className="text-ink text-[14px]">8:00 PM – 11:00 PM</span>
-                </div>
-                <div className="flex justify-between py-2">
-                  <span className="text-ink-mid text-[14px]">Requirement</span>
-                  <span className="text-ink text-[14px]">DUPR 3.5+ required</span>
                 </div>
               </div>
             </div>

@@ -21,7 +21,10 @@ interface FullWidthImageProps {
 const FULL_WIDTH_IMAGE_POSITIONS: Record<string, string> = {
   "/images/wsc/apl-training.webp": "center 12%",
   "/images/wsc/summer-camp.webp": "center 32%",
+  "/images/wsc/tennis-adult-clinic.webp": "center 30%",
+  "/images/wsc/tennis-adult-player.webp": "center 42%",
   "/images/wsc/tennis-courts.webp": "25% 24%",
+  "/images/wsc/tennis-core-group.webp": "center 42%",
   "/images/wsc/tennis-player.webp": "center 24%",
 };
 

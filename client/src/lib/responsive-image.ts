@@ -35,8 +35,21 @@ const WSC_IMAGE_DIMENSIONS = {
   "/images/wsc/swing-lab-junior-practice.webp": { width: 768, height: 1024 },
   "/images/wsc/swing-lab-private-lesson.webp": { width: 768, height: 1024 },
   "/images/wsc/swing-lab-simulators.webp": { width: 1800, height: 1350 },
+  "/images/wsc/tennis-adult-clinic.webp": { width: 1800, height: 1200 },
+  "/images/wsc/tennis-adult-player.webp": { width: 1800, height: 1200 },
+  "/images/wsc/tennis-coach-ball-feed.webp": { width: 1800, height: 1234 },
+  "/images/wsc/tennis-coach-conversation.webp": { width: 1800, height: 1224 },
+  "/images/wsc/tennis-coach-court-instruction.webp": { width: 1800, height: 1138 },
   "/images/wsc/tennis-courts.webp": { width: 1800, height: 1218 },
+  "/images/wsc/tennis-core-group.webp": { width: 1800, height: 1200 },
+  "/images/wsc/tennis-junior-backhand.webp": { width: 1200, height: 1800 },
+  "/images/wsc/tennis-junior-ball-basket.webp": { width: 1800, height: 1208 },
+  "/images/wsc/tennis-junior-point-play.webp": { width: 1800, height: 1174 },
+  "/images/wsc/tennis-junior-serve.webp": { width: 1200, height: 1800 },
+  "/images/wsc/tennis-junior-trophy.webp": { width: 782, height: 989 },
   "/images/wsc/tennis-player.webp": { width: 1800, height: 1200 },
+  "/images/wsc/tennis-player-forehand.webp": { width: 1800, height: 1203 },
+  "/images/wsc/tennis-tier1-alumni-sign.webp": { width: 1200, height: 1800 },
 } as const satisfies Record<string, ImageDimensions>;
 
 const RESPONSIVE_MAX_DIMENSIONS = [900, 1200] as const;

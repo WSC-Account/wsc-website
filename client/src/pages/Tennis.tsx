@@ -4,7 +4,8 @@
  * Tier 1 Sports branding
  * Scroll reveal animations for consistent UX
  */
-import { ArrowUpRight } from "lucide-react";
+import { useState } from "react";
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
 import PageHero from "@/components/PageHero";
 import Tier1Banner from "@/components/Tier1Banner";
@@ -15,11 +16,20 @@ import { useScrollReveal, useStaggerReveal } from "@/hooks/useScrollReveal";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
 
-const TENNIS_IMG = "/images/wsc/tennis-courts.webp";
-const TENNIS_ACTION = "/images/wsc/tennis-player.webp";
+const TENNIS_COURTS_IMG = "/images/wsc/tennis-courts.webp";
+const TENNIS_HERO_IMG = TENNIS_COURTS_IMG;
+const TENNIS_COACH_BALL_FEED_IMG = "/images/wsc/tennis-coach-ball-feed.webp";
+const TENNIS_COACH_CONVERSATION_IMG = "/images/wsc/tennis-coach-conversation.webp";
+const TENNIS_COACH_INSTRUCTION_IMG = "/images/wsc/tennis-coach-court-instruction.webp";
+const TENNIS_JUNIOR_BALL_BASKET_IMG = "/images/wsc/tennis-junior-ball-basket.webp";
+const TENNIS_JUNIOR_POINT_PLAY_IMG = "/images/wsc/tennis-junior-point-play.webp";
+const TENNIS_JUNIOR_SERVE_IMG = "/images/wsc/tennis-junior-serve.webp";
+const TENNIS_ALUMNI_SIGN_IMG = "/images/wsc/tennis-tier1-alumni-sign.webp";
+const TENNIS_PLAYER_FOREHAND_IMG = "/images/wsc/tennis-player-forehand.webp";
 const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689";
 const TIER1_TENNIS_URL = "https://www.tier1nw.com/tennis";
 const TIER1_CORE_URL = "https://www.tier1nw.com/tennis/intro-classes";
+const TIER1_COACHES_URL = "https://www.tier1nw.com/aboutus";
 
 const academyTracks = [
   {
@@ -93,11 +103,108 @@ const adultClasses = [
   },
 ];
 
+const programVisuals = [
+  {
+    src: TENNIS_COACH_BALL_FEED_IMG,
+    alt: "Tier 1 coach feeding tennis balls during a training session at Woodinville Sports Club",
+    label: "Core instruction",
+    objectPosition: "center 43%",
+  },
+  {
+    src: TENNIS_JUNIOR_POINT_PLAY_IMG,
+    alt: "Junior tennis player striking a forehand during Tier 1 training at Woodinville Sports Club",
+    label: "Junior pathway",
+    objectPosition: "center 44%",
+  },
+  {
+    src: TENNIS_COACH_CONVERSATION_IMG,
+    alt: "Tier 1 coach speaking with a player on an indoor tennis court at Woodinville Sports Club",
+    label: "Coach connection",
+    objectPosition: "center 38%",
+  },
+];
+
+const trainingGallery = [
+  {
+    src: TENNIS_COACH_BALL_FEED_IMG,
+    alt: "Tier 1 coach feeding a ball from beside a training cart at Woodinville Sports Club",
+    label: "Coaching standard",
+    title: "High-repetition reps with an expert eye.",
+    detail: "Coaches stay close to the work: feed, observe, correct, and keep the tempo high.",
+    objectPosition: "center 42%",
+  },
+  {
+    src: TENNIS_PLAYER_FOREHAND_IMG,
+    alt: "Tennis player hitting a forehand during indoor training at Woodinville Sports Club",
+    label: "Point patterns",
+    title: "Players train live patterns, not just isolated strokes.",
+    detail: "The program blends technical work with rally habits, movement, and competitive decisions.",
+    objectPosition: "center 38%",
+  },
+  {
+    src: TENNIS_COACH_CONVERSATION_IMG,
+    alt: "Tier 1 coach and player talking between drills at Woodinville Sports Club",
+    label: "Player feedback",
+    title: "Teaching happens between balls, too.",
+    detail: "Small coaching moments help players understand why a correction matters before the next rep.",
+    objectPosition: "center 41%",
+  },
+  {
+    src: TENNIS_JUNIOR_BALL_BASKET_IMG,
+    alt: "Junior tennis player carrying balls on a racquet at Woodinville Sports Club",
+    label: "Junior culture",
+    title: "Young players learn the habits around the game.",
+    detail: "The pathway builds responsibility, confidence, and comfort on court alongside technique.",
+    objectPosition: "center 42%",
+  },
+  {
+    src: TENNIS_JUNIOR_POINT_PLAY_IMG,
+    alt: "Junior tennis player hitting a forehand during point play at Woodinville Sports Club",
+    label: "Competitive reps",
+    title: "Junior athletes see real ball speed early.",
+    detail: "Players grow through structured rallies, point play, and coaching that meets their level.",
+    objectPosition: "center 44%",
+  },
+  {
+    src: TENNIS_COACH_INSTRUCTION_IMG,
+    alt: "Tennis coach giving on-court instruction with racquet in hand at Woodinville Sports Club",
+    label: "Court instruction",
+    title: "The staff is present, direct, and invested.",
+    detail: "Coaching is hands-on, standards-driven, and rooted in day-to-day commitment to the sport.",
+    objectPosition: "center 39%",
+  },
+];
+
+const coachHighlights = [
+  {
+    title: "High-performance leadership",
+    desc: "Tier 1 is led by Filipp Pogostkin, a former world-ranked professional and high-performance director whose work has helped players compete nationally, internationally, and at top college programs.",
+  },
+  {
+    title: "A serious development staff",
+    desc: "The coaching team brings backgrounds that include former world-ranked play, Division I college tennis, international coaching experience, and daily work with juniors chasing the next level.",
+  },
+  {
+    title: "Committed to the craft",
+    desc: "Tier 1 coaches are not casual instructors. They are invested in technical standards, athletic habits, competitive mindset, and doing the work the right way every day.",
+  },
+];
+
 export default function Tennis() {
+  const [activeGalleryIndex, setActiveGalleryIndex] = useState(0);
+  const activeGalleryItem = trainingGallery[activeGalleryIndex];
+  const showPreviousGalleryItem = () => {
+    setActiveGalleryIndex((current) => (current === 0 ? trainingGallery.length - 1 : current - 1));
+  };
+  const showNextGalleryItem = () => {
+    setActiveGalleryIndex((current) => (current + 1) % trainingGallery.length);
+  };
+
   // Scroll-reveal hooks
   const { ref: programsRef, isVisible: programsVisible } = useScrollReveal({ threshold: 0.08 });
   const { ref: facilitiesRef, isVisible: facilitiesVisible } = useScrollReveal({ threshold: 0.1 });
   const { containerRef: coachesRef, visibleItems: coachesVisible } = useStaggerReveal(3, { staggerDelay: 150, threshold: 0.08 });
+  const { ref: galleryRef, isVisible: galleryVisible } = useScrollReveal({ threshold: 0.08 });
   const { ref: bookingRef, isVisible: bookingVisible } = useScrollReveal({ threshold: 0.1 });
   const { containerRef: coreRef, visibleItems: coreVisible } = useStaggerReveal(5, { staggerDelay: 110, threshold: 0.08 });
   const { containerRef: adultRef, visibleItems: adultVisible } = useStaggerReveal(6, { staggerDelay: 90, threshold: 0.06 });
@@ -115,7 +222,7 @@ export default function Tennis() {
         eyebrow="Tier 1 Tennis"
         headline="Elevate Your Tennis Game at WSC."
         subtitle="World-class instruction and facilities for players of all levels. Home of Tier 1 Sports — one of the nation's leading developmental programs."
-        image={TENNIS_IMG}
+        image={TENNIS_HERO_IMG}
       />
 
       {/* Programs */}
@@ -128,6 +235,25 @@ export default function Tennis() {
           <h2 className="text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15] mb-14">
             Training pathways<br />for every level.
           </h2>
+
+          <div className="mb-14 grid grid-cols-1 gap-[3px] md:grid-cols-3">
+            {programVisuals.map((visual) => (
+              <figure key={visual.src} className="group relative overflow-hidden bg-dark-bg">
+                <ResponsiveImage
+                  src={visual.src}
+                  alt={visual.alt}
+                  sizes="(min-width: 1024px) 31vw, 100vw"
+                  loading="lazy"
+                  pictureClassName="block"
+                  className="aspect-[4/3] w-full object-cover saturate-[0.68] brightness-[0.9] transition-transform duration-[700ms] ease-out group-hover:scale-[1.035]"
+                  style={{ objectPosition: visual.objectPosition }}
+                />
+                <figcaption className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark-bg/80 to-transparent px-5 pb-5 pt-12 text-parchment text-[11px] tracking-[0.16em] uppercase">
+                  {visual.label}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
 
           {/* Tier 1 Performance NW */}
           <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr_auto] gap-4 lg:gap-12 items-baseline py-8 border-b border-wsc-border">
@@ -255,64 +381,182 @@ export default function Tennis() {
               ))}
             </div>
           </div>
-          <ResponsiveImage
-            src={TENNIS_IMG}
-            alt="Indoor tennis courts at Woodinville Sports Club"
-            loading="lazy"
-            className="w-full aspect-[4/3] object-cover saturate-[0.55] brightness-[0.85]"
-          />
+          <div className="grid grid-cols-1 gap-[3px] sm:grid-cols-[minmax(0,1fr)_minmax(120px,0.34fr)]">
+            <ResponsiveImage
+              src={TENNIS_COURTS_IMG}
+              alt="Indoor tennis courts at Woodinville Sports Club"
+              loading="lazy"
+              pictureClassName="block h-full"
+              className="min-h-[320px] w-full object-cover saturate-[0.55] brightness-[0.85] sm:min-h-[420px]"
+              style={{ objectPosition: "25% 24%" }}
+            />
+            <div className="grid grid-cols-2 gap-[3px] sm:grid-cols-1">
+              <ResponsiveImage
+                src={TENNIS_ALUMNI_SIGN_IMG}
+                alt="Tier 1 and WSC alumni sign at Woodinville Sports Club"
+                sizes="(min-width: 1024px) 18vw, 50vw"
+                loading="lazy"
+                pictureClassName="block h-full"
+                className="h-full min-h-[190px] w-full object-cover saturate-[0.78] brightness-[0.9]"
+                style={{ objectPosition: "center" }}
+              />
+              <ResponsiveImage
+                src={TENNIS_JUNIOR_SERVE_IMG}
+                alt="Junior tennis player serving at Woodinville Sports Club"
+                sizes="(min-width: 1024px) 18vw, 50vw"
+                loading="lazy"
+                pictureClassName="block h-full"
+                className="h-full min-h-[190px] w-full object-cover saturate-[0.72] brightness-[0.9]"
+                style={{ objectPosition: "center 28%" }}
+              />
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Coaching Staff */}
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto">
-          <div className="mb-14">
-            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Our Coaches</p>
-            <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15]">
-              Trained by the best.
-            </h2>
-          </div>
-
-          <div ref={coachesRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[3px]">
-            {[
-              {
-                name: "Filipp Pogostkin",
-                title: "Director, Tier 1 Performance NW",
-                credential: "Former world-ranked professional",
-                philosophy: "Building complete athletes who compete with confidence at the highest levels. Every player deserves a personalized pathway.",
-              },
-              {
-                name: "Coaching Staff",
-                title: "Tier 1 Core Tennis",
-                credential: "D1 collegiate standouts & certified professionals",
-                philosophy: "Making tennis accessible and fun from age 3 through adult. High-repetition, age-appropriate training that builds skills and love for the game.",
-              },
-              {
-                name: "Adult Program Staff",
-                title: "Adult Tennis & Matchplay",
-                credential: "USPTA & PTR certified coaches",
-                philosophy: "Competitive group training, UTR matchplay, and tournament preparation for adult players who want to keep improving.",
-              },
-            ].map((coach, i) => (
-              <div
-                key={i}
-                className={`bg-parchment-mid p-8 lg:p-10 transition-all duration-700 ease-out ${coachesVisible[i] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20">
+            <div>
+              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Our Coaches</p>
+              <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-7">
+                Coaches who live the sport.
+              </h2>
+              <p className="text-ink-mid text-[16px] leading-[1.82] mb-8">
+                WSC tennis is powered by Tier 1 coaches who have built their lives around player development. The staff brings elite playing backgrounds, high-performance coaching standards, and a shared commitment to helping athletes train with purpose.
+              </p>
+              <a
+                href={TIER1_COACHES_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment-dark transition-colors duration-200"
               >
-                <div className="w-16 h-16 rounded-full bg-dark-bg/10 flex items-center justify-center mb-6">
-                  <span className="text-volt text-[20px] font-light">{coach.name.charAt(0)}</span>
-                </div>
-                <h3 className="text-[18px] font-light tracking-[-0.01em] mb-1">{coach.name}</h3>
-                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-1.5">{coach.title}</p>
-                <p className="text-ink-mid text-[11px] tracking-[0.08em] uppercase mb-5">{coach.credential}</p>
-                <p className="text-ink-mid text-[14px] leading-[1.72] italic">"{coach.philosophy}"</p>
-              </div>
-            ))}
+                Meet the Tier 1 Coaches
+                <ArrowUpRight className="h-4 w-4" aria-hidden="true" strokeWidth={1.8} />
+              </a>
+            </div>
+
+            <div ref={coachesRef} className="grid grid-cols-1 gap-[3px]">
+              {coachHighlights.map((item, i) => (
+                <article
+                  key={item.title}
+                  className={`bg-parchment-mid p-8 lg:p-10 transition-all duration-700 ease-out ${coachesVisible[i] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                >
+                  <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3">{String(i + 1).padStart(2, "0")}</p>
+                  <h3 className="text-[20px] font-light tracking-[-0.01em] mb-4">{item.title}</h3>
+                  <p className="text-ink-mid text-[14px] leading-[1.72]">{item.desc}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Training Gallery */}
+      <section className="bg-parchment-mid px-6 lg:px-14 py-24 lg:py-28">
+        <div
+          ref={galleryRef}
+          className={`max-w-[1440px] mx-auto transition-all duration-700 ease-out ${galleryVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+        >
+          <div className="mb-12 grid grid-cols-1 gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20 lg:items-end">
+            <div>
+              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Inside Tier 1 Training</p>
+              <h2 className="text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15]">
+                Coaches and players<br />on court together.
+              </h2>
+            </div>
+            <p className="text-ink-mid text-[16px] leading-[1.82] max-w-[720px]">
+              The day-to-day environment is hands-on: coaches feeding balls, players moving through live patterns, juniors learning responsibility, and feedback happening right on court.
+            </p>
           </div>
 
-          <p className="text-ink-light text-[13px] mt-6 italic">
-            Coach headshots and full bios coming soon. Contact us to learn more about our coaching team.
-          </p>
+          <div className="grid grid-cols-1 gap-[3px] lg:grid-cols-[minmax(0,1.18fr)_minmax(280px,0.52fr)]">
+            <figure className="relative overflow-hidden bg-dark-bg">
+              <ResponsiveImage
+                key={activeGalleryItem.src}
+                src={activeGalleryItem.src}
+                alt={activeGalleryItem.alt}
+                sizes="(min-width: 1024px) 62vw, 100vw"
+                loading="lazy"
+                pictureClassName="block"
+                className="aspect-[16/10] w-full object-cover saturate-[0.72] brightness-[0.86] transition-opacity duration-300 lg:aspect-[16/9]"
+                style={{ objectPosition: activeGalleryItem.objectPosition }}
+              />
+              <figcaption
+                aria-live="polite"
+                className="absolute bottom-5 left-5 bg-dark-bg/72 px-4 py-3 text-parchment backdrop-blur-sm"
+              >
+                <p className="text-volt-bright text-[11px] tracking-[0.18em] uppercase">
+                  {String(activeGalleryIndex + 1).padStart(2, "0")} / {String(trainingGallery.length).padStart(2, "0")} — {activeGalleryItem.label}
+                </p>
+              </figcaption>
+              <div className="absolute right-5 top-5 flex gap-2">
+                <button
+                  type="button"
+                  onClick={showPreviousGalleryItem}
+                  className="flex h-11 w-11 items-center justify-center border border-parchment/35 bg-dark-bg/65 text-parchment transition-colors duration-200 hover:border-volt-bright hover:text-volt-bright focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-volt-bright"
+                  aria-label="Show previous tennis training photo"
+                >
+                  <ChevronLeft className="h-5 w-5" aria-hidden="true" strokeWidth={1.8} />
+                </button>
+                <button
+                  type="button"
+                  onClick={showNextGalleryItem}
+                  className="flex h-11 w-11 items-center justify-center border border-parchment/35 bg-dark-bg/65 text-parchment transition-colors duration-200 hover:border-volt-bright hover:text-volt-bright focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-volt-bright"
+                  aria-label="Show next tennis training photo"
+                >
+                  <ChevronRight className="h-5 w-5" aria-hidden="true" strokeWidth={1.8} />
+                </button>
+              </div>
+            </figure>
+
+            <div className="grid grid-cols-2 gap-[3px] bg-parchment">
+              <div className="col-span-2 flex flex-col justify-between bg-parchment p-7 lg:min-h-[226px]">
+                <div>
+                  <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3">{activeGalleryItem.label}</p>
+                  <h3 className="text-[22px] font-light tracking-[-0.01em] leading-[1.15] mb-4">{activeGalleryItem.title}</h3>
+                  <p className="text-ink-mid text-[14px] leading-[1.72]">{activeGalleryItem.detail}</p>
+                </div>
+                <div className="mt-7 flex gap-2" aria-label="Tennis training photo selector">
+                  {trainingGallery.map((item, i) => (
+                    <button
+                      key={item.src}
+                      type="button"
+                      onClick={() => setActiveGalleryIndex(i)}
+                      className={`h-1.5 flex-1 transition-colors duration-200 ${i === activeGalleryIndex ? "bg-volt-bright" : "bg-ink/20 hover:bg-ink/40"}`}
+                      aria-label={`Show ${item.label} photo`}
+                      aria-pressed={i === activeGalleryIndex}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {trainingGallery.map((item, i) => (
+                <button
+                  key={item.src}
+                  type="button"
+                  onClick={() => setActiveGalleryIndex(i)}
+                  className={`group relative aspect-[16/10] overflow-hidden bg-dark-bg text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-volt-bright ${i === activeGalleryIndex ? "ring-2 ring-volt-bright ring-inset" : ""}`}
+                  aria-label={`Show ${item.label} photo`}
+                  aria-pressed={i === activeGalleryIndex}
+                >
+                  <ResponsiveImage
+                    src={item.src}
+                    alt=""
+                    sizes="(min-width: 1024px) 15vw, 50vw"
+                    loading={i < 2 ? "eager" : "lazy"}
+                    pictureClassName="block h-full"
+                    className="h-full w-full object-cover saturate-[0.58] brightness-[0.76] transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+                    style={{ objectPosition: item.objectPosition }}
+                  />
+                  <span className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark-bg/82 to-transparent px-3 pb-3 pt-8 text-[10px] tracking-[0.14em] uppercase text-parchment">
+                    {item.label}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -343,6 +587,24 @@ export default function Tennis() {
               Explore Tier 1 Tennis
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" strokeWidth={1.8} />
             </a>
+            <div className="mt-10 grid grid-cols-2 gap-[3px]">
+              <ResponsiveImage
+                src={TENNIS_JUNIOR_POINT_PLAY_IMG}
+                alt="Junior tennis player hitting a forehand during Tier 1 training at Woodinville Sports Club"
+                sizes="(min-width: 1024px) 20vw, 50vw"
+                loading="lazy"
+                className="aspect-[3/4] w-full object-cover saturate-[0.75] brightness-[0.88]"
+                style={{ objectPosition: "center 42%" }}
+              />
+              <ResponsiveImage
+                src={TENNIS_JUNIOR_BALL_BASKET_IMG}
+                alt="Junior tennis player carrying balls on a racquet at Woodinville Sports Club"
+                sizes="(min-width: 1024px) 20vw, 50vw"
+                loading="lazy"
+                className="aspect-[3/4] w-full object-cover saturate-[0.75] brightness-[0.88]"
+                style={{ objectPosition: "center 42%" }}
+              />
+            </div>
           </div>
 
           <div ref={coreRef} className="relative">
@@ -409,13 +671,25 @@ export default function Tennis() {
       {/* Adult Class Menu */}
       <section className="bg-parchment-mid px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto">
-          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Adult Tennis</p>
-          <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
-            Classes, socials, and matchplay.
-          </h2>
-          <p className="text-ink-mid text-[16px] leading-[1.82] mb-14 max-w-[720px]">
-            Adult classes meet weekly, with drop-ins opening one week prior when available. Pricing varies by class length and session duration, typically $45-$75 + tax per class or $225-$325 + tax per 5-week session. Coaches evaluate new players and may suggest level adjustments.
-          </p>
+          <div className="mb-14 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(320px,0.52fr)] lg:items-end">
+            <div>
+              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Adult Tennis</p>
+              <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
+                Classes, socials, and matchplay.
+              </h2>
+              <p className="text-ink-mid text-[16px] leading-[1.82] max-w-[720px]">
+                Adult classes meet weekly, with drop-ins opening one week prior when available. Pricing varies by class length and session duration, typically $45-$75 + tax per class or $225-$325 + tax per 5-week session. Coaches evaluate new players and may suggest level adjustments.
+              </p>
+            </div>
+            <ResponsiveImage
+              src={TENNIS_PLAYER_FOREHAND_IMG}
+              alt="Tennis player hitting a forehand during indoor training at Woodinville Sports Club"
+              sizes="(min-width: 1024px) 34vw, 100vw"
+              loading="lazy"
+              className="aspect-[16/10] w-full object-cover saturate-[0.72] brightness-[0.9]"
+              style={{ objectPosition: "center 39%" }}
+            />
+          </div>
 
           <div ref={adultRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[3px]">
             {adultClasses.map((classItem, i) => (
@@ -549,9 +823,9 @@ export default function Tennis() {
 
       {/* Full-width visual break */}
       <FullWidthImage
-        src={TENNIS_ACTION}
-        alt="Tennis match in action at WSC"
-        caption="Train with former world-ranked professionals and D1 standouts."
+        src={TENNIS_COACH_INSTRUCTION_IMG}
+        alt="Tennis coach giving on-court instruction at Woodinville Sports Club"
+        caption="Tennis at WSC pairs high-repetition coaching with a clear player pathway."
         subcaption="Tier 1 Tennis Academy"
         height="medium"
       />

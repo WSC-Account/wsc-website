@@ -12,11 +12,11 @@ import { SEO } from "@/lib/seo-data";
 const HERO_IMG = "/images/wsc/campus-dome.webp";
 const VISION_IMAGES = [
   {
-    src: "/images/wsc/tennis-player.webp",
-    alt: "Tennis athlete training at Woodinville Sports Club",
+    src: "/images/wsc/tennis-coach-court-instruction.webp",
+    alt: "Tennis coach giving on-court instruction at Woodinville Sports Club",
     label: "Practice the craft",
     className: "col-span-2 md:col-span-1 md:row-span-2 min-h-[360px] md:min-h-[560px]",
-    imageClassName: "object-[center_24%]",
+    imageClassName: "object-[center_38%]",
   },
   {
     src: "/images/wsc/golf-practice-area.webp",
