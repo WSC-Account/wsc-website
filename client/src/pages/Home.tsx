@@ -683,6 +683,7 @@ export default function Home() {
           caption="Train with former world-ranked professionals and D1 standouts."
           subcaption="Tier 1 Tennis Academy"
           height="medium"
+          imagePosition="75% 8%"
           ctaLabel="Explore Tier 1 Tennis"
           ctaHref="https://www.tier1nw.com"
           ctaExternal

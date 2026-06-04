@@ -471,7 +471,7 @@ export default function Tennis() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-[3px] lg:grid-cols-[minmax(0,1.18fr)_minmax(280px,0.52fr)]">
+          <div className="grid grid-cols-1 items-start gap-[3px] lg:grid-cols-[minmax(0,1.18fr)_minmax(280px,0.52fr)]">
             <figure className="relative overflow-hidden bg-dark-bg">
               <ResponsiveImage
                 key={activeGalleryItem.src}
