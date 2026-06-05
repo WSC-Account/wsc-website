@@ -527,14 +527,14 @@ export default function Summer() {
               Train where high-performance athletes train. Ages 3–18 on our 67-acre campus, June 29 – August 30.
             </p>
             <div className="hero-actions flex flex-wrap gap-4">
-              <Link
+              <a
                 href={COURT_RESERVE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment transition-colors duration-200"
               >
                 Register Now <ChevronRight size={14} />
-              </Link>
+              </a>
               <a
                 href="#sample-days"
                 className="inline-flex items-center gap-2 text-[12px] tracking-[0.14em] uppercase no-underline text-parchment border border-parchment/20 px-8 py-3.5 hover:border-volt-bright transition-colors duration-200"
@@ -578,14 +578,14 @@ export default function Summer() {
               Tennis, Golf, and Adventure Club programs run June 29 - August 30, 2026
             </span>
           </div>
-          <Link
+          <a
             href={COURT_RESERVE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-dark-bg text-[11px] tracking-[0.14em] uppercase no-underline border border-dark-bg/30 px-5 py-2 hover:bg-dark-bg hover:text-volt-bright transition-colors duration-200"
           >
             Register Now
-          </Link>
+          </a>
         </div>
       </section>
 
@@ -694,14 +694,14 @@ export default function Summer() {
                   </div>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-3 mt-10">
-                  <Link
+                  <a
                     href={COURT_RESERVE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment transition-colors duration-200"
                   >
                     Register for {program.name} <ChevronRight size={14} />
-                  </Link>
+                  </a>
                   <a
                     href={`mailto:${program.contact}`}
                     className="inline-flex items-center gap-2 text-[12px] tracking-[0.12em] uppercase no-underline text-parchment/70 border border-parchment/15 px-6 py-3.5 hover:border-volt-bright hover:text-parchment transition-colors duration-200"
@@ -928,14 +928,14 @@ export default function Summer() {
                         </p>
                       )}
                     </div>
-                    <Link
+                    <a
                       href={COURT_RESERVE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-6 py-2.5 hover:bg-parchment transition-colors duration-200 shrink-0"
                     >
                       Register <ChevronRight size={12} />
-                    </Link>
+                    </a>
                   </div>
                 </motion.div>
               </AnimatePresence>
@@ -1034,14 +1034,14 @@ export default function Summer() {
                 <strong className="font-semibold text-ink">drop-ins</strong> are available, with pricing information in CourtReserve.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link
+                <a
                   href={COURT_RESERVE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-7 py-3.5 hover:bg-parchment-dark transition-colors duration-200"
                 >
                   Open CourtReserve <ChevronRight size={14} />
-                </Link>
+                </a>
                 <Link
                   href="/membership"
                   className="inline-flex items-center gap-2 text-[12px] tracking-[0.14em] uppercase no-underline text-ink border border-wsc-border px-7 py-3.5 hover:border-volt transition-colors duration-200"
@@ -1225,15 +1225,15 @@ export default function Summer() {
                               <p className="text-ink-light text-[12px]">
                                 Week {w.week} · {w.dates} · Ages 5–12
                               </p>
-                              <Link
+                              <a
                                 href={COURT_RESERVE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="inline-flex items-center gap-2 text-[13px] tracking-[0.14em] uppercase no-underline text-volt hover:text-ink transition-colors duration-200"
                                 onClick={(e: React.MouseEvent) => e.stopPropagation()}
                               >
                                 Register for Week {w.week} <ChevronRight size={12} />
-                              </Link>
+                              </a>
                             </div>
                           </div>
                         </motion.div>
@@ -1249,14 +1249,14 @@ export default function Summer() {
                   <p className="text-parchment text-[15px] font-light">Register for the full 9-week world tour</p>
                   <p className="text-parchment/75 text-[12px] mt-1">Full-day, half-day, and bundle options are available through CourtReserve</p>
                 </div>
-                <Link
+                <a
                   href={COURT_RESERVE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment transition-colors duration-200 shrink-0"
                 >
                   Register Now <ChevronRight size={14} />
-                </Link>
+                </a>
               </div>
             </div>
           </div>
@@ -1325,14 +1325,14 @@ export default function Summer() {
           </p>
           <p className="text-ink-light text-[12px] mb-8">For bundle help, email info@woodinvillesportsclub.com.</p>
           <div className="flex flex-wrap justify-center gap-5">
-            <Link
+            <a
               href={COURT_RESERVE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment-dark transition-colors duration-200"
             >
               Register Now <ChevronRight size={14} />
-            </Link>
+            </a>
             <Link
               href="/contact"
               className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline text-ink border border-wsc-border px-8 py-3.5 hover:border-volt transition-colors duration-200"

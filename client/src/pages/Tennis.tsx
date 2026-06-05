@@ -29,7 +29,7 @@ const TENNIS_PLAYER_FOREHAND_IMG = "/images/wsc/tennis-player-forehand.webp";
 const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689";
 const TIER1_TENNIS_URL = "https://www.tier1nw.com/tennis";
 const TIER1_CORE_URL = "https://www.tier1nw.com/tennis/intro-classes";
-const TIER1_COACHES_URL = "https://www.tier1nw.com/aboutus";
+const TIER1_COACHES_URL = "https://www.tier1nw.com/tennis#tennis-coaches";
 
 const academyTracks = [
   {

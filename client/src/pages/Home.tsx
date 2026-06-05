@@ -38,7 +38,7 @@ const SWINGLAB_IMG = "/images/wsc/swing-lab-simulators.webp";
 const TENNIS_LESSON_IMG = "/images/wsc/tennis-junior-backhand.webp";
 const FITNESS_TRAINING_IMG = "/images/wsc/apl-training.webp";
 const SUMMER_KIDS_IMG = "/images/wsc/summer-camp.webp";
-const COURT_RESERVE_SIGN_UP_URL = "https://app.courtreserve.com/Online/Account/Register/6689";
+const COURT_RESERVE_SIGN_UP_URL = "https://app.courtreserve.com/Online/Portal/Index/6689";
 
 type HeroCollageImage = {
   src: string;
