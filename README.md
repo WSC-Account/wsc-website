@@ -91,7 +91,7 @@ Website forms submit to `/api/contact`, write JSONL records, and send notificati
 POSTMARK_SERVER_TOKEN=your-postmark-server-token
 POSTMARK_MESSAGE_STREAM=outbound
 POSTMARK_TEST_TO=
-FORM_ALERT_TO=Info@woodinvillesportsclub.com
+FORM_ALERT_TO=Info@woodinvillesportsclub.com,Tier1golf@woodinvillesportsclub.com
 FORM_ALERT_FROM="WSC Website <Info@woodinvillesportsclub.com>"
 FORM_SUBMISSIONS_DIR=./data/form-submissions
 FORM_WEBHOOK_URL=
