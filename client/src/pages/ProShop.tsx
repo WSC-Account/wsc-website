@@ -30,69 +30,6 @@ const STRING_OPTIONS = [
   },
 ];
 
-const SHOP_CATEGORIES = [
-  {
-    title: "Tennis Racquets",
-    description: "Ask the front desk about current racket support, stringing needs, and available tennis equipment on campus.",
-    icon: (
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <circle cx="10" cy="10" r="7" />
-        <line x1="15" y1="15" x2="22" y2="22" strokeLinecap="round" />
-      </svg>
-    ),
-  },
-  {
-    title: "Pickleball Paddles",
-    description: "Check with WSC staff for current pickleball paddle, ball, and accessory availability.",
-    icon: (
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <rect x="6" y="2" width="12" height="16" rx="6" />
-        <line x1="12" y1="18" x2="12" y2="23" strokeLinecap="round" strokeWidth={2} />
-      </svg>
-    ),
-  },
-  {
-    title: "Golf Accessories",
-    description: "Pick up or ask about golf essentials for the range, mini-golf, and Swing Lab simulator sessions.",
-    icon: (
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <circle cx="12" cy="18" r="4" />
-        <line x1="12" y1="2" x2="12" y2="14" strokeLinecap="round" strokeWidth={2} />
-        <path d="M12 2 L18 6 L12 10" />
-      </svg>
-    ),
-  },
-  {
-    title: "Apparel & Footwear",
-    description: "Contact the front desk for current WSC merchandise, apparel, and court footwear guidance.",
-    icon: (
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path d="M3 20h18M5 20V8l7-5 7 5v12" />
-        <path d="M9 20v-6h6v6" />
-      </svg>
-    ),
-  },
-  {
-    title: "Grips & Accessories",
-    description: "Ask about grips, dampeners, bags, and other court accessories when you drop off your racket.",
-    icon: (
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path d="M12 2v20M2 12h20" strokeLinecap="round" />
-        <circle cx="12" cy="12" r="3" />
-      </svg>
-    ),
-  },
-  {
-    title: "Training Aids",
-    description: "WSC staff can point you toward available training tools and facility resources for your sport.",
-    icon: (
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-      </svg>
-    ),
-  },
-];
-
 export default function ProShop() {
   return (
     <div className="min-h-screen">
@@ -193,32 +130,6 @@ export default function ProShop() {
                 <h3 className="text-parchment text-[20px] font-light tracking-[-0.01em] mb-2">{option.category}</h3>
                 <p className="text-volt-bright text-[22px] font-light mb-4">{option.price}</p>
                 <p className="text-parchment/80 text-[14px] leading-[1.6]">{option.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pro Shop Categories */}
-      <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
-        <div className="max-w-[1440px] mx-auto">
-          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Shop the Pro Shop</p>
-          <h2 className="text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
-            Everything for your game,<br />all in one place.
-          </h2>
-          <p className="text-ink-mid text-[15px] leading-[1.75] max-w-[640px] mb-14">
-            The WSC Pro Shop carries equipment, apparel, and accessories for tennis, pickleball, and golf. Our knowledgeable staff can help you find exactly what you need.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {SHOP_CATEGORIES.map((cat, i) => (
-              <div
-                key={i}
-                className="group border border-wsc-border p-8 hover:border-volt/40 hover:bg-white/40 transition-all duration-300"
-              >
-                <div className="text-volt mb-5">{cat.icon}</div>
-                <h3 className="text-[18px] font-light tracking-[-0.01em] mb-3">{cat.title}</h3>
-                <p className="text-ink-mid text-[14px] leading-[1.7]">{cat.description}</p>
               </div>
             ))}
           </div>
