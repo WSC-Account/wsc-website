@@ -77,7 +77,7 @@ Legacy Wix URLs are handled through `vercel.json` redirects and SEO audit script
 
 ## Environment
 
-Copy `.env.example` to `.env.local` for local secrets. Analytics is optional and consent-gated:
+Copy `.env.example` to `.env.local` for local secrets. Analytics is optional and consent-gated. Vercel Web Analytics is enabled through `@vercel/analytics` and does not require an env var in this app; enable Web Analytics for the project in Vercel. Optional self-hosted analytics and GA4 can be configured with:
 
 ```bash
 VITE_ANALYTICS_ENDPOINT=https://analytics.example.com

@@ -258,7 +258,7 @@ export default function Privacy() {
                 <div className="border-t border-ink/10 pt-4">
                   <span className="text-ink text-[14px] font-medium">Analytics Providers</span>
                   <p className="text-ink-mid text-[13px] leading-[1.72] mt-1">
-                    We may use analytics services to understand how visitors use our Site. These services collect anonymous, aggregated data and are only activated if you consent to analytics cookies.
+                    We may use analytics services, including Vercel Web Analytics, to understand how visitors use our Site. These services collect anonymous, aggregated data and are only activated if you consent to analytics cookies.
                   </p>
                 </div>
                 <div className="border-t border-ink/10 pt-4">

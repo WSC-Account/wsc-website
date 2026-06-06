@@ -1,4 +1,6 @@
-import { useEffect } from "react";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
+import { useEffect, useState } from "react";
+import { useLocation } from "wouter";
 
 declare global {
   interface Window {
@@ -34,6 +36,20 @@ function isConfigured(value: string) {
 }
 
 export default function Analytics() {
+  const [location] = useLocation();
+  const [analyticsAllowed, setAnalyticsAllowed] = useState(false);
+
+  useEffect(() => {
+    const syncConsent = () => setAnalyticsAllowed(hasAnalyticsConsent());
+
+    syncConsent();
+    window.addEventListener("wsc-cookie-consent-changed", syncConsent);
+
+    return () => {
+      window.removeEventListener("wsc-cookie-consent-changed", syncConsent);
+    };
+  }, []);
+
   useEffect(() => {
     const endpoint = import.meta.env.VITE_ANALYTICS_ENDPOINT;
     const websiteId = import.meta.env.VITE_ANALYTICS_WEBSITE_ID;
@@ -61,7 +77,7 @@ export default function Analytics() {
     };
 
     const syncGa4 = () => {
-      if (!hasAnalyticsConsent() || !isConfigured(GA4_MEASUREMENT_ID)) {
+      if (!analyticsAllowed || !isConfigured(GA4_MEASUREMENT_ID)) {
         document.getElementById(GA4_SCRIPT_ID)?.remove();
         return;
       }
@@ -83,16 +99,22 @@ export default function Analytics() {
       document.body.appendChild(script);
     };
 
+    if (!analyticsAllowed) {
+      removeAnalyticsScript();
+      return;
+    }
+
     syncAnalytics();
     syncGa4();
-    window.addEventListener("wsc-cookie-consent-changed", syncAnalytics);
-    window.addEventListener("wsc-cookie-consent-changed", syncGa4);
+  }, [analyticsAllowed]);
 
-    return () => {
-      window.removeEventListener("wsc-cookie-consent-changed", syncAnalytics);
-      window.removeEventListener("wsc-cookie-consent-changed", syncGa4);
-    };
-  }, []);
+  if (!analyticsAllowed) return null;
 
-  return null;
+  return (
+    <VercelAnalytics
+      mode={import.meta.env.DEV ? "development" : "production"}
+      path={location}
+      route={location}
+    />
+  );
 }
