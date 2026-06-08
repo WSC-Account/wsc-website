@@ -559,7 +559,7 @@ function ClubPoliciesContent() {
             <SubHeading>Class & Program Cancellation</SubHeading>
             <HighlightBox>
               <p className="text-ink text-[15px] leading-[1.72]">
-                <strong className="font-medium">7-day notice</strong> is required for cancellation of classes, clinics, and camps to receive a balance credit. No makeup classes are offered.
+                <strong className="font-medium">7-day notice</strong> prior to the start of the session (i.e., Fall 1) is required for cancellation of classes, clinics, and camps to receive a CourtReserve balance credit. No makeup classes are offered.
               </p>
             </HighlightBox>
             <SubHeading>Private Lesson Cancellation</SubHeading>
