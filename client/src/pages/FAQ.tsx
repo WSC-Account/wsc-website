@@ -100,7 +100,7 @@ const FAQS: FAQItem[] = [
   {
     category: "cancellation",
     q: "What is the class/program cancellation policy?",
-    a: "7-day notice is required for cancellation of classes, clinics, and camps (regardless of illness, injury, or personal circumstance) to receive a balance credit. No makeup classes are offered under any circumstances.",
+    a: "7-day notice prior to the start of the session (i.e., Fall 1) is required for cancellation of classes, clinics, and camps (regardless of illness, injury, or personal circumstance) to receive a CourtReserve balance credit. No makeup classes are offered under any circumstances.",
   },
   {
     category: "cancellation",
