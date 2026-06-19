@@ -141,12 +141,23 @@ const SCHEDULES: Record<ScheduleKey, ScheduleGroup> = {
   "tennis-core-half-am": {
     program: "tennis",
     label: "Core Half-Day AM",
-    subtitle: "JumpStart · Red · Orange · Green · ½-Day Yellow",
-    ageNote: "Ages 3–12+",
+    subtitle: "JumpStart · Red · ½-Day Yellow",
+    ageNote: "Ages 3–8 & 12+",
     schedule: [
       { time: "9:00 AM", activity: "Athletic Development (APL)", type: "apl" },
       { time: "10:00 AM", activity: "Tennis Training", type: "sport" },
       { time: "12:00 PM", activity: "Dismissal", type: "break" },
+    ],
+  },
+  "tennis-core-orange-green-pm": {
+    program: "tennis",
+    label: "Core Orange/Green PM",
+    subtitle: "Orange · Green",
+    ageNote: "Ages 9–12",
+    schedule: [
+      { time: "1:00 PM", activity: "Athletic Development (APL)", type: "apl" },
+      { time: "2:00 PM", activity: "Tennis Training", type: "sport" },
+      { time: "4:00 PM", activity: "Dismissal", type: "break" },
     ],
   },
   "tennis-core-half-bundle": {
@@ -405,7 +416,13 @@ const ADVENTURE_WEEKS: WeekTheme[] = [
 
 /* ─── Group schedules by program ─── */
 const SCHEDULE_KEYS_BY_PROGRAM: Record<ProgramKey, ScheduleKey[]> = {
-  tennis: ["tennis-core-half-am", "tennis-core-half-bundle", "tennis-yellow-full", "tennis-academy-half"],
+  tennis: [
+    "tennis-core-half-am",
+    "tennis-core-orange-green-pm",
+    "tennis-core-half-bundle",
+    "tennis-yellow-full",
+    "tennis-academy-half",
+  ],
   golf: ["golf-club-half-am", "golf-club-half-pm", "golf-club-full", "golf-academy-half", "golf-academy-full"],
   adventure: ["adventure-half-am", "adventure-half-pm", "adventure-full"],
 };

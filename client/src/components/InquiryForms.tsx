@@ -86,15 +86,6 @@ const darkInputClass =
 const lightLabelClass = "block text-ink-light text-[11px] tracking-[0.14em] uppercase mb-2";
 const darkLabelClass = "block text-parchment/70 text-[11px] tracking-[0.14em] uppercase mb-2";
 
-const cancellationReasons = [
-  "Relocating/Moving",
-  "Financial Reasons",
-  "Facility/Equipment Concerns",
-  "Scheduling/Availability Issues",
-  "Staff/Coaching Concerns",
-  "Joining a Different Club",
-];
-
 const departmentOptions = [
   "Tennis",
   "Operations",
@@ -411,10 +402,7 @@ export function MemberCancellationForm({ tone = "light", source = "/member-reque
     lastName: "",
     email: "",
     phone: "",
-    reason: "",
-    reasonDetails: "",
     improvements: "",
-    discussionPreference: "",
   };
   const { form, update, submit, isSubmitting, status, honeypotProps } = useInquirySubmit(initialState, {
     formType: "member_cancellation",
@@ -427,12 +415,7 @@ export function MemberCancellationForm({ tone = "light", source = "/member-reque
       email: state.email,
       phone: state.phone,
       subject: `Membership cancellation request from ${fullName(state)}`,
-      message: state.reasonDetails,
-      metadata: {
-        reason: state.reason,
-        improvements: state.improvements,
-        discussionPreference: state.discussionPreference,
-      },
+      message: state.improvements,
     }),
   });
 
@@ -440,23 +423,6 @@ export function MemberCancellationForm({ tone = "light", source = "/member-reque
     <form onSubmit={submit} data-form-name="Membership Cancellation Requests" className="space-y-5">
       <NameFields form={form} update={update} tone={tone} prefix="member-cancel" />
       <ContactFields form={form} update={update} tone={tone} prefix="member-cancel" phoneRequired />
-      <SelectField
-        id="member-cancel-reason"
-        label="What's the primary reason for canceling?"
-        value={form.reason}
-        onChange={(value) => update("reason", value)}
-        options={cancellationReasons}
-        tone={tone}
-        required
-      />
-      <TextAreaField
-        id="member-cancel-details"
-        label="Please provide more details regarding your above cancellation reason."
-        value={form.reasonDetails}
-        onChange={(value) => update("reasonDetails", value)}
-        tone={tone}
-        required
-      />
       <TextAreaField
         id="member-cancel-improvements"
         label="Is there anything we could have done better?"
@@ -464,14 +430,6 @@ export function MemberCancellationForm({ tone = "light", source = "/member-reque
         onChange={(value) => update("improvements", value)}
         tone={tone}
         required
-      />
-      <SelectField
-        id="member-cancel-discussion"
-        label="Are you open to discussing options before finalizing your cancellation?"
-        value={form.discussionPreference}
-        onChange={(value) => update("discussionPreference", value)}
-        options={["Sure, I'm open to having a discussion.", "No. I'm sure I want to leave."]}
-        tone={tone}
       />
       <input {...honeypotProps} />
       <SubmitArea tone={tone} isSubmitting={isSubmitting} status={status} buttonLabel="Submit Request" />

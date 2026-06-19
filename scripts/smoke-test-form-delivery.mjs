@@ -146,11 +146,6 @@ function buildPayloads() {
       ...base,
       formType: "member_cancellation",
       source: "/member-request",
-      metadata: {
-        reason: "Smoke test",
-        improvements: "Smoke test only",
-        wantsFollowUp: false,
-      },
     },
     {
       ...base,

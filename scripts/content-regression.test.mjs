@@ -120,6 +120,16 @@ test("summer registration explains weekly and drop-in signup options", () => {
   assert.match(home, /<strong[^>]*>\s*drop-ins?\s*<\/strong>/i);
 });
 
+test("summer Core Orange and Green tennis runs in the afternoon", () => {
+  const summer = read("client/src/pages/Summer.tsx");
+
+  assert.match(summer, /label:\s*"Core Orange\/Green PM"/);
+  assert.match(summer, /subtitle:\s*"Orange · Green"/);
+  assert.match(summer, /ageNote:\s*"Ages 9–12"/);
+  assert.match(summer, /"tennis-core-orange-green-pm"[\s\S]*?time:\s*"1:00 PM"[\s\S]*?time:\s*"4:00 PM"/);
+  assert.doesNotMatch(summer, /subtitle:\s*"JumpStart · Red · Orange · Green · ½-Day Yellow"/);
+});
+
 test("policies page uses the full collapsible membership agreement", () => {
   const policies = read("client/src/pages/Policies.tsx");
 
@@ -200,8 +210,11 @@ test("live website inquiry forms exist in the new build", () => {
   assert.match(app, /<Route path="\/newsletter-signup" component=\{NewsletterSignupPage\} \/>/);
 
   assert.match(forms, /Membership Cancellation Requests/);
-  assert.match(forms, /What's the primary reason for canceling\?/);
-  assert.match(forms, /Are you open to discussing options before finalizing your cancellation\?/);
+  assert.match(forms, /Is there anything we could have done better\?/);
+  assert.doesNotMatch(forms, /What's the primary reason for canceling\?/);
+  assert.doesNotMatch(forms, /Please provide more details regarding your above cancellation reason\./);
+  assert.doesNotMatch(forms, /Are you open to discussing options before finalizing your cancellation\?/);
+  assert.doesNotMatch(forms, /discussionPreference/);
 
   assert.match(forms, /Personal Training Interest Form/);
   assert.match(forms, /Is this for an adult or child\?/);

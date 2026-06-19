@@ -259,10 +259,7 @@ function normalizePayload(rawPayload: unknown): Omit<FormSubmission, "id" | "sub
     throw new HttpError(400, "Please include your name and skill level.");
   }
 
-  if (
-    formType === "member_cancellation" &&
-    (!name || !phone || !metadata.reason || !message || !metadata.improvements)
-  ) {
+  if (formType === "member_cancellation" && (!name || !phone || !message)) {
     throw new HttpError(400, "Please include your contact information and cancellation details.");
   }
 
