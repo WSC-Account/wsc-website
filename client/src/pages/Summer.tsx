@@ -474,6 +474,7 @@ export default function Summer() {
   const [activeProgram, setActiveProgram] = useState<ProgramKey>("tennis");
   const [activeSchedule, setActiveSchedule] = useState<ScheduleKey>("tennis-core-half-am");
   const [expandedWeek, setExpandedWeek] = useState<number | null>(null);
+  const [bundlePricingOpen, setBundlePricingOpen] = useState(false);
   const calendarRef = useRef<HTMLDivElement>(null);
 
   const program = PROGRAMS[activeProgram];
@@ -1059,38 +1060,65 @@ export default function Summer() {
           </p>
 
           <div className="mt-12 bg-parchment border border-wsc-border">
-            <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-0">
-              <div className="p-7 lg:p-9 border-b lg:border-b-0 lg:border-r border-wsc-border">
-                <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-4">Summer Bundle FAQ</p>
-                <h3 className="text-[24px] lg:text-[30px] font-light tracking-[-0.02em] leading-[1.15] mb-4">
+            <button
+              type="button"
+              className="w-full p-6 lg:p-7 text-left flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between hover:bg-parchment-dark/45 transition-colors duration-200"
+              aria-expanded={bundlePricingOpen}
+              aria-controls="summer-bundle-pricing"
+              onClick={() => setBundlePricingOpen((open) => !open)}
+            >
+              <span>
+                <span className="block text-volt text-[12px] tracking-[0.2em] uppercase mb-2">Summer Bundle FAQ</span>
+                <span className="block text-ink text-[22px] lg:text-[28px] font-light tracking-[-0.02em] leading-[1.15]">
                   What do full-day bundles cost?
-                </h3>
-                <p className="text-ink-mid text-[14px] leading-[1.72]">
-                  These combinations pair an AM program with a PM program for a full-day summer schedule. Early bird prices are shown where available.
-                </p>
-              </div>
+                </span>
+                <span className="block text-ink-mid text-[13px] leading-[1.65] mt-3 max-w-[680px]">
+                  View the AM + PM bundle combinations, real prices, and early bird pricing.
+                </span>
+              </span>
+              <span className="inline-flex shrink-0 items-center gap-2 text-[12px] tracking-[0.14em] uppercase text-ink border border-wsc-border px-5 py-3">
+                {bundlePricingOpen ? "Hide Pricing" : "View Pricing"}
+                <ChevronRight
+                  size={14}
+                  className={`transition-transform duration-200 ${bundlePricingOpen ? "rotate-90" : ""}`}
+                  aria-hidden="true"
+                />
+              </span>
+            </button>
 
-              <div className="overflow-x-auto">
-                <table className="w-full min-w-[620px] text-left">
-                  <thead>
-                    <tr className="border-b border-wsc-border">
-                      <th className="px-5 py-4 text-[11px] tracking-[0.16em] uppercase text-ink-light font-medium">Combination</th>
-                      <th className="px-5 py-4 text-[11px] tracking-[0.16em] uppercase text-ink-light font-medium text-right">Real Price</th>
-                      <th className="px-5 py-4 text-[11px] tracking-[0.16em] uppercase text-ink-light font-medium text-right">Early Bird</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {BUNDLE_PRICING.map((row) => (
-                      <tr key={row.combination} className="border-b border-wsc-border last:border-b-0">
-                        <td className="px-5 py-3 text-ink-mid text-[13px] leading-[1.55]">{row.combination}</td>
-                        <td className="px-5 py-3 text-ink text-[13px] text-right tabular-nums">{row.realPrice}</td>
-                        <td className="px-5 py-3 text-ink text-[13px] text-right tabular-nums">{row.earlyBird}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+            <AnimatePresence initial={false}>
+              {bundlePricingOpen ? (
+                <motion.div
+                  id="summer-bundle-pricing"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.24, ease: "easeOut" }}
+                  className="overflow-hidden border-t border-wsc-border"
+                >
+                  <div className="overflow-x-auto">
+                    <table className="w-full min-w-[620px] text-left">
+                      <thead>
+                        <tr className="border-b border-wsc-border">
+                          <th className="px-5 py-4 text-[11px] tracking-[0.16em] uppercase text-ink-light font-medium">Combination</th>
+                          <th className="px-5 py-4 text-[11px] tracking-[0.16em] uppercase text-ink-light font-medium text-right">Real Price</th>
+                          <th className="px-5 py-4 text-[11px] tracking-[0.16em] uppercase text-ink-light font-medium text-right">Early Bird</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {BUNDLE_PRICING.map((row) => (
+                          <tr key={row.combination} className="border-b border-wsc-border last:border-b-0">
+                            <td className="px-5 py-3 text-ink-mid text-[13px] leading-[1.55]">{row.combination}</td>
+                            <td className="px-5 py-3 text-ink text-[13px] text-right tabular-nums">{row.realPrice}</td>
+                            <td className="px-5 py-3 text-ink text-[13px] text-right tabular-nums">{row.earlyBird}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </motion.div>
+              ) : null}
+            </AnimatePresence>
           </div>
         </div>
       </section>
