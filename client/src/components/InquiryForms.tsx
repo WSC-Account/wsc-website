@@ -576,6 +576,9 @@ export function GolfLessonInquiryForm({ tone = "dark", source = "/golf" }: { ton
         tone={tone}
         required
       />
+      <p className={`text-[12px] leading-[1.65] ${classForTone(tone).text}`}>
+        Private golf lessons require an active membership with class registration privileges or a Class Registration Pass before booking.
+      </p>
       <input {...honeypotProps} />
       <SubmitArea
         tone={tone}

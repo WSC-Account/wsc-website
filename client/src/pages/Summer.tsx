@@ -442,6 +442,33 @@ const typeLabels: Record<string, string> = {
   fun: "BUNDLE / ADV.",
 };
 
+const BUNDLE_PRICING = [
+  { combination: "Foundations AM + Golf Club PM", realPrice: "$650", earlyBird: "$585" },
+  { combination: "Foundations AM + Adventure PM", realPrice: "$650", earlyBird: "$585" },
+  { combination: "Prep AM + Golf Club PM", realPrice: "$650", earlyBird: "$585" },
+  { combination: "Prep AM + Adventure PM", realPrice: "$650", earlyBird: "$585" },
+  { combination: "JASA + Golf Club PM", realPrice: "$775", earlyBird: "$700" },
+  { combination: "JASA + Adventure PM", realPrice: "$775", earlyBird: "$700" },
+  { combination: "Core Jump Start AM + Golf Club PM", realPrice: "$650", earlyBird: "$585" },
+  { combination: "Core Jump Start AM + Adventure PM", realPrice: "$650", earlyBird: "$585" },
+  { combination: "Core Red AM + Golf Club PM", realPrice: "$650", earlyBird: "$585" },
+  { combination: "Core Red AM + Adventure PM", realPrice: "$650", earlyBird: "$585" },
+  { combination: "Core Yellow AM + Golf Club PM", realPrice: "$650", earlyBird: "$585" },
+  { combination: "Core Yellow AM + Adventure PM", realPrice: "$650", earlyBird: "$585" },
+  { combination: "Adventure AM + Core Orange PM", realPrice: "$650", earlyBird: "$585" },
+  { combination: "Golf Club AM + Core Orange PM", realPrice: "$650", earlyBird: "$585" },
+  { combination: "Adventure AM + Core Green PM", realPrice: "$650", earlyBird: "$585" },
+  { combination: "Golf Club AM + Core Green PM", realPrice: "$650", earlyBird: "$585" },
+  { combination: "Tier 1 Golf Foundations AM + Adventure PM", realPrice: "$650", earlyBird: "$585" },
+  { combination: "Tier 1 Golf Foundations AM + Core OG PM", realPrice: "$650", earlyBird: "$585" },
+  { combination: "Tier 1 Golf Prep AM + Adventure PM", realPrice: "$725", earlyBird: "$653" },
+  { combination: "Tier 1 Golf Prep AM + Core OG PM", realPrice: "$725", earlyBird: "$653" },
+  { combination: "Tier 1 Golf Junior Academy AM + Adventure PM", realPrice: "$725", earlyBird: "$653" },
+  { combination: "Tier 1 Golf Junior Academy AM + Core OG PM", realPrice: "$725", earlyBird: "$653" },
+  { combination: "Golf Club AM + Adventure PM", realPrice: "$600", earlyBird: "$540" },
+  { combination: "Adventure AM + Golf Club PM", realPrice: "$600", earlyBird: "$540" },
+];
+
 /* ─── Component ─── */
 export default function Summer() {
   const [activeProgram, setActiveProgram] = useState<ProgramKey>("tennis");
@@ -1030,6 +1057,41 @@ export default function Summer() {
             </a>{" "}
             (include your t-shirt size and the classes you wish to bundle) and we can get you registered.
           </p>
+
+          <div className="mt-12 bg-parchment border border-wsc-border">
+            <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-0">
+              <div className="p-7 lg:p-9 border-b lg:border-b-0 lg:border-r border-wsc-border">
+                <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-4">Summer Bundle FAQ</p>
+                <h3 className="text-[24px] lg:text-[30px] font-light tracking-[-0.02em] leading-[1.15] mb-4">
+                  What do full-day bundles cost?
+                </h3>
+                <p className="text-ink-mid text-[14px] leading-[1.72]">
+                  These combinations pair an AM program with a PM program for a full-day summer schedule. Early bird prices are shown where available.
+                </p>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-[620px] text-left">
+                  <thead>
+                    <tr className="border-b border-wsc-border">
+                      <th className="px-5 py-4 text-[11px] tracking-[0.16em] uppercase text-ink-light font-medium">Combination</th>
+                      <th className="px-5 py-4 text-[11px] tracking-[0.16em] uppercase text-ink-light font-medium text-right">Real Price</th>
+                      <th className="px-5 py-4 text-[11px] tracking-[0.16em] uppercase text-ink-light font-medium text-right">Early Bird</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {BUNDLE_PRICING.map((row) => (
+                      <tr key={row.combination} className="border-b border-wsc-border last:border-b-0">
+                        <td className="px-5 py-3 text-ink-mid text-[13px] leading-[1.55]">{row.combination}</td>
+                        <td className="px-5 py-3 text-ink text-[13px] text-right tabular-nums">{row.realPrice}</td>
+                        <td className="px-5 py-3 text-ink text-[13px] text-right tabular-nums">{row.earlyBird}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

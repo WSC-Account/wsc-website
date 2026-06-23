@@ -504,6 +504,11 @@ export default function Golf() {
             <p className="text-parchment/80 text-[15px] leading-[1.8] mb-8 max-w-[420px]">
               Interested in one-on-one instruction? Fill out the form and our golf staff will reach out to match you with the right coach for your goals and skill level.
             </p>
+            <div className="mb-8 border border-volt-bright/25 bg-volt-bright/[0.08] px-5 py-4">
+              <p className="text-parchment/82 text-[13px] leading-[1.7]">
+                Private golf lessons require an active membership with class registration privileges or a Class Registration Pass before booking.
+              </p>
+            </div>
             <div className="space-y-5">
               {[
                 { label: "Personalized Instruction", desc: "Tailored to your swing, goals, and schedule" },
