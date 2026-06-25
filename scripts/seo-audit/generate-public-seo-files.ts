@@ -56,6 +56,10 @@ async function main() {
     { path: SEO.proShop.path, changefreq: "monthly", priority: "0.7" },
     { path: SEO.faq.path, changefreq: "monthly", priority: "0.7" },
     { path: SEO.policies.path, changefreq: "monthly", priority: "0.6" },
+    { path: SEO.bookingPoliciesExpanded.path, changefreq: "monthly", priority: "0.5" },
+    { path: SEO.membershipPoliciesExpanded.path, changefreq: "monthly", priority: "0.5" },
+    { path: SEO.ustaPoliciesExpanded.path, changefreq: "monthly", priority: "0.5" },
+    { path: SEO.cupsPoliciesExpanded.path, changefreq: "monthly", priority: "0.5" },
     { path: SEO.privacy.path, changefreq: "yearly", priority: "0.3" },
     { path: SEO.accessibility.path, changefreq: "yearly", priority: "0.3" },
   ];

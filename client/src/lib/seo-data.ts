@@ -129,6 +129,30 @@ export const SEO = {
       "Review WSC membership policies, facility rules, code of conduct, cancellation terms, guest policies, court booking guidelines, and member agreement details.",
     path: "/policies",
   },
+  bookingPoliciesExpanded: {
+    title: "Booking Policies Expanded",
+    description:
+      "Review expanded WSC court booking policies for CourtReserve reservations, check-in, cancellation rules, guests, court usage, and fees.",
+    path: "/policies/booking-policies-expanded",
+  },
+  membershipPoliciesExpanded: {
+    title: "Membership Policies Expanded",
+    description:
+      "Review expanded WSC membership policies for agreement terms, payments, cancellations, freezes, guests, account access, and conduct.",
+    path: "/policies/membership-policies-expanded",
+  },
+  ustaPoliciesExpanded: {
+    title: "USTA Policies Expanded",
+    description:
+      "Review expanded WSC USTA team policies for captain requirements, warm-up court reservations, match timing, team fees, and cancellations.",
+    path: "/policies/usta-policies-expanded",
+  },
+  cupsPoliciesExpanded: {
+    title: "Cups Policies Expanded",
+    description:
+      "Review expanded WSC Seattle Area Cup Tennis policies for team access, warm-up courts, fees, timing, and cancellation expectations.",
+    path: "/policies/cups-policies-expanded",
+  },
   privacy: {
     title: "Privacy Policy & Data Use",
     description:

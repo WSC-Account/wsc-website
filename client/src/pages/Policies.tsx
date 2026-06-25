@@ -65,6 +65,19 @@ function HighlightBox({ children }: { children: React.ReactNode }) {
   );
 }
 
+function SmallPolicyLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <p className="mt-4">
+      <Link
+        href={href}
+        className="text-ink text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt pb-[3px] hover:text-volt transition-colors duration-200"
+      >
+        {children}
+      </Link>
+    </p>
+  );
+}
+
 function FeeTable({ rows }: { rows: { item: string; fee: string }[] }) {
   return (
     <div className="my-6 overflow-x-auto">
@@ -488,6 +501,9 @@ function ClubPoliciesContent() {
           <p className="text-ink-mid text-[15px] leading-[1.78] mb-8">
             Open each section below to review the complete WSC Member/Passholder agreement language.
           </p>
+          <SmallPolicyLink href="/policies/membership-policies-expanded">
+            Membership policies expanded
+          </SmallPolicyLink>
           <MembershipAgreementAccordion />
         </div>
       </section>
@@ -502,6 +518,9 @@ function ClubPoliciesContent() {
             <p>
               Online booking reservations open daily at 8:00 AM through CourtReserve, with a 7-day booking window. Members may select a duration of 30, 60, or 90 minutes per session.
             </p>
+            <SmallPolicyLink href="/policies/booking-policies-expanded">
+              Booking policies expanded
+            </SmallPolicyLink>
             <InfoBox>
               <h3 className="text-[18px] font-light tracking-[-0.01em] mb-5">Key Booking Rules</h3>
               <div className="space-y-5">
@@ -533,6 +552,14 @@ function ClubPoliciesContent() {
             <p>
               Visiting teams can only reserve warmup courts the day of the match. Home teams can reserve their warmup court up to 7 days in advance. USTA fees are $21 + tax per court and include a can of Babolat balls.
             </p>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 pt-2">
+              <SmallPolicyLink href="/policies/usta-policies-expanded">
+                USTA policies expanded
+              </SmallPolicyLink>
+              <SmallPolicyLink href="/policies/cups-policies-expanded">
+                Cups policies expanded
+              </SmallPolicyLink>
+            </div>
           </Prose>
         </div>
       </section>
