@@ -15,6 +15,12 @@ export const SEO = {
       "Book 8 indoor tennis courts and 1 outdoor court, Tier 1 junior training, adult classes, private lessons, USTA teams, and CourtReserve access at WSC.",
     path: "/tennis",
   },
+  summerTennis: {
+    title: "Summer Tennis Tournaments",
+    description:
+      "View WSC summer tennis tournament dates and registration links for Red, Orange, Green, USTA, UTR, and open events in July and August 2026.",
+    path: "/tennis/summer-tennis",
+  },
   golf: {
     title: "WSC Golf Training Grounds",
     description:

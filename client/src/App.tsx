@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import DeferredAppServices from "./components/DeferredAppServices";
 
 const Tennis = lazy(() => import("./pages/Tennis"));
+const SummerTennis = lazy(() => import("./pages/SummerTennis"));
 const Golf = lazy(() => import("./pages/Golf"));
 const Gym = lazy(() => import("./pages/Gym"));
 const Fitness = lazy(() => import("./pages/Fitness"));
@@ -65,6 +66,7 @@ function Router() {
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/tennis" component={Tennis} />
+        <Route path="/tennis/summer-tennis" component={SummerTennis} />
         <Route path="/golf" component={Golf} />
         <Route path="/gym" component={Gym} />
         <Route path="/fitness" component={Fitness} />

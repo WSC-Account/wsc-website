@@ -11,7 +11,11 @@ import MarketingBanner from "@/components/MarketingBanner";
 const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689";
 
 const navLinks = [
-  { href: "/tennis", label: "Tennis" },
+  {
+    href: "/tennis",
+    label: "Tennis",
+    children: [{ href: "/tennis/summer-tennis", label: "Summer Tennis" }],
+  },
   { href: "/golf", label: "Golf" },
   {
     href: "/gym",
