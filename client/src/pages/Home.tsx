@@ -122,10 +122,14 @@ const thisWeekItems = [
   {
     icon: Calendar,
     tag: "Registration",
-    title: "Spring 2 Registration Is Open",
-    desc: "Spring 2 starts May 25, 2026 and runs through June 28. Register through CourtReserve for tennis, pickleball, golf, and APL programming.",
-    date: "Starts May 25",
+    title: "Summer Session Starts June 29",
+    desc: "Summer training runs June 29 through August 30. Register through CourtReserve for tennis, golf, Adventure Club, and APL programming.",
+    date: "June 29 - Aug 30",
     time: "",
+    actions: [
+      { label: "Summer Page", href: "/summer" },
+      { label: "Sign Up", href: COURT_RESERVE_SIGN_UP_URL, external: true },
+    ],
   },
   {
     icon: Clock,
@@ -383,9 +387,9 @@ export default function Home() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[rgba(22,19,16,0.9)] via-[rgba(22,19,16,0.48)] to-[rgba(22,19,16,0.16)]" />
           <div className="relative z-10">
-            <h1 className="mb-4 text-[36px] font-light leading-[1.08] tracking-[-0.02em] text-parchment">
+            <h2 className="mb-4 text-[36px] font-light leading-[1.08] tracking-[-0.02em] text-parchment">
               Play more. Train better.
-            </h1>
+            </h2>
             <p className="max-w-[320px] text-[15px] leading-[1.62] text-parchment/75">
               Courts, camps, programs, and memberships across one Woodinville campus.
             </p>
@@ -444,16 +448,16 @@ export default function Home() {
               This Week at WSC
             </p>
             <h2 className="mb-2 text-[20px] font-light leading-[1.2] tracking-[-0.01em]">
-              Spring 2 Registration Is Open
+              Summer Session Starts June 29
             </h2>
             <p className="mb-4 text-[13px] leading-[1.58] text-ink-mid">
-              Spring 2 runs through June 28. Register through CourtReserve for tennis, pickleball, golf, and APL programming.
+              Summer training runs June 29 through August 30. Register through CourtReserve for tennis, golf, Adventure Club, and APL programming.
             </p>
             <Link
-              href="/sessions"
+              href="/summer"
               className="inline-flex min-h-10 items-center justify-center bg-volt-bright px-4 text-[10px] uppercase tracking-[0.15em] text-dark-bg no-underline transition-colors duration-200 hover:bg-parchment-mid"
             >
-              View Session Dates
+              Explore Summer
             </Link>
           </div>
         </div>
