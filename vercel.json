@@ -228,6 +228,11 @@
       "permanent": true
     },
     {
+      "source": "/passes",
+      "destination": "/membership",
+      "permanent": true
+    },
+    {
       "source": "/performance-training-team",
       "destination": "/gym",
       "permanent": true

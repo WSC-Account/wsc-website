@@ -72,6 +72,7 @@ function Router() {
         <Route path="/pickleball" component={Pickleball} />
         <Route path="/summer" component={Summer} />
         <Route path="/membership" component={Membership} />
+        <Route path="/passes" component={Membership} />
         <Route path="/sessions" component={Sessions} />
         <Route path="/events" component={Events} />
         <Route path="/events-1" component={Events} />
