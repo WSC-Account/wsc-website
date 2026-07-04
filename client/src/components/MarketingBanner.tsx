@@ -12,13 +12,13 @@ import { Link } from "wouter";
 
 /* ─── DEFAULT BANNER CONTENT (edit here to update site-wide) ─── */
 const DEFAULTS = {
-  badge: "Tier 1 Sports",
-  headline: "Home to World-Class Programming",
+  badge: "Holiday Hours",
+  headline: "July 4 Hours: Open 7:00 AM - 2:30 PM",
   description:
-    "Tier 1 is one of the leading developmental programs in the country — now in tennis, golf, and athletic performance at WSC.",
-  ctaLabel: "Explore Tier 1 Programs",
-  ctaHref: "https://www.tier1nw.com",
-  external: true,
+    "Last bucket of golf balls sold at 2:00 PM. Happy 4th of July from WSC!",
+  ctaLabel: "View Contact Info",
+  ctaHref: "/contact",
+  external: false,
 };
 
 interface MarketingBannerProps {
