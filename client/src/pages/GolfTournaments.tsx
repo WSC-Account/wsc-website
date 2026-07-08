@@ -435,6 +435,44 @@ const tournamentDistanceMiles: Record<string, number> = {
   "TBD": 999,
 };
 
+function getTournamentSourceKey(event: Pick<CompetitiveTournament, "title" | "location">) {
+  return `${event.title}|${event.location}`;
+}
+
+const tournamentSourceOverrides: Record<string, string> = {
+  "WJGA State Match Play|Eagles Pride GC": "https://wjga.bluegolf.com/bluegolf/wjga26/event/wjga261/index.htm",
+  "WJGA Jr. Tour #1|Meadow Park GC / Williams Nine": "https://wjga.bluegolf.com/bluegolf/wjga26/event/wjga265/index.htm",
+  "WJGA Western Open|Capitol City GC": "https://wjga.bluegolf.com/bluegolf/wjga26/event/wjga262/index.htm",
+  "WJGA Jr. Tour #2|Alderbrook GC": "https://wjga.bluegolf.com/bluegolf/wjga26/event/wjga266/index.htm",
+  "WJGA Eastern Open + Junior World Qualifier|Veterans Memorial GC": "https://wjga.bluegolf.com/bluegolf/wjga26/event/wjga263/index.htm",
+  "WJGA Jr. Tour #3|The Links GC": "https://wjga.bluegolf.com/bluegolf/wjga26/event/wjga267/index.htm",
+  "WJGA Players Open|The Links GC": "https://wjga.bluegolf.com/bluegolf/wjga26/event/wjga264/index.htm",
+  "U.S. Girls' Junior Qualifying|McCormick Woods Golf Club": "https://wagolf.org/play/play-list/event/48616895396?hsLang=en",
+  "U.S. Junior Amateur Qualifying|McCormick Woods Golf Club": "https://wagolf.org/play/play-list/event/48660934174?hsLang=en",
+  "WJGA Jr. Tour #4|Sun Country GC": "https://wjga.bluegolf.com/bluegolf/wjga26/event/wjga268/index.htm",
+  "Washington State Junior Amateur|Yakima Elks G&CC": "https://wjga.bluegolf.com/bluegolf/wjga26/event/wjga2610/index.htm",
+  "WJGA Jr. Tour #5|Tahoma Valley GC": "https://wjga.bluegolf.com/bluegolf/wjga26/event/wjga269/index.htm",
+  "WJGA District 1 Sub-District 1|Walter Hall GC": "https://wjga.bluegolf.com/bluegolf/wjga26/event/wjga2612/index.htm",
+  "WJGA District 2 Sub-District 1|Seattle GC": "https://wjga.bluegolf.com/bluegolf/wjga26/event/wjga2616/index.htm",
+  "U.S. Kids Golf Northwest State Invitational|Wine Valley GC, Walla Walla": "https://tournaments.uskidsgolf.com/tournaments/state/find-tournament/517647/2026-northwest-state-invitational",
+  "WJGA District 6 Sub-District 1|Riverbend GC": "https://wjga.bluegolf.com/bluegolf/wjga26/event/wjga2632/index.htm",
+  "WJGA District 1 Sub-District 2|Camaloch GC": "https://wjga.bluegolf.com/bluegolf/wjga26/event/wjga2613/index.htm",
+  "WJGA District 2 Sub-District 2|West Seattle GC": "https://wjga.bluegolf.com/bluegolf/wjga26/event/wjga2617/index.htm",
+  "WJGA District 6 Sub-District 2|North Shore GC": "https://wjga.bluegolf.com/bluegolf/wjga26/event/wjga2633/index.htm",
+  "WJGA Joel Dahmen Invitational|Oakbrook GC": "https://wjga.bluegolf.com/bluegolf/wjga26/event/wjga2611/index.htm",
+  "U.S. Kids Golf Washington State Invitational|Gamble Sands, Brewster": "https://tournaments.uskidsgolf.com/tournaments/state/find-tournament/518093/2026-washington-state-invitational",
+  "WJGA District 2 Sub-District 3|Snoqualmie Falls GC": "https://wjga.bluegolf.com/bluegolf/wjga26/event/wjga2618/index.htm",
+  "WJGA District 1 Sub-District 3|Bellingham G&CC": "https://wjga.bluegolf.com/bluegolf/wjga26/event/wjga2614/index.htm",
+  "WJGA District 6 Sub-District 3|Allenmore GC": "https://wjga.bluegolf.com/bluegolf/wjga26/event/wjga2634/index.htm",
+  "WJGA District 1 Championship|Avalon Golf Links": "https://wjga.bluegolf.com/bluegolf/wjga26/event/wjga2615/index.htm",
+  "WJGA District 2 Championship|Echo Falls GC": "https://wjga.bluegolf.com/bluegolf/wjga26/event/wjga2619/index.htm",
+  "WJGA District 6 Championship|High Cedars GC": "https://wjga.bluegolf.com/bluegolf/wjga26/event/wjga2635/index.htm",
+  "WJGA Cup|Lakeview G&CC": "https://wjga.bluegolf.com/bluegolf/wjga26/event/wjga2636/index.htm",
+  "WJGA State Championship|Manito G&CC / Latah Creek GC / Esmeralda GC": "https://wjga.bluegolf.com/bluegolf/wjga26/event/wjga2637/index.htm",
+  "PNGA Junior Boys' Amateur|Vandal Golf Course": "https://thepnga.org/championships/junior-boys-amateur/",
+  "PNGA Junior Girls' Amateur|Vandal Golf Course": "https://thepnga.org/championships/junior-girls-amateur/",
+};
+
 function getTournamentAgeGroups(event: CompetitiveTournament): TournamentAgeFilter[] {
   if (event.level.includes("All ages")) return ["8-11", "12-13", "14-18"];
   if (event.level.includes("8-11") || event.level.includes("12-13")) return ["8-11", "12-13"];
@@ -470,6 +508,7 @@ function getTournamentEligibility(event: CompetitiveTournament): TournamentEligi
 
 const enhancedCompetitiveTournaments: EnhancedCompetitiveTournament[] = sortedCompetitiveTournaments.map((event) => ({
   ...event,
+  source: tournamentSourceOverrides[getTournamentSourceKey(event)] ?? event.source,
   ageGroups: getTournamentAgeGroups(event),
   distanceMiles: tournamentDistanceMiles[event.location] ?? null,
   fit: getTournamentFit(event),
