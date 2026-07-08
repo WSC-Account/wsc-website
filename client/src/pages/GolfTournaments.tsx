@@ -517,7 +517,7 @@ function matchesDistance(event: EnhancedCompetitiveTournament, distanceFilter: T
 const pathwayCards = [
   {
     title: "New to tournament golf",
-    kicker: "Start here",
+    kicker: "",
     copy: "Connect with us to learn about our program pathway helping juniors take the next right step.",
   },
   {
@@ -668,7 +668,6 @@ export default function GolfTournaments() {
         <div className="max-w-[1440px] mx-auto">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
             <div>
-              <p className="text-volt-bright text-[12px] tracking-[0.2em] uppercase mb-4">Start here</p>
               <h2 className="text-parchment text-[clamp(30px,3.4vw,48px)] font-light leading-[1.06] mb-5">
                 A quick guide before families open a schedule.
               </h2>
@@ -676,7 +675,9 @@ export default function GolfTournaments() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-[3px]">
               {pathwayCards.map((card) => (
                 <article key={card.title} className="bg-dark-mid p-6 border-t-2 border-volt-bright/70">
-                  <p className="text-volt-bright text-[11px] tracking-[0.16em] uppercase mb-4">{card.kicker}</p>
+                  {card.kicker ? (
+                    <p className="text-volt-bright text-[11px] tracking-[0.16em] uppercase mb-4">{card.kicker}</p>
+                  ) : null}
                   <h3 className="text-parchment text-[22px] font-light leading-[1.12] mb-4">{card.title}</h3>
                   <p className="text-parchment/68 text-[13px] leading-[1.68]">{card.copy}</p>
                 </article>
@@ -826,7 +827,7 @@ export default function GolfTournaments() {
             <summary className="cursor-pointer list-none">
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <p className="text-volt text-[12px] tracking-[0.18em] uppercase mb-2">Full source list</p>
+                  <p className="text-volt text-[12px] tracking-[0.18em] uppercase mb-2">Full Tournament List</p>
                   <h3 className="text-[28px] font-light leading-[1.12]">View the matching 2026 tournament list.</h3>
                 </div>
                 <span className="inline-flex items-center justify-center text-[11px] tracking-[0.14em] uppercase text-volt border border-volt/40 px-4 py-2 self-start sm:self-center">
