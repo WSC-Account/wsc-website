@@ -458,7 +458,7 @@ export default function GolfTournaments() {
         <div className="relative z-10 max-w-[1440px] mx-auto px-6 lg:px-14 py-16 lg:py-20 min-h-[calc(66vh-var(--site-header-height,130px))] flex flex-col justify-end">
           <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Golf Tournament Pathway</p>
           <h1 className="max-w-[760px] text-parchment text-[clamp(36px,5.2vw,68px)] font-light leading-[1.04] tracking-[-0.025em] mb-5">
-            Find the right golf tournament path.
+            Find your next tournament
           </h1>
           <p className="max-w-[620px] text-parchment/82 text-[16px] leading-[1.72] mb-8">
             A simple starting point for WSC and Tier 1 Golf families: what to play, when to look, and who to ask before registering.
