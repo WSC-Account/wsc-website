@@ -396,17 +396,17 @@ const pathwayCards = [
   {
     title: "New to tournament golf",
     kicker: "Start here",
-    copy: "Use WSC practice, Swing Lab lessons, and low-pressure club events before jumping into travel-heavy junior schedules.",
+    copy: "Connect with us to learn about our program pathway helping juniors take the next right step.",
   },
   {
     title: "Ready for junior events",
     kicker: "Next step",
-    copy: "Review WJGA, U.S. Kids Golf, WA Golf, and PNGA options with a coach so the event fits age, scores, and goals.",
+    copy: "Work with our coaches to understand the best placement before registering for junior events.",
   },
   {
-    title: "Need placement help",
+    title: "Already playing tournaments",
     kicker: "Ask the team",
-    copy: "Send the golf team your player's age, recent scores, goals, and travel comfort before registering.",
+    copy: "Connect with our team to place better, shoot lower, achieve greater.",
   },
 ];
 
@@ -434,9 +434,6 @@ function StatusBadge({ status }: { status: TournamentStatus }) {
 }
 
 export default function GolfTournaments() {
-  const upcomingCount = sortedCompetitiveTournaments.filter((event) => event.status === "Upcoming").length;
-  const sourceCount = new Set(sortedCompetitiveTournaments.map((event) => event.organizer)).size;
-
   return (
     <div className="min-h-screen">
       <SEOHead {...SEO.golfTournaments} />
@@ -507,27 +504,12 @@ export default function GolfTournaments() {
 
       <section id="upcoming-tournaments" className="bg-parchment px-6 lg:px-14 py-20 lg:py-24 scroll-mt-[var(--site-header-height,130px)]">
         <div className="max-w-[1440px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-[0.82fr_1.18fr] gap-12 lg:gap-20 mb-12">
+          <div className="max-w-[700px] mb-12">
             <div>
-              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Upcoming tournaments</p>
+              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Tournament links</p>
               <h2 className="text-[clamp(28px,3.2vw,46px)] font-light leading-[1.08] mb-6">
                 The next events families are likely to ask about.
               </h2>
-              <p className="text-ink-mid text-[15px] leading-[1.82]">
-                Start with upcoming choices, then use the full source list below when you want to plan the whole year.
-              </p>
-            </div>
-            <div className="grid grid-cols-3 gap-[1px] bg-ink/10 self-start">
-              {[
-                { val: upcomingCount, label: "Upcoming" },
-                { val: sortedCompetitiveTournaments.length, label: "Listed Events" },
-                { val: sourceCount, label: "Source Groups" },
-              ].map((metric) => (
-                <div key={metric.label} className="bg-parchment-mid p-5">
-                  <p className="text-volt text-[30px] font-light leading-none mb-2">{metric.val}</p>
-                  <p className="text-ink-light text-[10px] tracking-[0.14em] uppercase leading-[1.4]">{metric.label}</p>
-                </div>
-              ))}
             </div>
           </div>
 
