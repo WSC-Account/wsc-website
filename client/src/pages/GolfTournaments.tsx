@@ -485,9 +485,6 @@ export default function GolfTournaments() {
               <h2 className="text-parchment text-[clamp(30px,3.4vw,48px)] font-light leading-[1.06] mb-5">
                 A quick guide before families open a schedule.
               </h2>
-              <p className="text-parchment/76 text-[15px] leading-[1.78] max-w-[640px]">
-                Tournament calendars can be hard to read cold. Start with the right pathway, check the live source, then ask the golf team when placement or timing is unclear.
-              </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-[3px]">
               {pathwayCards.map((card) => (
