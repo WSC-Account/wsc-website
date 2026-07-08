@@ -16,7 +16,11 @@ const navLinks = [
     label: "Tennis",
     children: [{ href: "/tennis/summer-tennis", label: "Summer Tennis Tournaments" }],
   },
-  { href: "/golf", label: "Golf" },
+  {
+    href: "/golf",
+    label: "Golf",
+    children: [{ href: "/golf/tournaments", label: "Golf Tournaments" }],
+  },
   {
     href: "/gym",
     label: "Fitness Center",

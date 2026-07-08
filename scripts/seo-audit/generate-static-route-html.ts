@@ -24,6 +24,7 @@ const pageImages: Record<string, string> = {
   "/tennis": "/images/wsc/tennis-courts.webp",
   "/tennis/summer-tennis": "/images/wsc/tennis-courts.webp",
   "/golf": "/images/wsc/golf-range-sunset.webp",
+  "/golf/tournaments": "/images/wsc/junior-golf-academy-group.webp",
   "/gym": "/images/wsc/fitness-center-hero.webp",
   "/fitness": "/images/wsc/gym-main.webp",
   "/pickleball": "/images/wsc/pickleball-dome.webp",

@@ -28,6 +28,7 @@ async function main() {
     { path: SEO.tennis.path, changefreq: "monthly", priority: "0.8" },
     { path: SEO.summerTennis.path, changefreq: "weekly", priority: "0.7" },
     { path: SEO.golf.path, changefreq: "monthly", priority: "0.8" },
+    { path: SEO.golfTournaments.path, changefreq: "weekly", priority: "0.6" },
     { path: SEO.gym.path, changefreq: "monthly", priority: "0.8" },
     { path: SEO.apl.path, changefreq: "monthly", priority: "0.7" },
     { path: SEO.pickleball.path, changefreq: "monthly", priority: "0.8" },
