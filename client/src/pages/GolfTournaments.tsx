@@ -1,3 +1,4 @@
+import { useMemo, useState } from "react";
 import { Link } from "wouter";
 import { ArrowUpRight } from "lucide-react";
 import ResponsiveImage from "@/components/ResponsiveImage";
@@ -11,6 +12,10 @@ const SIM_IMG = "/images/wsc/swing-lab-junior-practice.webp";
 const GOLF_EMAIL = "Tier1golf@woodinvillesportsclub.com";
 
 type TournamentStatus = "Completed" | "Upcoming" | "TBD";
+type TournamentAgeFilter = "all" | "8-11" | "12-13" | "14-18";
+type TournamentFitFilter = "all" | "first-events" | "developing" | "competitive" | "championship";
+type TournamentDistanceFilter = "all" | "30" | "90" | "travel";
+type TournamentEligibilityFilter = "all" | "pathway" | "open" | "qualifier" | "invitational" | "championship";
 
 type CompetitiveTournament = {
   date: string;
@@ -21,6 +26,15 @@ type CompetitiveTournament = {
   level: string;
   status: TournamentStatus;
   source: string;
+};
+
+type TournamentFit = Exclude<TournamentFitFilter, "all">;
+type TournamentEligibility = Exclude<TournamentEligibilityFilter, "all">;
+type EnhancedCompetitiveTournament = CompetitiveTournament & {
+  ageGroups: TournamentAgeFilter[];
+  distanceMiles: number | null;
+  fit: TournamentFit[];
+  eligibility: TournamentEligibility[];
 };
 
 type RecreationalTournament = {
@@ -389,8 +403,116 @@ const sortedCompetitiveTournaments = [...competitiveTournaments].sort((a, b) =>
   a.sortDate.localeCompare(b.sortDate),
 );
 
-const upcomingTournaments = sortedCompetitiveTournaments.filter((event) => event.status !== "Completed");
-const featuredUpcomingTournaments = upcomingTournaments.slice(0, 6);
+const tournamentDistanceMiles: Record<string, number> = {
+  "Eagles Pride GC": 61,
+  "Meadow Park GC / Williams Nine": 49,
+  "Capitol City GC": 84,
+  "Alderbrook GC": 94,
+  "Veterans Memorial GC": 280,
+  "The Links GC": 170,
+  "McCormick Woods Golf Club": 61,
+  "Sun Country GC": 92,
+  "Yakima Elks G&CC": 145,
+  "Tahoma Valley GC": 64,
+  "Walter Hall GC": 22,
+  "Seattle GC": 18,
+  "Wine Valley GC, Walla Walla": 280,
+  "Riverbend GC": 37,
+  "Camaloch GC": 64,
+  "West Seattle GC": 30,
+  "North Shore GC": 42,
+  "Oakbrook GC": 54,
+  "Gamble Sands, Brewster": 190,
+  "Snoqualmie Falls GC": 22,
+  "Bellingham G&CC": 80,
+  "Allenmore GC": 49,
+  "Avalon Golf Links": 61,
+  "Echo Falls GC": 12,
+  "High Cedars GC": 61,
+  "Lakeview G&CC": 180,
+  "Manito G&CC / Latah Creek GC / Esmeralda GC": 285,
+  "Vandal Golf Course": 300,
+  "TBD": 999,
+};
+
+function getTournamentAgeGroups(event: CompetitiveTournament): TournamentAgeFilter[] {
+  if (event.level.includes("All ages")) return ["8-11", "12-13", "14-18"];
+  if (event.level.includes("8-11") || event.level.includes("12-13")) return ["8-11", "12-13"];
+  if (event.organizer === "U.S. Kids Golf") return ["8-11", "12-13", "14-18"];
+  return ["14-18"];
+}
+
+function getTournamentFit(event: CompetitiveTournament): TournamentFit[] {
+  const text = `${event.title} ${event.level}`.toLowerCase();
+
+  if (text.includes("jr. tour") || event.organizer === "U.S. Kids Golf") return ["first-events", "developing"];
+  if (text.includes("sub-district") || text.includes("district")) return ["developing", "competitive"];
+  if (text.includes("qualif") || text.includes("championship") || text.includes("amateur") || text.includes("cup")) {
+    return ["competitive", "championship"];
+  }
+  if (text.includes("invitational")) return ["championship"];
+
+  return ["competitive"];
+}
+
+function getTournamentEligibility(event: CompetitiveTournament): TournamentEligibility[] {
+  const text = `${event.title} ${event.level}`.toLowerCase();
+
+  if (text.includes("qualif")) return ["qualifier"];
+  if (text.includes("invitational")) return ["invitational"];
+  if (text.includes("championship") || text.includes("amateur") || text.includes("cup") || text.includes("match play")) {
+    return ["championship"];
+  }
+  if (text.includes("open")) return ["open"];
+
+  return ["pathway"];
+}
+
+const enhancedCompetitiveTournaments: EnhancedCompetitiveTournament[] = sortedCompetitiveTournaments.map((event) => ({
+  ...event,
+  ageGroups: getTournamentAgeGroups(event),
+  distanceMiles: tournamentDistanceMiles[event.location] ?? null,
+  fit: getTournamentFit(event),
+  eligibility: getTournamentEligibility(event),
+}));
+
+const filterOptions = {
+  age: [
+    { value: "all", label: "Any age" },
+    { value: "8-11", label: "Ages 8-11" },
+    { value: "12-13", label: "Ages 12-13" },
+    { value: "14-18", label: "Ages 14-18" },
+  ],
+  fit: [
+    { value: "all", label: "Any level" },
+    { value: "first-events", label: "Newer tournament golfer" },
+    { value: "developing", label: "Developing junior" },
+    { value: "competitive", label: "Competitive junior" },
+    { value: "championship", label: "Championship ready" },
+  ],
+  distance: [
+    { value: "all", label: "Any distance" },
+    { value: "30", label: "Within 30 miles" },
+    { value: "90", label: "Within 90 miles" },
+    { value: "travel", label: "Travel events" },
+  ],
+  eligibility: [
+    { value: "all", label: "Any event type" },
+    { value: "pathway", label: "Pathway events" },
+    { value: "open", label: "Open events" },
+    { value: "qualifier", label: "Qualifiers" },
+    { value: "invitational", label: "Invitationals" },
+    { value: "championship", label: "Championships" },
+  ],
+} satisfies Record<string, { value: string; label: string }[]>;
+
+function matchesDistance(event: EnhancedCompetitiveTournament, distanceFilter: TournamentDistanceFilter) {
+  if (distanceFilter === "all") return true;
+  if (event.distanceMiles === null) return false;
+  if (distanceFilter === "30") return event.distanceMiles <= 30;
+  if (distanceFilter === "90") return event.distanceMiles <= 90;
+  return event.distanceMiles > 90;
+}
 
 const pathwayCards = [
   {
@@ -433,7 +555,72 @@ function StatusBadge({ status }: { status: TournamentStatus }) {
   );
 }
 
+function formatDistance(distanceMiles: number | null) {
+  if (distanceMiles === null || distanceMiles >= 999) return "Distance TBD";
+  return `${distanceMiles} mi from WSC`;
+}
+
+function FilterSelect({
+  id,
+  label,
+  value,
+  options,
+  onChange,
+}: {
+  id: string;
+  label: string;
+  value: string;
+  options: { value: string; label: string }[];
+  onChange: (value: string) => void;
+}) {
+  return (
+    <label htmlFor={id} className="block">
+      <span className="block text-[11px] tracking-[0.14em] uppercase text-ink-light mb-2">{label}</span>
+      <select
+        id={id}
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        className="w-full appearance-none rounded-none border border-ink/15 bg-parchment px-4 py-3 text-[14px] text-ink outline-none transition-colors duration-200 hover:border-volt focus:border-volt"
+      >
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+}
+
 export default function GolfTournaments() {
+  const [ageFilter, setAgeFilter] = useState<TournamentAgeFilter>("all");
+  const [fitFilter, setFitFilter] = useState<TournamentFitFilter>("all");
+  const [distanceFilter, setDistanceFilter] = useState<TournamentDistanceFilter>("all");
+  const [eligibilityFilter, setEligibilityFilter] = useState<TournamentEligibilityFilter>("all");
+
+  const filteredTournaments = useMemo(
+    () =>
+      enhancedCompetitiveTournaments.filter((event) => {
+        const matchesAge = ageFilter === "all" || event.ageGroups.includes(ageFilter);
+        const matchesFit = fitFilter === "all" || event.fit.includes(fitFilter);
+        const matchesEligibility = eligibilityFilter === "all" || event.eligibility.includes(eligibilityFilter);
+
+        return matchesAge && matchesFit && matchesEligibility && matchesDistance(event, distanceFilter);
+      }),
+    [ageFilter, distanceFilter, eligibilityFilter, fitFilter],
+  );
+  const filteredUpcomingTournaments = filteredTournaments.filter((event) => event.status !== "Completed");
+  const visibleTournamentCards = (filteredUpcomingTournaments.length > 0 ? filteredUpcomingTournaments : filteredTournaments).slice(0, 6);
+  const hasActiveFilters =
+    ageFilter !== "all" || fitFilter !== "all" || distanceFilter !== "all" || eligibilityFilter !== "all";
+
+  const resetFilters = () => {
+    setAgeFilter("all");
+    setFitFilter("all");
+    setDistanceFilter("all");
+    setEligibilityFilter("all");
+  };
+
   return (
     <div className="min-h-screen">
       <SEOHead {...SEO.golfTournaments} />
@@ -510,8 +697,67 @@ export default function GolfTournaments() {
             </div>
           </div>
 
+          <div className="bg-parchment-mid border-l-2 border-volt-bright p-6 lg:p-8 mb-10">
+            <div className="grid grid-cols-1 lg:grid-cols-[0.65fr_1.35fr] gap-8 lg:items-end">
+              <div>
+                <p className="text-[12px] tracking-[0.18em] uppercase text-volt mb-3">Tournament finder</p>
+                <h3 className="text-[28px] font-light leading-[1.12] mb-4">Filter by player fit.</h3>
+                <p className="text-ink-mid text-[14px] leading-[1.7]">
+                  Start with the basics, then confirm final eligibility on the live tournament source before registering.
+                </p>
+              </div>
+              <div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+                  <FilterSelect
+                    id="tournament-age-filter"
+                    label="Age"
+                    value={ageFilter}
+                    options={filterOptions.age}
+                    onChange={(value) => setAgeFilter(value as TournamentAgeFilter)}
+                  />
+                  <FilterSelect
+                    id="tournament-fit-filter"
+                    label="Level"
+                    value={fitFilter}
+                    options={filterOptions.fit}
+                    onChange={(value) => setFitFilter(value as TournamentFitFilter)}
+                  />
+                  <FilterSelect
+                    id="tournament-distance-filter"
+                    label="Distance"
+                    value={distanceFilter}
+                    options={filterOptions.distance}
+                    onChange={(value) => setDistanceFilter(value as TournamentDistanceFilter)}
+                  />
+                  <FilterSelect
+                    id="tournament-eligibility-filter"
+                    label="Event type"
+                    value={eligibilityFilter}
+                    options={filterOptions.eligibility}
+                    onChange={(value) => setEligibilityFilter(value as TournamentEligibilityFilter)}
+                  />
+                </div>
+                <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <p className="text-ink-mid text-[13px] leading-[1.6]">
+                    Showing {visibleTournamentCards.length} of {filteredTournaments.length} matching tournament
+                    {filteredTournaments.length === 1 ? "" : "s"}.
+                  </p>
+                  {hasActiveFilters && (
+                    <button
+                      type="button"
+                      onClick={resetFilters}
+                      className="self-start text-[11px] tracking-[0.14em] uppercase text-volt border border-volt/40 px-4 py-2 hover:bg-volt hover:text-parchment transition-colors duration-200"
+                    >
+                      Reset filters
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[3px] mb-12">
-            {featuredUpcomingTournaments.map((event) => (
+            {visibleTournamentCards.map((event) => (
               <article key={`${event.title}-${event.sortDate}-${event.location}`} className="bg-parchment-mid p-7 border-t-2 border-transparent hover:border-volt transition-colors duration-300">
                 <div className="flex items-start justify-between gap-4 mb-5">
                   <div>
@@ -522,7 +768,15 @@ export default function GolfTournaments() {
                 </div>
                 <h3 className="text-[24px] font-light leading-[1.14] mb-4">{event.title}</h3>
                 <p className="text-ink-mid text-[14px] leading-[1.6] mb-2">{event.location}</p>
-                <p className="text-ink-mid text-[14px] leading-[1.65] mb-6">{event.level}</p>
+                <p className="text-ink-mid text-[14px] leading-[1.65] mb-3">{event.level}</p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  <span className="text-[10px] tracking-[0.12em] uppercase text-ink-mid border border-ink/12 px-3 py-1">
+                    {event.ageGroups.join(", ")}
+                  </span>
+                  <span className="text-[10px] tracking-[0.12em] uppercase text-ink-mid border border-ink/12 px-3 py-1">
+                    {formatDistance(event.distanceMiles)}
+                  </span>
+                </div>
                 <a
                   href={event.source}
                   target="_blank"
@@ -534,6 +788,21 @@ export default function GolfTournaments() {
                 </a>
               </article>
             ))}
+            {visibleTournamentCards.length === 0 && (
+              <div className="md:col-span-2 xl:col-span-3 bg-parchment-mid p-8 border-l-2 border-volt">
+                <h3 className="text-[24px] font-light leading-[1.14] mb-3">No exact matches yet.</h3>
+                <p className="text-ink-mid text-[14px] leading-[1.7] mb-5">
+                  Try widening the distance or event type, or connect with the golf team for placement help.
+                </p>
+                <button
+                  type="button"
+                  onClick={resetFilters}
+                  className="text-[11px] tracking-[0.14em] uppercase text-volt border border-volt/40 px-4 py-2 hover:bg-volt hover:text-parchment transition-colors duration-200"
+                >
+                  Reset filters
+                </button>
+              </div>
+            )}
           </div>
 
           <div className="bg-parchment-mid border-l-2 border-volt-bright p-6 lg:p-8">
@@ -558,7 +827,7 @@ export default function GolfTournaments() {
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <p className="text-volt text-[12px] tracking-[0.18em] uppercase mb-2">Full source list</p>
-                  <h3 className="text-[28px] font-light leading-[1.12]">View the full 2026 tournament list.</h3>
+                  <h3 className="text-[28px] font-light leading-[1.12]">View the matching 2026 tournament list.</h3>
                 </div>
                 <span className="inline-flex items-center justify-center text-[11px] tracking-[0.14em] uppercase text-volt border border-volt/40 px-4 py-2 self-start sm:self-center">
                   Open schedule
@@ -566,7 +835,7 @@ export default function GolfTournaments() {
               </div>
             </summary>
             <div className="mt-8 grid grid-cols-1 gap-[2px]">
-              {sortedCompetitiveTournaments.map((event) => (
+              {filteredTournaments.map((event) => (
                 <article key={`${event.title}-${event.sortDate}-${event.location}`} className="grid grid-cols-1 lg:grid-cols-[150px_1fr_220px_120px] gap-4 bg-parchment p-5 items-start">
                   <div>
                     <p className="text-volt text-[12px] tracking-[0.16em] uppercase mb-1">{event.date}</p>
@@ -574,7 +843,10 @@ export default function GolfTournaments() {
                   </div>
                   <div>
                     <h4 className="text-[20px] font-light leading-[1.18] mb-2">{event.title}</h4>
-                    <p className="text-ink-mid text-[13px] leading-[1.6]">{event.level}</p>
+                    <p className="text-ink-mid text-[13px] leading-[1.6] mb-2">{event.level}</p>
+                    <p className="text-ink-light text-[12px] leading-[1.5]">
+                      {event.ageGroups.join(", ")} · {formatDistance(event.distanceMiles)}
+                    </p>
                   </div>
                   <p className="text-ink-mid text-[13px] leading-[1.6]">{event.location}</p>
                   <div className="flex flex-col gap-3 lg:items-end">
@@ -591,6 +863,13 @@ export default function GolfTournaments() {
                   </div>
                 </article>
               ))}
+              {filteredTournaments.length === 0 && (
+                <div className="bg-parchment p-5">
+                  <p className="text-ink-mid text-[14px] leading-[1.7]">
+                    No tournaments match those filters. Reset the finder or ask Tier 1 Golf for help choosing the right event.
+                  </p>
+                </div>
+              )}
             </div>
           </details>
         </div>
