@@ -11,10 +11,9 @@ import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
 
 const GYM_HERO = "/images/wsc/fitness-center-hero.webp";
-const GYM_MAIN = "/images/wsc/gym-main.webp";
-const GYM_WEIGHTS = GYM_MAIN;
-const GYM_FUNCTIONAL = GYM_MAIN;
-const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689";
+const GYM_MAIN = "/images/wsc/gym-main-interior.webp";
+const GYM_WEIGHTS = "/images/wsc/gym-training-tools.webp";
+const GYM_FUNCTIONAL = "/images/wsc/gym-functional-zone.webp";
 
 export default function Gym() {
   const { ref: mainGymRef, isVisible: mainGymVisible } = useScrollReveal({ threshold: 0.08 });
@@ -33,8 +32,8 @@ export default function Gym() {
       ])]} />
       <PageHero
         eyebrow="Fitness Center"
-        headline="Your Gym. Your Goals."
-        subtitle="Train in a full-service fitness center with cardio equipment, free weights, dedicated strength space, functional training tools, sauna access, and locker rooms on WSC's 67-acre campus."
+        headline="Fitness memberships that fit real life."
+        subtitle="Train in a clean, accessible gym with flexible fitness memberships, cardio equipment, free weights, dedicated strength space, sauna access, locker rooms, and personal training with world-class instructors."
         image={GYM_HERO}
         imagePosition="center 48%"
       />
@@ -42,13 +41,13 @@ export default function Gym() {
       <section className="bg-dark-bg px-6 lg:px-14 py-16">
         <div className="max-w-[1440px] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-y-8">
           {[
-            { val: "67", label: "Acre Campus" },
-            { val: "6am", label: "Weekday Open" },
-            { val: "11pm", label: "Weekday Close" },
-            { val: "7am-10pm", label: "Weekend Hours" },
+            { val: "Fitness", label: "Memberships" },
+            { val: "6am-11pm", label: "Weekday Access" },
+            { val: "7am-10pm", label: "Weekend Access" },
+            { val: "1:1", label: "Personal Training" },
           ].map((m, i) => (
             <div key={i} className={`pr-10 ${i < 3 ? "lg:border-r border-parchment/[0.08]" : ""}`}>
-              <div className="text-volt-bright text-[36px] font-light leading-none mb-2">
+              <div className="text-volt-bright text-[clamp(24px,2.8vw,36px)] font-light leading-none mb-2">
                 {m.val}
               </div>
               <div className="text-parchment/75 text-[11px] tracking-[0.14em] uppercase leading-[1.5]">
@@ -56,6 +55,34 @@ export default function Gym() {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="bg-parchment px-6 lg:px-14 py-12 border-b border-ink/10">
+        <div className="max-w-[1440px] mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+          <div className="max-w-[680px]">
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-4">Fitness Memberships</p>
+            <h2 className="text-[clamp(24px,2.4vw,34px)] font-light leading-[1.18] mb-4">
+              A clean, accessible gym for consistent training.
+            </h2>
+            <p className="text-ink-mid text-[15px] leading-[1.75]">
+              WSC fitness memberships are built for members who want a reliable place to train, recover, and get expert help when they want it.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-4">
+            <Link
+              href="/membership"
+              className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment-dark transition-colors duration-200"
+            >
+              Explore Fitness Memberships
+            </Link>
+            <Link
+              href="/personal-training-interest-form"
+              className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline text-ink border border-ink/20 px-8 py-3.5 hover:bg-ink/5 transition-colors duration-200"
+            >
+              Request Personal Training
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -68,7 +95,7 @@ export default function Gym() {
             <div className="order-2 lg:order-1">
               <ResponsiveImage
                 src={GYM_MAIN}
-                alt="WSC Main Gym with cardio machines and tree-lined views"
+                alt="WSC main gym with strength equipment, benches, and tree-lined windows"
                 loading="lazy"
                 className="w-full aspect-[4/3] object-cover"
               />
@@ -76,13 +103,13 @@ export default function Gym() {
             <div className="order-1 lg:order-2">
               <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Main Gym</p>
               <h2 className="text-[clamp(26px,2.8vw,38px)] font-light leading-[1.15] mb-8">
-                Full-service strength<br />and cardio.
+                Clean, accessible,<br />ready when you are.
               </h2>
               <p className="text-ink-mid text-[16px] leading-[1.82] mb-6">
-                The WSC Fitness Center is a clean, updated space with flexible hours and top-notch equipment, including free weights, cardio machines, power lifting stations, and room for everyday training.
+                The WSC Fitness Center is a bright, well-kept training space with flexible hours and the equipment members use every day: cardio machines, free weights, strength stations, and open room for a complete workout.
               </p>
               <p className="text-ink-mid text-[16px] leading-[1.82] mb-8">
-                Floor-to-ceiling windows overlook the tree-lined property, creating a training environment that feels focused, bright, and connected to the campus around it.
+                It is built to feel approachable without feeling basic, giving new gym members and experienced lifters a clean place to train with confidence.
               </p>
               <div className="flex flex-wrap gap-3">
                 {["Treadmills", "Ellipticals", "Rowing Machines", "Stationary Bikes", "Free Weights"].map((item) => (
@@ -103,10 +130,10 @@ export default function Gym() {
             <div>
               <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-6">Weight Room</p>
               <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light leading-[1.1] mb-6">
-                Built for serious<br />strength training.
+                Strength training<br />without intimidation.
               </h2>
               <p className="text-parchment/80 text-[15px] leading-[1.8] max-w-[420px] mb-6">
-                Our dedicated weight room features power racks, Olympic lifting platforms, a full dumbbell range, cable machines, and kettlebells for members building strength with intention.
+                The weight room gives members serious tools in a welcoming environment, including power racks, Olympic lifting platforms, a full dumbbell range, cable machines, and kettlebells.
               </p>
               <div className="flex flex-wrap gap-3">
                 {["Power Racks", "Olympic Platforms", "Dumbbells", "Cable Machines", "Kettlebells"].map((item) => (
@@ -116,9 +143,9 @@ export default function Gym() {
             </div>
             <ResponsiveImage
               src={GYM_WEIGHTS}
-              alt="WSC main gym with cardio machines, free weights, and strength equipment"
+              alt="WSC kettlebells, medicine balls, and strength training tools"
               loading="lazy"
-              className="w-full aspect-[4/3] object-cover"
+              className="w-full aspect-[4/3] object-cover object-center"
             />
           </div>
         </div>
@@ -133,7 +160,7 @@ export default function Gym() {
             <div className="order-2 lg:order-1">
               <ResponsiveImage
                 src={GYM_FUNCTIONAL}
-                alt="WSC functional training area with strength equipment"
+                alt="WSC functional training area with turf, kettlebells, and strength equipment"
                 loading="lazy"
                 className="w-full aspect-[4/3] object-cover"
               />
@@ -141,13 +168,13 @@ export default function Gym() {
             <div className="order-1 lg:order-2">
               <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Functional Training</p>
               <h2 className="text-[clamp(26px,2.8vw,38px)] font-light leading-[1.15] mb-8">
-                Move better.<br />Train with purpose.
+                Room to move,<br />stretch, and reset.
               </h2>
               <p className="text-ink-mid text-[16px] leading-[1.82] mb-6">
-                The functional training zone supports dynamic warm-ups, mobility work, circuits, and conditioning with open space, suspension trainers, medicine balls, resistance bands, and recovery tools.
+                The functional training zone supports dynamic warm-ups, mobility work, circuits, conditioning, and recovery with open space, suspension trainers, medicine balls, resistance bands, and recovery tools.
               </p>
               <p className="text-ink-mid text-[16px] leading-[1.82]">
-                Whether you are building a repeatable routine, returning to training, or adding variety to your workouts, the space adapts to the way you like to move.
+                Whether you are building a repeatable routine, returning to training, or adding variety to your week, the space adapts to the way you like to move.
               </p>
             </div>
           </div>
@@ -157,27 +184,25 @@ export default function Gym() {
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[0.8fr_1.4fr] gap-12 lg:gap-20 items-start">
           <div>
-            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Free Fitness Assessment</p>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Personal Training</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light leading-[1.15] mb-8">
-              Expert guidance for WSC gym members.
+              World-class instructors,<br />personal plans.
             </h2>
             <p className="text-ink-mid text-[16px] leading-[1.82] mb-8">
-              Get expert insight into your current routine, goals, and next steps with a complimentary 30-45 minute assessment from a certified WSC trainer.
+              Work one-on-one with experienced WSC instructors who can help you build strength, improve mobility, train with better form, and create a plan that fits your schedule.
             </p>
             <div className="flex flex-wrap gap-4">
-              <a
-                href={COURT_RESERVE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment-dark transition-colors duration-200"
-              >
-                Book Your Assessment
-              </a>
               <Link
                 href="/personal-training-interest-form"
-                className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline text-ink border border-ink/20 px-8 py-3.5 hover:bg-ink/5 transition-colors duration-200"
+                className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment-dark transition-colors duration-200"
               >
                 Request Personal Training
+              </Link>
+              <Link
+                href="/membership"
+                className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline text-ink border border-ink/20 px-8 py-3.5 hover:bg-ink/5 transition-colors duration-200"
+              >
+                Explore Memberships
               </Link>
             </div>
           </div>
@@ -185,20 +210,20 @@ export default function Gym() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[3px]">
             {[
               {
-                q: "What is included?",
-                a: "A trainer will review your routine, discuss goals, identify opportunities for improvement, and provide personalized recommendations.",
+                q: "Who is it for?",
+                a: "Personal training is available for all fitness levels, from first-time gym members to experienced athletes refining a routine.",
               },
               {
-                q: "Is it complimentary?",
-                a: "Yes. The assessment is included for WSC gym members with no obligation or long-term commitment required.",
+                q: "What do trainers help with?",
+                a: "WSC instructors can support strength training, mobility, form, accountability, confidence, and sustainable workout planning.",
               },
               {
                 q: "Do I need gym experience?",
-                a: "No. The session is designed for all fitness levels, from first-time gym users to experienced members.",
+                a: "No. Your trainer meets you where you are and builds a plan around your goals, comfort level, and available training time.",
               },
               {
-                q: "What happens after?",
-                a: "You will receive guidance based on your goals. If useful, the coaching team can recommend next steps.",
+                q: "How do I start?",
+                a: "Submit a personal training request and the WSC fitness team will follow up about your goals, availability, and next steps.",
               },
             ].map((item) => (
               <article key={item.q} className="bg-parchment-mid p-8">
@@ -214,7 +239,7 @@ export default function Gym() {
         <div className="max-w-[1440px] mx-auto">
           <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Amenities</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light leading-[1.15] mb-14">
-            Everything you need,<br />all under one roof.
+            Clean, useful amenities<br />for daily members.
           </h2>
           <div ref={amenitiesRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[3px]">
             {[
@@ -246,10 +271,10 @@ export default function Gym() {
             <div>
               <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Fitness Center Hours</p>
               <h2 className="text-[clamp(26px,2.8vw,38px)] font-light leading-[1.15] mb-8">
-                Open early.<br />Close late.
+                Accessible hours<br />for busy schedules.
               </h2>
               <p className="text-ink-mid text-[16px] leading-[1.82] max-w-[420px]">
-                The WSC Fitness Center operates on extended hours to fit your schedule. Gym access requires an active membership with gym privileges.
+                The WSC Fitness Center operates on extended hours so members can train before work, after school, or later in the evening. Gym access requires an active membership with gym privileges.
               </p>
             </div>
             <div className="space-y-4">
@@ -277,23 +302,23 @@ export default function Gym() {
         >
           <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Get Started</p>
           <h2 className="text-[clamp(26px,3vw,42px)] font-light leading-[1.15] mb-4">
-            Ready to train at WSC?
+            Choose a fitness membership and start training.
           </h2>
           <p className="text-ink-mid text-[15px] leading-[1.75] max-w-[520px] mx-auto mb-8">
-            All-Access memberships include full gym, sauna, and locker room access. Join the WSC community today.
+            Fitness memberships include gym access, sauna access, locker rooms, and the option to add personal training with WSC instructors.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/membership"
               className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment-dark transition-colors duration-200"
             >
-              Become a Member
+              Explore Memberships
             </Link>
             <Link
-              href="/contact"
+              href="/personal-training-interest-form"
               className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline text-ink border border-ink/20 px-8 py-3.5 hover:bg-ink/5 transition-colors duration-200"
             >
-              Contact Us
+              Request Personal Training
             </Link>
           </div>
         </div>

@@ -24,7 +24,7 @@ const FullWidthImage = lazy(() => import("@/components/FullWidthImage"));
 const TENNIS_IMG = "/images/wsc/tennis-adult-clinic.webp";
 const TENNIS_CARD_IMG = "/images/wsc/tennis-junior-trophy.webp";
 const GOLF_IMG = "/images/wsc/golf-practice-area.webp";
-const PERF_IMG = "/images/wsc/gym-main.webp";
+const PERF_IMG = "/images/wsc/gym-main-interior.webp";
 const PICKLE_IMG = "/images/wsc/pickleball-dome.webp";
 
 /* Generated gallery images */
@@ -212,8 +212,8 @@ const disciplines = [
     num: "03",
     tag: "Fitness",
     name: "Fitness Center",
-    desc: "Full-service gym access with cardio equipment, free weights, power racks, functional training tools, sauna, and locker rooms.",
-    detail: "A separate Athletic Performance Lab page covers coached strength and conditioning programming.",
+    desc: "Clean, accessible fitness memberships with cardio equipment, free weights, power racks, functional training tools, sauna, locker rooms, and personal training.",
+    detail: "Personal training is available with world-class WSC instructors; coached performance programming lives on the Athletic Performance Lab page.",
     img: PERF_IMG,
     imageAlt: "Fitness Center facilities at Woodinville Sports Club",
     imagePosition: "center",

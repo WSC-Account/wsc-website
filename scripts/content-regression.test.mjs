@@ -311,8 +311,30 @@ test("live website forms are discoverable from site clicks", () => {
   assert.match(membership, /href="\/member-request"/);
   assert.match(gym, /Request Personal Training/);
   assert.match(gym, /href="\/personal-training-interest-form"/);
+  assert.match(gym, /Explore Fitness Memberships/);
+  assert.match(gym, /href="\/membership"/);
   assert.match(fitness, /Request Personal Training/);
   assert.match(fitness, /href="\/personal-training-interest-form"/);
+});
+
+test("gym page is positioned around memberships and personal training", () => {
+  const gym = read("client/src/pages/Gym.tsx");
+  const seo = read("client/src/lib/seo-data.ts");
+  const structuredData = read("client/src/components/StructuredData.tsx");
+
+  assert.match(gym, /Fitness memberships that fit real life/);
+  assert.match(gym, /clean, accessible gym/);
+  assert.match(gym, /personal training with world-class instructors/i);
+  assert.match(gym, /World-class instructors/);
+  assert.match(gym, /Accessible hours/);
+  assert.match(gym, /gym-main-interior\.webp/);
+  assert.match(gym, /gym-training-tools\.webp/);
+  assert.match(gym, /gym-functional-zone\.webp/);
+  assert.doesNotMatch(gym, /const GYM_WEIGHTS = GYM_MAIN/);
+  assert.doesNotMatch(gym, /const GYM_FUNCTIONAL = GYM_MAIN/);
+  assert.match(seo, /Fitness Memberships & Gym Access/);
+  assert.match(seo, /clean, accessible fitness memberships/i);
+  assert.match(structuredData, /Clean, accessible fitness memberships/);
 });
 
 test("gym page does not mention APL class programming", () => {
@@ -354,6 +376,18 @@ test("junior tennis pathway sends performance-minded juniors to Tier 1 Tennis", 
   assert.match(tennis, /Tier 1 Afterschool Academy/);
   assert.match(tennis, /Full Time Academy/);
   assert.match(tennis, /https:\/\/www\.tier1nw\.com\/tennis/);
+});
+
+test("tennis page uses junior confidence and matchplay photos", () => {
+  const tennis = read("client/src/pages/Tennis.tsx");
+  const responsiveImages = read("client/src/lib/responsive-image.ts");
+
+  assert.match(tennis, /tennis-junior-confidence\.webp/);
+  assert.match(tennis, /Confidence building/);
+  assert.match(tennis, /tennis-matchplay-bench\.webp/);
+  assert.match(tennis, /Friday Night UTR Matchplay[\s\S]*?TENNIS_MATCHPLAY_BENCH_IMG/);
+  assert.match(responsiveImages, /tennis-junior-confidence\.webp/);
+  assert.match(responsiveImages, /tennis-matchplay-bench\.webp/);
 });
 
 test("home facility chart includes golf sims and both fitness centers", () => {

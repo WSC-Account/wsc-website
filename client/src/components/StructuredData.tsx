@@ -97,7 +97,7 @@ export function getLocalBusinessSchema() {
           name: "Fitness & Performance",
           itemListElement: [
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "Athletic Performance Lab", description: "Elite strength and conditioning training for youth and adult athletes" } },
-            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Gym & Fitness Center", description: "Full-service gym with cardio, weights, and group fitness classes" } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Gym & Fitness Center", description: "Clean, accessible fitness memberships with cardio, weights, sauna, locker rooms, and personal training" } },
           ],
         },
         {

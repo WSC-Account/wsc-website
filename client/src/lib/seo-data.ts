@@ -34,9 +34,9 @@ export const SEO = {
     path: "/golf/tournaments",
   },
   gym: {
-    title: "Gym & Fitness Center Access",
+    title: "Fitness Memberships & Gym Access",
     description:
-      "Train in WSC's fitness center with cardio equipment, free weights, power racks, functional training space, sauna, locker rooms, and all-access plans.",
+      "Join WSC for clean, accessible fitness memberships with gym access, cardio equipment, free weights, sauna, locker rooms, and personal training with world-class instructors.",
     path: "/gym",
   },
   apl: {

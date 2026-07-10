@@ -1,10 +1,10 @@
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation } from "wouter";
 
 declare global {
   interface Window {
-    dataLayer: unknown[][];
+    dataLayer: unknown[];
     gtag: (...args: unknown[]) => void;
   }
 }
@@ -38,6 +38,7 @@ function isConfigured(value: string) {
 export default function Analytics() {
   const [location] = useLocation();
   const [analyticsAllowed, setAnalyticsAllowed] = useState(false);
+  const lastGa4PageView = useRef<string | null>(null);
 
   useEffect(() => {
     const syncConsent = () => setAnalyticsAllowed(hasAnalyticsConsent());
@@ -84,18 +85,24 @@ export default function Analytics() {
 
       if (document.getElementById(GA4_SCRIPT_ID)) return;
 
+      window.dataLayer = window.dataLayer || [];
+      window.gtag =
+        window.gtag ||
+        function gtag() {
+          window.dataLayer.push(arguments);
+        };
+      window.gtag("js", new Date());
+      window.gtag("config", GA4_MEASUREMENT_ID, {
+        page_path: location,
+        page_location: window.location.href,
+        page_title: document.title,
+      });
+      lastGa4PageView.current = location;
+
       const script = document.createElement("script");
       script.id = GA4_SCRIPT_ID;
       script.async = true;
       script.src = `https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`;
-      script.onload = () => {
-        window.dataLayer = window.dataLayer || [];
-        window.gtag = function gtag(...args: unknown[]) {
-          window.dataLayer.push(args);
-        };
-        window.gtag("js", new Date());
-        window.gtag("config", GA4_MEASUREMENT_ID);
-      };
       document.body.appendChild(script);
     };
 
@@ -106,7 +113,20 @@ export default function Analytics() {
 
     syncAnalytics();
     syncGa4();
-  }, [analyticsAllowed]);
+  }, [analyticsAllowed, location]);
+
+  useEffect(() => {
+    if (!analyticsAllowed || !isConfigured(GA4_MEASUREMENT_ID)) return;
+    if (typeof window.gtag !== "function") return;
+    if (lastGa4PageView.current === location) return;
+
+    window.gtag("config", GA4_MEASUREMENT_ID, {
+      page_path: location,
+      page_location: window.location.href,
+      page_title: document.title,
+    });
+    lastGa4PageView.current = location;
+  }, [analyticsAllowed, location]);
 
   if (!analyticsAllowed) return null;
 

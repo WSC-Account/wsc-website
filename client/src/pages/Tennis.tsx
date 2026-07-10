@@ -22,8 +22,10 @@ const TENNIS_COACH_BALL_FEED_IMG = "/images/wsc/tennis-coach-ball-feed.webp";
 const TENNIS_COACH_CONVERSATION_IMG = "/images/wsc/tennis-coach-conversation.webp";
 const TENNIS_COACH_INSTRUCTION_IMG = "/images/wsc/tennis-coach-court-instruction.webp";
 const TENNIS_JUNIOR_BALL_BASKET_IMG = "/images/wsc/tennis-junior-ball-basket.webp";
+const TENNIS_JUNIOR_CONFIDENCE_IMG = "/images/wsc/tennis-junior-confidence.webp";
 const TENNIS_JUNIOR_POINT_PLAY_IMG = "/images/wsc/tennis-junior-point-play.webp";
 const TENNIS_JUNIOR_SERVE_IMG = "/images/wsc/tennis-junior-serve.webp";
+const TENNIS_MATCHPLAY_BENCH_IMG = "/images/wsc/tennis-matchplay-bench.webp";
 const TENNIS_ALUMNI_SIGN_IMG = "/images/wsc/tennis-tier1-alumni-sign.webp";
 const TENNIS_PLAYER_FOREHAND_IMG = "/images/wsc/tennis-player-forehand.webp";
 const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689";
@@ -156,6 +158,14 @@ const trainingGallery = [
     title: "Young players learn the habits around the game.",
     detail: "The pathway builds responsibility, confidence, and comfort on court alongside technique.",
     objectPosition: "center 42%",
+  },
+  {
+    src: TENNIS_JUNIOR_CONFIDENCE_IMG,
+    alt: "Junior tennis player smiling on an indoor court at Woodinville Sports Club",
+    label: "Confidence building",
+    title: "Comfort on court grows one rep at a time.",
+    detail: "The best junior environments leave room for focus, confidence, and joy between the competitive moments.",
+    objectPosition: "center 46%",
   },
   {
     src: TENNIS_JUNIOR_POINT_PLAY_IMG,
@@ -704,22 +714,30 @@ export default function Tennis() {
             ))}
           </div>
 
-          <div className="mt-10 bg-parchment p-8 grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-center">
+          <div className="mt-10 bg-parchment p-8 grid grid-cols-1 lg:grid-cols-[minmax(0,0.95fr)_minmax(280px,0.55fr)] gap-8 items-center">
             <div>
               <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3">Friday Night UTR Matchplay</p>
               <h3 className="text-[20px] font-light tracking-[-0.01em] mb-3">Verified singles matches for juniors and adults.</h3>
               <p className="text-ink-mid text-[14px] leading-[1.72]">
                 Friday nights alternate between juniors 18 and under and adults 19+. Registration closes Wednesday night, draws post Thursday at 1:00 PM, and matches use Fast 4 scoring with opponents near each player's UTR level.
               </p>
+              <a
+                href={COURT_RESERVE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex items-center justify-center text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment-dark transition-colors duration-200"
+              >
+                Register
+              </a>
             </div>
-            <a
-              href={COURT_RESERVE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment-dark transition-colors duration-200"
-            >
-              Register
-            </a>
+            <ResponsiveImage
+              src={TENNIS_MATCHPLAY_BENCH_IMG}
+              alt="Junior tennis player sitting courtside during matchplay at Woodinville Sports Club"
+              sizes="(min-width: 1024px) 34vw, 100vw"
+              loading="lazy"
+              className="aspect-[16/10] w-full object-cover saturate-[0.7] brightness-[0.92]"
+              style={{ objectPosition: "center 52%" }}
+            />
           </div>
         </div>
       </section>
