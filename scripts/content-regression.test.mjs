@@ -345,7 +345,7 @@ test("gym page does not mention APL class programming", () => {
   assert.doesNotMatch(gym, /4\/8\/∞/);
 });
 
-test("APL page explains offerings, coaches, and who it is for", () => {
+test("APL page explains offerings, coaching, and who it is for", () => {
   const fitness = read("client/src/pages/Fitness.tsx");
 
   assert.match(fitness, /Athletic Performance Lab/);
@@ -354,8 +354,7 @@ test("APL page explains offerings, coaches, and who it is for", () => {
   assert.match(fitness, /Who It's For/);
   assert.match(fitness, /Jordy Champagne/);
   assert.match(fitness, /Director of Strength and Conditioning/);
-  assert.match(fitness, /Zach Brooks/);
-  assert.match(fitness, /Strength and Conditioning Coach/);
+  assert.doesNotMatch(fitness, /Zach Brooks/);
   assert.doesNotMatch(fitness, /Coach Dom|Director of Performance/);
   assert.match(fitness, /https:\/\/www\.tier1nw\.com\/apl/);
 });

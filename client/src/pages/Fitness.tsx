@@ -63,11 +63,6 @@ const coachHighlights = [
     role: "Director of Strength and Conditioning",
     desc: "Jordy leads the Athletic Performance Lab's training standards, athlete development approach, and strength and conditioning programming for youth and adult athletes.",
   },
-  {
-    name: "Zach Brooks",
-    role: "Strength and Conditioning Coach",
-    desc: "Zach coaches athletes through purposeful strength, speed, power, and movement work that supports tennis, golf, pickleball, field sports, and everyday performance.",
-  },
 ];
 
 export default function Fitness() {
