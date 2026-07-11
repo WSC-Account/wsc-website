@@ -11,6 +11,7 @@ export default function NewsletterSignupPage() {
         title="Newsletter Signup"
         description="Sign up for Woodinville Sports Club email updates."
         path="/newsletter-signup"
+        robots="noindex, follow"
       />
       <PageHero
         eyebrow="Email Updates"

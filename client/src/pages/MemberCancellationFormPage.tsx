@@ -11,6 +11,7 @@ export default function MemberCancellationFormPage() {
         title="Membership Cancellation Request"
         description="Submit a Woodinville Sports Club membership cancellation request."
         path="/member-request"
+        robots="noindex, follow"
       />
       <PageHero
         eyebrow="Membership Request"

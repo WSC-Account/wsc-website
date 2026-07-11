@@ -5,6 +5,7 @@ interface SEOHeadProps {
   description: string;
   path: string;
   image?: string;
+  robots?: "index, follow" | "noindex, follow";
 }
 
 const BASE_URL = "https://www.woodinvillesportsclub.com";
@@ -19,7 +20,7 @@ function absoluteUrl(value: string) {
  * Sets per-page <title>, meta description, canonical URL, and OG/Twitter tags.
  * Cleans up on unmount by restoring defaults.
  */
-export default function SEOHead({ title, description, path, image }: SEOHeadProps) {
+export default function SEOHead({ title, description, path, image, robots = "index, follow" }: SEOHeadProps) {
   useEffect(() => {
     const fullTitle = `${title} | ${SITE_NAME}`;
     const canonicalUrl = `${BASE_URL}${path}`;
@@ -41,6 +42,7 @@ export default function SEOHead({ title, description, path, image }: SEOHeadProp
 
     // Meta description
     setMeta("name", "description", description);
+    setMeta("name", "robots", robots);
 
     // Canonical
     let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
@@ -69,6 +71,7 @@ export default function SEOHead({ title, description, path, image }: SEOHeadProp
     return () => {
       document.title = `${SITE_NAME} | Tennis, Golf, Pickleball & Athletic Performance | Woodinville, WA`;
       setMeta("name", "description", "Woodinville Sports Club is a 67-acre campus for tennis, golf, pickleball, gym, APL training, camps, events, and family programs in Woodinville, WA.");
+      setMeta("name", "robots", "index, follow");
       if (canonical) canonical.setAttribute("href", `${BASE_URL}/`);
       setMeta("property", "og:url", `${BASE_URL}/`);
       setMeta("property", "og:title", `Woodinville Sports Campus | ${SITE_NAME}`);
@@ -78,7 +81,7 @@ export default function SEOHead({ title, description, path, image }: SEOHeadProp
       setMeta("name", "twitter:description", "Woodinville Sports Club is a 67-acre campus for tennis, golf, pickleball, gym, APL training, camps, events, and family programs in Woodinville, WA.");
       setMeta("name", "twitter:image", absoluteUrl(DEFAULT_IMAGE));
     };
-  }, [title, description, path, image]);
+  }, [title, description, path, image, robots]);
 
   return null;
 }

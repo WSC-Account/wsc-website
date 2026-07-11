@@ -11,6 +11,8 @@ const DEFAULT_IMAGE = "/images/wsc/campus-dome.webp";
 
 type StaticRoute = {
   path: string;
+  canonicalPath?: string;
+  robots?: "index, follow" | "noindex, follow";
   title: string;
   description: string;
   image: string;
@@ -117,13 +119,15 @@ function staticShell(route: StaticRoute) {
 function replaceMeta(html: string, route: StaticRoute) {
   const title = escapeHtml(fullTitle(route.title));
   const description = escapeHtml(route.description);
-  const canonical = `${BASE_URL}${route.path === "/" ? "/" : route.path}`;
+  const canonicalPath = route.canonicalPath ?? route.path;
+  const canonical = `${BASE_URL}${canonicalPath === "/" ? "/" : canonicalPath}`;
   const image = absoluteUrl(route.image);
   const preloadTag = responsiveImagePreload(route);
 
   return html
     .replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
     .replace(/<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${description}" />`)
+    .replace(/<meta name="robots" content="[^"]*" \/>/, `<meta name="robots" content="${route.robots ?? "index, follow"}" />`)
     .replace(/<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${canonical}" />`)
     .replace(/<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${canonical}" />`)
     .replace(/<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${title}" />`)
@@ -145,6 +149,7 @@ function baseRoutes(): StaticRoute[] {
     eyebrow: entry.path === "/" ? "Woodinville, Washington" : entry.title,
     headline: entry.path === "/" ? "Level Up Your Game at WSC." : entry.title,
     subtitle: entry.description,
+    robots: "robots" in entry ? entry.robots : "index, follow",
   }));
 }
 
@@ -156,11 +161,11 @@ function aliasRoutes(): StaticRoute[] {
   const golfRoute = byPath.get("/golf-coaching");
 
   return [
-    eventRoute ? { ...eventRoute, path: "/events-1" } : null,
-    memberRoute ? { ...memberRoute, path: "/member-cancellation" } : null,
-    memberRoute ? { ...memberRoute, path: "/member-cancelation" } : null,
-    trainingRoute ? { ...trainingRoute, path: "/personal-training-request" } : null,
-    golfRoute ? { ...golfRoute, path: "/golf-lessons" } : null,
+    eventRoute ? { ...eventRoute, path: "/events-1", canonicalPath: eventRoute.path, robots: "noindex, follow" } : null,
+    memberRoute ? { ...memberRoute, path: "/member-cancellation", canonicalPath: memberRoute.path, robots: "noindex, follow" } : null,
+    memberRoute ? { ...memberRoute, path: "/member-cancelation", canonicalPath: memberRoute.path, robots: "noindex, follow" } : null,
+    trainingRoute ? { ...trainingRoute, path: "/personal-training-request", canonicalPath: trainingRoute.path, robots: "noindex, follow" } : null,
+    golfRoute ? { ...golfRoute, path: "/golf-lessons", canonicalPath: golfRoute.path, robots: "noindex, follow" } : null,
   ].filter((route): route is StaticRoute => route !== null);
 }
 
