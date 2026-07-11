@@ -92,6 +92,7 @@ export const SEO = {
     description:
       "Submit a Woodinville Sports Club membership cancellation request with account details so the WSC team can review, confirm, and follow up with next steps.",
     path: "/member-request",
+    robots: "noindex, follow",
   },
   personalTrainingRequest: {
     title: "Personal Training Request",
@@ -110,6 +111,7 @@ export const SEO = {
     description:
       "Sign up for Woodinville Sports Club email updates covering tennis, golf, APL fitness, pickleball, summer camps, events, member news, and club announcements.",
     path: "/newsletter-signup",
+    robots: "noindex, follow",
   },
   blog: {
     title: "Blog & Resource Guides Hub",

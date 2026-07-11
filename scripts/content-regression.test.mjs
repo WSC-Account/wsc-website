@@ -11,7 +11,6 @@ test("main navigation separates Fitness Center and APL", () => {
   assert.match(navbar, /href:\s*"\/fitness",[\s\S]*?label:\s*"Athletic Performance Lab"/);
   assert.match(navbar, /children/);
 });
-
 test("main navigation uses the club phone number", () => {
   const navbar = read("client/src/components/Navbar.tsx");
 
@@ -315,6 +314,60 @@ test("live website forms are discoverable from site clicks", () => {
   assert.match(gym, /href="\/membership"/);
   assert.match(fitness, /Request Personal Training/);
   assert.match(fitness, /href="\/personal-training-interest-form"/);
+});
+
+test("administrative forms stay out of search while acquisition forms remain indexable", () => {
+  const seoHead = read("client/src/components/SEOHead.tsx");
+  const memberCancellation = read("client/src/pages/MemberCancellationFormPage.tsx");
+  const newsletter = read("client/src/pages/NewsletterSignupPage.tsx");
+  const personalTraining = read("client/src/pages/PersonalTrainingFormPage.tsx");
+  const golfLessons = read("client/src/pages/GolfLessonFormPage.tsx");
+  const sitemapGenerator = read("scripts/seo-audit/generate-public-seo-files.ts");
+  const sitemap = read("client/public/sitemap.xml");
+  const staticRoutes = read("scripts/seo-audit/generate-static-route-html.ts");
+  const redirects = JSON.parse(read("vercel.json")).redirects ?? [];
+
+  assert.match(seoHead, /robots = "index, follow"/);
+  assert.match(seoHead, /setMeta\("name", "robots", robots\)/);
+  assert.match(memberCancellation, /robots="noindex, follow"/);
+  assert.match(newsletter, /robots="noindex, follow"/);
+  assert.doesNotMatch(personalTraining, /noindex/);
+  assert.doesNotMatch(golfLessons, /noindex/);
+
+  assert.doesNotMatch(sitemapGenerator, /SEO\.memberCancellation\.path/);
+  assert.doesNotMatch(sitemapGenerator, /SEO\.newsletterSignup\.path/);
+  assert.match(sitemapGenerator, /SEO\.personalTrainingRequest\.path/);
+  assert.match(sitemapGenerator, /SEO\.golfLessons\.path/);
+  assert.doesNotMatch(
+    sitemap,
+    /<loc>https:\/\/www\.woodinvillesportsclub\.com\/(member-request|newsletter-signup)<\/loc>/,
+  );
+  assert.match(
+    sitemap,
+    /<loc>https:\/\/www\.woodinvillesportsclub\.com\/personal-training-interest-form<\/loc>/,
+  );
+  assert.match(
+    sitemap,
+    /<loc>https:\/\/www\.woodinvillesportsclub\.com\/golf-coaching<\/loc>/,
+  );
+  assert.match(staticRoutes, /canonicalPath: memberRoute\.path,[\s\S]{0,80}?robots: "noindex, follow"/);
+  assert.match(staticRoutes, /canonicalPath: trainingRoute\.path,[\s\S]{0,80}?robots: "noindex, follow"/);
+  assert.match(staticRoutes, /canonicalPath: golfRoute\.path,[\s\S]{0,80}?robots: "noindex, follow"/);
+
+  for (const [source, destination] of [
+    ["/member-cancellation", "/member-request"],
+    ["/member-cancelation", "/member-request"],
+    ["/personal-training-request", "/personal-training-interest-form"],
+    ["/golf-lessons", "/golf-coaching"],
+  ]) {
+    assert.equal(
+      redirects.some(
+        (redirect) => redirect.source === source && redirect.destination === destination && redirect.permanent,
+      ),
+      true,
+      `${source} should permanently redirect to ${destination}`,
+    );
+  }
 });
 
 test("gym page is positioned around memberships and personal training", () => {
