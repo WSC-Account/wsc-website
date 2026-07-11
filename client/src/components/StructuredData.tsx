@@ -17,8 +17,8 @@ const WSC_ADDRESS = {
 /* ─── Geo Coordinates ─── */
 const WSC_GEO = {
   "@type": "GeoCoordinates",
-  latitude: 47.7543,
-  longitude: -122.1635,
+  latitude: 47.73908,
+  longitude: -122.14327,
 };
 
 /* ─── Opening Hours ─── */
