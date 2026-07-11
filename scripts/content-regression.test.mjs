@@ -318,6 +318,19 @@ test("live website forms are discoverable from site clicks", () => {
   assert.match(fitness, /href="\/personal-training-interest-form"/);
 });
 
+test("conversion tracking covers calls, forms, bookings, memberships, and outbound links", () => {
+  const attribution = read("client/src/components/MarketingAttribution.tsx");
+  const forms = read("client/src/lib/forms.ts");
+
+  assert.match(attribution, /trackMarketingEvent\("contact_click"[\s\S]*?contact_method: "phone"/);
+  assert.match(attribution, /trackMarketingEvent\("contact_click"[\s\S]*?contact_method: "email"/);
+  assert.match(attribution, /trackMarketingEvent\("booking_click"/);
+  assert.match(attribution, /trackMarketingEvent\("membership_click"[\s\S]*?membership_action: "start_courtreserve"/);
+  assert.match(attribution, /trackMarketingEvent\("membership_click"[\s\S]*?membership_action: "view_options"/);
+  assert.match(attribution, /trackMarketingEvent\("outbound_click"/);
+  assert.match(forms, /gtag\("event", "form_submit"/);
+});
+
 test("customer action forms stay indexable while newsletter and duplicate aliases stay out of search", () => {
   const seoHead = read("client/src/components/SEOHead.tsx");
   const memberCancellation = read("client/src/pages/MemberCancellationFormPage.tsx");

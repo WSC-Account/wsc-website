@@ -38,6 +38,14 @@ export default function MarketingAttribution() {
 
       if (link.hostname === "app.courtreserve.com") {
         trackMarketingEvent("booking_click", { ...common, booking_provider: "CourtReserve" });
+        if (common.page_path === "/membership" || /membership|join/i.test(common.link_text)) {
+          trackMarketingEvent("membership_click", { ...common, membership_action: "start_courtreserve" });
+        }
+        return;
+      }
+
+      if (link.hostname === window.location.hostname && link.pathname === "/membership") {
+        trackMarketingEvent("membership_click", { ...common, membership_action: "view_options" });
         return;
       }
 
@@ -52,4 +60,3 @@ export default function MarketingAttribution() {
 
   return null;
 }
-
