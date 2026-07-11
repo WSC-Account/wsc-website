@@ -87,6 +87,7 @@ jspm_packages/
 .parcel-cache
 .playwright-cli/
 .playwright-mcp/
+output/playwright/
 wsc-hero-collage*.png
 wsc-*-hero*.png
 
