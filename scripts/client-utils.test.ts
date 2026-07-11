@@ -147,11 +147,11 @@ test("responsive image helpers preserve real dimensions and portrait widths", ()
   );
   assert.equal(
     responsiveWebpSrcSet("/images/wsc/tennis-junior-backhand.webp"),
-    "/images/wsc/responsive/tennis-junior-backhand-900.webp 600w, /images/wsc/responsive/tennis-junior-backhand-1200.webp 800w, /images/wsc/tennis-junior-backhand.webp 1200w"
+    "/images/wsc/responsive/tennis-junior-backhand-720.webp 480w, /images/wsc/responsive/tennis-junior-backhand-900.webp 600w, /images/wsc/responsive/tennis-junior-backhand-1200.webp 800w, /images/wsc/tennis-junior-backhand.webp 1200w"
   );
   assert.equal(
     responsiveAvifSrcSet("/images/wsc/campus-dome.webp"),
-    "/images/wsc/responsive/campus-dome-900.avif 900w, /images/wsc/responsive/campus-dome-1200.avif 1200w, /images/wsc/responsive/campus-dome-full.avif 1800w"
+    "/images/wsc/responsive/campus-dome-720.avif 720w, /images/wsc/responsive/campus-dome-900.avif 900w, /images/wsc/responsive/campus-dome-1200.avif 1200w, /images/wsc/responsive/campus-dome-full.avif 1800w"
   );
   assert.equal(responsiveWebpSrcSet("/images/wsc/logo.png"), undefined);
 });
