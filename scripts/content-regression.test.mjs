@@ -413,3 +413,18 @@ test("founded year is 1976 across visible and structured content", () => {
     assert.doesNotMatch(source, /1979/, `${file} should not reference 1979`);
   }
 });
+
+test("structured location uses the official WSC parcel coordinates", () => {
+  const files = [
+    "client/src/components/StructuredData.tsx",
+    "client/index.html",
+  ];
+
+  for (const file of files) {
+    const source = read(file);
+
+    assert.match(source, /47\.73908/, `${file} should use the WSC parcel latitude`);
+    assert.match(source, /-122\.14327/, `${file} should use the WSC parcel longitude`);
+    assert.doesNotMatch(source, /47\.7543|-122\.1635/);
+  }
+});
