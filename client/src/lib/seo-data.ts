@@ -92,7 +92,6 @@ export const SEO = {
     description:
       "Submit a Woodinville Sports Club membership cancellation request with account details so the WSC team can review, confirm, and follow up with next steps.",
     path: "/member-request",
-    robots: "noindex, follow",
   },
   personalTrainingRequest: {
     title: "Personal Training Request",

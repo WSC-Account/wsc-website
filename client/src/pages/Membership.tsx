@@ -143,6 +143,8 @@ const FAQ_ITEMS = [
       {
         q: "How do I cancel my membership?",
         a: "All memberships auto-renew until cancelled under the applicable cancellation policy. Monthly memberships can be cancelled by contacting the front desk or emailing info@woodinvillesportsclub.com. A 30-day written notice is required. Annual passes are non-refundable once purchased but will not auto-renew if cancelled before the renewal date.",
+        href: "/member-request",
+        linkLabel: "Open the membership cancellation form",
       },
       {
         q: "Can I upgrade or downgrade my membership?",
@@ -232,6 +234,14 @@ function FAQSection() {
                         <p className="text-ink-mid text-[13px] leading-[1.72] pr-6">
                           {item.a}
                         </p>
+                        {"href" in item && item.href ? (
+                          <Link
+                            href={item.href}
+                            className="inline-block mt-3 text-ink text-[12px] tracking-[0.1em] uppercase no-underline border-b border-volt pb-[3px]"
+                          >
+                            {item.linkLabel}
+                          </Link>
+                        ) : null}
                       </div>
                     </div>
                   );
@@ -306,6 +316,12 @@ export default function Membership() {
             <p className="text-ink-mid text-[14px] leading-[1.7] mb-2">
               <span className="text-ink font-normal">All Memberships:</span> Auto-renew until cancelled under the applicable cancellation policy.
             </p>
+            <Link
+              href="/member-request"
+              className="inline-block mb-3 text-ink text-[12px] tracking-[0.1em] uppercase no-underline border-b border-volt pb-[3px]"
+            >
+              Manage or Cancel Membership
+            </Link>
             <p className="text-ink-mid text-[14px] leading-[1.7] mb-2">
               <span className="text-ink font-normal">Annual Passes:</span> Auto-renew each year.
             </p>
