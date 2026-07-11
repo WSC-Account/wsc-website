@@ -308,6 +308,8 @@ test("live website forms are discoverable from site clicks", () => {
 
   assert.match(membership, /Cancellation Request/);
   assert.match(membership, /href="\/member-request"/);
+  assert.match(membership, /Open the membership cancellation form/);
+  assert.match(membership, /Manage or Cancel Membership/);
   assert.match(gym, /Request Personal Training/);
   assert.match(gym, /href="\/personal-training-interest-form"/);
   assert.match(gym, /Explore Fitness Memberships/);
@@ -316,7 +318,7 @@ test("live website forms are discoverable from site clicks", () => {
   assert.match(fitness, /href="\/personal-training-interest-form"/);
 });
 
-test("administrative forms stay out of search while acquisition forms remain indexable", () => {
+test("customer action forms stay indexable while newsletter and duplicate aliases stay out of search", () => {
   const seoHead = read("client/src/components/SEOHead.tsx");
   const memberCancellation = read("client/src/pages/MemberCancellationFormPage.tsx");
   const newsletter = read("client/src/pages/NewsletterSignupPage.tsx");
@@ -329,19 +331,17 @@ test("administrative forms stay out of search while acquisition forms remain ind
 
   assert.match(seoHead, /robots = "index, follow"/);
   assert.match(seoHead, /setMeta\("name", "robots", robots\)/);
-  assert.match(memberCancellation, /robots="noindex, follow"/);
+  assert.doesNotMatch(memberCancellation, /noindex/);
   assert.match(newsletter, /robots="noindex, follow"/);
   assert.doesNotMatch(personalTraining, /noindex/);
   assert.doesNotMatch(golfLessons, /noindex/);
 
-  assert.doesNotMatch(sitemapGenerator, /SEO\.memberCancellation\.path/);
+  assert.match(sitemapGenerator, /SEO\.memberCancellation\.path/);
   assert.doesNotMatch(sitemapGenerator, /SEO\.newsletterSignup\.path/);
   assert.match(sitemapGenerator, /SEO\.personalTrainingRequest\.path/);
   assert.match(sitemapGenerator, /SEO\.golfLessons\.path/);
-  assert.doesNotMatch(
-    sitemap,
-    /<loc>https:\/\/www\.woodinvillesportsclub\.com\/(member-request|newsletter-signup)<\/loc>/,
-  );
+  assert.match(sitemap, /<loc>https:\/\/www\.woodinvillesportsclub\.com\/member-request<\/loc>/);
+  assert.doesNotMatch(sitemap, /<loc>https:\/\/www\.woodinvillesportsclub\.com\/newsletter-signup<\/loc>/);
   assert.match(
     sitemap,
     /<loc>https:\/\/www\.woodinvillesportsclub\.com\/personal-training-interest-form<\/loc>/,
