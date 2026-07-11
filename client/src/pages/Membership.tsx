@@ -5,7 +5,7 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import PageHero from "@/components/PageHero";
-import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData";
+import StructuredData, { getBreadcrumbSchema, getServiceSchema } from "@/components/StructuredData";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
@@ -259,10 +259,20 @@ export default function Membership() {
   return (
     <div className="min-h-screen">
       <SEOHead {...SEO.membership} />
-      <StructuredData schemas={[getBreadcrumbSchema([
-        { name: "Home", url: "https://www.woodinvillesportsclub.com/" },
-        { name: "Membership", url: "https://www.woodinvillesportsclub.com/membership" },
-      ])]} />
+      <StructuredData schemas={[
+        getBreadcrumbSchema([
+          { name: "Home", url: "https://www.woodinvillesportsclub.com/" },
+          { name: "Membership", url: "https://www.woodinvillesportsclub.com/membership" },
+        ]),
+        getServiceSchema({
+          name: "Woodinville Sports Club Memberships",
+          description: SEO.membership.description,
+          url: "https://www.woodinvillesportsclub.com/membership",
+          serviceType: "Sports club membership and facility access",
+          image: HERO_IMG,
+          audience: "Individuals, couples, and families",
+        }),
+      ]} />
       <PageHero
         eyebrow="Membership"
         headline="Train Without Limits."

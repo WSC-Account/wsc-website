@@ -5,7 +5,7 @@
 import { Link } from "wouter";
 import PageHero from "@/components/PageHero";
 import ResponsiveImage from "@/components/ResponsiveImage";
-import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData";
+import StructuredData, { getBreadcrumbSchema, getServiceSchema } from "@/components/StructuredData";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
 
@@ -69,10 +69,20 @@ export default function Fitness() {
   return (
     <div className="min-h-screen">
       <SEOHead {...SEO.apl} />
-      <StructuredData schemas={[getBreadcrumbSchema([
-        { name: "Home", url: "https://www.woodinvillesportsclub.com/" },
-        { name: "Athletic Performance Lab", url: "https://www.woodinvillesportsclub.com/fitness" },
-      ])]} />
+      <StructuredData schemas={[
+        getBreadcrumbSchema([
+          { name: "Home", url: "https://www.woodinvillesportsclub.com/" },
+          { name: "Athletic Performance Lab", url: "https://www.woodinvillesportsclub.com/fitness" },
+        ]),
+        getServiceSchema({
+          name: "Athletic Performance Lab Training",
+          description: SEO.apl.description,
+          url: "https://www.woodinvillesportsclub.com/fitness",
+          serviceType: "Strength and conditioning, speed training, team training, and athletic assessments",
+          image: PERF_IMG,
+          audience: "Youth athletes, adult athletes, teams, and active adults",
+        }),
+      ]} />
       <PageHero
         eyebrow="Athletic Performance Lab"
         headline="Where Champions Are Built."

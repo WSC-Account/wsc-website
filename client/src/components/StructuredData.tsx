@@ -154,6 +154,52 @@ export function getBreadcrumbSchema(items: { name: string; url: string }[]) {
   };
 }
 
+type ServiceSchemaInput = {
+  name: string;
+  description: string;
+  url: string;
+  serviceType: string;
+  image: string;
+  audience?: string;
+};
+
+export function getServiceSchema({ name, description, url, serviceType, image, audience }: ServiceSchemaInput) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${url}#service`,
+    name,
+    description,
+    serviceType,
+    url,
+    image: image.startsWith("http") ? image : `https://www.woodinvillesportsclub.com${image}`,
+    provider: {
+      "@id": "https://www.woodinvillesportsclub.com/#organization",
+    },
+    areaServed: ["Woodinville", "Bothell", "Kirkland", "Redmond", "Bellevue"].map((name) => ({
+      "@type": "City",
+      name,
+    })),
+    availableChannel: {
+      "@type": "ServiceChannel",
+      serviceUrl: url,
+      availableLanguage: "English",
+    },
+    ...(audience
+      ? {
+          audience: {
+            "@type": "Audience",
+            audienceType: audience,
+          },
+        }
+      : {}),
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+    },
+  };
+}
+
 /* ─── SportsEvent Schema (for Summer Camps) ─── */
 export function getSummerCampSchema() {
   return {
@@ -162,6 +208,12 @@ export function getSummerCampSchema() {
     name: "WSC Summer Training Camp 2026",
     description:
       "Summer training programs in Tennis, Golf, and Adventure Club camps for ages 3–18. June 29 – August 30, 2026.",
+    url: "https://www.woodinvillesportsclub.com/summer",
+    image: [
+      "https://www.woodinvillesportsclub.com/images/wsc/summer-camp.webp",
+      "https://www.woodinvillesportsclub.com/images/wsc/tennis-courts.webp",
+      "https://www.woodinvillesportsclub.com/images/wsc/golf-range-aerial.webp",
+    ],
     startDate: "2026-06-29",
     endDate: "2026-08-30",
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
@@ -173,17 +225,16 @@ export function getSummerCampSchema() {
       geo: WSC_GEO,
     },
     organizer: {
-      "@type": "Organization",
-      name: "Woodinville Sports Club",
-      url: "https://www.woodinvillesportsclub.com",
-    },
-    offers: {
-      "@type": "Offer",
-      url: "https://www.woodinvillesportsclub.com/summer",
-      availability: "https://schema.org/InStock",
-      priceCurrency: "USD",
+      "@id": "https://www.woodinvillesportsclub.com/#organization",
     },
     typicalAgeRange: "3-18",
+    inLanguage: "en-US",
+    isAccessibleForFree: false,
+    audience: {
+      "@type": "PeopleAudience",
+      suggestedMinAge: 3,
+      suggestedMaxAge: 18,
+    },
   };
 }
 

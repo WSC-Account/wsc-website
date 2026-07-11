@@ -5,7 +5,7 @@
 import { Link } from "wouter";
 import PageHero from "@/components/PageHero";
 import ResponsiveImage from "@/components/ResponsiveImage";
-import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData";
+import StructuredData, { getBreadcrumbSchema, getServiceSchema } from "@/components/StructuredData";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
 
@@ -34,10 +34,20 @@ export default function ProShop() {
   return (
     <div className="min-h-screen">
       <SEOHead {...SEO.proShop} />
-      <StructuredData schemas={[getBreadcrumbSchema([
-        { name: "Home", url: "https://www.woodinvillesportsclub.com/" },
-        { name: "Pro Shop", url: "https://www.woodinvillesportsclub.com/pro-shop" },
-      ])]} />
+      <StructuredData schemas={[
+        getBreadcrumbSchema([
+          { name: "Home", url: "https://www.woodinvillesportsclub.com/" },
+          { name: "Pro Shop", url: "https://www.woodinvillesportsclub.com/pro-shop" },
+        ]),
+        getServiceSchema({
+          name: "Racquet Stringing and Pro Shop",
+          description: SEO.proShop.description,
+          url: "https://www.woodinvillesportsclub.com/pro-shop",
+          serviceType: "Racquet stringing and sports equipment retail",
+          image: PROSHOP_HERO,
+          audience: "Tennis, pickleball, and golf players",
+        }),
+      ]} />
       <PageHero
         eyebrow="On-Site Pro Shop"
         headline="Stringing & Pro Shop"

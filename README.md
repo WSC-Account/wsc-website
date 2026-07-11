@@ -83,7 +83,10 @@ Copy `.env.example` to `.env.local` for local secrets. Analytics is optional and
 VITE_ANALYTICS_ENDPOINT=https://analytics.example.com
 VITE_ANALYTICS_WEBSITE_ID=your-website-id
 NEXT_PUBLIC_GA_ID=G-S6448TRP0T
+VITE_GTM_CONTAINER_ID=GTM-PKPNJDFR
 ```
+
+GA4, Google Tag Manager, and Vercel Web Analytics load only after the visitor accepts analytics cookies.
 
 Website forms submit to `/api/contact`, write JSONL records, and send notifications through Postmark:
 

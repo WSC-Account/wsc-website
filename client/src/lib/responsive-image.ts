@@ -57,7 +57,7 @@ const WSC_IMAGE_DIMENSIONS = {
   "/images/wsc/tennis-tier1-alumni-sign.webp": { width: 1200, height: 1800 },
 } as const satisfies Record<string, ImageDimensions>;
 
-const RESPONSIVE_MAX_DIMENSIONS = [900, 1200] as const;
+const RESPONSIVE_MAX_DIMENSIONS = [720, 900, 1200] as const;
 
 function imageSlug(src: string) {
   const match = src.match(/^\/images\/wsc\/([^/]+)\.webp$/);

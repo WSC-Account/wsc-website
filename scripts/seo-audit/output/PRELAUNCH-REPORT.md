@@ -1,12 +1,12 @@
 # WSC Prelaunch SEO Report
 
-Generated: 2026-05-31T03:22:10.081Z
+Generated: 2026-07-11T21:57:13.680Z
 
 ## Summary
 
 - Old live-site URLs discovered: 90
-- New public sitemap URLs: 45
-- Redirects configured in Vercel: 60
+- New public sitemap URLs: 49
+- Redirects configured in Vercel: 66
 - Old URLs without a 1:1 match or redirect: 0
 - Redirect tests passing: 90/90
 
@@ -117,18 +117,18 @@ Full machine-readable results are saved in `scripts/seo-audit/output/redirect-te
 
 | Page | Performance | Accessibility | Best Practices | SEO | LCP |
 | --- | --- | --- | --- | --- | --- |
-| home | 70 | 97 | 100 | 100 | 6.4 s |
-| membership | 74 | 96 | 100 | 100 | 4.8 s |
-| tennis | 70 | 96 | 100 | 100 | 5.7 s |
+| home | 92 | 97 | 100 | 100 | 3.3 s |
+| membership | 97 | 96 | 100 | 100 | 2.5 s |
+| tennis | 94 | 96 | 100 | 100 | 3.0 s |
 
 ## Page SEO / Accessibility / Schema
 
-- Repo SEO metadata audit: 46/46 routes passed.
+- Repo SEO metadata audit: 52/52 routes passed.
 - Rendered H1 and landmark audit: passed.
 - Image alt/size/loading audit: passed.
 - Structured data unresolved values: 0.
 - Robots.txt: allows all crawling, sitemap linked, no `Disallow: /`.
-- Sitemap.xml: 45 public URLs, all on `www`, all with `lastmod`.
+- Sitemap.xml: 49 public URLs, all on `www`, all with `lastmod`.
 - Analytics/search verification: GA4 is consent-gated; Search Console and Bing verification should use real provider tokens or DNS verification, not placeholder meta tags.
 
 ## Missing Items
@@ -137,10 +137,8 @@ No pages are missing title, description, H1, alt text, or schema values in the g
 
 ## Explicit Unresolved Notes
 
-- home Lighthouse mobile Performance 70 is below the requested >=90 target; SEO, Accessibility, and Best Practices passed.
-- membership Lighthouse mobile Performance 74 is below the requested >=90 target; SEO, Accessibility, and Best Practices passed.
-- tennis Lighthouse mobile Performance 70 is below the requested >=90 target; SEO, Accessibility, and Best Practices passed.
+None.
 
 ## Recommendation
 
-CONDITIONAL GO for SEO/redirect preservation. Do not call this a strict Phase 6 pass until mobile Lighthouse Performance reaches 90+, or explicitly accept the current rich React/image tradeoff before DNS cutover.
+GO. No unresolved launch blockers were found in the current audit artifacts.
