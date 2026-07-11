@@ -64,6 +64,43 @@ test("the browser form helper sends JSON and tracks only successful submissions"
   ]);
 });
 
+test("the browser form helper attaches Google Business Profile attribution", async () => {
+  let submittedBody: WebsiteFormPayload | undefined;
+  globalThis.fetch = async (_input, init) => {
+    submittedBody = JSON.parse(String(init?.body)) as WebsiteFormPayload;
+    return new Response(JSON.stringify({ ok: true }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  };
+  globalThis.window = {
+    sessionStorage: {
+      getItem: () =>
+        JSON.stringify({
+          utm_source: "google",
+          utm_medium: "organic",
+          utm_campaign: "google_business_profile",
+          utm_content: "book_tennis",
+          landing_page: "/tennis?utm_source=google",
+        }),
+    },
+  } as unknown as Window & typeof globalThis;
+
+  await submitWebsiteForm({
+    ...payload,
+    metadata: { customer_type: "new" },
+  });
+
+  assert.deepEqual(submittedBody?.metadata, {
+    customer_type: "new",
+    marketing_utm_source: "google",
+    marketing_utm_medium: "organic",
+    marketing_utm_campaign: "google_business_profile",
+    marketing_utm_content: "book_tennis",
+    marketing_landing_page: "/tennis?utm_source=google",
+  });
+});
+
 test("the browser form helper preserves useful server errors", async () => {
   globalThis.fetch = async () =>
     new Response(

@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import DeferredAppServices from "./components/DeferredAppServices";
+import MarketingAttribution from "./components/MarketingAttribution";
 
 const Tennis = lazy(() => import("./pages/Tennis"));
 const SummerTennis = lazy(() => import("./pages/SummerTennis"));
@@ -111,6 +112,7 @@ function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
+        <MarketingAttribution />
         <ScrollToTopOnRouteChange />
         <header>
           <Navbar />
