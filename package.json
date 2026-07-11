@@ -9,18 +9,20 @@
     "start": "NODE_ENV=production node dist/index.js",
     "preview": "vite preview --host",
     "check": "tsc --noEmit",
+    "test": "node --import tsx --test scripts/*.test.mjs scripts/*.test.ts",
+    "test:coverage": "node --import tsx --experimental-test-coverage --test scripts/*.test.mjs scripts/*.test.ts",
+    "test:e2e": "playwright test",
     "content:test": "node --test scripts/content-regression.test.mjs",
     "constant-contact:check": "node scripts/check-constant-contact-setup.mjs",
     "postmark:check": "node scripts/check-postmark-setup.mjs",
     "postmark:smoke-forms": "tsx scripts/smoke-test-form-delivery.mjs",
-    "verify": "pnpm check && pnpm build",
+    "verify": "pnpm test && pnpm check && pnpm build",
     "seo:test-deployed": "node scripts/seo-audit/test-deployed-redirects.mjs",
     "seo:prelaunch-report": "node scripts/seo-audit/generate-prelaunch-report.mjs",
     "scrape:live": "node scripts/scrape-wsc-live.mjs",
     "format": "prettier --write ."
   },
   "dependencies": {
-    "@vercel/analytics": "^2.0.1",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-alert-dialog": "^1.1.15",
     "@radix-ui/react-aspect-ratio": "^1.1.7",
@@ -47,6 +49,7 @@
     "@radix-ui/react-toggle": "^1.1.10",
     "@radix-ui/react-toggle-group": "^1.1.11",
     "@radix-ui/react-tooltip": "^1.2.8",
+    "@vercel/analytics": "^2.0.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
@@ -69,6 +72,7 @@
     "wouter": "^3.3.5"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.1",
     "@tailwindcss/vite": "^4.2.4",
     "@types/compression": "^1.8.1",
     "@types/express": "4.17.25",
