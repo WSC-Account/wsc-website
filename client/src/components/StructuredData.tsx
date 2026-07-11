@@ -233,64 +233,6 @@ export function getContactPageSchema() {
   };
 }
 
-/* ─── FAQ Schema (for About page) ─── */
-export function getFAQSchema() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "What sports does Woodinville Sports Club offer?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "WSC offers tennis (8 indoor courts and 1 outdoor court), golf (more than 23 covered driving bays with Toptracer, 4 Swing Lab simulators, and a 2.5-acre short game area), pickleball (The Dome with open play 7 days a week), and athletic performance training (APL Training Center and full-service gym).",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What is Tier 1 Sports?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Tier 1 Sports is one of the nation's leading developmental programs in tennis, golf, and athletic performance. Based at WSC, Tier 1 develops athletes from first swing to collegiate and professional ranks with world-class coaching.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Where is Woodinville Sports Club located?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "WSC is located at 15327 140th Pl NE, Woodinville, WA 98072. The 67-acre campus is in the heart of Woodinville in the Pacific Northwest.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What are the hours of operation?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Tennis and Gym hours are weekdays from 6:00 AM to 11:00 PM and weekends from 7:00 AM to 10:00 PM. Golf hours are everyday from 9:00 AM to 10:00 PM.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Do I need a membership to use the facilities?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "WSC offers both membership and non-member options. The driving range is open to the public. Court bookings, classes, and programs are available to members with various annual and monthly membership tiers. Contact the front desk at (425) 487-1090 for membership information.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Does WSC offer summer camps for kids?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes, WSC offers summer training programs from June 29 to August 30, 2026, including Tennis Academy, Golf Academy, and Adventure Club (a multi-sport camp) for ages 3–18.",
-        },
-      },
-    ],
-  };
-}
-
 /* ─── Component to inject JSON-LD into the page ─── */
 interface StructuredDataProps {
   schemas: Record<string, unknown>[];

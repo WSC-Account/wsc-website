@@ -428,3 +428,17 @@ test("structured location uses the official WSC parcel coordinates", () => {
     assert.doesNotMatch(source, /47\.7543|-122\.1635/);
   }
 });
+
+test("FAQ structured data appears only with the visible FAQ content", () => {
+  const index = read("client/index.html");
+  const home = read("client/src/pages/Home.tsx");
+  const sharedStructuredData = read("client/src/components/StructuredData.tsx");
+  const faq = read("client/src/pages/FAQ.tsx");
+
+  assert.doesNotMatch(index, /FAQPage|Structured Data: FAQ/);
+  assert.doesNotMatch(home, /getFAQSchema/);
+  assert.doesNotMatch(sharedStructuredData, /getFAQSchema|FAQPage/);
+  assert.match(faq, /"@type": "FAQPage"/);
+  assert.match(faq, /mainEntity: FAQS\.map/);
+  assert.match(faq, /filteredFAQs\.map/);
+});

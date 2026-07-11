@@ -7,7 +7,7 @@ import { lazy, Suspense, useState, type ReactNode } from "react";
 import { Link } from "wouter";
 import { Instagram, Calendar, Clock, MapPin, ChevronRight, Quote } from "lucide-react";
 import ResponsiveImage from "@/components/ResponsiveImage";
-import StructuredData, { getLocalBusinessSchema, getWebSiteSchema, getFAQSchema } from "@/components/StructuredData";
+import StructuredData, { getLocalBusinessSchema, getWebSiteSchema } from "@/components/StructuredData";
 import { useScrollReveal, useStaggerReveal } from "@/hooks/useScrollReveal";
 import { useFormProtection } from "@/hooks/useFormProtection";
 import { useDeferredMount } from "@/hooks/useDeferredMount";
@@ -369,7 +369,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <SEOHead {...SEO.home} />
-      <StructuredData schemas={[getLocalBusinessSchema(), getWebSiteSchema(), getFAQSchema()]} />
+      <StructuredData schemas={[getLocalBusinessSchema(), getWebSiteSchema()]} />
 
       {/* ── MOBILE HERO ── */}
       <section className="bg-dark-bg pt-[var(--site-header-height,130px)] lg:hidden">
