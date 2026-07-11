@@ -7,7 +7,7 @@
 import { Link } from "wouter";
 import PageHero from "@/components/PageHero";
 import ResponsiveImage from "@/components/ResponsiveImage";
-import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData";
+import StructuredData, { getBreadcrumbSchema, getServiceSchema } from "@/components/StructuredData";
 import { useScrollReveal, useStaggerReveal } from "@/hooks/useScrollReveal";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
@@ -52,10 +52,20 @@ export default function Pickleball() {
   return (
     <div className="min-h-screen">
       <SEOHead {...SEO.pickleball} />
-      <StructuredData schemas={[getBreadcrumbSchema([
-        { name: "Home", url: "https://www.woodinvillesportsclub.com/" },
-        { name: "Pickleball", url: "https://www.woodinvillesportsclub.com/pickleball" },
-      ])]} />
+      <StructuredData schemas={[
+        getBreadcrumbSchema([
+          { name: "Home", url: "https://www.woodinvillesportsclub.com/" },
+          { name: "Pickleball", url: "https://www.woodinvillesportsclub.com/pickleball" },
+        ]),
+        getServiceSchema({
+          name: "Pickleball Open Play, Rentals, and Classes",
+          description: SEO.pickleball.description,
+          url: "https://www.woodinvillesportsclub.com/pickleball",
+          serviceType: "Pickleball open play, court rental, instruction, and tournaments",
+          image: PICKLE_IMG,
+          audience: "Pickleball players of all skill levels",
+        }),
+      ]} />
       <PageHero
         eyebrow="Pickleball"
         headline="Pickleball at Woodinville Sports Club."

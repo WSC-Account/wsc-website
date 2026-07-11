@@ -1,7 +1,7 @@
 import { BriefcaseBusiness, Cake, GlassWater, PartyPopper, Trophy, Users } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import ResponsiveImage from "@/components/ResponsiveImage";
-import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData";
+import StructuredData, { getBreadcrumbSchema, getServiceSchema } from "@/components/StructuredData";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
 import { PrivateEventsInquiryForm } from "@/components/InquiryForms";
@@ -56,10 +56,20 @@ export default function Events() {
   return (
     <div className="min-h-screen">
       <SEOHead {...SEO.events} />
-      <StructuredData schemas={[getBreadcrumbSchema([
-        { name: "Home", url: "https://www.woodinvillesportsclub.com/" },
-        { name: "Private Events", url: "https://www.woodinvillesportsclub.com/events" },
-      ])]} />
+      <StructuredData schemas={[
+        getBreadcrumbSchema([
+          { name: "Home", url: "https://www.woodinvillesportsclub.com/" },
+          { name: "Private Events", url: "https://www.woodinvillesportsclub.com/events" },
+        ]),
+        getServiceSchema({
+          name: "Private Event and Venue Rental",
+          description: SEO.events.description,
+          url: "https://www.woodinvillesportsclub.com/events",
+          serviceType: "Private event venue rental and event planning",
+          image: HERO_IMG,
+          audience: "Families, wedding parties, companies, and community groups",
+        }),
+      ]} />
 
       <PageHero
         eyebrow="Private Events"

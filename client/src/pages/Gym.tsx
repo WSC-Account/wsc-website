@@ -5,7 +5,7 @@
 import { Link } from "wouter";
 import PageHero from "@/components/PageHero";
 import ResponsiveImage from "@/components/ResponsiveImage";
-import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData";
+import StructuredData, { getBreadcrumbSchema, getServiceSchema } from "@/components/StructuredData";
 import { useScrollReveal, useStaggerReveal } from "@/hooks/useScrollReveal";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
@@ -26,10 +26,20 @@ export default function Gym() {
   return (
     <div className="min-h-screen">
       <SEOHead {...SEO.gym} />
-      <StructuredData schemas={[getBreadcrumbSchema([
-        { name: "Home", url: "https://www.woodinvillesportsclub.com/" },
-        { name: "Fitness Center", url: "https://www.woodinvillesportsclub.com/gym" },
-      ])]} />
+      <StructuredData schemas={[
+        getBreadcrumbSchema([
+          { name: "Home", url: "https://www.woodinvillesportsclub.com/" },
+          { name: "Fitness Center", url: "https://www.woodinvillesportsclub.com/gym" },
+        ]),
+        getServiceSchema({
+          name: "Fitness Center Memberships and Personal Training",
+          description: SEO.gym.description,
+          url: "https://www.woodinvillesportsclub.com/gym",
+          serviceType: "Gym membership, fitness center access, and personal training",
+          image: GYM_HERO,
+          audience: "Adults seeking independent workouts or personal training",
+        }),
+      ]} />
       <PageHero
         eyebrow="Fitness Center"
         headline="Fitness memberships that fit real life."

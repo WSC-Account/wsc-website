@@ -1,14 +1,16 @@
 {
-  "checkedAt": "2026-05-31T03:22:09.915Z",
+  "checkedAt": "2026-07-11T21:57:06.449Z",
   "robotsAllowsAll": true,
   "robotsHasDisallowRoot": false,
-  "sitemapUrlCount": 45,
+  "sitemapUrlCount": 49,
   "allWww": true,
-  "lastmodCount": 45,
+  "lastmodCount": 49,
   "urls": [
     "https://www.woodinvillesportsclub.com/",
     "https://www.woodinvillesportsclub.com/tennis",
+    "https://www.woodinvillesportsclub.com/tennis/summer-tennis",
     "https://www.woodinvillesportsclub.com/golf",
+    "https://www.woodinvillesportsclub.com/golf/tournaments",
     "https://www.woodinvillesportsclub.com/gym",
     "https://www.woodinvillesportsclub.com/fitness",
     "https://www.woodinvillesportsclub.com/pickleball",
@@ -21,7 +23,6 @@
     "https://www.woodinvillesportsclub.com/member-request",
     "https://www.woodinvillesportsclub.com/personal-training-interest-form",
     "https://www.woodinvillesportsclub.com/golf-coaching",
-    "https://www.woodinvillesportsclub.com/newsletter-signup",
     "https://www.woodinvillesportsclub.com/blog",
     "https://www.woodinvillesportsclub.com/blog/categories/golf",
     "https://www.woodinvillesportsclub.com/blog/categories/tennis",
@@ -49,7 +50,10 @@
     "https://www.woodinvillesportsclub.com/pro-shop",
     "https://www.woodinvillesportsclub.com/faq",
     "https://www.woodinvillesportsclub.com/policies",
-    "https://www.woodinvillesportsclub.com/privacy",
+    "https://www.woodinvillesportsclub.com/policies/booking-policies-expanded",
+    "https://www.woodinvillesportsclub.com/policies/membership-policies-expanded",
+    "https://www.woodinvillesportsclub.com/policies/usta-policies-expanded",
+    "https://www.woodinvillesportsclub.com/policies/cups-policies-expanded",
     "https://www.woodinvillesportsclub.com/accessibility"
   ]
 }

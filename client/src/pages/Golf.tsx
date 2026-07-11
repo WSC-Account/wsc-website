@@ -9,7 +9,7 @@ import PageHero from "@/components/PageHero";
 import Tier1Banner from "@/components/Tier1Banner";
 import FullWidthImage from "@/components/FullWidthImage";
 import ResponsiveImage from "@/components/ResponsiveImage";
-import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData";
+import StructuredData, { getBreadcrumbSchema, getServiceSchema } from "@/components/StructuredData";
 import { useScrollReveal, useStaggerReveal } from "@/hooks/useScrollReveal";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
@@ -89,10 +89,20 @@ export default function Golf() {
   return (
     <div className="min-h-screen">
       <SEOHead {...SEO.golf} />
-      <StructuredData schemas={[getBreadcrumbSchema([
-        { name: "Home", url: "https://www.woodinvillesportsclub.com/" },
-        { name: "Golf", url: "https://www.woodinvillesportsclub.com/golf" },
-      ])]} />
+      <StructuredData schemas={[
+        getBreadcrumbSchema([
+          { name: "Home", url: "https://www.woodinvillesportsclub.com/" },
+          { name: "Golf", url: "https://www.woodinvillesportsclub.com/golf" },
+        ]),
+        getServiceSchema({
+          name: "Golf Practice, Simulators, and Coaching",
+          description: SEO.golf.description,
+          url: "https://www.woodinvillesportsclub.com/golf",
+          serviceType: "Driving range, golf simulator, short-game practice, and golf instruction",
+          image: GOLF_HERO_IMG,
+          audience: "Junior and adult golfers",
+        }),
+      ]} />
       <PageHero
         eyebrow="WSC Golf Training Grounds"
         headline="The PNW's Golf Training Grounds."

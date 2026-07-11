@@ -18,6 +18,7 @@
     "postmark:smoke-forms": "tsx scripts/smoke-test-form-delivery.mjs",
     "verify": "pnpm test && pnpm check && pnpm build",
     "seo:test-deployed": "node scripts/seo-audit/test-deployed-redirects.mjs",
+    "seo:audit-public": "node scripts/seo-audit/audit-public-seo-files.mjs",
     "seo:prelaunch-report": "node scripts/seo-audit/generate-prelaunch-report.mjs",
     "scrape:live": "node scripts/scrape-wsc-live.mjs",
     "format": "prettier --write ."

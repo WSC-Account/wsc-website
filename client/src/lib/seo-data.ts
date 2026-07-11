@@ -18,7 +18,7 @@ export const SEO = {
   summerTennis: {
     title: "Summer Tennis Tournaments",
     description:
-      "View WSC summer tennis tournament dates and registration links for Red, Orange, Green, USTA, UTR, and open events in July and August 2026.",
+      "View WSC summer tennis tournament dates, divisions, registration links, and pathways for Red, Orange, Green, USTA, UTR, and open events in July and August 2026.",
     path: "/tennis/summer-tennis",
   },
   golf: {
@@ -36,7 +36,7 @@ export const SEO = {
   gym: {
     title: "Fitness Memberships & Gym Access",
     description:
-      "Join WSC for clean, accessible fitness memberships with gym access, cardio equipment, free weights, sauna, locker rooms, and personal training with world-class instructors.",
+      "Join WSC for clean, accessible fitness memberships with cardio, free weights, strength space, sauna, locker rooms, flexible hours, and personal training.",
     path: "/gym",
   },
   apl: {
@@ -145,25 +145,25 @@ export const SEO = {
   bookingPoliciesExpanded: {
     title: "Booking Policies Expanded",
     description:
-      "Review expanded WSC court booking policies for CourtReserve reservations, check-in, cancellation rules, guests, court usage, and fees.",
+      "Review WSC court booking policies for CourtReserve reservations, check-in, cancellation rules, guest access, court usage, scheduling limits, and fees.",
     path: "/policies/booking-policies-expanded",
   },
   membershipPoliciesExpanded: {
     title: "Membership Policies Expanded",
     description:
-      "Review expanded WSC membership policies for agreement terms, payments, cancellations, freezes, guests, account access, and conduct.",
+      "Review WSC membership policies covering agreement terms, recurring payments, cancellation notices, freezes, guest access, account use, conduct, and fees.",
     path: "/policies/membership-policies-expanded",
   },
   ustaPoliciesExpanded: {
-    title: "USTA Policies Expanded",
+    title: "USTA Team Policies & Captain Guide",
     description:
-      "Review expanded WSC USTA team policies for captain requirements, warm-up court reservations, match timing, team fees, and cancellations.",
+      "Review WSC USTA team policies covering captain requirements, member eligibility, warm-up court reservations, match timing, team fees, and cancellation rules.",
     path: "/policies/usta-policies-expanded",
   },
   cupsPoliciesExpanded: {
-    title: "Cups Policies Expanded",
+    title: "Seattle Area Cup Tennis Policies",
     description:
-      "Review expanded WSC Seattle Area Cup Tennis policies for team access, warm-up courts, fees, timing, and cancellation expectations.",
+      "Review WSC Seattle Area Cup Tennis policies covering team access, captain duties, warm-up courts, match timing, fees, eligibility, and cancellation rules.",
     path: "/policies/cups-policies-expanded",
   },
   privacy: {

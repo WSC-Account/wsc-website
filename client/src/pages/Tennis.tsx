@@ -11,7 +11,7 @@ import PageHero from "@/components/PageHero";
 import Tier1Banner from "@/components/Tier1Banner";
 import FullWidthImage from "@/components/FullWidthImage";
 import ResponsiveImage from "@/components/ResponsiveImage";
-import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData";
+import StructuredData, { getBreadcrumbSchema, getServiceSchema } from "@/components/StructuredData";
 import { useScrollReveal, useStaggerReveal } from "@/hooks/useScrollReveal";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
@@ -224,10 +224,20 @@ export default function Tennis() {
   return (
     <div className="min-h-screen">
       <SEOHead {...SEO.tennis} />
-      <StructuredData schemas={[getBreadcrumbSchema([
-        { name: "Home", url: "https://www.woodinvillesportsclub.com/" },
-        { name: "Tennis", url: "https://www.woodinvillesportsclub.com/tennis" },
-      ])]} />
+      <StructuredData schemas={[
+        getBreadcrumbSchema([
+          { name: "Home", url: "https://www.woodinvillesportsclub.com/" },
+          { name: "Tennis", url: "https://www.woodinvillesportsclub.com/tennis" },
+        ]),
+        getServiceSchema({
+          name: "Tennis Programs and Court Access",
+          description: SEO.tennis.description,
+          url: "https://www.woodinvillesportsclub.com/tennis",
+          serviceType: "Tennis instruction, classes, academy training, and court rental",
+          image: TENNIS_HERO_IMG,
+          audience: "Junior and adult tennis players",
+        }),
+      ]} />
       <PageHero
         eyebrow="Tier 1 Tennis"
         headline="Elevate Your Tennis Game at WSC."

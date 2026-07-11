@@ -12,6 +12,8 @@ declare global {
 const CONSENT_STORAGE_KEY = "wsc-cookie-consent";
 const ANALYTICS_SCRIPT_ID = "wsc-analytics-script";
 const GA4_SCRIPT_ID = "wsc-ga4-script";
+const GTM_SCRIPT_ID = "wsc-gtm-script";
+const GTM_CONTAINER_ID = import.meta.env.VITE_GTM_CONTAINER_ID || "GTM-PKPNJDFR";
 const GA4_MEASUREMENT_ID =
   import.meta.env.NEXT_PUBLIC_GA_ID || import.meta.env.VITE_GA4_MEASUREMENT_ID || "G-S6448TRP0T";
 
@@ -29,6 +31,7 @@ function hasAnalyticsConsent() {
 function removeAnalyticsScript() {
   document.getElementById(ANALYTICS_SCRIPT_ID)?.remove();
   document.getElementById(GA4_SCRIPT_ID)?.remove();
+  document.getElementById(GTM_SCRIPT_ID)?.remove();
 }
 
 function isConfigured(value: string) {
@@ -106,12 +109,31 @@ export default function Analytics() {
       document.body.appendChild(script);
     };
 
+    const syncGtm = () => {
+      if (!analyticsAllowed || !isConfigured(GTM_CONTAINER_ID)) {
+        document.getElementById(GTM_SCRIPT_ID)?.remove();
+        return;
+      }
+
+      if (document.getElementById(GTM_SCRIPT_ID)) return;
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
+
+      const script = document.createElement("script");
+      script.id = GTM_SCRIPT_ID;
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_CONTAINER_ID}`;
+      document.body.appendChild(script);
+    };
+
     if (!analyticsAllowed) {
       removeAnalyticsScript();
       return;
     }
 
     syncAnalytics();
+    syncGtm();
     syncGa4();
   }, [analyticsAllowed, location]);
 

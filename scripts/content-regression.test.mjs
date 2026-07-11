@@ -508,3 +508,39 @@ test("FAQ structured data appears only with the visible FAQ content", () => {
   assert.match(faq, /mainEntity: FAQS\.map/);
   assert.match(faq, /filteredFAQs\.map/);
 });
+
+test("service and event structured data stay accurate and page-specific", () => {
+  const structuredData = read("client/src/components/StructuredData.tsx");
+  const servicePages = [
+    "client/src/pages/Tennis.tsx",
+    "client/src/pages/Golf.tsx",
+    "client/src/pages/Gym.tsx",
+    "client/src/pages/Fitness.tsx",
+    "client/src/pages/Pickleball.tsx",
+    "client/src/pages/Events.tsx",
+    "client/src/pages/Membership.tsx",
+    "client/src/pages/ProShop.tsx",
+  ];
+
+  assert.match(structuredData, /export function getServiceSchema/);
+  assert.match(structuredData, /"@type": "Service"/);
+  assert.match(structuredData, /serviceType/);
+  assert.match(structuredData, /mainEntityOfPage/);
+  assert.match(structuredData, /"@type": "SportsEvent"/);
+  assert.match(structuredData, /isAccessibleForFree: false/);
+  assert.doesNotMatch(structuredData, /availability: "https:\/\/schema\.org\/InStock"/);
+
+  for (const page of servicePages) {
+    assert.match(read(page), /getServiceSchema\(\{/);
+  }
+});
+
+test("Google Tag Manager is consent-gated instead of blocking initial page load", () => {
+  const index = read("client/index.html");
+  const analytics = read("client/src/components/Analytics.tsx");
+
+  assert.doesNotMatch(index, /GTM-PKPNJDFR|googletagmanager\.com\/gtm\.js/);
+  assert.match(analytics, /const GTM_CONTAINER_ID/);
+  assert.match(analytics, /if \(!analyticsAllowed \|\| !isConfigured\(GTM_CONTAINER_ID\)\)/);
+  assert.match(analytics, /script\.src = `https:\/\/www\.googletagmanager\.com\/gtm\.js\?id=\$\{GTM_CONTAINER_ID\}`/);
+});

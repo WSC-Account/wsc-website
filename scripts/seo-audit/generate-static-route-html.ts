@@ -22,7 +22,7 @@ type StaticRoute = {
 };
 
 const pageImages: Record<string, string> = {
-  "/": "/images/wsc/golf-range-aerial.webp",
+  "/": "/images/wsc/campus-sunset.webp",
   "/tennis": "/images/wsc/tennis-courts.webp",
   "/tennis/summer-tennis": "/images/wsc/tennis-courts.webp",
   "/golf": "/images/wsc/golf-range-sunset.webp",
