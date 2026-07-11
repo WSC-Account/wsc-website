@@ -1,3 +1,5 @@
+import { marketingAttributionMetadata } from "./marketing-attribution";
+
 export type WebsiteFormType =
   | "contact"
   | "golf_lesson"
@@ -38,12 +40,23 @@ export class FormSubmissionError extends Error {
 }
 
 export async function submitWebsiteForm(payload: WebsiteFormPayload) {
+  const attribution = marketingAttributionMetadata();
+  const trackedPayload = Object.keys(attribution).length
+    ? {
+        ...payload,
+        metadata: {
+          ...payload.metadata,
+          ...attribution,
+        },
+      }
+    : payload;
+
   const response = await fetch("/api/contact", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(payload),
+    body: JSON.stringify(trackedPayload),
   });
 
   let result: { ok?: boolean; success?: boolean; error?: string } = {};
