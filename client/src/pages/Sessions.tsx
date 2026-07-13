@@ -3,6 +3,7 @@ import { CalendarDays, Clock, ExternalLink, RefreshCw, ShieldX } from "lucide-re
 import PageHero from "@/components/PageHero";
 import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData";
 import SEOHead from "@/components/SEOHead";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { SEO } from "@/lib/seo-data";
 
 const HERO_IMG = "/images/wsc/campus-dome.webp";
@@ -125,7 +126,26 @@ function getStatus(start: string, end: string, sessionDrop: string) {
   return { label: "Upcoming", tone: "future" };
 }
 
+function getSessionValue(name: string, yearNote?: string) {
+  return `${name}-${yearNote ?? "2026"}`.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
 export default function Sessions() {
+  const sessionRows = sessions.map((session) => {
+    const status = getStatus(session.start, session.end, session.sessionDrop);
+    const displayName = session.yearNote ? `${session.name} (${session.yearNote})` : session.name;
+    return {
+      ...session,
+      displayName,
+      status,
+      value: getSessionValue(session.name, session.yearNote),
+    };
+  });
+  const defaultOpenSession =
+    sessionRows.find((session) => session.status.tone === "active") ??
+    sessionRows.find((session) => session.status.tone === "future") ??
+    sessionRows[sessionRows.length - 1];
+
   return (
     <div className="min-h-screen">
       <SEOHead {...SEO.sessions} />
@@ -162,34 +182,49 @@ export default function Sessions() {
             </a>
           </div>
 
-          <div className="space-y-[3px]">
-            {sessions.map((session) => {
-              const status = getStatus(session.start, session.end, session.sessionDrop);
-              const displayName = session.yearNote ? `${session.name} (${session.yearNote})` : session.name;
-              return (
-                <article key={displayName} className="bg-parchment-mid p-6 lg:p-8 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6">
-                  <div>
-                    <div className="flex flex-wrap items-center gap-3 mb-3">
-                      <h3 className="text-[20px] font-light tracking-[-0.01em]">{displayName}</h3>
-                      <span
-                        className={`text-[10px] tracking-[0.16em] uppercase px-3 py-1 border ${
-                          status.tone === "active"
-                            ? "text-dark-bg bg-volt-bright border-volt-bright"
-                            : status.tone === "future"
-                              ? "text-volt border-volt/40"
-                              : "text-ink-light border-ink/10"
-                        }`}
-                      >
-                        {status.label}
+          <Accordion
+            type="single"
+            collapsible
+            defaultValue={defaultOpenSession?.value}
+            className="border border-ink/10 bg-parchment-mid"
+          >
+            {sessionRows.map((session) => (
+              <AccordionItem key={session.value} value={session.value} className="border-ink/10">
+                <AccordionTrigger className="px-5 py-5 hover:no-underline sm:px-6 lg:px-8">
+                  <span className="grid flex-1 grid-cols-1 gap-4 text-left md:grid-cols-[minmax(170px,1fr)_minmax(190px,0.9fr)_minmax(120px,0.55fr)] md:items-center">
+                    <span>
+                      <span className="mb-2 flex flex-wrap items-center gap-3">
+                        <span className="text-[18px] font-light leading-[1.2] tracking-[-0.01em] text-ink">
+                          {session.displayName}
+                        </span>
+                        <span
+                          className={`text-[10px] tracking-[0.16em] uppercase px-3 py-1 border ${
+                            session.status.tone === "active"
+                              ? "text-dark-bg bg-volt-bright border-volt-bright"
+                              : session.status.tone === "future"
+                                ? "text-volt border-volt/40"
+                                : "text-ink-light border-ink/10"
+                          }`}
+                        >
+                          {session.status.label}
+                        </span>
                       </span>
-                    </div>
-                    <p className="text-ink-mid text-[14px] leading-[1.72]">
-                      Session drop: {session.sessionDrop}. Auto-enroll: {session.autoEnroll}.
-                    </p>
-                    <p className="text-ink-light text-[13px] leading-[1.72] mt-2">Blackout: {session.blackout}</p>
-                  </div>
+                      <span className="block text-[12px] leading-[1.55] text-ink-light">
+                        {session.duration}
+                      </span>
+                    </span>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-3 md:min-w-[260px]">
+                    <span className="text-[13px] leading-[1.55] text-ink-mid">
+                      {session.start} - {session.end}
+                    </span>
+
+                    <span className="text-[12px] leading-[1.55] text-ink-light md:text-right">
+                      Drop: <span className="text-ink-mid">{session.sessionDrop}</span>
+                    </span>
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent className="px-5 pb-6 sm:px-6 lg:px-8">
+                  <div className="grid grid-cols-1 gap-4 border-t border-ink/10 pt-5 sm:grid-cols-2 lg:grid-cols-5">
                     <div className="flex items-start gap-3">
                       <CalendarDays size={16} className="text-volt mt-0.5 shrink-0" />
                       <div>
@@ -226,10 +261,10 @@ export default function Sessions() {
                       </div>
                     </div>
                   </div>
-                </article>
-              );
-            })}
-          </div>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
 
