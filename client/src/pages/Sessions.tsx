@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { CalendarDays, Clock, ExternalLink } from "lucide-react";
+import { CalendarDays, Clock, ExternalLink, RefreshCw, ShieldX } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData";
 import SEOHead from "@/components/SEOHead";
@@ -10,67 +10,100 @@ const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689
 
 const sessions = [
   {
-    name: "Winter 2 - 2026",
-    registration: "Registration is open",
-    start: "February 9, 2026",
-    end: "March 15, 2026",
-    duration: "5 weeks",
-  },
-  {
-    name: "Winter 3 - 2026",
-    registration: "Registration opened February 16, 2026",
-    start: "March 16, 2026",
-    end: "April 19, 2026",
-    duration: "5 weeks",
-  },
-  {
-    name: "Spring 1 - 2026",
-    registration: "Registration opened March 23, 2026",
-    start: "April 20, 2026",
-    end: "May 24, 2026",
-    duration: "5 weeks",
-  },
-  {
-    name: "Spring 2 - 2026",
-    registration: "Registration opened April 27, 2026",
-    start: "May 25, 2026",
-    end: "June 28, 2026",
-    duration: "5 weeks",
-  },
-  {
-    name: "Summer - 2026",
-    registration: "Registration is open",
-    start: "June 29, 2026",
-    end: "August 30, 2026",
-    duration: "9 weeks",
-  },
-  {
-    name: "Fall 1 - 2026",
-    registration: "Registration opens August 3, 2026",
+    name: "Fall 1",
+    sessionDrop: "August 3, 2026",
+    autoEnroll: "August 17, 2026",
     start: "August 31, 2026",
     end: "October 4, 2026",
     duration: "5 weeks",
+    blackout: "Labor Day, September 7",
   },
   {
-    name: "Fall 2 - 2026",
-    registration: "Registration opens September 7, 2026",
+    name: "Fall 2",
+    sessionDrop: "September 7, 2026",
+    autoEnroll: "September 14, 2026",
     start: "October 5, 2026",
     end: "November 8, 2026",
     duration: "5 weeks",
+    blackout: "None",
   },
   {
-    name: "Fall 3 - 2026",
-    registration: "Registration opens October 12, 2026",
+    name: "Fall 3",
+    sessionDrop: "October 12, 2026",
+    autoEnroll: "October 19, 2026",
     start: "November 9, 2026",
     end: "December 20, 2026",
-    duration: "5 weeks",
+    duration: "6 weeks",
+    blackout: "Thanksgiving, November 26",
   },
   {
-    name: "Winter Break Camps - 2026",
-    registration: "Registration opens November 17, 2026",
+    name: "Winter Break Camps",
+    sessionDrop: "November 17, 2026",
+    autoEnroll: "N/A",
     start: "December 21, 2026",
     end: "January 3, 2027",
-    duration: "Holiday camp window",
+    duration: "2 weeks",
+    blackout: "Christmas / New Year",
+  },
+  {
+    name: "Winter 1",
+    yearNote: "2027",
+    sessionDrop: "December 7, 2026",
+    autoEnroll: "December 14, 2026",
+    start: "January 4, 2027",
+    end: "February 7, 2027",
+    duration: "5 weeks",
+    blackout: "None",
+  },
+  {
+    name: "Winter 2",
+    yearNote: "2027",
+    sessionDrop: "January 11, 2027",
+    autoEnroll: "January 18, 2027",
+    start: "February 8, 2027",
+    end: "March 14, 2027",
+    duration: "5 weeks",
+    blackout: "None",
+  },
+  {
+    name: "Winter 3",
+    yearNote: "2027",
+    sessionDrop: "February 15, 2027",
+    autoEnroll: "February 22, 2027",
+    start: "March 15, 2027",
+    end: "April 18, 2027",
+    duration: "5 weeks",
+    blackout: "None",
+  },
+  {
+    name: "Spring 1",
+    yearNote: "2027",
+    sessionDrop: "March 22, 2027",
+    autoEnroll: "March 29, 2027",
+    start: "April 19, 2027",
+    end: "May 23, 2027",
+    duration: "5 weeks",
+    blackout: "None",
+  },
+  {
+    name: "Spring 2",
+    yearNote: "2027",
+    sessionDrop: "April 26, 2027",
+    autoEnroll: "May 3, 2027",
+    start: "May 24, 2027",
+    end: "June 27, 2027",
+    duration: "5 weeks",
+    blackout: "None",
+  },
+  {
+    name: "Summer",
+    yearNote: "2027",
+    sessionDrop: "Mid-January 2027",
+    autoEnroll: "N/A",
+    start: "June 28, 2027",
+    end: "August 29, 2027",
+    duration: "9 weeks",
+    blackout: "July 4",
   },
 ];
 
@@ -78,14 +111,15 @@ function dateAtNoon(value: string) {
   return new Date(`${value} 12:00:00`);
 }
 
-function getStatus(start: string, end: string, registration: string) {
+function getStatus(start: string, end: string, sessionDrop: string) {
   const now = new Date();
   const startsAt = dateAtNoon(start);
   const endsAt = dateAtNoon(end);
+  const registrationStartsAt = dateAtNoon(sessionDrop);
 
   if (now > endsAt) return { label: "Past", tone: "muted" };
   if (now >= startsAt && now <= endsAt) return { label: "In session", tone: "active" };
-  if (registration.toLowerCase().includes("is open") || now >= dateAtNoon(registration.replace("Registration opened ", ""))) {
+  if (!Number.isNaN(registrationStartsAt.getTime()) && now >= registrationStartsAt) {
     return { label: "Registration open", tone: "active" };
   }
   return { label: "Upcoming", tone: "future" };
@@ -101,9 +135,9 @@ export default function Sessions() {
       ])]} />
 
       <PageHero
-        eyebrow="2026 Session Dates"
+        eyebrow="2026-27 Session Calendar"
         headline="Mark your calendar."
-        subtitle="Current WSC programming session dates, registration windows, and seasonal camp timing for tennis, golf, pickleball, fitness, and summer programs."
+        subtitle="Current WSC programming session dates, session drop windows, auto-enroll timing, and blackout notes for tennis, golf, pickleball, fitness, camps, and summer programs."
         image={HERO_IMG}
       />
 
@@ -115,7 +149,7 @@ export default function Sessions() {
               Registration is handled through CourtReserve.
             </h2>
             <p className="text-ink-mid text-[15px] leading-[1.8] mb-8">
-              WSC programs run in seasonal sessions. Popular classes fill quickly, so families and members should set reminders for registration openings and book as early as possible.
+              WSC programs run in seasonal sessions. Popular classes fill quickly, so families and members should set reminders for session drops and auto-enroll dates.
             </p>
             <a
               href={COURT_RESERVE_URL}
@@ -130,12 +164,13 @@ export default function Sessions() {
 
           <div className="space-y-[3px]">
             {sessions.map((session) => {
-              const status = getStatus(session.start, session.end, session.registration);
+              const status = getStatus(session.start, session.end, session.sessionDrop);
+              const displayName = session.yearNote ? `${session.name} (${session.yearNote})` : session.name;
               return (
-                <article key={session.name} className="bg-parchment-mid p-6 lg:p-8 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6">
+                <article key={displayName} className="bg-parchment-mid p-6 lg:p-8 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6">
                   <div>
                     <div className="flex flex-wrap items-center gap-3 mb-3">
-                      <h3 className="text-[20px] font-light tracking-[-0.01em]">{session.name}</h3>
+                      <h3 className="text-[20px] font-light tracking-[-0.01em]">{displayName}</h3>
                       <span
                         className={`text-[10px] tracking-[0.16em] uppercase px-3 py-1 border ${
                           status.tone === "active"
@@ -148,10 +183,13 @@ export default function Sessions() {
                         {status.label}
                       </span>
                     </div>
-                    <p className="text-ink-mid text-[14px] leading-[1.72]">{session.registration}</p>
+                    <p className="text-ink-mid text-[14px] leading-[1.72]">
+                      Session drop: {session.sessionDrop}. Auto-enroll: {session.autoEnroll}.
+                    </p>
+                    <p className="text-ink-light text-[13px] leading-[1.72] mt-2">Blackout: {session.blackout}</p>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-1 gap-3 md:min-w-[240px]">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-3 md:min-w-[260px]">
                     <div className="flex items-start gap-3">
                       <CalendarDays size={16} className="text-volt mt-0.5 shrink-0" />
                       <div>
@@ -167,10 +205,24 @@ export default function Sessions() {
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
+                      <RefreshCw size={16} className="text-volt mt-0.5 shrink-0" />
+                      <div>
+                        <p className="text-ink-light text-[10px] tracking-[0.14em] uppercase mb-1">Auto-Enroll</p>
+                        <p className="text-ink text-[13px]">{session.autoEnroll}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
                       <Clock size={16} className="text-volt mt-0.5 shrink-0" />
                       <div>
                         <p className="text-ink-light text-[10px] tracking-[0.14em] uppercase mb-1">Duration</p>
                         <p className="text-ink text-[13px]">{session.duration}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <ShieldX size={16} className="text-volt mt-0.5 shrink-0" />
+                      <div>
+                        <p className="text-ink-light text-[10px] tracking-[0.14em] uppercase mb-1">Blackout</p>
+                        <p className="text-ink text-[13px]">{session.blackout}</p>
                       </div>
                     </div>
                   </div>

@@ -64,9 +64,9 @@ export const SEO = {
     path: "/membership",
   },
   sessions: {
-    title: "2026 Session Dates Calendar",
+    title: "2026-27 Session Dates Calendar",
     description:
-      "View WSC's 2026 programming session dates, registration windows, start dates, end dates, and summer schedules for tennis, golf, camps, and classes.",
+      "View WSC's 2026-27 programming session dates, session drop windows, auto-enroll dates, start dates, end dates, and blackout notes.",
     path: "/sessions",
   },
   events: {
