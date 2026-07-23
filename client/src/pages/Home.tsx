@@ -18,7 +18,6 @@ import { notifyError, notifySuccess } from "@/lib/notify";
 
 const InstagramFeed = lazy(() => import("@/components/InstagramFeed"));
 const FacilityGallery = lazy(() => import("@/components/FacilityGallery"));
-const Tier1Banner = lazy(() => import("@/components/Tier1Banner"));
 const FullWidthImage = lazy(() => import("@/components/FullWidthImage"));
 
 const TENNIS_IMG = "/images/wsc/tennis-adult-clinic.webp";
@@ -649,11 +648,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* ── TIER 1 SPORTS — Full Banner ── */}
-      <DeferredHomeSection>
-        <Tier1Banner variant="full" />
-      </DeferredHomeSection>
 
       {/* ── FULL-WIDTH VISUAL BREAK — Campus ── */}
       <DeferredHomeSection>
