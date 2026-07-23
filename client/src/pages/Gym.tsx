@@ -68,7 +68,7 @@ export default function Gym() {
         </div>
       </section>
 
-      <section className="bg-parchment px-6 lg:px-14 py-12 border-b border-ink/10">
+      <section id="fitness-memberships" className="bg-parchment px-6 lg:px-14 py-12 border-b border-ink/10 scroll-mt-[var(--site-header-height,130px)]">
         <div className="max-w-[1440px] mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
           <div className="max-w-[680px]">
             <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-4">Fitness Memberships</p>
@@ -191,7 +191,7 @@ export default function Gym() {
         </div>
       </section>
 
-      <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
+      <section id="personal-training" className="bg-parchment px-6 lg:px-14 py-24 lg:py-28 scroll-mt-[var(--site-header-height,130px)]">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[0.8fr_1.4fr] gap-12 lg:gap-20 items-start">
           <div>
             <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Personal Training</p>

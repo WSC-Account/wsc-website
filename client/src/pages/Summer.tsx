@@ -635,7 +635,7 @@ export default function Summer() {
       </section>
 
       {/* Interactive Program Explorer */}
-      <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
+      <section id="summer-programs" className="bg-parchment px-6 lg:px-14 py-24 lg:py-28 scroll-mt-[var(--site-header-height,130px)]">
         <div className="max-w-[1440px] mx-auto">
           <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Programs</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
@@ -776,7 +776,7 @@ export default function Summer() {
       </section>
 
       {/* ═══ Interactive Sample Day Schedules ═══ */}
-      <section id="sample-days" className="bg-dark-bg px-6 lg:px-14 py-24 lg:py-28 scroll-mt-20">
+      <section id="sample-days" className="bg-dark-bg px-6 lg:px-14 py-24 lg:py-28 scroll-mt-[var(--site-header-height,130px)]">
         <div className="max-w-[1440px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.8fr] gap-12 lg:gap-16">
             {/* Left: Program + Schedule Selector */}
@@ -1124,7 +1124,7 @@ export default function Summer() {
       </section>
 
       {/* Registration Instructions */}
-      <section id="registration-instructions" className="bg-parchment px-6 lg:px-14 py-24 lg:py-28 scroll-mt-24">
+      <section id="registration-instructions" className="bg-parchment px-6 lg:px-14 py-24 lg:py-28 scroll-mt-[var(--site-header-height,130px)]">
         <div className="max-w-[1440px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.5fr] gap-12 lg:gap-20 items-start">
             <div>

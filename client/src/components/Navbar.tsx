@@ -13,26 +13,50 @@ const navLinks = [
   {
     href: "/tennis",
     label: "Tennis",
-    children: [{ href: "/tennis/summer-tennis", label: "Summer Tennis Tournaments" }],
+    children: [
+      { href: "/tennis#junior-tennis", label: "Junior Tennis" },
+      { href: "/tennis#adult-tennis", label: "Adult Tennis" },
+      { href: "/tennis/summer-tennis", label: "Summer Tennis Tournaments" },
+    ],
   },
   {
     href: "/golf",
     label: "Golf",
     children: [
+      { href: "/golf#driving-range", label: "Driving Range" },
       { href: "/golf#swing-lab", label: "Golf Simulators" },
+      { href: "/golf-coaching", label: "Golf Lessons" },
       { href: "/golf/tournaments", label: "Golf Tournaments" },
     ],
   },
   {
     href: "/gym",
     label: "Fitness Center",
-    children: [{ href: "/fitness", label: "Athletic Performance Lab" }],
+    children: [
+      { href: "/gym#fitness-memberships", label: "Gym Memberships" },
+      { href: "/gym#personal-training", label: "Personal Training" },
+      { href: "/fitness", label: "Athletic Performance Lab" },
+    ],
   },
   { href: "/pickleball", label: "Pickleball" },
-  { href: "/summer", label: "Summer" },
+  {
+    href: "/summer",
+    label: "Summer",
+    children: [
+      { href: "/summer#summer-programs", label: "Summer Programs" },
+      { href: "/summer#sample-days", label: "Sample Schedules" },
+      { href: "/summer#registration-instructions", label: "Registration" },
+    ],
+  },
   { href: "/pro-shop", label: "Pro Shop" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
+];
+
+const membershipLinks = [
+  { href: "/membership#membership-options", label: "Membership Options" },
+  { href: "/passes", label: "Court & Range Access Pass" },
+  { href: "/member-request", label: "Cancellation Request" },
 ];
 
 export default function Navbar() {
@@ -171,12 +195,29 @@ export default function Navbar() {
           >
             Book Now
           </a>
-          <Link
-            href="/membership"
-            className="text-[12px] tracking-[0.1em] uppercase no-underline text-dark-bg bg-volt-bright px-6 py-3 min-h-[44px] flex items-center hover:bg-parchment transition-colors duration-200"
-          >
-            Membership
-          </Link>
+          <div className="relative group">
+            <Link
+              href="/membership"
+              className="text-[12px] tracking-[0.1em] uppercase no-underline text-dark-bg bg-volt-bright px-6 py-3 min-h-[44px] flex items-center hover:bg-parchment transition-colors duration-200"
+            >
+              Membership
+            </Link>
+            <div className="absolute right-0 top-full z-[55] min-w-[260px] pt-4 opacity-0 pointer-events-none transition-all duration-200 group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto">
+              <ul className="list-none bg-dark-bg border border-parchment/15 shadow-xl">
+                {membershipLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="block px-5 py-3 text-[11px] tracking-[0.1em] uppercase no-underline text-parchment/75 transition-colors duration-200 hover:bg-parchment/10 hover:text-parchment"
+                      onClick={() => scrollToHashLink(link.href)}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
 
         {/* Mobile hamburger */}
@@ -256,6 +297,24 @@ export default function Navbar() {
               >
                 Membership
               </Link>
+            </li>
+            <li>
+              <ul className="list-none ml-4 pl-4 border-l border-parchment/15 space-y-2">
+                {membershipLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-[12px] tracking-[0.1em] uppercase no-underline py-2 block text-parchment/65"
+                      onClick={() => {
+                        setMobileOpen(false);
+                        scrollToHashLink(link.href);
+                      }}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </li>
             <li className="mt-1">
               <a

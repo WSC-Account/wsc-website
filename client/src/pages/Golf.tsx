@@ -112,7 +112,7 @@ export default function Golf() {
       />
 
       {/* Golf Training Grounds */}
-      <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
+      <section id="driving-range" className="bg-parchment px-6 lg:px-14 py-24 lg:py-28 scroll-mt-[var(--site-header-height,130px)]">
         <div
           ref={rangeRef}
           className={`max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start transition-all duration-700 ease-out ${rangeVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}

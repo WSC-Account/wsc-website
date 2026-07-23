@@ -306,7 +306,7 @@ export default function Tennis() {
           </div>
 
           {/* Tier 1 Core */}
-          <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr_auto] gap-4 lg:gap-12 items-baseline py-8 border-b border-wsc-border">
+          <div id="junior-tennis" className="grid grid-cols-1 lg:grid-cols-[200px_1fr_auto] gap-4 lg:gap-12 items-baseline py-8 border-b border-wsc-border scroll-mt-[var(--site-header-height,130px)]">
             <p className="text-volt text-[12px] tracking-[0.2em] uppercase">Juniors</p>
             <div>
               <h3 className="text-[20px] font-light tracking-[-0.01em] mb-1">Tier 1 Core Tennis</h3>
@@ -339,7 +339,7 @@ export default function Tennis() {
           </div>
 
           {/* Adult Tennis */}
-          <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr_auto] gap-4 lg:gap-12 items-baseline py-8 border-b border-wsc-border">
+          <div id="adult-tennis" className="grid grid-cols-1 lg:grid-cols-[200px_1fr_auto] gap-4 lg:gap-12 items-baseline py-8 border-b border-wsc-border scroll-mt-[var(--site-header-height,130px)]">
             <p className="text-volt text-[12px] tracking-[0.2em] uppercase">Adults</p>
             <div>
               <h3 className="text-[20px] font-light tracking-[-0.01em] mb-2">Adult Tennis</h3>
