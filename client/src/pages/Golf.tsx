@@ -163,7 +163,7 @@ export default function Golf() {
       </section>
 
       {/* Swing Lab */}
-      <section className="bg-dark-mid px-6 lg:px-14 py-24 lg:py-28">
+      <section id="swing-lab" className="bg-dark-mid px-6 lg:px-14 py-24 lg:py-28 scroll-mt-[var(--site-header-height,130px)]">
         <div
           ref={swingLabRef}
           className={`max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start transition-all duration-700 ease-out ${swingLabVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}

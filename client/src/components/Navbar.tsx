@@ -18,7 +18,10 @@ const navLinks = [
   {
     href: "/golf",
     label: "Golf",
-    children: [{ href: "/golf/tournaments", label: "Golf Tournaments" }],
+    children: [
+      { href: "/golf#swing-lab", label: "Golf Simulators" },
+      { href: "/golf/tournaments", label: "Golf Tournaments" },
+    ],
   },
   {
     href: "/gym",
@@ -37,6 +40,16 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const mobileMenuId = "mobile-navigation-menu";
+
+  const scrollToHashLink = (href: string) => {
+    const hash = href.split("#")[1];
+
+    if (!hash) return;
+
+    window.requestAnimationFrame(() => {
+      document.getElementById(hash)?.scrollIntoView({ block: "start", behavior: "auto" });
+    });
+  };
 
   useLayoutEffect(() => {
     const root = document.documentElement;
@@ -134,6 +147,7 @@ export default function Navbar() {
                                 ? "bg-parchment/10 text-parchment"
                                 : "text-parchment/75 hover:bg-parchment/10 hover:text-parchment"
                             }`}
+                            onClick={() => scrollToHashLink(child.href)}
                           >
                             {child.label}
                           </Link>
@@ -211,7 +225,10 @@ export default function Navbar() {
                                 ? "text-parchment font-medium"
                                 : "text-parchment/65"
                             }`}
-                            onClick={() => setMobileOpen(false)}
+                            onClick={() => {
+                              setMobileOpen(false);
+                              scrollToHashLink(child.href);
+                            }}
                           >
                             {child.label}
                           </Link>

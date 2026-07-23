@@ -55,7 +55,32 @@ function ScrollToTopOnRouteChange() {
   const [location] = useLocation();
 
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    const hash = window.location.hash.slice(1);
+    let timeoutId: number | undefined;
+
+    if (!hash) {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      return;
+    }
+
+    const scrollToHash = (attempt = 0) => {
+      const target = document.getElementById(hash);
+
+      if (target) {
+        target.scrollIntoView({ block: "start", behavior: "auto" });
+        return;
+      }
+
+      if (attempt < 20) {
+        timeoutId = window.setTimeout(() => scrollToHash(attempt + 1), 50);
+      }
+    };
+
+    scrollToHash();
+
+    return () => {
+      if (timeoutId) window.clearTimeout(timeoutId);
+    };
   }, [location]);
 
   return null;
