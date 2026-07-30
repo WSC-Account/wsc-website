@@ -11,6 +11,7 @@ import MarketingAttribution from "./components/MarketingAttribution";
 const Tennis = lazy(() => import("./pages/Tennis"));
 const SummerTennis = lazy(() => import("./pages/SummerTennis"));
 const Golf = lazy(() => import("./pages/Golf"));
+const DrivingRange = lazy(() => import("./pages/DrivingRange"));
 const GolfTournaments = lazy(() => import("./pages/GolfTournaments"));
 const Gym = lazy(() => import("./pages/Gym"));
 const Fitness = lazy(() => import("./pages/Fitness"));
@@ -93,6 +94,7 @@ function Router() {
         <Route path="/" component={Home} />
         <Route path="/tennis" component={Tennis} />
         <Route path="/tennis/summer-tennis" component={SummerTennis} />
+        <Route path="/golf/driving-range" component={DrivingRange} />
         <Route path="/golf/tournaments" component={GolfTournaments} />
         <Route path="/golf" component={Golf} />
         <Route path="/gym" component={Gym} />

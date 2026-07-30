@@ -27,6 +27,12 @@ export const SEO = {
       "Practice all day at WSC Golf Training Grounds in Woodinville with public driving range access, putting grounds, chipping areas, turf putting green, and lessons.",
     path: "/golf",
   },
+  drivingRange: {
+    title: "Driving Range & Golf Training Grounds",
+    description:
+      "Visit WSC's public Woodinville driving range with 75 total bays, covered Toptracer bays, outdoor grass tees, short-game practice, pricing, and directions.",
+    path: "/golf/driving-range",
+  },
   golfTournaments: {
     title: "Golf Tournaments & Junior Pathways",
     description:

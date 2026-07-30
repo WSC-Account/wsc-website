@@ -4,6 +4,10 @@ const criticalPages = [
   { path: "/", heading: /Level Up Your Game at WSC/i },
   { path: "/tennis", heading: /Tennis/i },
   { path: "/golf", heading: /Golf/i },
+  {
+    path: "/golf/driving-range",
+    heading: /Driving Range & Golf Training Grounds/i,
+  },
   { path: "/membership", heading: /Train Without Limits/i },
   { path: "/contact", heading: /Get in Touch/i },
 ] as const;
@@ -114,5 +118,29 @@ test.describe("critical visitor journeys", () => {
       "href",
       "/"
     );
+  });
+
+  test("driving range page exposes Google Ads sitelink anchors", async ({
+    page,
+  }) => {
+    await page.goto("/golf/driving-range", { waitUntil: "domcontentloaded" });
+
+    for (const id of [
+      "pricing",
+      "toptracer",
+      "short-game",
+      "facility",
+      "memberships",
+    ]) {
+      await expect(page.locator(`#${id}`)).toBeVisible();
+    }
+
+    await expect(page.getByRole("link", { name: "Call Us" })).toHaveAttribute(
+      "href",
+      "tel:4254871090"
+    );
+    await expect(
+      page.getByRole("link", { name: "Get Directions" }).first()
+    ).toHaveAttribute("href", /maps\.google\.com/);
   });
 });
