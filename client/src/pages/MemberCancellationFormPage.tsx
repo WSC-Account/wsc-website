@@ -1,6 +1,7 @@
 import PageHero from "@/components/PageHero";
 import { MemberCancellationForm } from "@/components/InquiryForms";
 import SEOHead from "@/components/SEOHead";
+import { Link } from "wouter";
 
 const HERO_IMG = "/images/wsc/campus-dome.webp";
 
@@ -22,6 +23,20 @@ export default function MemberCancellationFormPage() {
       />
       <section className="bg-parchment px-6 lg:px-14 py-20 lg:py-24">
         <div className="max-w-[860px] mx-auto">
+          <div className="mb-8 border border-wsc-border bg-parchment-mid p-6 lg:p-7">
+            <p className="text-volt text-[12px] tracking-[0.18em] uppercase mb-3">
+              Before You Submit
+            </p>
+            <p className="text-ink-mid text-[15px] leading-[1.75] mb-4">
+              Please review the membership policies for cancellation notice, billing timing, freezes, guest access, and account terms before submitting your request.
+            </p>
+            <Link
+              href="/policies/membership-policies-expanded"
+              className="inline-flex text-[12px] tracking-[0.14em] uppercase text-volt no-underline border-b border-volt pb-1 hover:text-ink transition-colors duration-200"
+            >
+              Review Membership Policies
+            </Link>
+          </div>
           <MemberCancellationForm source="/member-request" />
         </div>
       </section>
