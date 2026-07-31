@@ -88,7 +88,7 @@ const adultClasses = [
   },
   {
     name: "Shot Spotlight",
-    level: "NTRP 2.5-3.5",
+    level: "UTR 1.0-3.5",
     desc: "A weekly deep dive into one featured shot, focused on form, execution, and repetition.",
   },
   {
@@ -103,7 +103,7 @@ const adultClasses = [
   },
   {
     name: "Small Group Intensives",
-    level: "NTRP 3.0-4.0+",
+    level: "NTRP 1.0-5.5+",
     desc: "High-repetition training for players who want a harder, more focused class format.",
   },
 ];
