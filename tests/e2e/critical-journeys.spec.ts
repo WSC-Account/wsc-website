@@ -128,6 +128,7 @@ test.describe("critical visitor journeys", () => {
     for (const id of [
       "pricing",
       "toptracer",
+      "grass-tees",
       "short-game",
       "facility",
       "memberships",
@@ -135,10 +136,13 @@ test.describe("critical visitor journeys", () => {
       await expect(page.locator(`#${id}`)).toBeVisible();
     }
 
-    await expect(page.getByRole("link", { name: "Call Us" })).toHaveAttribute(
-      "href",
-      "tel:4254871090"
-    );
+    const callLinks = page.getByRole("link", { name: "Call Us" });
+    await expect(callLinks).toHaveCount(2);
+    await expect(callLinks.first()).toHaveAttribute("href", "tel:4254871090");
+    await expect(callLinks.last()).toHaveAttribute("href", "tel:4254871090");
+    await expect(
+      page.getByRole("link", { name: "Grass Tees" })
+    ).toHaveAttribute("href", "#grass-tees");
     await expect(
       page.getByRole("link", { name: "Get Directions" }).first()
     ).toHaveAttribute("href", /maps\.google\.com/);

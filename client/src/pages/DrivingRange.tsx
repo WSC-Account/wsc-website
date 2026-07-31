@@ -13,6 +13,7 @@ import { MapPin, Phone } from "lucide-react";
 const HERO_IMG = "/images/wsc/golf-range-sunset.webp";
 const PRACTICE_AREA_IMG = "/images/wsc/golf-practice-area.webp";
 const RANGE_BASKETS_IMG = "/images/wsc/golf-range-baskets.webp";
+const GRASS_TEES_IMG = "/images/wsc/golf-range-field.webp";
 const ADDRESS = "15327 140th Pl NE, Woodinville, WA 98072";
 const CALL_URL = "tel:4254871090";
 const APPLE_MAPS_URL = `https://maps.apple.com/?address=${encodeURIComponent(ADDRESS)}`;
@@ -76,8 +77,24 @@ const priceCards = [
 
 const quickStats = [
   { value: "75", label: "Total Bays" },
-  { value: "23+", label: "Covered Bays" },
+  { value: "24+", label: "Covered Bays" },
   { value: "2.5", label: "Short-Game Acres" },
+];
+
+const sectionLinks = [
+  { href: "#pricing", label: "Pricing" },
+  { href: "#toptracer", label: "Toptracer" },
+  { href: "#grass-tees", label: "Grass Tees" },
+  { href: "#short-game", label: "Short Game" },
+  { href: "#facility", label: "Facility" },
+  { href: "#memberships", label: "Memberships" },
+];
+
+const grassTeeFeatures = [
+  "Outdoor grass tee practice",
+  "Seasonal availability",
+  "Open to the public",
+  "Built for full-swing range sessions",
 ];
 
 const shortGameFeatures = [
@@ -135,7 +152,7 @@ export default function DrivingRange() {
       <PageHero
         eyebrow="WSC Golf Training Grounds"
         headline="Driving Range & Golf Training Grounds"
-        subtitle="75 total bays - 23+ covered with free Toptracer, plus outdoor grass tees - and 2.5 acres of short-game practice space, open to the public in Woodinville."
+        subtitle="75 total bays - 24+ covered with free Toptracer, plus outdoor grass tees - and 2.5 acres of short-game practice space, open to the public in Woodinville."
         image={HERO_IMG}
         imagePosition="center 58%"
       />
@@ -144,8 +161,9 @@ export default function DrivingRange() {
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 gap-3 sm:grid-cols-2">
           <a
             href={CALL_URL}
-            onClick={() => {
-              gtag_report_conversion();
+            onClick={event => {
+              event.preventDefault();
+              gtag_report_conversion(CALL_URL);
             }}
             className="inline-flex min-h-[64px] items-center justify-center gap-3 bg-volt-bright px-8 py-4 text-center text-[12px] uppercase tracking-[0.14em] text-dark-bg no-underline transition-colors duration-200 hover:bg-parchment-dark"
           >
@@ -164,6 +182,20 @@ export default function DrivingRange() {
             Get Directions
           </a>
         </div>
+        <nav
+          aria-label="Driving range page sections"
+          className="max-w-[1440px] mx-auto mt-6 flex flex-wrap justify-center gap-2"
+        >
+          {sectionLinks.map(link => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="inline-flex min-h-[40px] items-center justify-center border border-wsc-border bg-parchment-mid px-4 py-2 text-[11px] uppercase tracking-[0.14em] text-ink-mid no-underline transition-colors duration-200 hover:border-volt hover:text-ink"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
       </section>
 
       <section
@@ -272,6 +304,38 @@ export default function DrivingRange() {
             alt="Golf range baskets at Woodinville Sports Club"
             loading="lazy"
             className="w-full aspect-[16/10] object-cover saturate-[0.65] brightness-[0.82]"
+            style={{ objectPosition: "center 52%" }}
+          />
+        </div>
+      </section>
+
+      <section
+        id="grass-tees"
+        className="scroll-mt-[var(--site-header-height,130px)] bg-parchment px-6 lg:px-14 py-20 lg:py-24"
+      >
+        <div className="max-w-[1440px] mx-auto grid grid-cols-1 gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20 lg:items-center">
+          <div>
+            <p className="mb-5 text-[13px] uppercase tracking-[0.22em] text-volt">
+              Grass Tees
+            </p>
+            <h2 className="mb-8 text-[clamp(26px,2.8vw,40px)] font-light leading-[1.15] tracking-[-0.02em]">
+              Seasonal outdoor tees for natural-turf practice.
+            </h2>
+            <div className="grid grid-cols-1 gap-[3px] sm:grid-cols-2">
+              {grassTeeFeatures.map(feature => (
+                <div key={feature} className="bg-parchment-mid p-6">
+                  <p className="text-[15px] leading-[1.5] text-ink">
+                    {feature}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <ResponsiveImage
+            src={GRASS_TEES_IMG}
+            alt="Grass tee practice area at Woodinville Sports Club"
+            loading="lazy"
+            className="w-full aspect-[16/10] object-cover saturate-[0.68] brightness-[0.9]"
             style={{ objectPosition: "center 52%" }}
           />
         </div>
@@ -400,17 +464,34 @@ export default function DrivingRange() {
           <h2 className="mb-8 text-[clamp(26px,3vw,42px)] font-light leading-[1.15] tracking-[-0.02em]">
             Buckets, short game, Toptracer, and grass tees.
           </h2>
-          <a
-            href={GOOGLE_MAPS_URL}
-            onClick={event => {
-              event.preventDefault();
-              gtag_report_conversion_directions(getDirectionsUrl());
-            }}
-            className="inline-flex min-h-[52px] items-center justify-center gap-3 bg-volt-bright px-8 py-3.5 text-[12px] uppercase tracking-[0.14em] text-dark-bg no-underline transition-colors duration-200 hover:bg-parchment-dark"
-          >
-            <MapPin className="h-4 w-4" aria-hidden="true" strokeWidth={1.8} />
-            Get Directions
-          </a>
+          <div className="mx-auto grid max-w-[560px] grid-cols-1 gap-3 sm:grid-cols-2">
+            <a
+              href={CALL_URL}
+              onClick={event => {
+                event.preventDefault();
+                gtag_report_conversion(CALL_URL);
+              }}
+              className="inline-flex min-h-[52px] items-center justify-center gap-3 bg-volt-bright px-8 py-3.5 text-[12px] uppercase tracking-[0.14em] text-dark-bg no-underline transition-colors duration-200 hover:bg-parchment-dark"
+            >
+              <Phone className="h-4 w-4" aria-hidden="true" strokeWidth={1.8} />
+              Call Us
+            </a>
+            <a
+              href={GOOGLE_MAPS_URL}
+              onClick={event => {
+                event.preventDefault();
+                gtag_report_conversion_directions(getDirectionsUrl());
+              }}
+              className="inline-flex min-h-[52px] items-center justify-center gap-3 border border-volt bg-transparent px-8 py-3.5 text-[12px] uppercase tracking-[0.14em] text-ink no-underline transition-colors duration-200 hover:bg-parchment-mid"
+            >
+              <MapPin
+                className="h-4 w-4"
+                aria-hidden="true"
+                strokeWidth={1.8}
+              />
+              Get Directions
+            </a>
+          </div>
         </div>
       </section>
     </div>
