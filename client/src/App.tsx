@@ -56,6 +56,22 @@ function ScrollToTopOnRouteChange() {
   const [location] = useLocation();
 
   useEffect(() => {
+    const scrollToHash = (hash: string, attempt = 0) => {
+      const target = document.getElementById(hash);
+      const headerBar = document.querySelector("nav > div");
+      const headerHeight = headerBar?.getBoundingClientRect().height ?? 0;
+
+      if (target) {
+        const targetTop = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+        window.scrollTo({ top: Math.max(targetTop, 0), left: 0, behavior: "auto" });
+        return;
+      }
+
+      if (attempt < 30) {
+        timeoutId = window.setTimeout(() => scrollToHash(hash, attempt + 1), 50);
+      }
+    };
+
     const hash = window.location.hash.slice(1);
     let timeoutId: number | undefined;
 
@@ -64,20 +80,7 @@ function ScrollToTopOnRouteChange() {
       return;
     }
 
-    const scrollToHash = (attempt = 0) => {
-      const target = document.getElementById(hash);
-
-      if (target) {
-        target.scrollIntoView({ block: "start", behavior: "auto" });
-        return;
-      }
-
-      if (attempt < 20) {
-        timeoutId = window.setTimeout(() => scrollToHash(attempt + 1), 50);
-      }
-    };
-
-    scrollToHash();
+    scrollToHash(hash);
 
     return () => {
       if (timeoutId) window.clearTimeout(timeoutId);

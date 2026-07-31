@@ -17,7 +17,8 @@ import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
 
 const TENNIS_COURTS_IMG = "/images/wsc/tennis-courts.webp";
-const TENNIS_HERO_IMG = TENNIS_COURTS_IMG;
+const TENNIS_PLAYER_IMG = "/images/wsc/tennis-player.webp";
+const TENNIS_HERO_IMG = TENNIS_PLAYER_IMG;
 const TENNIS_COACH_BALL_FEED_IMG = "/images/wsc/tennis-coach-ball-feed.webp";
 const TENNIS_COACH_CONVERSATION_IMG = "/images/wsc/tennis-coach-conversation.webp";
 const TENNIS_COACH_INSTRUCTION_IMG = "/images/wsc/tennis-coach-court-instruction.webp";
@@ -32,6 +33,8 @@ const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689
 const TIER1_TENNIS_URL = "https://www.tier1nw.com/tennis";
 const TIER1_CORE_URL = "https://www.tier1nw.com/tennis/intro-classes";
 const TIER1_COACHES_URL = "https://www.tier1nw.com/tennis#tennis-coaches";
+const SECTION_SPACING = "px-6 py-16 lg:px-14 lg:py-28";
+const SECTION_SPACING_TIGHT = "px-6 py-14 lg:px-14 lg:py-28";
 
 const academyTracks = [
   {
@@ -243,20 +246,21 @@ export default function Tennis() {
         headline="Elevate Your Tennis Game at WSC."
         subtitle="World-class instruction and facilities for players of all levels. Home of Tier 1 Sports — one of the nation's leading developmental programs."
         image={TENNIS_HERO_IMG}
+        imagePosition="0% 8%"
       />
 
       {/* Programs */}
-      <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
+      <section className={`bg-parchment ${SECTION_SPACING}`}>
         <div
           ref={programsRef}
           className={`max-w-[1440px] mx-auto transition-all duration-700 ease-out ${programsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
           <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Top-Tier Coaching</p>
-          <h2 className="text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15] mb-14">
+          <h2 className="text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15] mb-8 lg:mb-14">
             Training pathways<br />for every level.
           </h2>
 
-          <div className="mb-14 grid grid-cols-1 gap-[3px] md:grid-cols-3">
+          <div className="mb-10 grid grid-cols-1 gap-[3px] md:grid-cols-3 lg:mb-14">
             {programVisuals.map((visual) => (
               <figure key={visual.src} className="group relative overflow-hidden bg-dark-bg">
                 <ResponsiveImage
@@ -265,7 +269,7 @@ export default function Tennis() {
                   sizes="(min-width: 1024px) 31vw, 100vw"
                   loading="lazy"
                   pictureClassName="block"
-                  className="aspect-[4/3] w-full object-cover saturate-[0.68] brightness-[0.9] transition-transform duration-[700ms] ease-out group-hover:scale-[1.035]"
+                  className="aspect-[4/3] w-full object-cover saturate-[0.68] brightness-[0.9] transition-transform duration-[700ms] ease-out group-hover:scale-[1.035] md:aspect-[5/4] lg:aspect-[4/3]"
                   style={{ objectPosition: visual.objectPosition }}
                 />
                 <figcaption className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark-bg/80 to-transparent px-5 pb-5 pt-12 text-parchment text-[11px] tracking-[0.16em] uppercase">
@@ -306,7 +310,7 @@ export default function Tennis() {
           </div>
 
           {/* Tier 1 Core */}
-          <div id="junior-tennis" className="grid grid-cols-1 lg:grid-cols-[200px_1fr_auto] gap-4 lg:gap-12 items-baseline py-8 border-b border-wsc-border scroll-mt-[var(--site-header-height,130px)]">
+          <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr_auto] gap-4 lg:gap-12 items-baseline py-8 border-b border-wsc-border">
             <p className="text-volt text-[12px] tracking-[0.2em] uppercase">Juniors</p>
             <div>
               <h3 className="text-[20px] font-light tracking-[-0.01em] mb-1">Tier 1 Core Tennis</h3>
@@ -339,7 +343,7 @@ export default function Tennis() {
           </div>
 
           {/* Adult Tennis */}
-          <div id="adult-tennis" className="grid grid-cols-1 lg:grid-cols-[200px_1fr_auto] gap-4 lg:gap-12 items-baseline py-8 border-b border-wsc-border scroll-mt-[var(--site-header-height,130px)]">
+          <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr_auto] gap-4 lg:gap-12 items-baseline py-8 border-b border-wsc-border">
             <p className="text-volt text-[12px] tracking-[0.2em] uppercase">Adults</p>
             <div>
               <h3 className="text-[20px] font-light tracking-[-0.01em] mb-2">Adult Tennis</h3>
@@ -372,7 +376,7 @@ export default function Tennis() {
       </section>
 
       {/* Facilities */}
-      <section className="bg-parchment-mid px-6 lg:px-14 py-24 lg:py-28">
+      <section className={`bg-parchment-mid ${SECTION_SPACING_TIGHT}`}>
         <div
           ref={facilitiesRef}
           className={`max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start transition-all duration-700 ease-out ${facilitiesVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
@@ -435,9 +439,9 @@ export default function Tennis() {
       </section>
 
       {/* Coaching Staff */}
-      <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
+      <section className={`bg-parchment ${SECTION_SPACING_TIGHT}`}>
         <div className="max-w-[1440px] mx-auto">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20">
+          <div className="grid grid-cols-1 gap-9 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20">
             <div>
               <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Our Coaches</p>
               <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-7">
@@ -474,12 +478,12 @@ export default function Tennis() {
       </section>
 
       {/* Training Gallery */}
-      <section className="bg-parchment-mid px-6 lg:px-14 py-24 lg:py-28">
+      <section className={`bg-parchment-mid ${SECTION_SPACING_TIGHT}`}>
         <div
           ref={galleryRef}
           className={`max-w-[1440px] mx-auto transition-all duration-700 ease-out ${galleryVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <div className="mb-12 grid grid-cols-1 gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20 lg:items-end">
+          <div className="mb-9 grid grid-cols-1 gap-6 lg:mb-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20 lg:items-end">
             <div>
               <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Inside Tier 1 Training</p>
               <h2 className="text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15]">
@@ -581,8 +585,8 @@ export default function Tennis() {
       </section>
 
       {/* Junior Performance Development */}
-      <section className="bg-dark-bg px-6 lg:px-14 py-24 lg:py-28 overflow-hidden">
-        <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[0.82fr_1.18fr] gap-12 lg:gap-20 items-center">
+      <section id="junior-tennis" className={`bg-dark-bg ${SECTION_SPACING} overflow-hidden scroll-mt-[var(--site-header-height,130px)]`}>
+        <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[0.82fr_1.18fr] gap-9 lg:gap-20 items-start lg:items-center">
           <div>
             <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Junior Performance Development</p>
             <h2 className="text-parchment text-[clamp(30px,3.6vw,54px)] font-light tracking-[-0.03em] leading-[1.03] mb-6">
@@ -607,7 +611,7 @@ export default function Tennis() {
               Explore Tier 1 Tennis
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" strokeWidth={1.8} />
             </a>
-            <div className="mt-10 grid grid-cols-2 gap-[3px]">
+            <div className="mt-8 hidden grid-cols-2 gap-[3px] sm:grid">
               <ResponsiveImage
                 src={TENNIS_JUNIOR_POINT_PLAY_IMG}
                 alt="Junior tennis player hitting a forehand during Tier 1 training at Woodinville Sports Club"
@@ -627,16 +631,16 @@ export default function Tennis() {
             </div>
           </div>
 
-          <div ref={coreRef} className="relative">
+          <div ref={coreRef} className="relative lg:pt-2">
             <div className="absolute left-6 right-6 top-[39px] hidden h-px bg-parchment/15 md:block" />
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
               {corePathway.map((level, i) => (
                 <article
                   key={level.name}
-                  className={`relative bg-white/[0.045] border border-parchment/10 p-6 min-h-[176px] transition-all duration-700 ease-out hover:border-volt-bright/45 ${coreVisible[i] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                  className={`relative bg-white/[0.045] border border-parchment/10 p-5 min-h-[132px] transition-all duration-700 ease-out hover:border-volt-bright/45 lg:min-h-[176px] lg:p-6 ${coreVisible[i] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
                 >
                   <div
-                    className="relative z-10 h-8 w-8 rounded-full border border-white/30 shadow-[0_0_24px_rgba(77,163,255,0.18)] mb-8"
+                    className="relative z-10 h-8 w-8 rounded-full border border-white/30 shadow-[0_0_24px_rgba(77,163,255,0.18)] mb-5 lg:mb-8"
                     style={{ backgroundColor: level.color }}
                   />
                   <p className="text-volt-bright text-[11px] tracking-[0.18em] uppercase mb-3">{level.ages}</p>
@@ -662,14 +666,14 @@ export default function Tennis() {
                   <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" strokeWidth={1.8} />
                 </a>
               </div>
-              <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:mt-6">
                 {academyTracks.map((track) => (
                   <a
                     key={track.name}
                     href={TIER1_TENNIS_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex min-h-[178px] flex-col justify-between border border-volt-bright/35 bg-dark-bg/60 p-5 no-underline transition-colors duration-200 hover:border-volt-bright hover:bg-dark-bg/80"
+                    className="group flex min-h-[156px] flex-col justify-between border border-volt-bright/35 bg-dark-bg/60 p-5 no-underline transition-colors duration-200 hover:border-volt-bright hover:bg-dark-bg/80 lg:min-h-[178px]"
                   >
                     <div>
                       <p className="text-volt-bright text-[11px] tracking-[0.18em] uppercase mb-4">Academy Track</p>
@@ -689,9 +693,9 @@ export default function Tennis() {
       </section>
 
       {/* Adult Class Menu */}
-      <section className="bg-parchment-mid px-6 lg:px-14 py-24 lg:py-28">
+      <section id="adult-tennis" className={`bg-parchment-mid ${SECTION_SPACING} scroll-mt-[var(--site-header-height,130px)]`}>
         <div className="max-w-[1440px] mx-auto">
-          <div className="mb-14 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(320px,0.52fr)] lg:items-end">
+          <div className="mb-10 grid grid-cols-1 gap-8 lg:mb-14 lg:grid-cols-[minmax(0,0.95fr)_minmax(320px,0.52fr)] lg:items-end">
             <div>
               <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Adult Tennis</p>
               <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
@@ -701,21 +705,23 @@ export default function Tennis() {
                 Adult classes meet weekly, with drop-ins opening one week prior when available. Pricing varies by class length and session duration, typically $45-$75 + tax per class or $225-$325 + tax per 5-week session. Coaches evaluate new players and may suggest level adjustments.
               </p>
             </div>
-            <ResponsiveImage
-              src={TENNIS_PLAYER_FOREHAND_IMG}
-              alt="Tennis player hitting a forehand during indoor training at Woodinville Sports Club"
-              sizes="(min-width: 1024px) 34vw, 100vw"
-              loading="lazy"
-              className="aspect-[16/10] w-full object-cover saturate-[0.72] brightness-[0.9]"
-              style={{ objectPosition: "center 39%" }}
-            />
+            <div className="hidden lg:block">
+              <ResponsiveImage
+                src={TENNIS_PLAYER_FOREHAND_IMG}
+                alt="Tennis player hitting a forehand during indoor training at Woodinville Sports Club"
+                sizes="(min-width: 1024px) 34vw, 100vw"
+                loading="lazy"
+                className="aspect-[16/10] w-full object-cover saturate-[0.72] brightness-[0.9]"
+                style={{ objectPosition: "center 39%" }}
+              />
+            </div>
           </div>
 
           <div ref={adultRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[3px]">
             {adultClasses.map((classItem, i) => (
               <article
                 key={classItem.name}
-                className={`bg-parchment p-8 border-t-2 border-transparent hover:border-volt transition-all duration-700 ease-out ${adultVisible[i] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                className={`bg-parchment p-6 border-t-2 border-transparent hover:border-volt transition-all duration-700 ease-out lg:p-8 ${adultVisible[i] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
                 <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3">{classItem.level}</p>
                 <h3 className="text-[18px] font-light tracking-[-0.01em] mb-3">{classItem.name}</h3>
@@ -724,7 +730,7 @@ export default function Tennis() {
             ))}
           </div>
 
-          <div className="mt-10 bg-parchment p-8 grid grid-cols-1 lg:grid-cols-[minmax(0,0.95fr)_minmax(280px,0.55fr)] gap-8 items-center">
+          <div className="mt-8 grid grid-cols-1 gap-7 bg-parchment p-6 lg:mt-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(280px,0.55fr)] lg:gap-8 lg:p-8 lg:items-center">
             <div>
               <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3">Friday Night UTR Matchplay</p>
               <h3 className="text-[20px] font-light tracking-[-0.01em] mb-3">Verified singles matches for juniors and adults.</h3>
@@ -753,7 +759,7 @@ export default function Tennis() {
       </section>
 
       {/* Court Booking */}
-      <section className="bg-parchment-mid px-6 lg:px-14 py-24 lg:py-28">
+      <section className={`bg-parchment-mid ${SECTION_SPACING_TIGHT}`}>
         <div
           ref={bookingRef}
           className={`max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20 items-start transition-all duration-700 ease-out ${bookingVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
@@ -806,7 +812,7 @@ export default function Tennis() {
       </section>
 
       {/* Team Tennis */}
-      <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
+      <section className={`bg-parchment ${SECTION_SPACING_TIGHT}`}>
         <div
           ref={leagueRef}
           className={`max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[0.85fr_1.35fr] gap-12 lg:gap-20 items-start transition-all duration-700 ease-out ${leagueVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
@@ -862,7 +868,7 @@ export default function Tennis() {
       <Tier1Banner variant="compact" />
 
       {/* CTA */}
-      <section className="bg-dark-mid px-6 lg:px-14 py-20 lg:py-24">
+      <section className="bg-dark-mid px-6 py-16 lg:px-14 lg:py-24">
         <div
           ref={ctaRef}
           className={`max-w-[1440px] mx-auto text-center transition-all duration-700 ease-out ${ctaVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}

@@ -4,7 +4,7 @@
  * Fitness Center includes a nested APL page for performance programming.
  */
 import { Link, useLocation } from "wouter";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState, type MouseEvent } from "react";
 import { Menu, X, Phone } from "lucide-react";
 
 const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689";
@@ -60,19 +60,61 @@ const membershipLinks = [
 ];
 
 export default function Navbar() {
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const mobileMenuId = "mobile-navigation-menu";
 
+  const getHeaderOffset = () => {
+    const headerBar = navRef.current?.firstElementChild;
+    if (headerBar instanceof HTMLElement) return headerBar.getBoundingClientRect().height;
+    return navRef.current?.getBoundingClientRect().height ?? 0;
+  };
+
+  const scrollToHashTarget = (hash: string, attempt = 0) => {
+    const target = document.getElementById(hash);
+    const headerHeight = getHeaderOffset();
+
+    if (target) {
+      const targetTop = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+      window.scrollTo({ top: Math.max(targetTop, 0), left: 0, behavior: "auto" });
+      return true;
+    }
+
+    if (attempt < 30) {
+      window.setTimeout(() => scrollToHashTarget(hash, attempt + 1), 50);
+    }
+
+    return false;
+  };
+
   const scrollToHashLink = (href: string) => {
-    const hash = href.split("#")[1];
+    const url = new URL(href, window.location.origin);
+    const hash = url.hash.slice(1);
 
     if (!hash) return;
 
-    window.requestAnimationFrame(() => {
-      document.getElementById(hash)?.scrollIntoView({ block: "start", behavior: "auto" });
-    });
+    const targetPath = url.pathname;
+    const targetHref = `${targetPath}#${hash}`;
+
+    if (targetPath !== window.location.pathname) {
+      setLocation(targetPath);
+      window.setTimeout(() => {
+        window.history.pushState(null, "", targetHref);
+        scrollToHashTarget(hash);
+      }, 50);
+      return;
+    }
+
+    window.history.pushState(null, "", targetHref);
+    scrollToHashTarget(hash);
+  };
+
+  const handleHashLinkClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!href.includes("#")) return;
+
+    event.preventDefault();
+    scrollToHashLink(href);
   };
 
   useLayoutEffect(() => {
@@ -81,7 +123,7 @@ export default function Navbar() {
     if (!nav) return;
 
     const updateHeaderHeight = () => {
-      root.style.setProperty("--site-header-height", `${nav.getBoundingClientRect().height}px`);
+      root.style.setProperty("--site-header-height", `${getHeaderOffset()}px`);
     };
 
     updateHeaderHeight();
@@ -106,29 +148,7 @@ export default function Navbar() {
       Skip to main content
     </a>
     <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 bg-dark-bg" aria-label="Main navigation">
-      {/* Contact top bar with phone */}
-      <div className="bg-dark-mid px-6 lg:px-14 py-1.5 flex items-center justify-between border-b border-white/[0.05]">
-        <span className="text-parchment/70 text-[10px] tracking-[0.16em] uppercase">Woodinville Sports Club</span>
-        <div className="flex items-center gap-6">
-          <a
-            href="tel:+14254871090"
-            className="hidden sm:flex items-center gap-1.5 text-parchment/70 text-[10px] tracking-[0.1em] uppercase no-underline hover:text-parchment transition-colors duration-200"
-          >
-            <Phone size={10} />
-            (425) 487-1090
-          </a>
-          <a
-            href={COURT_RESERVE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-parchment/70 text-[10px] tracking-[0.1em] uppercase no-underline hover:text-parchment transition-colors duration-200"
-          >
-            CourtReserve
-          </a>
-        </div>
-      </div>
-
-      <div className="flex items-center justify-between px-6 lg:px-14 py-5 border-b border-white/[0.08]">
+      <div className="flex items-center justify-between px-6 py-3.5 border-b border-white/[0.08] lg:px-14 lg:py-3">
         <Link href="/" className="flex items-center no-underline" aria-label="Woodinville Sports Club home">
           <img
             src="/logo-small.png"
@@ -136,7 +156,7 @@ export default function Navbar() {
             width={240}
             height={120}
             loading="eager"
-            className="block h-9 sm:h-10 w-auto object-contain"
+            className="block h-8 w-auto object-contain sm:h-9"
           />
         </Link>
 
@@ -171,7 +191,7 @@ export default function Navbar() {
                                 ? "bg-parchment/10 text-parchment"
                                 : "text-parchment/75 hover:bg-parchment/10 hover:text-parchment"
                             }`}
-                            onClick={() => scrollToHashLink(child.href)}
+                            onClick={(event) => handleHashLinkClick(event, child.href)}
                           >
                             {child.label}
                           </Link>
@@ -191,14 +211,14 @@ export default function Navbar() {
             href={COURT_RESERVE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[12px] tracking-[0.1em] uppercase no-underline text-parchment border border-parchment/30 px-5 py-3 min-h-[44px] flex items-center hover:bg-parchment/10 transition-colors duration-200"
+            className="text-[12px] tracking-[0.1em] uppercase no-underline text-parchment border border-parchment/30 px-5 py-2.5 min-h-10 flex items-center hover:bg-parchment/10 transition-colors duration-200"
           >
             Book Now
           </a>
           <div className="relative group">
             <Link
               href="/membership"
-              className="text-[12px] tracking-[0.1em] uppercase no-underline text-dark-bg bg-volt-bright px-6 py-3 min-h-[44px] flex items-center hover:bg-parchment transition-colors duration-200"
+              className="text-[12px] tracking-[0.1em] uppercase no-underline text-dark-bg bg-volt-bright px-6 py-2.5 min-h-10 flex items-center hover:bg-parchment transition-colors duration-200"
             >
               Membership
             </Link>
@@ -209,7 +229,7 @@ export default function Navbar() {
                     <Link
                       href={link.href}
                       className="block px-5 py-3 text-[11px] tracking-[0.1em] uppercase no-underline text-parchment/75 transition-colors duration-200 hover:bg-parchment/10 hover:text-parchment"
-                      onClick={() => scrollToHashLink(link.href)}
+                      onClick={(event) => handleHashLinkClick(event, link.href)}
                     >
                       {link.label}
                     </Link>
@@ -235,7 +255,10 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div id={mobileMenuId} className="lg:hidden bg-dark-bg border-t border-white/[0.08] px-6 py-6">
+        <div
+          id={mobileMenuId}
+          className="lg:hidden max-h-[calc(100dvh-var(--site-header-height,64px))] overflow-y-auto overscroll-contain bg-dark-bg border-t border-white/[0.08] px-6 py-6"
+        >
           <ul className="flex flex-col gap-5 list-none">
             {navLinks.map((link) => {
               const isActive = location === link.href || link.children?.some((child) => location === child.href);
@@ -266,9 +289,9 @@ export default function Navbar() {
                                 ? "text-parchment font-medium"
                                 : "text-parchment/65"
                             }`}
-                            onClick={() => {
+                            onClick={(event) => {
                               setMobileOpen(false);
-                              scrollToHashLink(child.href);
+                              handleHashLinkClick(event, child.href);
                             }}
                           >
                             {child.label}
@@ -305,9 +328,9 @@ export default function Navbar() {
                     <Link
                       href={link.href}
                       className="text-[12px] tracking-[0.1em] uppercase no-underline py-2 block text-parchment/65"
-                      onClick={() => {
+                      onClick={(event) => {
                         setMobileOpen(false);
-                        scrollToHashLink(link.href);
+                        handleHashLinkClick(event, link.href);
                       }}
                     >
                       {link.label}

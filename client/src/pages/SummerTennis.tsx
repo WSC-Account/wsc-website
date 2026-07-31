@@ -203,9 +203,9 @@ export default function SummerTennis() {
         image={HERO_IMG}
       />
 
-      <section className="bg-parchment px-6 py-18 lg:px-14 lg:py-24">
+      <section className="bg-parchment px-6 py-14 lg:px-14 lg:py-24">
         <div className="mx-auto max-w-[1180px]">
-          <div className="mb-10 grid grid-cols-1 gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+          <div className="mb-8 grid grid-cols-1 gap-5 lg:mb-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
             <div>
               <p className="mb-4 text-[13px] uppercase tracking-[0.22em] text-volt">July - August 2026</p>
               <h2 className="text-[clamp(28px,3vw,42px)] font-light leading-[1.15] tracking-[-0.02em]">
@@ -222,18 +222,18 @@ export default function SummerTennis() {
             {tournaments.map((event) => (
               <article
                 key={`${event.week}-${event.dates}`}
-                className="grid grid-cols-1 gap-5 border-b border-ink/10 p-6 last:border-b-0 md:grid-cols-[220px_1fr] lg:p-7"
+                className="grid grid-cols-[84px_minmax(0,1fr)] gap-4 border-b border-ink/10 p-4 last:border-b-0 sm:grid-cols-[150px_minmax(0,1fr)] md:grid-cols-[220px_1fr] lg:p-7"
               >
-                <div>
-                  <p className="mb-2 flex items-center gap-2 text-[12px] uppercase tracking-[0.14em] text-volt">
+                <div className="border-r border-ink/10 pr-3 md:border-r-0 md:pr-0">
+                  <p className="mb-2 flex items-center gap-1.5 text-[11px] uppercase tracking-[0.08em] text-volt sm:text-[12px] sm:tracking-[0.14em]">
                     <CalendarDays size={15} aria-hidden="true" />
                     {event.dates}
                   </p>
-                  <p className="text-[12px] uppercase tracking-[0.1em] text-ink-light">{event.week}</p>
+                  <p className="text-[10px] uppercase leading-[1.45] tracking-[0.08em] text-ink-light sm:text-[12px] sm:tracking-[0.1em]">{event.week}</p>
                 </div>
 
-                <div>
-                  <h3 className="mb-2 text-[20px] font-light tracking-[-0.01em] text-ink">{event.title}</h3>
+                <div className="min-w-0">
+                  <h3 className="mb-2 text-[17px] font-light leading-[1.2] tracking-[-0.01em] text-ink sm:text-[20px]">{event.title}</h3>
                   {event.time && <p className="mb-4 text-[14px] leading-[1.6] text-ink-mid">{event.time}</p>}
                   <div className="flex flex-wrap gap-2">
                     {event.links.map((link) => (

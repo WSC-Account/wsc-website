@@ -18,11 +18,18 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
 ) {
   const { threshold = 0.15, rootMargin = "0px 0px -40px 0px", once = true } = options;
   const ref = useRef<T>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(() => {
+    if (typeof window === "undefined") return true;
+    return !("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  });
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setIsVisible(true);
+      return;
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -53,12 +60,20 @@ export function useStaggerReveal(
 ) {
   const { staggerDelay = 120, threshold = 0.1, rootMargin = "0px 0px -40px 0px", once = true } = options;
   const containerRef = useRef<HTMLDivElement>(null);
-  const [visibleItems, setVisibleItems] = useState<boolean[]>(new Array(count).fill(false));
+  const [visibleItems, setVisibleItems] = useState<boolean[]>(() => {
+    if (typeof window === "undefined") return new Array(count).fill(true);
+    const revealImmediately = !("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    return new Array(count).fill(revealImmediately);
+  });
   const hasTriggered = useRef(false);
 
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
+    if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setVisibleItems(new Array(count).fill(true));
+      return;
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
