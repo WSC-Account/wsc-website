@@ -46,6 +46,22 @@ test("Athletic Performance Lab is directly public in production", () => {
   assert.match(sitemapGenerator, /SEO\.apl\.path/);
 });
 
+test("personal training roster lives on buried ads landing page", () => {
+  const app = read("client/src/App.tsx");
+  const gym = read("client/src/pages/Gym.tsx");
+  const personalTraining = read("client/src/pages/PersonalTraining.tsx");
+  const seo = read("client/src/lib/seo-data.ts");
+  const sitemapGenerator = read("scripts/seo-audit/generate-public-seo-files.ts");
+
+  assert.match(app, /const PersonalTraining = lazy\(\(\) => import\("\.\/pages\/PersonalTraining"\)\)/);
+  assert.match(app, /<Route path="\/personal-training" component=\{PersonalTraining\} \/>/);
+  assert.match(personalTraining, /Trainer Roster/);
+  assert.match(personalTraining, /Request a Match/);
+  assert.match(seo, /personalTraining:\s*\{[\s\S]*?path:\s*"\/personal-training"[\s\S]*?robots:\s*"noindex, follow"/);
+  assert.doesNotMatch(gym, /Trainer Roster|personal-training-trainers|Meet the trainers/);
+  assert.doesNotMatch(sitemapGenerator, /SEO\.personalTraining\.path/);
+});
+
 test("golf academy section links WSC CourtReserve and Tier 1 Golf", () => {
   const golf = read("client/src/pages/Golf.tsx");
   const sectionStart = golf.indexOf("{/* Tier 1 Golf Academy */}");

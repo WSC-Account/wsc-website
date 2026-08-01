@@ -23,6 +23,7 @@ const Events = lazy(() => import("./pages/Events"));
 const FoodTrucks = lazy(() => import("./pages/FoodTrucks"));
 const Careers = lazy(() => import("./pages/Careers"));
 const MemberCancellationFormPage = lazy(() => import("./pages/MemberCancellationFormPage"));
+const PersonalTraining = lazy(() => import("./pages/PersonalTraining"));
 const PersonalTrainingFormPage = lazy(() => import("./pages/PersonalTrainingFormPage"));
 const GolfLessonFormPage = lazy(() => import("./pages/GolfLessonFormPage"));
 const NewsletterSignupPage = lazy(() => import("./pages/NewsletterSignupPage"));
@@ -114,6 +115,7 @@ function Router() {
         <Route path="/member-request" component={MemberCancellationFormPage} />
         <Route path="/member-cancellation" component={MemberCancellationFormPage} />
         <Route path="/member-cancelation" component={MemberCancellationFormPage} />
+        <Route path="/personal-training" component={PersonalTraining} />
         <Route path="/personal-training-interest-form" component={PersonalTrainingFormPage} />
         <Route path="/personal-training-request" component={PersonalTrainingFormPage} />
         <Route path="/golf-coaching" component={GolfLessonFormPage} />

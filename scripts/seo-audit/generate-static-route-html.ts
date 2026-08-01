@@ -38,6 +38,7 @@ const pageImages: Record<string, string> = {
   "/food-trucks": "/images/wsc/campus-sunset.webp",
   "/careers": "/images/wsc/campus-sunset.webp",
   "/member-request": "/images/wsc/campus-dome.webp",
+  "/personal-training": "/images/wsc/fitness-center-hero.webp",
   "/personal-training-interest-form": "/images/wsc/gym-main.webp",
   "/golf-coaching": "/images/wsc/swing-lab-simulators.webp",
   "/newsletter-signup": "/images/wsc/contact-campus.webp",
