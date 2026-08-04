@@ -22,7 +22,11 @@ const GOLF_RANGE_BASKETS_IMG = "/images/wsc/golf-range-baskets.webp";
 const SIM_BAY_IMG = "/images/wsc/swing-lab-simulators.webp";
 const SIM_JUNIOR_IMG = "/images/wsc/swing-lab-junior-practice.webp";
 const SIM_LESSON_IMG = "/images/wsc/swing-lab-private-lesson.webp";
-const GOLF_INSTRUCTORS_IMG = "/images/wsc/golf-instructors-swing-lab.webp";
+const GOLF_COACHES_GROUP_IMG = "/images/wsc/golf-coaches-group.webp";
+const GOLF_COACHES_FIELD_GROUP_IMG = "/images/wsc/golf-coaches-field-group.webp";
+const GOLF_COACH_JOHN_IMG = "/images/wsc/golf-coach-john-wang.webp";
+const GOLF_COACH_DANIEL_IMG = "/images/wsc/golf-coach-daniel-jarvie.webp";
+const GOLF_COACH_STELLA_IMG = "/images/wsc/golf-coach-stella-kim.webp";
 const JUNIOR_ACADEMY_IMG = "/images/wsc/junior-golf-academy-group.webp";
 const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689";
 const TIER1_GOLF_URL = "https://www.tier1nw.com/golf";
@@ -73,6 +77,36 @@ const TIER1_GOLF_PILLARS = [
   "Recruiting support",
 ];
 
+const GOLF_COACHES = [
+  {
+    name: "Daniel Jarvie",
+    title: "Director of Golf & Tier 1 Golf Academy",
+    credential: "WGTF Master Certified Coach",
+    image: GOLF_COACH_DANIEL_IMG,
+    imagePosition: "center 36%",
+    philosophy:
+      "Former Seattle Junior Champion and Division I player at University of Washington. 30+ years of professional teaching, coaching, and playing experience. Former Director of Instruction and College Coach who taught golf schools for legendary PGA Tour coach Jimmy Ballard.",
+  },
+  {
+    name: "Stella Kim",
+    title: "WSC Golf Instructor",
+    credential: "LPGA-Certified Teaching Professional, TPI Level 1 & 2",
+    image: GOLF_COACH_STELLA_IMG,
+    imagePosition: "center 38%",
+    philosophy:
+      "Nearly two decades of experience with a supportive, detail-oriented teaching style. Graduate of Professional Golf Career College (2014). Taught in Southern California, New York, and Korea before joining WSC in Seattle.",
+  },
+  {
+    name: "John Wang",
+    title: "WSC Golf Instructor",
+    credential: "WSC Golf Instruction Team",
+    image: GOLF_COACH_JOHN_IMG,
+    imagePosition: "center 34%",
+    philosophy:
+      "Works with WSC golf students on private instruction, range sessions, and academy training alongside the Tier 1 Golf staff.",
+  },
+];
+
 export default function Golf() {
   // Scroll-reveal hooks
   const { ref: rangeRef, isVisible: rangeVisible } = useScrollReveal({ threshold: 0.08 });
@@ -81,7 +115,7 @@ export default function Golf() {
   const { ref: academyRef, isVisible: academyVisible } = useScrollReveal({ threshold: 0.08 });
   const { ref: pricingRef, isVisible: pricingVisible } = useScrollReveal({ threshold: 0.1 });
   const { ref: whyRef, isVisible: whyVisible } = useScrollReveal({ threshold: 0.1 });
-  const { containerRef: coachesRef, visibleItems: coachesVisible } = useStaggerReveal(2, { staggerDelay: 160, threshold: 0.1 });
+  const { containerRef: coachesRef, visibleItems: coachesVisible } = useStaggerReveal(3, { staggerDelay: 160, threshold: 0.1 });
   const { ref: accessRef, isVisible: accessVisible } = useScrollReveal({ threshold: 0.1 });
   const { ref: formRef, isVisible: formVisible } = useScrollReveal({ threshold: 0.08 });
   const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal({ threshold: 0.15 });
@@ -459,39 +493,60 @@ export default function Golf() {
           <div className="grid grid-cols-1 lg:grid-cols-[minmax(320px,420px)_1fr] gap-[3px] items-stretch">
             <div className="relative mx-auto lg:mx-0 w-full max-w-[520px] lg:max-w-none aspect-[3/4] lg:aspect-auto lg:min-h-[520px] overflow-hidden bg-dark-bg">
               <ResponsiveImage
-                src={GOLF_INSTRUCTORS_IMG}
-                alt="Golf instructors Daniel Jarvie and Stella Kim in the Swing Lab"
+                src={GOLF_COACHES_GROUP_IMG}
+                alt="WSC golf instructors John Wang, Daniel Jarvie, and Stella Kim"
                 loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover saturate-[0.72] brightness-[0.9]"
-                style={{ objectPosition: "center 36%" }}
+                className="absolute inset-0 w-full h-full object-cover saturate-[0.78] brightness-[0.92]"
+                style={{ objectPosition: "center center" }}
               />
             </div>
 
             <div ref={coachesRef} className="grid grid-cols-1 gap-[3px]">
-              {[
-                {
-                  name: "Daniel Jarvie",
-                  title: "Director of Golf & Tier 1 Golf Academy",
-                  credential: "WGTF Master Certified Coach",
-                  philosophy: "Former Seattle Junior Champion and Division I player at University of Washington. 30+ years of professional teaching, coaching, and playing experience. Former Director of Instruction and College Coach who taught golf schools for legendary PGA Tour coach Jimmy Ballard.",
-                },
-                {
-                  name: "Stella Kim",
-                  title: "WSC Golf Instructor",
-                  credential: "LPGA-Certified Teaching Professional, TPI Level 1 & 2",
-                  philosophy: "Nearly two decades of experience with a supportive, detail-oriented teaching style. Graduate of Professional Golf Career College (2014). Taught in Southern California, New York, and Korea before joining WSC in Seattle.",
-                },
-              ].map((coach, i) => (
+              {GOLF_COACHES.map((coach, i) => (
                 <div
-                  key={i}
-                  className={`bg-parchment-mid p-8 lg:p-10 transition-all duration-700 ease-out ${coachesVisible[i] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                  key={coach.name}
+                  className={`bg-parchment-mid p-6 lg:p-8 transition-all duration-700 ease-out ${coachesVisible[i] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
                 >
-                  <h3 className="text-[18px] font-light tracking-[-0.01em] mb-1">{coach.name}</h3>
-                  <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-1.5">{coach.title}</p>
-                  <p className="text-ink-mid text-[11px] tracking-[0.08em] uppercase mb-5">{coach.credential}</p>
-                  <p className="text-ink-mid text-[14px] leading-[1.72] italic">"{coach.philosophy}"</p>
+                  <div className="grid grid-cols-[96px_1fr] sm:grid-cols-[124px_1fr] gap-5 lg:gap-7 items-start">
+                    <div className="relative aspect-[4/5] overflow-hidden bg-dark-bg">
+                      <ResponsiveImage
+                        src={coach.image}
+                        alt={`${coach.name}, ${coach.title}`}
+                        loading="lazy"
+                        className="absolute inset-0 w-full h-full object-cover"
+                        style={{ objectPosition: coach.imagePosition }}
+                      />
+                    </div>
+                    <div>
+                      <h3 className="text-[18px] font-light tracking-[-0.01em] mb-1">{coach.name}</h3>
+                      <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-1.5">{coach.title}</p>
+                      <p className="text-ink-mid text-[11px] tracking-[0.08em] uppercase mb-5">{coach.credential}</p>
+                      <p className="text-ink-mid text-[14px] leading-[1.72] italic">"{coach.philosophy}"</p>
+                    </div>
+                  </div>
                 </div>
               ))}
+            </div>
+          </div>
+
+          <div className="mt-[3px] grid grid-cols-1 lg:grid-cols-[1fr_0.72fr] gap-[3px] bg-parchment">
+            <div className="relative min-h-[360px] lg:min-h-[460px] overflow-hidden bg-dark-bg">
+              <ResponsiveImage
+                src={GOLF_COACHES_FIELD_GROUP_IMG}
+                alt="WSC golf coaching team on the training grounds"
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover saturate-[0.82] brightness-[0.9]"
+                style={{ objectPosition: "center 42%" }}
+              />
+            </div>
+            <div className="bg-parchment-mid p-8 lg:p-10 flex flex-col justify-end">
+              <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-4">WSC Golf Team</p>
+              <h3 className="text-[clamp(24px,2.4vw,34px)] font-light tracking-[-0.02em] leading-[1.14] mb-5">
+                Instruction for every swing, every player.
+              </h3>
+              <p className="text-ink-mid text-[15px] leading-[1.8]">
+                John, Daniel, and Stella give WSC players a complete coaching team across private lessons, academy training, junior development, and on-course preparation.
+              </p>
             </div>
           </div>
 
