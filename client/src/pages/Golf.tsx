@@ -99,11 +99,11 @@ const GOLF_COACHES = [
   {
     name: "John Wang",
     title: "WSC Golf Instructor",
-    credential: "WSC Golf Instruction Team",
+    credential: "Collegiate Athlete & Ranked Player",
     image: GOLF_COACH_JOHN_IMG,
     imagePosition: "center 34%",
     philosophy:
-      "Works with WSC golf students on private instruction, range sessions, and academy training alongside the Tier 1 Golf staff.",
+      "Former Division I player with 4 national titles, 15 regional titles, and a top-3 ranking in China as a junior golfer.",
   },
 ];
 
@@ -490,8 +490,8 @@ export default function Golf() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[minmax(320px,420px)_1fr] gap-[3px] items-stretch">
-            <div className="relative mx-auto lg:mx-0 w-full max-w-[520px] lg:max-w-none aspect-[3/4] lg:aspect-auto lg:min-h-[520px] overflow-hidden bg-dark-bg">
+          <div className="mx-auto max-w-[1120px]">
+            <div className="relative w-full aspect-[3/2] overflow-hidden bg-dark-bg">
               <ResponsiveImage
                 src={GOLF_COACHES_GROUP_IMG}
                 alt="WSC golf instructors John Wang, Daniel Jarvie, and Stella Kim"
@@ -501,7 +501,7 @@ export default function Golf() {
               />
             </div>
 
-            <div ref={coachesRef} className="grid grid-cols-1 gap-[3px]">
+            <div ref={coachesRef} className="mt-[3px] grid grid-cols-1 gap-[3px]">
               {GOLF_COACHES.map((coach, i) => (
                 <div
                   key={coach.name}
