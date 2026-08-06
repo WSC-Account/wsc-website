@@ -13,7 +13,7 @@ import { MapPin, Phone } from "lucide-react";
 const HERO_IMG = "/images/wsc/golf-range-sunset.webp";
 const PRACTICE_AREA_IMG = "/images/wsc/golf-practice-area.webp";
 const RANGE_BASKETS_IMG = "/images/wsc/golf-range-baskets.webp";
-const GRASS_TEES_IMG = "/images/wsc/golf-range-field.webp";
+const GRASS_BAYS_IMG = "/images/wsc/golf-range-field.webp";
 const ADDRESS = "15327 140th Pl NE, Woodinville, WA 98072";
 const CALL_URL = "tel:4254871090";
 const APPLE_MAPS_URL = `https://maps.apple.com/?address=${encodeURIComponent(ADDRESS)}`;
@@ -84,14 +84,14 @@ const quickStats = [
 const sectionLinks = [
   { href: "#pricing", label: "Pricing" },
   { href: "#toptracer", label: "Toptracer" },
-  { href: "#grass-tees", label: "Grass Tees" },
+  { href: "#grass-tees", label: "Grass Bays" },
   { href: "#short-game", label: "Short Game" },
   { href: "#facility", label: "Facility" },
   { href: "#memberships", label: "Memberships" },
 ];
 
 const grassTeeFeatures = [
-  "Outdoor grass tee practice",
+  "Grass bays for natural practice",
   "Seasonal availability",
   "Open to the public",
   "Built for full-swing range sessions",
@@ -141,7 +141,7 @@ export default function DrivingRange() {
             description: SEO.drivingRange.description,
             url: "https://www.woodinvillesportsclub.com/golf/driving-range",
             serviceType:
-              "Public driving range, Toptracer bays, grass tees, and short-game practice",
+              "Public driving range, Toptracer bays, grass bays, and short-game practice",
             image: HERO_IMG,
             audience:
               "Public golfers, families, junior golfers, and adult players",
@@ -152,7 +152,7 @@ export default function DrivingRange() {
       <PageHero
         eyebrow="WSC Golf Training Grounds"
         headline="Driving Range & Golf Training Grounds"
-        subtitle="75 total bays - 24+ covered with free Toptracer, plus outdoor grass tees - and 2.5 acres of short-game practice space, open to the public in Woodinville."
+        subtitle="75 total bays - 24+ covered with free Toptracer, plus grass bays for natural practice - and 2.5 acres of short-game practice space, open to the public in Woodinville."
         image={HERO_IMG}
         imagePosition="center 58%"
       />
@@ -316,10 +316,10 @@ export default function DrivingRange() {
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20 lg:items-center">
           <div>
             <p className="mb-5 text-[13px] uppercase tracking-[0.22em] text-volt">
-              Grass Tees
+              Grass Bays
             </p>
             <h2 className="mb-8 text-[clamp(26px,2.8vw,40px)] font-light leading-[1.15] tracking-[-0.02em]">
-              Seasonal outdoor tees for natural-turf practice.
+              Grass bays for natural practice.
             </h2>
             <div className="grid grid-cols-1 gap-[3px] sm:grid-cols-2">
               {grassTeeFeatures.map(feature => (
@@ -332,8 +332,8 @@ export default function DrivingRange() {
             </div>
           </div>
           <ResponsiveImage
-            src={GRASS_TEES_IMG}
-            alt="Grass tee practice area at Woodinville Sports Club"
+            src={GRASS_BAYS_IMG}
+            alt="Grass bays for natural practice at Woodinville Sports Club"
             loading="lazy"
             className="w-full aspect-[16/10] object-cover saturate-[0.68] brightness-[0.9]"
             style={{ objectPosition: "center 52%" }}
@@ -403,7 +403,7 @@ export default function DrivingRange() {
           <div className="mt-3 grid grid-cols-1 gap-[3px] lg:grid-cols-3">
             {[
               "Covered bays plus outdoor bays",
-              "Seasonal grass tees",
+              "Grass bays",
               "18-hole mini-golf: $8 kids / $10 adults",
             ].map(item => (
               <div key={item} className="bg-parchment-mid p-7">
@@ -462,7 +462,7 @@ export default function DrivingRange() {
             Visit the Range
           </p>
           <h2 className="mb-8 text-[clamp(26px,3vw,42px)] font-light leading-[1.15] tracking-[-0.02em]">
-            Buckets, short game, Toptracer, and grass tees.
+            Buckets, short game, Toptracer, and grass bays.
           </h2>
           <div className="mx-auto grid max-w-[560px] grid-cols-1 gap-3 sm:grid-cols-2">
             <a

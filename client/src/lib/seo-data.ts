@@ -30,7 +30,7 @@ export const SEO = {
   drivingRange: {
     title: "Driving Range & Golf Training Grounds",
     description:
-      "Visit WSC's public Woodinville driving range with 75 total bays, covered Toptracer bays, outdoor grass tees, short-game practice, pricing, and directions.",
+      "Visit WSC's public Woodinville driving range with 75 total bays, covered Toptracer bays, grass bays for natural practice, short-game practice, pricing, and directions.",
     path: "/golf/driving-range",
   },
   golfTournaments: {
