@@ -141,7 +141,7 @@ test.describe("critical visitor journeys", () => {
     await expect(callLinks.first()).toHaveAttribute("href", "tel:4254871090");
     await expect(callLinks.last()).toHaveAttribute("href", "tel:4254871090");
     await expect(
-      page.getByRole("link", { name: "Grass Tees" })
+      page.getByRole("link", { name: "Grass Bays" })
     ).toHaveAttribute("href", "#grass-tees");
     await expect(
       page.getByRole("link", { name: "Get Directions" }).first()
