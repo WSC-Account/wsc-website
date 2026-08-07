@@ -13,7 +13,7 @@ import { MapPin, Phone } from "lucide-react";
 const HERO_IMG = "/images/wsc/golf-range-sunset.webp";
 const PRACTICE_AREA_IMG = "/images/wsc/golf-practice-area.webp";
 const RANGE_BASKETS_IMG = "/images/wsc/golf-range-baskets.webp";
-const GRASS_BAYS_IMG = "/images/wsc/golf-range-field.webp";
+const GRASS_BAYS_IMG = "/images/wsc/grass-tees.webp";
 const ADDRESS = "15327 140th Pl NE, Woodinville, WA 98072";
 const CALL_URL = "tel:4254871090";
 const APPLE_MAPS_URL = `https://maps.apple.com/?address=${encodeURIComponent(ADDRESS)}`;
@@ -77,7 +77,7 @@ const priceCards = [
 
 const quickStats = [
   { value: "75", label: "Total Bays" },
-  { value: "24+", label: "Covered Bays" },
+  { value: "23+", label: "Covered Bays" },
   { value: "2.5", label: "Short-Game Acres" },
 ];
 
@@ -152,7 +152,7 @@ export default function DrivingRange() {
       <PageHero
         eyebrow="WSC Golf Training Grounds"
         headline="Driving Range & Golf Training Grounds"
-        subtitle="75 total bays - 24+ covered with free Toptracer, plus grass bays for natural practice - and 2.5 acres of short-game practice space, open to the public in Woodinville."
+        subtitle="75 total bays — 23+ covered with free Toptracer, plus outdoor grass tees — and 2.5 acres of short-game practice space, open to the public in Woodinville."
         image={HERO_IMG}
         imagePosition="center 58%"
       />

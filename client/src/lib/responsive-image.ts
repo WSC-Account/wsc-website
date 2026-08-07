@@ -25,6 +25,7 @@ const WSC_IMAGE_DIMENSIONS = {
   "/images/wsc/golf-range-baskets.webp": { width: 1800, height: 1350 },
   "/images/wsc/golf-range-field.webp": { width: 1350, height: 1800 },
   "/images/wsc/golf-range-sunset.webp": { width: 1800, height: 1350 },
+  "/images/wsc/grass-tees.webp": { width: 1513, height: 1039 },
   "/images/wsc/gym-functional-zone.webp": { width: 1920, height: 1280 },
   "/images/wsc/gym-floor.webp": { width: 1800, height: 1350 },
   "/images/wsc/gym-main.webp": { width: 1920, height: 1280 },
