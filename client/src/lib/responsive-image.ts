@@ -61,6 +61,7 @@ const WSC_IMAGE_DIMENSIONS = {
   "/images/wsc/tennis-player.webp": { width: 1800, height: 1200 },
   "/images/wsc/tennis-player-forehand.webp": { width: 1800, height: 1203 },
   "/images/wsc/tennis-tier1-alumni-sign.webp": { width: 1200, height: 1800 },
+  "/images/wsc/toptracer-covered-bay.webp": { width: 1800, height: 1300 },
 } as const satisfies Record<string, ImageDimensions>;
 
 const RESPONSIVE_MAX_DIMENSIONS = [720, 900, 1200] as const;

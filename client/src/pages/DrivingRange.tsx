@@ -12,7 +12,7 @@ import { MapPin, Phone } from "lucide-react";
 
 const HERO_IMG = "/images/wsc/golf-range-sunset.webp";
 const PRACTICE_AREA_IMG = "/images/wsc/golf-practice-area.webp";
-const RANGE_BASKETS_IMG = "/images/wsc/golf-range-baskets.webp";
+const TOPTRACER_BAYS_IMG = "/images/wsc/toptracer-covered-bay.webp";
 const GRASS_BAYS_IMG = "/images/wsc/grass-tees.webp";
 const ADDRESS = "15327 140th Pl NE, Woodinville, WA 98072";
 const CALL_URL = "tel:4254871090";
@@ -300,11 +300,11 @@ export default function DrivingRange() {
             </div>
           </div>
           <ResponsiveImage
-            src={RANGE_BASKETS_IMG}
-            alt="Golf range baskets at Woodinville Sports Club"
+            src={TOPTRACER_BAYS_IMG}
+            alt="Toptracer covered bay at Woodinville Sports Club"
             loading="lazy"
             className="w-full aspect-[16/10] object-cover saturate-[0.65] brightness-[0.82]"
-            style={{ objectPosition: "center 52%" }}
+            style={{ objectPosition: "center 50%" }}
           />
         </div>
       </section>
