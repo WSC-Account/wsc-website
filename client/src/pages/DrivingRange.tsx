@@ -78,6 +78,7 @@ const priceCards = [
 const quickStats = [
   { value: "75", label: "Total Bays" },
   { value: "23+", label: "Covered Bays" },
+  { value: "40+", label: "Grass Bays" },
   { value: "2.5", label: "Short-Game Acres" },
 ];
 
@@ -92,7 +93,7 @@ const sectionLinks = [
 
 const grassTeeFeatures = [
   "Grass bays for natural practice",
-  "Seasonal availability",
+  "Open all year",
   "Open to the public",
   "Built for full-swing range sessions",
 ];
@@ -151,7 +152,7 @@ export default function DrivingRange() {
 
       <PageHero
         eyebrow="WSC Golf Training Grounds"
-        headline="Driving Range & Golf Training Grounds"
+        headline="Public Driving Range & Golf Training Grounds"
         subtitle="75 total bays — 23+ covered with free Toptracer, plus outdoor grass tees — and 2.5 acres of short-game practice space, open to the public in Woodinville."
         image={HERO_IMG}
         imagePosition="center 58%"
@@ -278,7 +279,7 @@ export default function DrivingRange() {
               Toptracer Bays
             </p>
             <h2 className="mb-6 text-[clamp(26px,3vw,42px)] font-light leading-[1.1] tracking-[-0.02em] text-parchment">
-              Free Toptracer on all 19 covered bays.
+              Free Toptracer on 19 covered bays.
             </h2>
             <div className="grid grid-cols-2 gap-[3px]">
               <div className="bg-white/[0.055] p-6">
@@ -387,7 +388,7 @@ export default function DrivingRange() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 gap-[3px] md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-[3px] sm:grid-cols-2 lg:grid-cols-4">
             {quickStats.map(stat => (
               <div key={stat.label} className="bg-parchment-mid p-8">
                 <p className="mb-2 text-[34px] font-light leading-none tracking-[-0.02em] text-volt-bright">
@@ -395,20 +396,6 @@ export default function DrivingRange() {
                 </p>
                 <p className="text-[11px] uppercase tracking-[0.14em] leading-[1.5] text-ink-light">
                   {stat.label}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-3 grid grid-cols-1 gap-[3px] lg:grid-cols-3">
-            {[
-              "Covered bays plus outdoor bays",
-              "Grass bays",
-              "18-hole mini-golf: $8 kids / $10 adults",
-            ].map(item => (
-              <div key={item} className="bg-parchment-mid p-7">
-                <p className="text-[14px] leading-[1.65] text-ink-mid">
-                  {item}
                 </p>
               </div>
             ))}
