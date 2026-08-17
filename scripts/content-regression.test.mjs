@@ -62,7 +62,7 @@ test("personal training roster lives on buried ads landing page", () => {
   assert.doesNotMatch(sitemapGenerator, /SEO\.personalTraining\.path/);
 });
 
-test("golf academy section links WSC CourtReserve and Tier 1 Golf", () => {
+test("golf academy section matches the four-program junior pathway", () => {
   const golf = read("client/src/pages/Golf.tsx");
   const sectionStart = golf.indexOf("{/* Tier 1 Golf Academy */}");
   const sectionEnd = golf.indexOf("{/* Range Pricing */}");
@@ -71,20 +71,17 @@ test("golf academy section links WSC CourtReserve and Tier 1 Golf", () => {
   assert.notEqual(sectionStart, -1);
   assert.notEqual(sectionEnd, -1);
   assert.match(golf, /const COURT_RESERVE_URL = "https:\/\/app\.courtreserve\.com\/Online\/Portal\/Index\/6689"/);
-  assert.match(golf, /const TIER1_GOLF_URL = "https:\/\/www\.tier1nw\.com\/golf"/);
-  assert.match(golf, /const TIER1_GOLF_APPLY_URL = "https:\/\/www\.tier1nw\.com\/golf\/apply"/);
   assert.match(academySection, /href=\{COURT_RESERVE_URL\}/);
-  assert.match(academySection, /href=\{TIER1_GOLF_URL\}/);
-  assert.match(academySection, /href=\{TIER1_GOLF_APPLY_URL\}/);
-  assert.match(academySection, /Register in CourtReserve/);
-  assert.match(academySection, /Data-driven junior golf development at WSC/);
-  assert.match(academySection, /September 2026/);
-  assert.match(golf, /Full-Time Golf Academy/);
-  assert.match(golf, /Par to Eagle Pathway/);
-  assert.doesNotMatch(golf, /Par to Albatros Pathway/);
-  assert.match(golf, /APL integration|APL Integrated/i);
-  assert.match(golf, /Competition pathway/i);
+  assert.match(academySection, />Junior<\/span>[\s\S]*?>Golf Pathway<\/span>/);
+  assert.match(academySection, /Class Times &amp; Registration/);
+  assert.match(academySection, /Classes require a WSC membership/);
+  assert.match(golf, /Intro to Golf/);
+  assert.match(golf, /Golf Club \(7–9\)/);
+  assert.match(golf, /Golf Club \(10–12\)/);
+  assert.match(golf, /Tier 1 High Performance/);
+  assert.match(golf, /Recommended: \{program\.recommendation\}/);
   assert.match(golf, /Tier1golf@woodinvillesportsclub\.com/);
+  assert.match(academySection, /mailto:\$\{TIER1_GOLF_EMAIL\}/);
   assert.doesNotMatch(academySection, /href="\/membership"/);
 });
 
