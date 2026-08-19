@@ -2,6 +2,7 @@
  * 4B Design - Athletic Performance Lab Page
  * Covers: purpose, offerings, coaches, registration paths
  */
+import { useEffect } from "react";
 import { Link } from "wouter";
 import PageHero from "@/components/PageHero";
 import ResponsiveImage from "@/components/ResponsiveImage";
@@ -11,8 +12,47 @@ import { SEO } from "@/lib/seo-data";
 
 const PERF_IMG = "/images/wsc/gym-main.webp";
 const TRAINING_IMG = "/images/wsc/apl-training.webp";
-const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689";
+const COACH_JORDY_IMG = "/images/wsc/jordy-champagne.png";
+const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Events/List/6689/C7BR91B9SH6689";
 const TIER1_APL_URL = "https://www.tier1nw.com/apl";
+const CLASS_PASS_DISCLOSURE = "A $50/year Class Pass is required to register - get yours in CourtReserve.";
+const COURT_RESERVE_CONVERSION_ID = "AW-18217215416/-Y8cCL7y9-McELjL0u5D";
+
+declare global {
+  interface Window {
+    gtag_report_conversion?: (url?: string) => false;
+  }
+}
+
+function reportCourtReserveConversion(url?: string) {
+  let redirected = false;
+  const redirect = () => {
+    if (!url || redirected) return;
+    redirected = true;
+    window.location.href = url;
+  };
+
+  if (typeof window.gtag === "function") {
+    window.gtag("event", "conversion", {
+      send_to: COURT_RESERVE_CONVERSION_ID,
+      value: 1.0,
+      currency: "USD",
+      event_callback: redirect,
+    });
+
+    if (url) {
+      window.setTimeout(redirect, 700);
+    }
+  } else {
+    redirect();
+  }
+
+  return false as const;
+}
+
+function gtag_report_conversion(url?: string) {
+  return reportCourtReserveConversion(url);
+}
 
 const offerings = [
   {
@@ -47,14 +87,30 @@ const offerings = [
   },
 ];
 
-const classes = [
-  "APL Intro to Fitness",
-  "APL Build",
-  "APL Ignite",
-  "APL Push, Pull & Upper Body",
-  "APL Lower Body Strength & Power",
-  "APL Speed School",
-  "Adult Athletic Performance",
+const classSections = [
+  {
+    title: "Youth Programs",
+    rows: [
+      { program: "Intro to Tennis Fitness - Red Ball", days: "Tue & Thu - 5:30-6:00pm", ages: "7+" },
+      { program: "Athletic Development - Orange & Green Ball", days: "Tue & Thu - 6:00-6:30pm", ages: "Ages 9-12" },
+      { program: "Athletic Development - Yellow Ball & Junior Academy", days: "Mon & Wed - 6:00-6:30pm", ages: "12 & Up" },
+      { program: "Elite Athletic Development - After School Academy (ASA)", days: "Mon-Thu - 6:30-7:00pm", ages: "ASA Athletes" },
+      { program: "Elite Athletic Development - Yellow Ball & Junior Academy (JA)", days: "Friday - 4:30-5:00pm", ages: "12 & Up" },
+      { program: "APL Lower Body Strength & Power", days: "Mon & Wed - 7:00-8:00pm", ages: "Youth" },
+      { program: "APL Push, Pull & Upper Body", days: "Tue & Thu - 7:00-8:00pm", ages: "Youth" },
+      { program: "Speed School", days: "Saturday - 10:30-11:30am", ages: "Ages 9+" },
+      { program: "Intro to Speed School", days: "Saturday - 11:30am-12:30pm", ages: "Ages 9+" },
+    ],
+  },
+  {
+    title: "Adult Programs",
+    rows: [
+      { program: "Tennis Performance & Longevity", days: "Mon & Wed - 8:00-9:00pm", ages: "Adults" },
+      { program: "APL Adult Athletic Performance", days: "Tue & Thu - 8:00-9:00pm", ages: "Adults" },
+      { program: "HIIT Adult Fitness Class", days: "Friday - 5:00-6:00pm", ages: "Adults" },
+      { program: "HIIT Adult Fitness Class", days: "Saturday - 12:30-1:30pm", ages: "Adults" },
+    ],
+  },
 ];
 
 const coachHighlights = [
@@ -62,10 +118,25 @@ const coachHighlights = [
     name: "Jordy Champagne",
     role: "Director of Strength and Conditioning",
     desc: "Jordy leads the Athletic Performance Lab's training standards, athlete development approach, and strength and conditioning programming for youth and adult athletes.",
+    image: COACH_JORDY_IMG,
+    imageAlt: "Jordy Champagne, Director of Strength and Conditioning",
+  },
+  {
+    name: "Jeff Madden",
+    role: "Adult APL Coach",
+    desc: "Jeff coaches adult APL classes tied to the current schedule, helping adults build strength, conditioning, durability, and confidence through structured training.",
   },
 ];
 
 export default function Fitness() {
+  useEffect(() => {
+    window.gtag_report_conversion = gtag_report_conversion;
+
+    return () => {
+      delete window.gtag_report_conversion;
+    };
+  }, []);
+
   return (
     <div className="min-h-screen">
       <SEOHead {...SEO.apl} />
@@ -131,24 +202,14 @@ export default function Fitness() {
                 href={COURT_RESERVE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={event => {
+                  event.preventDefault();
+                  gtag_report_conversion(COURT_RESERVE_URL);
+                }}
                 className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment transition-colors duration-200"
               >
                 Browse & Register
               </a>
-              <a
-                href={TIER1_APL_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline text-parchment border border-volt-bright px-8 py-3.5 hover:bg-volt hover:border-volt transition-colors duration-200"
-              >
-                Explore Tier 1 APL
-              </a>
-              <Link
-                href="/personal-training-interest-form"
-                className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline text-parchment border border-volt-bright px-8 py-3.5 hover:bg-volt hover:border-volt transition-colors duration-200"
-              >
-                Request Personal Training
-              </Link>
             </div>
           </div>
           <ResponsiveImage
@@ -194,21 +255,50 @@ export default function Fitness() {
             <p className="text-ink-mid text-[16px] leading-[1.82] mb-8">
               Current class options include foundations, strength blocks, speed development, upper-body and lower-body emphasis, and adult athletic performance sessions.
             </p>
+            <p className="text-ink text-[14px] leading-[1.65] mb-8 border-l-2 border-volt pl-5">
+              {CLASS_PASS_DISCLOSURE}
+            </p>
             <a
               href={COURT_RESERVE_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={event => {
+                event.preventDefault();
+                gtag_report_conversion(COURT_RESERVE_URL);
+              }}
               className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment-dark transition-colors duration-200"
             >
               Register in CourtReserve
             </a>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-[3px]">
-            {classes.map((name) => (
-              <article key={name} className="bg-parchment p-7">
-                <h3 className="text-[18px] font-light leading-[1.35]">{name}</h3>
-              </article>
+          <div className="space-y-8">
+            {classSections.map((section) => (
+              <div key={section.title} className="bg-parchment">
+                <div className="px-5 py-4 border-b border-ink/10">
+                  <h3 className="text-[18px] font-light leading-[1.25]">{section.title}</h3>
+                </div>
+                <div className="overflow-x-auto" tabIndex={0} role="region" aria-label={`${section.title} APL schedule`}>
+                  <table className="w-full min-w-[720px] border-collapse text-left">
+                    <thead>
+                      <tr className="bg-parchment-dark/45">
+                        <th scope="col" className="px-5 py-3 text-[11px] tracking-[0.18em] uppercase text-ink-mid font-normal">Program</th>
+                        <th scope="col" className="px-5 py-3 text-[11px] tracking-[0.18em] uppercase text-ink-mid font-normal">Days & Time</th>
+                        <th scope="col" className="px-5 py-3 text-[11px] tracking-[0.18em] uppercase text-ink-mid font-normal">Ages</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {section.rows.map((row) => (
+                        <tr key={`${section.title}-${row.program}-${row.days}`} className="border-t border-ink/10">
+                          <td className="px-5 py-4 text-[15px] leading-[1.4] text-ink">{row.program}</td>
+                          <td className="px-5 py-4 text-[14px] leading-[1.45] text-ink-mid">{row.days}</td>
+                          <td className="px-5 py-4 text-[14px] leading-[1.45] text-ink-mid">{row.ages}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -228,10 +318,26 @@ export default function Fitness() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[3px]">
             {coachHighlights.map((coach) => (
-              <article key={coach.name} className="bg-dark-bg p-8 lg:p-10">
-                <p className="text-volt-bright text-[12px] tracking-[0.2em] uppercase mb-3">{coach.role}</p>
-                <h3 className="text-parchment text-[22px] font-light leading-[1.25] mb-4">{coach.name}</h3>
-                <p className="text-parchment/78 text-[14px] leading-[1.72]">{coach.desc}</p>
+              <article key={coach.name} className="bg-dark-bg">
+                {coach.image ? (
+                  <img
+                    src={coach.image}
+                    alt={coach.imageAlt}
+                    width={612}
+                    height={408}
+                    loading="lazy"
+                    className="w-full aspect-[3/2] object-cover grayscale-[0.1] brightness-[0.82] saturate-[0.9]"
+                  />
+                ) : (
+                  <div className="flex aspect-[3/2] items-center justify-center bg-dark-mid border-b border-parchment/10">
+                    <span className="text-volt-bright text-[clamp(42px,6vw,72px)] font-light tracking-[0.04em]">JM</span>
+                  </div>
+                )}
+                <div className="p-8 lg:p-10">
+                  <p className="text-volt-bright text-[12px] tracking-[0.2em] uppercase mb-3">{coach.role}</p>
+                  <h3 className="text-parchment text-[22px] font-light leading-[1.25] mb-4">{coach.name}</h3>
+                  <p className="text-parchment/78 text-[14px] leading-[1.72]">{coach.desc}</p>
+                </div>
               </article>
             ))}
           </div>
@@ -247,11 +353,18 @@ export default function Fitness() {
           <p className="text-ink-mid text-[15px] leading-[1.75] max-w-[560px] mx-auto mb-8">
             Browse current classes and registration options in CourtReserve, or visit Tier 1 for deeper program details.
           </p>
+          <p className="text-ink text-[14px] leading-[1.65] max-w-[560px] mx-auto mb-8">
+            {CLASS_PASS_DISCLOSURE}
+          </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
               href={COURT_RESERVE_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={event => {
+                event.preventDefault();
+                gtag_report_conversion(COURT_RESERVE_URL);
+              }}
               className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment-dark transition-colors duration-200"
             >
               Register in CourtReserve
