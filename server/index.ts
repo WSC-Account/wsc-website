@@ -9,6 +9,9 @@ import { handleFormSubmissionRequest } from "./form-submissions";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const canonicalRedirects: Record<string, string> = {
+  "/driving-range": "/golf/driving-range",
+  "/golf-driving-range": "/golf/driving-range",
+  "/golf-tournaments": "/golf/tournaments",
   "/passes": "/membership",
   "/privacy": "/policies#privacy",
   "/terms": "/policies#terms",

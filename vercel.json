@@ -198,8 +198,23 @@
       "permanent": true
     },
     {
+      "source": "/driving-range",
+      "destination": "/golf/driving-range",
+      "permanent": true
+    },
+    {
+      "source": "/golf-driving-range",
+      "destination": "/golf/driving-range",
+      "permanent": true
+    },
+    {
       "source": "/golf-lessons",
       "destination": "/golf-coaching",
+      "permanent": true
+    },
+    {
+      "source": "/golf-tournaments",
+      "destination": "/golf/tournaments",
       "permanent": true
     },
     {

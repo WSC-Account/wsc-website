@@ -23,7 +23,7 @@ const navLinks = [
     href: "/golf",
     label: "Golf",
     children: [
-      { href: "/golf#driving-range", label: "Driving Range" },
+      { href: "/golf/driving-range", label: "Driving Range" },
       { href: "/golf#swing-lab", label: "Golf Simulators" },
       { href: "/golf-coaching", label: "Golf Lessons" },
       { href: "/golf/tournaments", label: "Golf Tournaments" },
