@@ -193,11 +193,6 @@
       "permanent": true
     },
     {
-      "source": "/free-fitness-assessment",
-      "destination": "/gym",
-      "permanent": true
-    },
-    {
       "source": "/driving-range",
       "destination": "/golf/driving-range",
       "permanent": true

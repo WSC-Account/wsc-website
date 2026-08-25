@@ -45,6 +45,12 @@ export const SEO = {
       "Join WSC for clean, accessible fitness memberships with cardio, free weights, strength space, sauna, locker rooms, flexible hours, and personal training.",
     path: "/gym",
   },
+  freeFitnessAssessment: {
+    title: "Free Fitness Assessment",
+    description:
+      "Book a complimentary 30-45 minute fitness assessment with a certified WSC strength and conditioning coach. No commitment required.",
+    path: "/free-fitness-assessment",
+  },
   apl: {
     title: "Athletic Performance Lab",
     description:

@@ -194,6 +194,11 @@ test("each high-information form enforces its required fields", async () => {
       "Please include your name and phone number.",
     ],
     [
+      "free_fitness_assessment",
+      {},
+      "Please include the days and time that work best for your assessment.",
+    ],
+    [
       "career_application",
       { name: "Visitor", phone: "425-555-0100" },
       "Please include your contact information and department interest.",

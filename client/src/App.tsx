@@ -15,6 +15,7 @@ const DrivingRange = lazy(() => import("./pages/DrivingRange"));
 const GolfTournaments = lazy(() => import("./pages/GolfTournaments"));
 const Gym = lazy(() => import("./pages/Gym"));
 const Fitness = lazy(() => import("./pages/Fitness"));
+const FreeFitnessAssessment = lazy(() => import("./pages/FreeFitnessAssessment"));
 const Pickleball = lazy(() => import("./pages/Pickleball"));
 const Summer = lazy(() => import("./pages/Summer"));
 const Membership = lazy(() => import("./pages/Membership"));
@@ -103,6 +104,7 @@ function Router() {
         <Route path="/golf" component={Golf} />
         <Route path="/gym" component={Gym} />
         <Route path="/fitness" component={Fitness} />
+        <Route path="/free-fitness-assessment" component={FreeFitnessAssessment} />
         <Route path="/pickleball" component={Pickleball} />
         <Route path="/summer" component={Summer} />
         <Route path="/membership" component={Membership} />

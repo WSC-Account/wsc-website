@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { Link } from "wouter";
 import PageHero from "@/components/PageHero";
 import ResponsiveImage from "@/components/ResponsiveImage";
+import { FreeFitnessAssessmentForm } from "@/components/InquiryForms";
 import StructuredData, { getBreadcrumbSchema, getServiceSchema } from "@/components/StructuredData";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
@@ -15,7 +16,6 @@ const TRAINING_IMG = "/images/wsc/apl-training.webp";
 const COACH_JORDY_IMG = "/images/wsc/jordy-champagne.png";
 const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Events/List/6689/C7BR91B9SH6689";
 const TIER1_APL_URL = "https://www.tier1nw.com/apl";
-const FITNESS_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd8cQiChYXFDZytTe2mn9AOtxUD0UhaqX7AGP_7xGxZYJBryg/viewform?embedded=true";
 const CLASS_PASS_DISCLOSURE = "A $50/year Class Pass is required to register - get yours in CourtReserve.";
 const COURT_RESERVE_CONVERSION_ID = "AW-18217215416/-Y8cCL7y9-McELjL0u5D";
 
@@ -162,31 +162,33 @@ export default function Fitness() {
         image={PERF_IMG}
       />
 
-      <section className="bg-parchment px-6 lg:px-14 py-16 lg:py-20" aria-labelledby="fitness-interest-form-heading">
-        <div className="max-w-[900px] mx-auto">
-          <div className="mb-8">
-            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Fitness Interest Form</p>
+      <section id="free-fitness-assessment" className="scroll-mt-[var(--site-header-height,130px)] bg-parchment px-6 lg:px-14 py-16 lg:py-20" aria-labelledby="fitness-interest-form-heading">
+        <div className="max-w-[1440px] mx-auto grid grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16 lg:items-start">
+          <div>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Free Fitness Assessment</p>
             <h2 id="fitness-interest-form-heading" className="text-[clamp(26px,2.8vw,38px)] font-light leading-[1.15] mb-5">
-              Start here for Athletic Performance Lab training.
+              Free Fitness Assessment - WSC
             </h2>
-            <p className="text-ink-mid text-[16px] leading-[1.75] max-w-[680px]">
-              Tell us what kind of training you're looking for and the team will follow up with the right next step.
+            <p className="text-ink-mid text-[16px] leading-[1.75] max-w-[620px] mb-6">
+              Interested in a complimentary 30-45 minute fitness assessment with one of our certified S&C coaches? Fill out this form and we'll reach out within 2 business days to schedule your session. No commitment required.
             </p>
-          </div>
-          <div className="bg-white border border-ink/10 shadow-sm overflow-hidden">
-            <iframe
-              src={FITNESS_FORM_URL}
-              title="WSC Fitness interest form"
-              width="640"
-              height="1852"
-              frameBorder="0"
-              marginHeight={0}
-              marginWidth={0}
-              loading="lazy"
-              className="block w-full min-h-[1852px] border-0"
+            <Link
+              href="/free-fitness-assessment"
+              className="mb-6 inline-block text-[12px] tracking-[0.14em] uppercase no-underline text-ink border border-ink/20 px-6 py-3 hover:bg-ink/5 transition-colors duration-200"
             >
-              Loading...
-            </iframe>
+              Request Free Assessment
+            </Link>
+            <div className="grid grid-cols-1 gap-[3px] sm:grid-cols-3">
+              {["30-45 minutes", "Certified S&C coaches", "Reply within 2 business days"].map((item) => (
+                <div key={item} className="bg-parchment-mid p-5">
+                  <p className="text-[12px] uppercase tracking-[0.14em] leading-[1.45] text-ink">{item}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="bg-parchment-mid border border-wsc-border p-6 lg:p-8">
+            <p className="text-ink-light text-[12px] leading-[1.6] mb-5">* Indicates required question</p>
+            <FreeFitnessAssessmentForm source="/fitness#free-fitness-assessment" />
           </div>
         </div>
       </section>

@@ -44,7 +44,6 @@ const manualClosestTargets = new Map([
   ["/courses/tennis", "/tennis"],
   ["/events-1", "/events"],
   ["/faqs", "/faq"],
-  ["/free-fitness-assessment", "/gym"],
   ["/fta-parent-meeting-4-21", "/contact"],
   ["/inquiry-services-page", "/contact"],
   ["/main-gym", "/gym"],

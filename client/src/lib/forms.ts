@@ -2,6 +2,7 @@ import { marketingAttributionMetadata } from "./marketing-attribution";
 
 export type WebsiteFormType =
   | "contact"
+  | "free_fitness_assessment"
   | "golf_lesson"
   | "newsletter_signup"
   | "member_cancellation"
@@ -94,6 +95,7 @@ function trackFormSubmit(payload: WebsiteFormPayload) {
 
 function labelForFormType(formType: WebsiteFormType) {
   if (formType === "contact") return "Contact Form";
+  if (formType === "free_fitness_assessment") return "Free Fitness Assessment";
   if (formType === "golf_lesson") return "Golf Lessons Inquiry";
   if (formType === "member_cancellation") return "Membership Cancellation Requests";
   if (formType === "personal_training") return "Personal Training Interest Form";

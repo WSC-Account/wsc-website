@@ -96,6 +96,22 @@ const departmentOptions = [
 
 const golfSkillLevels = ["Beginner", "Intermediate", "Advanced"];
 
+const fitnessGoalOptions = [
+  "Strength & muscle building",
+  "Athletic performance",
+  "Injury recovery / rehabilitation",
+  "General fitness & health",
+  "Body Recomposition",
+];
+
+const assessmentDayOptions = ["Monday", "Tuesday", "Wednesday", "Thursday"];
+
+const preferredAssessmentTimes = [
+  "Morning (7am - 12pm)",
+  "Afternoon (12pm - 3pm)",
+  "Evening (3pm - 5:30pm)",
+];
+
 const newsletterInterests = [
   { label: "Tennis updates", value: "Tennis updates" },
   { label: "Golf updates", value: "Golf updates" },
@@ -532,6 +548,128 @@ export function PersonalTrainingRequestForm({ tone = "light", source = "/persona
       <TextAreaField id="training-comments" label="Additional Questions/Comments" value={form.comments} onChange={(value) => update("comments", value)} tone={tone} />
       <input {...honeypotProps} />
       <SubmitArea tone={tone} isSubmitting={isSubmitting} status={status} buttonLabel="Submit" />
+    </form>
+  );
+}
+
+export function FreeFitnessAssessmentForm({ tone = "light", source = "/free-fitness-assessment" }: { tone?: FormTone; source?: string }) {
+  const initialState = {
+    fullName: "",
+    email: "",
+    phone: "",
+    fitnessGoals: [] as string[],
+    assessmentDays: [] as string[],
+    preferredTime: "",
+    heardAboutUs: "",
+    trainerComments: "",
+  };
+  const { form, update, submit, isSubmitting, status, honeypotProps } = useInquirySubmit(initialState, {
+    formType: "free_fitness_assessment",
+    formName: "Free Fitness Assessment",
+    source,
+    successMessage: "Fitness assessment request submitted. We will reach out within 2 business days to schedule your session.",
+    fallbackError: "We could not submit your fitness assessment request. Please try again or email info@woodinvillesportsclub.com.",
+    buildPayload: (state) => {
+      if (!state.assessmentDays.length) {
+        throw new Error("Please choose at least one day that works for your assessment.");
+      }
+
+      return {
+        name: state.fullName,
+        email: state.email,
+        phone: state.phone,
+        subject: `Free fitness assessment request from ${state.fullName || state.email}`,
+        message: state.trainerComments || state.heardAboutUs || state.fitnessGoals.join(", ") || "No comments provided.",
+        metadata: {
+          fitnessGoals: state.fitnessGoals.join(", "),
+          assessmentDays: state.assessmentDays.join(", "),
+          preferredTime: state.preferredTime,
+          heardAboutUs: state.heardAboutUs,
+          trainerComments: state.trainerComments,
+        },
+      };
+    },
+  });
+
+  return (
+    <form onSubmit={submit} data-form-name="Free Fitness Assessment" className="space-y-5">
+      <TextField
+        id="fitness-assessment-full-name"
+        label="Full Name"
+        value={form.fullName}
+        onChange={(value) => update("fullName", value)}
+        tone={tone}
+        autoComplete="name"
+      />
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <TextField
+          id="fitness-assessment-email"
+          label="Email Address"
+          type="email"
+          value={form.email}
+          onChange={(value) => update("email", value)}
+          tone={tone}
+          required
+          autoComplete="email"
+        />
+        <TextField
+          id="fitness-assessment-phone"
+          label="Phone Number"
+          type="tel"
+          value={form.phone}
+          onChange={(value) => update("phone", value)}
+          tone={tone}
+          autoComplete="tel"
+        />
+      </div>
+      <CheckboxGroupField
+        id="fitness-goals"
+        label="What are your fitness goals? (Select all that apply)"
+        values={form.fitnessGoals}
+        onChange={(values) => update("fitnessGoals", values)}
+        options={fitnessGoalOptions.map((option) => ({ label: option, value: option }))}
+        tone={tone}
+      />
+      <CheckboxGroupField
+        id="assessment-days"
+        label="What days work best for your assessment? *"
+        values={form.assessmentDays}
+        onChange={(values) => update("assessmentDays", values)}
+        options={assessmentDayOptions.map((option) => ({ label: option, value: option }))}
+        tone={tone}
+      />
+      <SelectField
+        id="assessment-time"
+        label="Preferred time of day"
+        value={form.preferredTime}
+        onChange={(value) => update("preferredTime", value)}
+        options={preferredAssessmentTimes}
+        tone={tone}
+        required
+      />
+      <TextField
+        id="assessment-heard-about-us"
+        label="How did you hear about us?"
+        value={form.heardAboutUs}
+        onChange={(value) => update("heardAboutUs", value)}
+        tone={tone}
+      />
+      <TextAreaField
+        id="assessment-trainer-comments"
+        label="Any comments for the trainer?"
+        value={form.trainerComments}
+        onChange={(value) => update("trainerComments", value)}
+        tone={tone}
+      />
+      <input {...honeypotProps} />
+      <SubmitArea
+        tone={tone}
+        isSubmitting={isSubmitting}
+        status={status}
+        buttonLabel="Request Free Assessment"
+        loadingLabel="Sending..."
+        note="No commitment required. We will reach out within 2 business days."
+      />
     </form>
   );
 }

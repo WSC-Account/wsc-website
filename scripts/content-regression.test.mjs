@@ -278,6 +278,7 @@ test("form submission API accepts all live website form types", () => {
 
   for (const formType of [
     "member_cancellation",
+    "free_fitness_assessment",
     "personal_training",
     "golf_lesson",
     "private_event",
@@ -289,12 +290,14 @@ test("form submission API accepts all live website form types", () => {
   }
 
   assert.match(formServer, /WSC Contact Form - Message from/);
+  assert.match(formServer, /WSC Free Fitness Assessment -/);
   assert.match(formServer, /WSC Newsletter Signup -/);
   assert.match(formServer, /WSC Membership Cancellation Request -/);
   assert.match(formServer, /WSC Personal Training Request -/);
   assert.match(formServer, /WSC Golf Lesson Inquiry -/);
   assert.match(formServer, /WSC Private Event Inquiry -/);
   assert.match(formServer, /WSC Career Application -/);
+  assert.match(clientForms, /free_fitness_assessment/);
 });
 
 test("live website forms are discoverable from site clicks", () => {
@@ -307,6 +310,7 @@ test("live website forms are discoverable from site clicks", () => {
 
   for (const href of [
     "/member-request",
+    "/free-fitness-assessment",
     "/personal-training-interest-form",
     "/golf-coaching",
     "/newsletter-signup",
@@ -329,6 +333,8 @@ test("live website forms are discoverable from site clicks", () => {
   assert.match(gym, /href="\/membership"/);
   assert.match(fitness, /Request Personal Training/);
   assert.match(fitness, /href="\/personal-training-interest-form"/);
+  assert.match(fitness, /Free Fitness Assessment/);
+  assert.match(fitness, /Request Free Assessment/);
 });
 
 test("conversion tracking covers calls, forms, bookings, memberships, and outbound links", () => {

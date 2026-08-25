@@ -6,6 +6,7 @@ import path from "path";
 
 type WebsiteFormType =
   | "contact"
+  | "free_fitness_assessment"
   | "golf_lesson"
   | "newsletter_signup"
   | "member_cancellation"
@@ -87,6 +88,7 @@ type RequestWithBody = IncomingMessage & {
 };
 
 const SUPPORT_EMAIL = "info@woodinvillesportsclub.com";
+const FITNESS_ASSESSMENT_EMAIL = "camostad@woodinvillesportsclub.com";
 const GOLF_LESSONS_EMAIL = "tier1golf@woodinvillesportsclub.com";
 const GOLF_LESSONS_EMAIL_ALIASES = new Set([
   normalizeRecipient(GOLF_LESSONS_EMAIL),
@@ -94,6 +96,7 @@ const GOLF_LESSONS_EMAIL_ALIASES = new Set([
 ]);
 const VALID_FORM_TYPES = new Set<WebsiteFormType>([
   "contact",
+  "free_fitness_assessment",
   "golf_lesson",
   "newsletter_signup",
   "member_cancellation",
@@ -253,6 +256,10 @@ function normalizePayload(rawPayload: unknown): Omit<FormSubmission, "id" | "sub
 
   if (formType === "contact" && (!name || !message)) {
     throw new HttpError(400, "Please include your name and message.");
+  }
+
+  if (formType === "free_fitness_assessment" && (!metadata.assessmentDays || !metadata.preferredTime)) {
+    throw new HttpError(400, "Please include the days and time that work best for your assessment.");
   }
 
   if (formType === "golf_lesson" && (!name || !metadata.skillLevel)) {
@@ -599,6 +606,7 @@ function buildNotificationSubject(
   const person = subjectPart(name || email || "WSC website");
 
   if (formType === "contact") return `WSC Contact Form - Message from ${person}`;
+  if (formType === "free_fitness_assessment") return `WSC Free Fitness Assessment - ${person}`;
   if (formType === "newsletter_signup") return `WSC Newsletter Signup - ${person}`;
   if (formType === "member_cancellation") return `WSC Membership Cancellation Request - ${person}`;
   if (formType === "personal_training") return `WSC Personal Training Request - ${person}`;
@@ -643,6 +651,10 @@ function resolveNotificationRecipients(formType: WebsiteFormType) {
 
   if (formType === "golf_lesson") {
     recipients.push(GOLF_LESSONS_EMAIL);
+  }
+
+  if (formType === "free_fitness_assessment") {
+    recipients.push(FITNESS_ASSESSMENT_EMAIL);
   }
 
   return uniqueRecipients(recipients);

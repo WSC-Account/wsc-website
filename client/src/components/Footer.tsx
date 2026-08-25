@@ -114,6 +114,14 @@ export default function Footer() {
             </li>
             <li>
               <Link
+                href="/free-fitness-assessment"
+                className="text-parchment/75 text-[13px] no-underline hover:text-parchment transition-colors duration-200"
+              >
+                Free Fitness Assessment
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="/personal-training-interest-form"
                 className="text-parchment/75 text-[13px] no-underline hover:text-parchment transition-colors duration-200"
               >
