@@ -15,6 +15,7 @@ const TRAINING_IMG = "/images/wsc/apl-training.webp";
 const COACH_JORDY_IMG = "/images/wsc/jordy-champagne.png";
 const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Events/List/6689/C7BR91B9SH6689";
 const TIER1_APL_URL = "https://www.tier1nw.com/apl";
+const FITNESS_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd8cQiChYXFDZytTe2mn9AOtxUD0UhaqX7AGP_7xGxZYJBryg/viewform?embedded=true";
 const CLASS_PASS_DISCLOSURE = "A $50/year Class Pass is required to register - get yours in CourtReserve.";
 const COURT_RESERVE_CONVERSION_ID = "AW-18217215416/-Y8cCL7y9-McELjL0u5D";
 
@@ -160,6 +161,35 @@ export default function Fitness() {
         subtitle="The Athletic Performance Lab is WSC's dedicated coaching program for strength, speed, power, agility, durability, and confident movement for youth and adult athletes."
         image={PERF_IMG}
       />
+
+      <section className="bg-parchment px-6 lg:px-14 py-16 lg:py-20" aria-labelledby="fitness-interest-form-heading">
+        <div className="max-w-[900px] mx-auto">
+          <div className="mb-8">
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Fitness Interest Form</p>
+            <h2 id="fitness-interest-form-heading" className="text-[clamp(26px,2.8vw,38px)] font-light leading-[1.15] mb-5">
+              Start here for Athletic Performance Lab training.
+            </h2>
+            <p className="text-ink-mid text-[16px] leading-[1.75] max-w-[680px]">
+              Tell us what kind of training you're looking for and the team will follow up with the right next step.
+            </p>
+          </div>
+          <div className="bg-white border border-ink/10 shadow-sm overflow-hidden">
+            <iframe
+              src={FITNESS_FORM_URL}
+              title="WSC Fitness interest form"
+              width="640"
+              height="1852"
+              frameBorder="0"
+              marginHeight={0}
+              marginWidth={0}
+              loading="lazy"
+              className="block w-full min-h-[1852px] border-0"
+            >
+              Loading...
+            </iframe>
+          </div>
+        </div>
+      </section>
 
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-12 lg:gap-20 items-start">
