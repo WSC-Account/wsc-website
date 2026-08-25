@@ -346,14 +346,7 @@ export default function DrivingRange() {
         id="short-game"
         className="scroll-mt-[var(--site-header-height,130px)] bg-parchment-mid px-6 lg:px-14 py-20 lg:py-24"
       >
-        <div className="max-w-[1440px] mx-auto grid grid-cols-1 gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20 lg:items-center">
-          <ResponsiveImage
-            src={PRACTICE_AREA_IMG}
-            alt="Short-game practice area at Woodinville Sports Club"
-            loading="lazy"
-            className="w-full aspect-[4/3] object-cover saturate-[0.62] brightness-[0.9]"
-            style={{ objectPosition: "center 62%" }}
-          />
+        <div className="max-w-[1440px] mx-auto grid grid-cols-1 gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20 lg:items-center">
           <div>
             <p className="mb-5 text-[13px] uppercase tracking-[0.22em] text-volt">
               Short Game Grounds
@@ -371,6 +364,13 @@ export default function DrivingRange() {
               ))}
             </div>
           </div>
+          <ResponsiveImage
+            src={PRACTICE_AREA_IMG}
+            alt="Short-game practice area at Woodinville Sports Club"
+            loading="lazy"
+            className="w-full aspect-[16/10] object-cover saturate-[0.62] brightness-[0.9]"
+            style={{ objectPosition: "center 62%" }}
+          />
         </div>
       </section>
 
