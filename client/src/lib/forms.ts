@@ -1,5 +1,7 @@
 import { marketingAttributionMetadata } from "./marketing-attribution";
 
+const FREE_FITNESS_ASSESSMENT_CONVERSION_ID = "AW-18217215416/ouj7CNbhquccELjL0u5D";
+
 export type WebsiteFormType =
   | "contact"
   | "free_fitness_assessment"
@@ -91,6 +93,12 @@ function trackFormSubmit(payload: WebsiteFormPayload) {
     form_type: payload.formType,
     source: payload.source,
   });
+
+  if (payload.formType === "free_fitness_assessment") {
+    gtag("event", "conversion", {
+      send_to: FREE_FITNESS_ASSESSMENT_CONVERSION_ID,
+    });
+  }
 }
 
 function labelForFormType(formType: WebsiteFormType) {

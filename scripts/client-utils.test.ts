@@ -64,6 +64,42 @@ test("the browser form helper sends JSON and tracks only successful submissions"
   ]);
 });
 
+test("the browser form helper reports free fitness assessment conversions", async () => {
+  const analyticsCalls: unknown[][] = [];
+  globalThis.fetch = async () =>
+    new Response(JSON.stringify({ ok: true, id: "submission-1" }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  globalThis.window = {
+    gtag: (...args: unknown[]) => analyticsCalls.push(args),
+  } as unknown as Window & typeof globalThis;
+
+  await submitWebsiteForm({
+    ...payload,
+    formType: "free_fitness_assessment",
+    formName: "Free Fitness Assessment",
+    source: "/fitness",
+  });
+
+  assert.deepEqual(analyticsCalls, [
+    [
+      "event",
+      "form_submit",
+      {
+        form_name: "Free Fitness Assessment",
+        form_type: "free_fitness_assessment",
+        source: "/fitness",
+      },
+    ],
+    [
+      "event",
+      "conversion",
+      { send_to: "AW-18217215416/ouj7CNbhquccELjL0u5D" },
+    ],
+  ]);
+});
+
 test("the browser form helper attaches Google Business Profile attribution", async () => {
   let submittedBody: WebsiteFormPayload | undefined;
   globalThis.fetch = async (_input, init) => {

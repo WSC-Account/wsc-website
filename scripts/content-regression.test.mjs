@@ -348,6 +348,7 @@ test("conversion tracking covers calls, forms, bookings, memberships, and outbou
   assert.match(attribution, /trackMarketingEvent\("membership_click"[\s\S]*?membership_action: "view_options"/);
   assert.match(attribution, /trackMarketingEvent\("outbound_click"/);
   assert.match(forms, /gtag\("event", "form_submit"/);
+  assert.match(forms, /AW-18217215416\/ouj7CNbhquccELjL0u5D/);
 });
 
 test("customer action forms stay indexable while newsletter and duplicate aliases stay out of search", () => {
