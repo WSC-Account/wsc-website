@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { submitWebsiteForm, type WebsiteFormAttachment, type WebsiteFormType } from "@/lib/forms";
 import { useFormProtection } from "@/hooks/useFormProtection";
 import { notifyError, notifySuccess } from "@/lib/notify";
@@ -552,7 +552,19 @@ export function PersonalTrainingRequestForm({ tone = "light", source = "/persona
   );
 }
 
-export function FreeFitnessAssessmentForm({ tone = "light", source = "/free-fitness-assessment" }: { tone?: FormTone; source?: string }) {
+export function FreeFitnessAssessmentForm({
+  tone = "light",
+  source = "/free-fitness-assessment",
+  buttonLabel = "Request Free Assessment",
+  note = "No commitment required. We will reach out within 2 business days.",
+  onSuccess,
+}: {
+  tone?: FormTone;
+  source?: string;
+  buttonLabel?: string;
+  note?: string;
+  onSuccess?: () => void;
+}) {
   const initialState = {
     fullName: "",
     email: "",
@@ -590,6 +602,11 @@ export function FreeFitnessAssessmentForm({ tone = "light", source = "/free-fitn
       };
     },
   });
+
+  useEffect(() => {
+    if (status?.type === "success") onSuccess?.();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status]);
 
   return (
     <form onSubmit={submit} data-form-name="Free Fitness Assessment" className="space-y-5">
@@ -666,9 +683,9 @@ export function FreeFitnessAssessmentForm({ tone = "light", source = "/free-fitn
         tone={tone}
         isSubmitting={isSubmitting}
         status={status}
-        buttonLabel="Request Free Assessment"
+        buttonLabel={buttonLabel}
         loadingLabel="Sending..."
-        note="No commitment required. We will reach out within 2 business days."
+        note={note}
       />
     </form>
   );

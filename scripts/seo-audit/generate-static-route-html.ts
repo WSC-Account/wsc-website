@@ -29,7 +29,7 @@ const pageImages: Record<string, string> = {
   "/golf/driving-range": "/images/wsc/golf-range-sunset.webp",
   "/golf/tournaments": "/images/wsc/junior-golf-academy-group.webp",
   "/gym": "/images/wsc/fitness-center-hero.webp",
-  "/free-fitness-assessment": "/images/wsc/gym-main.webp",
+  "/free-fitness-assessment": "/images/wsc/fitness-center-hero.webp",
   "/fitness": "/images/wsc/gym-main.webp",
   "/pickleball": "/images/wsc/pickleball-dome.webp",
   "/summer": "/images/wsc/campus-dome.webp",
