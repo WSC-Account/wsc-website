@@ -15,6 +15,8 @@ import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
 import { submitWebsiteForm } from "@/lib/forms";
 import { notifyError, notifySuccess } from "@/lib/notify";
+import { useSessionCalendar } from "@/hooks/useSessionCalendar";
+import { summer2026Headline } from "@/lib/session-calendar";
 
 const InstagramFeed = lazy(() => import("@/components/InstagramFeed"));
 const FacilityGallery = lazy(() => import("@/components/FacilityGallery"));
@@ -117,17 +119,17 @@ const metrics = [
   { label: "Campus Acres", val: "67", unit: "" },
 ];
 
-const thisWeekItems = [
+const evergreenUpdates = [
   {
     icon: Calendar,
     tag: "Registration",
-    title: "Summer Session Starts June 29",
-    desc: "Summer training runs June 29 through August 30. Register through CourtReserve for tennis, golf, Adventure Club, and APL programming.",
-    date: "June 29 - Aug 30",
+    title: "Tier 1 Tennis & Golf",
+    desc: "Explore coached tennis and golf programs and find the right training pathway.",
+    date: "Year-round",
     time: "",
     actions: [
-      { label: "Summer Page", href: "/summer" },
-      { label: "Sign Up", href: COURT_RESERVE_SIGN_UP_URL, external: true },
+      { label: "Tennis Programs", href: "/tennis", external: false },
+      { label: "Golf Programs", href: "/golf", external: false },
     ],
   },
   {
@@ -137,24 +139,6 @@ const thisWeekItems = [
     desc: "Junior golf pathways now include Foundations for ages 7-9, Adult Golf Clinics, private lessons, and Swing Lab simulator training.",
     date: "Ongoing",
     time: "",
-  },
-  {
-    icon: Calendar,
-    tag: "Summer",
-    title: "Summer 2026 Registration Is Open",
-    desc: (
-      <>
-        Summer training programs are live: Tennis, Golf, and Adventure Club camps for ages 3-18.{" "}
-        <strong className="font-semibold text-parchment">Week-to-week</strong> and{" "}
-        <strong className="font-semibold text-parchment">drop-ins</strong> are available, with pricing details in CourtReserve.
-      </>
-    ),
-    date: "June 29 - Aug 30",
-    time: "",
-    actions: [
-      { label: "Summer Page", href: "/summer" },
-      { label: "Sign Up", href: COURT_RESERVE_SIGN_UP_URL, external: true },
-    ],
   },
 ];
 
@@ -166,9 +150,9 @@ const mobileQuickActions = [
     external: true,
   },
   {
-    eyebrow: "Now Open",
-    label: "Summer Camps",
-    href: "/summer",
+    eyebrow: "Plan",
+    label: "Session Calendar",
+    href: "/sessions",
   },
   {
     eyebrow: "Explore",
@@ -303,6 +287,19 @@ function DeferredHomeSection({ children, delayMs = 600 }: { children: ReactNode;
 }
 
 export default function Home() {
+  const season = useSessionCalendar();
+  const thisWeekItems = [
+    {
+      icon: Calendar,
+      tag: season.badge,
+      title: season.title,
+      desc: season.description,
+      date: season.open ? `Starts ${season.open.start}` : season.current ? `Through ${season.current.end}` : "",
+      time: "",
+      actions: [{ label: season.ctaLabel, href: season.ctaHref, external: season.external }],
+    },
+    ...evergreenUpdates,
+  ];
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [activeDayStep, setActiveDayStep] = useState(0);
 
@@ -447,16 +444,16 @@ export default function Home() {
               This Week at WSC
             </p>
             <h2 className="mb-2 text-[20px] font-light leading-[1.2] tracking-[-0.01em]">
-              Summer Session Starts June 29
+              {season.title}
             </h2>
             <p className="mb-4 text-[13px] leading-[1.58] text-ink-mid">
-              Summer training runs June 29 through August 30. Register through CourtReserve for tennis, golf, Adventure Club, and APL programming.
+              {season.description}
             </p>
             <Link
-              href="/summer"
+              href="/sessions"
               className="inline-flex min-h-10 items-center justify-center bg-volt-bright px-4 text-[10px] uppercase tracking-[0.15em] text-dark-bg no-underline transition-colors duration-200 hover:bg-parchment-mid"
             >
-              Explore Summer
+              View Session Calendar
             </Link>
           </div>
         </div>
@@ -643,7 +640,7 @@ export default function Home() {
               href="/sessions"
               className="text-parchment/70 hover:text-parchment text-[12px] tracking-[0.14em] uppercase no-underline border-b border-volt-bright pb-[3px] transition-colors duration-200"
             >
-              View 2026 Session Dates
+              View Session Dates
             </Link>
           </div>
         </div>
@@ -785,7 +782,7 @@ export default function Home() {
           </div>
 
           {/* Summer Training — standalone */}
-          <div
+          {season.showSummer2026 && <div
             ref={summerRef}
             className={`mt-[3px] bg-parchment p-8 lg:p-12 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 transition-all duration-700 ease-out ${
               summerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
@@ -793,7 +790,7 @@ export default function Home() {
           >
             <div className="max-w-[600px]">
               <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-2.5">05 — Summer Training</p>
-              <h3 className="text-[22px] font-light tracking-[-0.01em] mb-3">Summer Training Camp</h3>
+              <h3 className="text-[22px] font-light tracking-[-0.01em] mb-3">{summer2026Headline(season.today)}</h3>
               <p className="text-ink-mid text-[14px] leading-[1.72]">
                 Our year-round Tennis and Golf Academy programs continue throughout the summer with the same amazing coaches our kids know and love. Plus Adventure Club, a multi-sport offering where kids learn about athletes from around the world. Ages 3–18, June 29 – August 30.
               </p>
@@ -805,7 +802,7 @@ export default function Home() {
               Explore Summer
               <ChevronRight size={14} />
             </Link>
-          </div>
+          </div>}
         </div>
       </section>
 
@@ -1047,7 +1044,7 @@ export default function Home() {
       </section>
 
       {/* ── FULL-WIDTH VISUAL BREAK — Summer Kids ── */}
-      <DeferredHomeSection delayMs={1100}>
+      {season.showSummer2026 && <DeferredHomeSection delayMs={1100}>
         <FullWidthImage
           src={SUMMER_KIDS_IMG}
           alt="Summer camp kids at WSC"
@@ -1055,7 +1052,7 @@ export default function Home() {
           subcaption="Summer 2026"
           height="short"
         />
-      </DeferredHomeSection>
+      </DeferredHomeSection>}
 
       {/* ── MEMBERSHIP — Experience-First ── */}
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">

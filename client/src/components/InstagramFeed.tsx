@@ -84,7 +84,7 @@ const POSTS: InstaPost[] = [
   {
     id: "8",
     url: "https://www.instagram.com/p/DVOo-q-EgdB/",
-    caption: "Summer 2026 registration is open for Tennis, Golf, and Adventure Club programs across the 9-week summer session.",
+    caption: "From the archives: Summer 2026 Tennis, Golf, and Adventure Club programs at WSC.",
     type: "image",
     thumbnail: "/images/wsc/summer-camp.webp",
     likes: "62",

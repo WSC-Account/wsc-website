@@ -4,11 +4,13 @@
  * Added: Quick Links column with Court Reserve and Tier 1
  */
 import { Link } from "wouter";
+import { useSessionCalendar } from "@/hooks/useSessionCalendar";
 
 const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689";
 const TIER1_URL = "https://www.tier1nw.com";
 
 export default function Footer() {
+  const season = useSessionCalendar();
   return (
     <footer className="bg-dark-bg px-6 lg:px-14 py-16" aria-label="Site footer">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-12 max-w-[1440px] mx-auto">
@@ -46,7 +48,7 @@ export default function Footer() {
               { href: "/gym", label: "Fitness Center" },
               { href: "/fitness", label: "Athletic Performance Lab" },
               { href: "/pickleball", label: "Pickleball" },
-              { href: "/summer", label: "Summer Training" },
+              ...(season.showSummer2026 ? [{ href: "/summer", label: "Summer Training" }] : []),
               { href: "/pro-shop", label: "Pro Shop" },
               { href: "/events", label: "Private Events" },
             ].map((link) => (
@@ -73,7 +75,7 @@ export default function Footer() {
                 href="/sessions"
                 className="text-parchment/75 text-[13px] no-underline hover:text-parchment transition-colors duration-200"
               >
-                2026 Session Dates
+                Session Dates
               </Link>
             </li>
             <li>

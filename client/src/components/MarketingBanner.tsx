@@ -4,22 +4,12 @@
  * Tier 1 Sports messaging front and center.
  *
  * MOBILE-FIRST: Stacks vertically on small screens, horizontal on sm+.
- * TO UPDATE: Change the DEFAULT values below. That's it.
+ * Seasonal defaults follow the shared session calendar.
  */
 import { useState } from "react";
 import { X, ArrowRight, Star } from "lucide-react";
 import { Link } from "wouter";
-
-/* ─── DEFAULT BANNER CONTENT (edit here to update site-wide) ─── */
-const DEFAULTS = {
-  badge: "Tier 1 Sports",
-  headline: "Home to World-Class Programming",
-  description:
-    "Tier 1 is one of the leading developmental programs in the country — now in tennis, golf, and athletic performance at WSC.",
-  ctaLabel: "Explore Tier 1 Programs",
-  ctaHref: "https://www.tier1nw.com",
-  external: true,
-};
+import { useSessionCalendar } from "@/hooks/useSessionCalendar";
 
 interface MarketingBannerProps {
   badge?: string;
@@ -30,14 +20,16 @@ interface MarketingBannerProps {
   external?: boolean;
 }
 
-export default function MarketingBanner({
-  badge = DEFAULTS.badge,
-  headline = DEFAULTS.headline,
-  description = DEFAULTS.description,
-  ctaLabel = DEFAULTS.ctaLabel,
-  ctaHref = DEFAULTS.ctaHref,
-  external = DEFAULTS.external,
-}: MarketingBannerProps) {
+export default function MarketingBanner(props: MarketingBannerProps) {
+  const season = useSessionCalendar();
+  const {
+    badge = season.badge,
+    headline = season.title,
+    description = season.description,
+    ctaLabel = season.ctaLabel,
+    ctaHref = season.ctaHref,
+    external = season.external,
+  } = props;
   const [dismissed, setDismissed] = useState(false);
 
   if (dismissed) return null;
