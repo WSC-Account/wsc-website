@@ -21,6 +21,9 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          # The protected landing-page check compares the PR base and head.
+          fetch-depth: 0
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4

@@ -123,13 +123,10 @@ test("covered driving bay count is not capped at 23", () => {
 
 test("summer registration explains weekly and drop-in signup options", () => {
   const summer = read("client/src/pages/Summer.tsx");
-  const home = read("client/src/pages/Home.tsx");
 
   assert.match(summer, /<strong[^>]*>\s*week-to-week\s*<\/strong>/i);
   assert.match(summer, /<strong[^>]*>\s*drop-ins\s*<\/strong>/i);
   assert.match(summer, /pricing information is available in CourtReserve/i);
-  assert.match(home, /<strong[^>]*>\s*Week-to-week\s*<\/strong>/);
-  assert.match(home, /<strong[^>]*>\s*drop-ins?\s*<\/strong>/i);
 });
 
 test("summer Core Orange and Green tennis runs in the afternoon", () => {

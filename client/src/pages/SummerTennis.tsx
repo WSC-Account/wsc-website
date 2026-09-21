@@ -3,6 +3,8 @@ import PageHero from "@/components/PageHero";
 import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
+import PastSummerPage from "@/components/PastSummerPage";
+import { useSessionCalendar } from "@/hooks/useSessionCalendar";
 
 const HERO_IMG = "/images/wsc/tennis-courts.webp";
 
@@ -183,6 +185,8 @@ function RegistrationLink({ link }: { link: TournamentLink }) {
 }
 
 export default function SummerTennis() {
+  const season = useSessionCalendar();
+  if (!season.showSummer2026) return <PastSummerPage tournaments />;
   return (
     <div className="min-h-screen">
       <SEOHead {...SEO.summerTennis} image={HERO_IMG} />

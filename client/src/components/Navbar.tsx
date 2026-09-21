@@ -6,6 +6,7 @@
 import { Link, useLocation } from "wouter";
 import { useLayoutEffect, useRef, useState, type MouseEvent } from "react";
 import { Menu, X, Phone } from "lucide-react";
+import { useSessionCalendar } from "@/hooks/useSessionCalendar";
 
 const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689";
 
@@ -60,6 +61,12 @@ const membershipLinks = [
 ];
 
 export default function Navbar() {
+  const season = useSessionCalendar();
+  const visibleNavLinks = navLinks.map(link =>
+    link.href === "/summer" && !season.showSummer2026
+      ? { href: "/sessions", label: "Programs", children: [{ href: "/sessions", label: "Session Calendar" }] }
+      : { ...link, children: link.children?.filter(child => season.showSummer2026 || child.href !== "/tennis/summer-tennis") }
+  );
   const [location, setLocation] = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
@@ -162,7 +169,7 @@ export default function Navbar() {
 
         {/* Desktop links */}
         <ul className="hidden lg:flex gap-9 list-none">
-          {navLinks.map((link) => {
+          {visibleNavLinks.map((link) => {
             const isActive = location === link.href || link.children?.some((child) => location === child.href);
 
             return (
@@ -260,7 +267,7 @@ export default function Navbar() {
           className="lg:hidden max-h-[calc(100dvh-var(--site-header-height,64px))] overflow-y-auto overscroll-contain bg-dark-bg border-t border-white/[0.08] px-6 py-6"
         >
           <ul className="flex flex-col gap-5 list-none">
-            {navLinks.map((link) => {
+            {visibleNavLinks.map((link) => {
               const isActive = location === link.href || link.children?.some((child) => location === child.href);
 
               return (

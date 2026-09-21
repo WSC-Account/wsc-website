@@ -11,6 +11,9 @@ import ResponsiveImage from "@/components/ResponsiveImage";
 import StructuredData, { getSummerCampSchema, getBreadcrumbSchema } from "@/components/StructuredData";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
+import PastSummerPage from "@/components/PastSummerPage";
+import { useSessionCalendar } from "@/hooks/useSessionCalendar";
+import { summer2026Headline } from "@/lib/session-calendar";
 
 const HERO_IMG = "/images/wsc/campus-dome.webp";
 const TENNIS_IMG = "/images/wsc/tennis-junior-point-play.webp";
@@ -476,6 +479,9 @@ export default function Summer() {
   const [expandedWeek, setExpandedWeek] = useState<number | null>(null);
   const [bundlePricingOpen, setBundlePricingOpen] = useState(false);
   const calendarRef = useRef<HTMLDivElement>(null);
+  const season = useSessionCalendar();
+
+  if (!season.showSummer2026) return <PastSummerPage />;
 
   const program = PROGRAMS[activeProgram];
   const scheduleKeys = SCHEDULE_KEYS_BY_PROGRAM[activeProgram];
@@ -617,7 +623,7 @@ export default function Summer() {
         <div className="max-w-[1440px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <span className="text-dark-bg text-[12px] tracking-[0.14em] uppercase font-medium">
-              Summer Registration Open
+              {summer2026Headline(season.today)}
             </span>
             <span className="text-dark-bg/60 text-[13px]">
               Tennis, Golf, and Adventure Club programs run June 29 - August 30, 2026

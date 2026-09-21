@@ -5,140 +5,26 @@ import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData
 import SEOHead from "@/components/SEOHead";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { SEO } from "@/lib/seo-data";
+import { sessions, sessionStatus } from "@/lib/session-calendar";
+import { useSessionCalendar } from "@/hooks/useSessionCalendar";
 
 const HERO_IMG = "/images/wsc/campus-dome.webp";
 const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689";
 
-const sessions = [
-  {
-    name: "Fall 1",
-    sessionDrop: "August 3, 2026",
-    autoEnroll: "August 17, 2026",
-    start: "August 31, 2026",
-    end: "October 4, 2026",
-    duration: "5 weeks",
-    blackout: "Labor Day, September 7",
-  },
-  {
-    name: "Fall 2",
-    sessionDrop: "September 7, 2026",
-    autoEnroll: "September 14, 2026",
-    start: "October 5, 2026",
-    end: "November 8, 2026",
-    duration: "5 weeks",
-    blackout: "None",
-  },
-  {
-    name: "Fall 3",
-    sessionDrop: "October 12, 2026",
-    autoEnroll: "October 19, 2026",
-    start: "November 9, 2026",
-    end: "December 20, 2026",
-    duration: "6 weeks",
-    blackout: "Thanksgiving, November 26",
-  },
-  {
-    name: "Winter Break Camps",
-    sessionDrop: "November 17, 2026",
-    autoEnroll: "N/A",
-    start: "December 21, 2026",
-    end: "January 3, 2027",
-    duration: "2 weeks",
-    blackout: "Christmas / New Year",
-  },
-  {
-    name: "Winter 1",
-    yearNote: "2027",
-    sessionDrop: "December 7, 2026",
-    autoEnroll: "December 14, 2026",
-    start: "January 4, 2027",
-    end: "February 7, 2027",
-    duration: "5 weeks",
-    blackout: "None",
-  },
-  {
-    name: "Winter 2",
-    yearNote: "2027",
-    sessionDrop: "January 11, 2027",
-    autoEnroll: "January 18, 2027",
-    start: "February 8, 2027",
-    end: "March 14, 2027",
-    duration: "5 weeks",
-    blackout: "None",
-  },
-  {
-    name: "Winter 3",
-    yearNote: "2027",
-    sessionDrop: "February 15, 2027",
-    autoEnroll: "February 22, 2027",
-    start: "March 15, 2027",
-    end: "April 18, 2027",
-    duration: "5 weeks",
-    blackout: "None",
-  },
-  {
-    name: "Spring 1",
-    yearNote: "2027",
-    sessionDrop: "March 22, 2027",
-    autoEnroll: "March 29, 2027",
-    start: "April 19, 2027",
-    end: "May 23, 2027",
-    duration: "5 weeks",
-    blackout: "None",
-  },
-  {
-    name: "Spring 2",
-    yearNote: "2027",
-    sessionDrop: "April 26, 2027",
-    autoEnroll: "May 3, 2027",
-    start: "May 24, 2027",
-    end: "June 27, 2027",
-    duration: "5 weeks",
-    blackout: "None",
-  },
-  {
-    name: "Summer",
-    yearNote: "2027",
-    sessionDrop: "Mid-January 2027",
-    autoEnroll: "N/A",
-    start: "June 28, 2027",
-    end: "August 29, 2027",
-    duration: "9 weeks",
-    blackout: "July 4",
-  },
-];
-
-function dateAtNoon(value: string) {
-  return new Date(`${value} 12:00:00`);
-}
-
-function getStatus(start: string, end: string, sessionDrop: string) {
-  const now = new Date();
-  const startsAt = dateAtNoon(start);
-  const endsAt = dateAtNoon(end);
-  const registrationStartsAt = dateAtNoon(sessionDrop);
-
-  if (now > endsAt) return { label: "Past", tone: "muted" };
-  if (now >= startsAt && now <= endsAt) return { label: "In session", tone: "active" };
-  if (!Number.isNaN(registrationStartsAt.getTime()) && now >= registrationStartsAt) {
-    return { label: "Registration open", tone: "active" };
-  }
-  return { label: "Upcoming", tone: "future" };
-}
-
-function getSessionValue(name: string, yearNote?: string) {
-  return `${name}-${yearNote ?? "2026"}`.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+function getSessionValue(name: string, start: string) {
+  return `${name}-${start}`.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
 export default function Sessions() {
+  const season = useSessionCalendar();
   const sessionRows = sessions.map((session) => {
-    const status = getStatus(session.start, session.end, session.sessionDrop);
+    const status = sessionStatus(session, season.today);
     const displayName = session.yearNote ? `${session.name} (${session.yearNote})` : session.name;
     return {
       ...session,
       displayName,
       status,
-      value: getSessionValue(session.name, session.yearNote),
+      value: getSessionValue(session.name, session.start),
     };
   });
   const defaultOpenSession =
@@ -155,7 +41,7 @@ export default function Sessions() {
       ])]} />
 
       <PageHero
-        eyebrow="2026-27 Session Calendar"
+        eyebrow="WSC Session Calendar"
         headline="Mark your calendar."
         subtitle="Current WSC programming session dates, session drop windows, auto-enroll timing, and blackout notes for tennis, golf, pickleball, fitness, camps, and summer programs."
         image={HERO_IMG}
@@ -166,10 +52,10 @@ export default function Sessions() {
           <div>
             <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Programming Calendar</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
-              Registration is handled through CourtReserve.
+              {season.title}
             </h2>
             <p className="text-ink-mid text-[15px] leading-[1.8] mb-8">
-              WSC programs run in seasonal sessions. Popular classes fill quickly, so families and members should set reminders for session drops and auto-enroll dates.
+              {season.description}
             </p>
             <a
               href={COURT_RESERVE_URL}

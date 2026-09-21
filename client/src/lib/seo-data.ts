@@ -18,7 +18,7 @@ export const SEO = {
   summerTennis: {
     title: "Summer Tennis Tournaments",
     description:
-      "View WSC summer tennis tournament dates, divisions, registration links, and pathways for Red, Orange, Green, USTA, UTR, and open events in July and August 2026.",
+      "Explore summer tennis at WSC and check the session calendar for current programs and upcoming dates.",
     path: "/tennis/summer-tennis",
   },
   golf: {
@@ -64,9 +64,9 @@ export const SEO = {
     path: "/pickleball",
   },
   summer: {
-    title: "Summer Training & Camps 2026",
+    title: "Summer Training & Camps",
     description:
-      "Plan 2026 summer training at WSC with tennis, golf, Adventure Club, half-day and full-day bundles, weekly sessions, and programs for ages 3-18.",
+      "Explore summer training at WSC and check the session calendar for current tennis and golf programs and upcoming dates.",
     path: "/summer",
   },
   membership: {
@@ -76,9 +76,9 @@ export const SEO = {
     path: "/membership",
   },
   sessions: {
-    title: "2026-27 Session Dates Calendar",
+    title: "Session Dates Calendar",
     description:
-      "View WSC's 2026-27 programming session dates, session drop windows, auto-enroll dates, start dates, end dates, and blackout notes.",
+      "View WSC's published programming session dates, session drop windows, auto-enroll dates, start dates, end dates, and blackout notes.",
     path: "/sessions",
   },
   events: {
