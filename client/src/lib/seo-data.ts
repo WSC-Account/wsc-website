@@ -46,9 +46,9 @@ export const SEO = {
     path: "/gym",
   },
   freeFitnessAssessment: {
-    title: "Free Fitness Assessment",
+    title: "Free Fitness Assessment in Woodinville",
     description:
-      "Book a complimentary 30-45 minute fitness assessment with a certified WSC strength and conditioning coach. No commitment required.",
+      "Claim a free fitness assessment at Woodinville Sports Club. Establish a movement baseline, identify areas to improve, and get clearer direction for your training. Available for adults and kids.",
     path: "/free-fitness-assessment",
   },
   apl: {
