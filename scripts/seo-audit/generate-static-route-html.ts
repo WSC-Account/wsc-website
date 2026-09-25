@@ -1,13 +1,29 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { BLOG_CATEGORIES, BLOG_POSTS } from "../../client/src/lib/blog-data";
-import { imageDimensionsFor, responsiveAvifSrcSet, responsiveWebpSrcSet } from "../../client/src/lib/responsive-image";
+import {
+  imageDimensionsFor,
+  responsiveAvifSrcSet,
+  responsiveWebpSrcSet,
+} from "../../client/src/lib/responsive-image";
 import { SEO } from "../../client/src/lib/seo-data";
 
 const SITE_NAME = "Woodinville Sports Club";
 const BASE_URL = "https://www.woodinvillesportsclub.com";
 const DIST_DIR = path.resolve("dist/public");
 const DEFAULT_IMAGE = "/images/wsc/campus-dome.webp";
+const UTILITY_HEADER_COPY: Record<
+  string,
+  { eyebrow: string; headline: string }
+> = {
+  "/sessions": {
+    eyebrow: "WSC Session Calendar",
+    headline: "Mark your calendar.",
+  },
+  "/membership": { eyebrow: "Membership", headline: "Train Without Limits." },
+  "/faq": { eyebrow: "Frequently Asked Questions", headline: "Quick Answers." },
+  "/policies": { eyebrow: "Policies & Terms", headline: "Policies & Terms." },
+};
 
 type StaticRoute = {
   path: string;
@@ -36,7 +52,6 @@ const pageImages: Record<string, string> = {
   "/membership": "/images/wsc/campus-dome.webp",
   "/sessions": "/images/wsc/campus-dome.webp",
   "/events": "/images/wsc/campus-sunset.webp",
-  "/food-trucks": "/images/wsc/campus-sunset.webp",
   "/careers": "/images/wsc/campus-sunset.webp",
   "/member-request": "/images/wsc/campus-dome.webp",
   "/personal-training": "/images/wsc/fitness-center-hero.webp",
@@ -80,16 +95,16 @@ function fullTitle(title: string) {
 function srcSetCandidateUrl(srcSet: string, preferredWidth = 1200) {
   const candidates = srcSet
     .split(",")
-    .map((candidate) => {
+    .map(candidate => {
       const [url, widthDescriptor] = candidate.trim().split(/\s+/);
       const width = Number(widthDescriptor?.replace(/w$/, ""));
       return { url, width: Number.isFinite(width) ? width : 0 };
     })
-    .filter((candidate) => candidate.url && candidate.width > 0)
+    .filter(candidate => candidate.url && candidate.width > 0)
     .sort((a, b) => a.width - b.width);
 
   return (
-    candidates.find((candidate) => candidate.width >= preferredWidth)?.url ??
+    candidates.find(candidate => candidate.width >= preferredWidth)?.url ??
     candidates.at(-1)?.url ??
     ""
   );
@@ -119,62 +134,145 @@ function staticShell(route: StaticRoute) {
   return `<div id="root"><section style="position:relative;min-height:100vh;background:#161310;color:#efe7d7;display:flex;align-items:flex-end;overflow:hidden;padding:150px 24px 64px;box-sizing:border-box;font-family:Inter,ui-sans-serif,system-ui,sans-serif;"><picture style="position:absolute;inset:0;display:block;"><source type="image/avif" srcset="${escapeHtml(avif ?? "")}" sizes="100vw"><source type="image/webp" srcset="${escapeHtml(webp ?? "")}" sizes="100vw"><img src="${image}" alt="${escapeHtml(route.headline)} at Woodinville Sports Club" width="${imageDimensions.width}" height="${imageDimensions.height}" loading="eager" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:cover;filter:saturate(.62) brightness(.46);"></picture><div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(22,19,16,.78),rgba(22,19,16,.48),rgba(22,19,16,.16));"></div><div style="position:relative;z-index:1;max-width:760px;"><p style="margin:0 0 20px;color:#83b7ff;font-size:11px;letter-spacing:.22em;text-transform:uppercase;">${escapeHtml(route.eyebrow)}</p><h1 style="margin:0 0 22px;color:#efe7d7;font-size:clamp(40px,8vw,76px);font-weight:300;line-height:1.06;letter-spacing:0;">${escapeHtml(route.headline)}</h1><p style="margin:0;max-width:560px;color:rgba(239,231,215,.82);font-size:16px;line-height:1.72;">${escapeHtml(route.subtitle)}</p></div></section></div>`;
 }
 
+function utilityStaticShell(route: StaticRoute) {
+  return `<div id="root"><section style="min-height:360px;background:#161310;color:#efe7d7;display:flex;align-items:flex-end;padding:112px 24px 52px;box-sizing:border-box;border-bottom:1px solid rgba(255,255,255,.08);font-family:Inter,ui-sans-serif,system-ui,sans-serif;"><div style="width:100%;max-width:1440px;margin:0 auto;"><p style="margin:0 0 16px;color:#83b7ff;font-size:12px;letter-spacing:.22em;text-transform:uppercase;">${escapeHtml(route.eyebrow)}</p><h1 style="margin:0;color:#efe7d7;font-size:clamp(34px,6vw,58px);font-weight:300;line-height:1.04;letter-spacing:-.03em;">${escapeHtml(route.headline)}</h1><p style="margin:20px 0 0;max-width:700px;color:rgba(239,231,215,.72);font-size:16px;line-height:1.72;">${escapeHtml(route.subtitle)}</p></div></section></div>`;
+}
+
 function replaceMeta(html: string, route: StaticRoute) {
   const title = escapeHtml(fullTitle(route.title));
   const description = escapeHtml(route.description);
   const canonicalPath = route.canonicalPath ?? route.path;
   const canonical = `${BASE_URL}${canonicalPath === "/" ? "/" : canonicalPath}`;
   const image = absoluteUrl(route.image);
-  const preloadTag = responsiveImagePreload(route);
+  const usesUtilityHeader = route.path in UTILITY_HEADER_COPY;
+  const preloadTag = usesUtilityHeader ? "" : responsiveImagePreload(route);
+  const shell = usesUtilityHeader
+    ? utilityStaticShell(route)
+    : staticShell(route);
 
   return html
     .replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
-    .replace(/<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${description}" />`)
-    .replace(/<meta name="robots" content="[^"]*" \/>/, `<meta name="robots" content="${route.robots ?? "index, follow"}" />`)
-    .replace(/<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${canonical}" />`)
-    .replace(/<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${canonical}" />`)
-    .replace(/<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${title}" />`)
-    .replace(/<meta property="og:description" content="[^"]*" \/>/, `<meta property="og:description" content="${description}" />`)
-    .replace(/<meta property="og:image" content="[^"]*" \/>/, `<meta property="og:image" content="${image}" />`)
-    .replace(/<meta name="twitter:title" content="[^"]*" \/>/, `<meta name="twitter:title" content="${title}" />`)
-    .replace(/<meta name="twitter:description" content="[^"]*" \/>/, `<meta name="twitter:description" content="${description}" />`)
-    .replace(/<meta name="twitter:image" content="[^"]*" \/>/, `<meta name="twitter:image" content="${image}" />`)
+    .replace(
+      /<meta name="description" content="[^"]*" \/>/,
+      `<meta name="description" content="${description}" />`
+    )
+    .replace(
+      /<meta name="robots" content="[^"]*" \/>/,
+      `<meta name="robots" content="${route.robots ?? "index, follow"}" />`
+    )
+    .replace(
+      /<link rel="canonical" href="[^"]*" \/>/,
+      `<link rel="canonical" href="${canonical}" />`
+    )
+    .replace(
+      /<meta property="og:url" content="[^"]*" \/>/,
+      `<meta property="og:url" content="${canonical}" />`
+    )
+    .replace(
+      /<meta property="og:title" content="[^"]*" \/>/,
+      `<meta property="og:title" content="${title}" />`
+    )
+    .replace(
+      /<meta property="og:description" content="[^"]*" \/>/,
+      `<meta property="og:description" content="${description}" />`
+    )
+    .replace(
+      /<meta property="og:image" content="[^"]*" \/>/,
+      `<meta property="og:image" content="${image}" />`
+    )
+    .replace(
+      /<meta name="twitter:title" content="[^"]*" \/>/,
+      `<meta name="twitter:title" content="${title}" />`
+    )
+    .replace(
+      /<meta name="twitter:description" content="[^"]*" \/>/,
+      `<meta name="twitter:description" content="${description}" />`
+    )
+    .replace(
+      /<meta name="twitter:image" content="[^"]*" \/>/,
+      `<meta name="twitter:image" content="${image}" />`
+    )
     .replace("</head>", `${preloadTag}  </head>`)
-    .replace('<div id="root"></div>', staticShell(route));
+    .replace('<div id="root"></div>', shell);
 }
 
 function baseRoutes(): StaticRoute[] {
-  return Object.values(SEO).filter((entry) => entry.path !== "/privacy").map((entry) => ({
-    path: entry.path,
-    title: entry.title,
-    description: entry.description,
-    image: pageImages[entry.path] ?? DEFAULT_IMAGE,
-    eyebrow: entry.path === "/" ? "Woodinville, Washington" : entry.title,
-    headline: entry.path === "/" ? "Level Up Your Game at WSC." : entry.title,
-    subtitle: entry.description,
-    robots: "robots" in entry ? entry.robots : "index, follow",
-  }));
+  return Object.values(SEO)
+    .filter(entry => entry.path !== "/privacy")
+    .map(entry => {
+      const utilityCopy = UTILITY_HEADER_COPY[entry.path];
+
+      return {
+        path: entry.path,
+        title: entry.title,
+        description: entry.description,
+        image: pageImages[entry.path] ?? DEFAULT_IMAGE,
+        eyebrow:
+          utilityCopy?.eyebrow ??
+          (entry.path === "/" ? "Woodinville, Washington" : entry.title),
+        headline:
+          utilityCopy?.headline ??
+          (entry.path === "/" ? "Level Up Your Game at WSC." : entry.title),
+        subtitle: entry.description,
+        robots: "robots" in entry ? entry.robots : "index, follow",
+      };
+    });
 }
 
 function aliasRoutes(): StaticRoute[] {
-  const byPath = new Map(baseRoutes().map((route) => [route.path, route]));
+  const byPath = new Map(baseRoutes().map(route => [route.path, route]));
   const eventRoute = byPath.get("/events");
   const memberRoute = byPath.get("/member-request");
   const trainingRoute = byPath.get("/personal-training-interest-form");
   const golfRoute = byPath.get("/golf-coaching");
 
   return [
-    eventRoute ? { ...eventRoute, path: "/events-1", canonicalPath: eventRoute.path, robots: "noindex, follow" } : null,
-    memberRoute ? { ...memberRoute, path: "/member-cancellation", canonicalPath: memberRoute.path, robots: "noindex, follow" } : null,
-    memberRoute ? { ...memberRoute, path: "/member-cancelation", canonicalPath: memberRoute.path, robots: "noindex, follow" } : null,
-    trainingRoute ? { ...trainingRoute, path: "/personal-training-request", canonicalPath: trainingRoute.path, robots: "noindex, follow" } : null,
-    golfRoute ? { ...golfRoute, path: "/golf-lessons", canonicalPath: golfRoute.path, robots: "noindex, follow" } : null,
+    eventRoute
+      ? {
+          ...eventRoute,
+          path: "/events-1",
+          canonicalPath: eventRoute.path,
+          robots: "noindex, follow",
+        }
+      : null,
+    memberRoute
+      ? {
+          ...memberRoute,
+          path: "/member-cancellation",
+          canonicalPath: memberRoute.path,
+          robots: "noindex, follow",
+        }
+      : null,
+    memberRoute
+      ? {
+          ...memberRoute,
+          path: "/member-cancelation",
+          canonicalPath: memberRoute.path,
+          robots: "noindex, follow",
+        }
+      : null,
+    trainingRoute
+      ? {
+          ...trainingRoute,
+          path: "/personal-training-request",
+          canonicalPath: trainingRoute.path,
+          robots: "noindex, follow",
+        }
+      : null,
+    golfRoute
+      ? {
+          ...golfRoute,
+          path: "/golf-lessons",
+          canonicalPath: golfRoute.path,
+          robots: "noindex, follow",
+        }
+      : null,
   ].filter((route): route is StaticRoute => route !== null);
 }
 
 function blogRoutes(): StaticRoute[] {
   return [
-    ...BLOG_CATEGORIES.map((category) => ({
+    ...BLOG_CATEGORIES.map(category => ({
       path: `/blog/categories/${category.slug}`,
       title: category.seoTitle,
       description: category.description,
@@ -183,7 +281,7 @@ function blogRoutes(): StaticRoute[] {
       headline: category.seoTitle,
       subtitle: category.description,
     })),
-    ...BLOG_POSTS.map((post) => ({
+    ...BLOG_POSTS.map(post => ({
       path: `/post/${post.slug}`,
       title: post.seoTitle,
       description: post.description,
@@ -209,7 +307,8 @@ async function main() {
       image: DEFAULT_IMAGE,
       eyebrow: "404",
       headline: "Page Not Found",
-      subtitle: "Use the main navigation to return to Woodinville Sports Club programs, membership, contact information, or campus resources.",
+      subtitle:
+        "Use the main navigation to return to Woodinville Sports Club programs, membership, contact information, or campus resources.",
     },
   ];
 
@@ -221,14 +320,14 @@ async function main() {
 
   await fs.writeFile(
     path.join(DIST_DIR, "route-html-manifest.json"),
-    `${JSON.stringify({ generatedAt: new Date().toISOString(), routes: routes.map((route) => route.path) }, null, 2)}\n`,
-    "utf8",
+    `${JSON.stringify({ generatedAt: new Date().toISOString(), routes: routes.map(route => route.path) }, null, 2)}\n`,
+    "utf8"
   );
 
   console.log(`Generated ${routes.length} route-specific HTML shell(s)`);
 }
 
-main().catch((error) => {
+main().catch(error => {
   console.error(error);
   process.exit(1);
 });

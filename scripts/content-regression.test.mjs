@@ -2,15 +2,42 @@ import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 
-const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
+const read = path =>
+  readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
 
-test("main navigation separates Fitness Center and APL", () => {
+test("main navigation separates Fitness and APL", () => {
   const navbar = read("client/src/components/Navbar.tsx");
 
-  assert.match(navbar, /href:\s*"\/gym",[\s\S]*?label:\s*"Fitness Center"/);
-  assert.match(navbar, /href:\s*"\/fitness",[\s\S]*?label:\s*"Athletic Performance Lab"/);
+  assert.match(navbar, /href:\s*"\/gym",[\s\S]*?label:\s*"Fitness"/);
+  assert.match(
+    navbar,
+    /href:\s*"\/fitness",[\s\S]*?label:\s*"Athletic Performance Lab"/
+  );
   assert.match(navbar, /children/);
 });
+
+test("main navigation groups seasonal programs, calendars, tournaments, and events", () => {
+  const navbar = read("client/src/components/Navbar.tsx");
+
+  for (const [href, label] of [
+    ["/sessions", "Program Calendar"],
+    ["/summer", "Summer Training & Camps"],
+    ["/tennis/summer-tennis", "Tennis Tournaments"],
+    ["/golf/tournaments", "Golf Tournaments"],
+    ["/events", "Private Events"],
+  ]) {
+    assert.match(
+      navbar,
+      new RegExp(`href:\\s*"${href}"[\\s\\S]*?label:\\s*"${label}"`)
+    );
+  }
+
+  assert.match(navbar, /label:\s*"Programs"/);
+  assert.match(navbar, /label:\s*"Membership"/);
+  assert.match(navbar, /Book \/ Register/);
+  assert.doesNotMatch(navbar, /label:\s*"(?:Pro Shop|About|Contact)"/);
+});
+
 test("main navigation uses the club phone number", () => {
   const navbar = read("client/src/components/Navbar.tsx");
 
@@ -19,28 +46,109 @@ test("main navigation uses the club phone number", () => {
   assert.doesNotMatch(navbar, /481-4686|\+14254814686/);
 });
 
+test("food trucks is retired until a dated schedule is available", () => {
+  const app = read("client/src/App.tsx");
+  const server = read("server/index.ts");
+  const seo = read("client/src/lib/seo-data.ts");
+  const sitemapGenerator = read(
+    "scripts/seo-audit/generate-public-seo-files.ts"
+  );
+  const sitemap = read("client/public/sitemap.xml");
+  const vercel = JSON.parse(read("vercel.json"));
+
+  assert.match(
+    app,
+    /<Route path="\/food-trucks">\{\(\) => <Redirect to="\/events" \/>\}<\/Route>/
+  );
+  assert.match(server, /"\/food-trucks":\s*"\/events"/);
+  assert.match(server, /Object\.entries\(canonicalRedirects\)/);
+  assert.equal(
+    vercel.redirects.find(redirect => redirect.source === "/food-trucks")
+      ?.destination,
+    "/events"
+  );
+  assert.doesNotMatch(seo, /foodTrucks|path:\s*"\/food-trucks"/);
+  assert.doesNotMatch(sitemapGenerator, /SEO\.foodTrucks\.path/);
+  assert.doesNotMatch(
+    sitemap,
+    /<loc>https:\/\/www\.woodinvillesportsclub\.com\/food-trucks<\/loc>/
+  );
+});
+
+test("homepage golf promotion matches the current junior pathway", () => {
+  const home = read("client/src/pages/Home.tsx");
+
+  assert.match(home, /WSC Golf Academy Junior Pathway/);
+  assert.match(home, /Intro to Golf/);
+  assert.match(home, /age-group Golf Club training/);
+  assert.match(home, /approval-only Tier 1 High Performance/);
+  assert.doesNotMatch(
+    home,
+    /Foundations \(Ages 7-9\)|Junior Academy for ages 7–18|Full-time youth academy launching in 2026/i
+  );
+});
+
+test("task-oriented utility pages use the compact header", () => {
+  const utilityHeader = read("client/src/components/UtilityPageHeader.tsx");
+  const staticRouteGenerator = read(
+    "scripts/seo-audit/generate-static-route-html.ts"
+  );
+
+  for (const page of ["Sessions", "Membership", "FAQ", "Policies"]) {
+    const source = read(`client/src/pages/${page}.tsx`);
+    assert.match(source, /UtilityPageHeader/);
+    assert.doesNotMatch(source, /<PageHero/);
+  }
+
+  assert.match(utilityHeader, /pt-\[var\(--site-header-height,130px\)\]/);
+  assert.match(staticRouteGenerator, /UTILITY_HEADER_COPY/);
+  assert.match(staticRouteGenerator, /utilityStaticShell/);
+});
+
+test("mobile navigation collapses submenus and supports keyboard dismissal", () => {
+  const navbar = read("client/src/components/Navbar.tsx");
+
+  assert.match(navbar, /expandedMobileSection/);
+  assert.match(
+    navbar,
+    /aria-label=\{`\$\{isExpanded \? "Hide" : "Show"\} \$\{link\.label\} submenu`\}/
+  );
+  assert.match(navbar, /event\.key === "Escape"/);
+  assert.match(navbar, /document\.body\.style\.overflow = "hidden"/);
+  assert.match(navbar, /100dvh - var\(--site-header-height/);
+});
+
 test("fitness route renders the Athletic Performance Lab page", () => {
   const app = read("client/src/App.tsx");
 
-  assert.match(app, /const Fitness = lazy\(\(\) => import\("\.\/pages\/Fitness"\)\)/);
+  assert.match(
+    app,
+    /const Fitness = lazy\(\(\) => import\("\.\/pages\/Fitness"\)\)/
+  );
   assert.match(app, /<Route path="\/fitness" component=\{Fitness\} \/>/);
-  assert.doesNotMatch(app, /<Route path="\/fitness">\{\(\) => <Redirect to="\/gym" \/>/);
+  assert.doesNotMatch(
+    app,
+    /<Route path="\/fitness">\{\(\) => <Redirect to="\/gym" \/>/
+  );
 });
 
 test("Athletic Performance Lab is directly public in production", () => {
   const server = read("server/index.ts");
-  const sitemapGenerator = read("scripts/seo-audit/generate-public-seo-files.ts");
+  const sitemapGenerator = read(
+    "scripts/seo-audit/generate-public-seo-files.ts"
+  );
   const vercel = JSON.parse(read("vercel.json"));
   const redirects = vercel.redirects ?? [];
 
   assert.equal(
-    redirects.some((redirect) => redirect.source === "/fitness"),
+    redirects.some(redirect => redirect.source === "/fitness"),
     false,
-    "/fitness should not be redirected away from the APL page",
+    "/fitness should not be redirected away from the APL page"
   );
   assert.equal(
-    redirects.find((redirect) => redirect.source === "/apl-training-center")?.destination,
-    "/fitness",
+    redirects.find(redirect => redirect.source === "/apl-training-center")
+      ?.destination,
+    "/fitness"
   );
   assert.doesNotMatch(server, /"\/fitness":\s*"\/gym"/);
   assert.match(sitemapGenerator, /SEO\.apl\.path/);
@@ -64,7 +172,7 @@ test("personal training roster lives on buried ads landing page", () => {
 
 test("golf academy section matches the four-program junior pathway", () => {
   const golf = read("client/src/pages/Golf.tsx");
-  const sectionStart = golf.indexOf("{/* Tier 1 Golf Academy */}");
+  const sectionStart = golf.indexOf("{/* WSC Golf Academy */}");
   const sectionEnd = golf.indexOf("{/* Range Pricing */}");
   const academySection = golf.slice(sectionStart, sectionEnd);
 
@@ -85,6 +193,34 @@ test("golf academy section matches the four-program junior pathway", () => {
   assert.doesNotMatch(academySection, /href="\/membership"/);
 });
 
+test("golf coaching page keeps the new junior pathway high level", () => {
+  const golfLessons = read("client/src/pages/GolfLessonFormPage.tsx");
+
+  assert.match(golfLessons, /Intro to Golf/);
+  assert.match(golfLessons, /title: "Golf Club",\s+ages: "Ages 7–9 & 10–12"/);
+  assert.match(golfLessons, /Tier 1 High Performance/);
+  assert.match(golfLessons, /no experience or equipment required/i);
+  assert.match(golfLessons, /Operation 36 skill ladder/);
+  assert.match(golfLessons, /periodic evaluations/);
+  assert.match(golfLessons, /tournament, high school, or collegiate golf/);
+  assert.match(golfLessons, /coach approval or assessment/);
+  assert.doesNotMatch(
+    golfLessons,
+    /schedule:\s*"|\b\d{1,2}:\d{2}\s*(?:AM|PM)\b|\$\d/
+  );
+  assert.match(golfLessons, /Register in CourtReserve/);
+  assert.match(golfLessons, /More Details at Tier 1/);
+  assert.match(golfLessons, /Tier1golf@woodinvillesportsclub\.com/);
+  assert.match(
+    golfLessons,
+    /const COURT_RESERVE_URL = "https:\/\/app\.courtreserve\.com\/Online\/Portal\/Index\/6689"/
+  );
+  assert.match(
+    golfLessons,
+    /const TIER1_GOLF_URL = "https:\/\/www\.tier1nw\.com\/golf"/
+  );
+});
+
 test("golf simulator section does not promote trial membership", () => {
   const golf = read("client/src/pages/Golf.tsx");
 
@@ -96,7 +232,7 @@ test("membership page does not list the retired trial golf simulator pass", () =
 
   assert.doesNotMatch(
     membership,
-    /Trial Golf Simulators|Trial members|7-day window|Bring up to 3 guests per session|try the golf simulators before committing/i,
+    /Trial Golf Simulators|Trial members|7-day window|Bring up to 3 guests per session|try the golf simulators before committing/i
   );
 });
 
@@ -114,16 +250,28 @@ test("covered driving bay count is not capped at 23", () => {
 
   for (const file of files) {
     const source = read(file);
-    const sourceWithoutAllowedCounts = source.replace(/more than 23/gi, "").replace(/23\+/g, "");
+    const sourceWithoutAllowedCounts = source
+      .replace(/more than 23/gi, "")
+      .replace(/23\+/g, "");
 
-    assert.doesNotMatch(sourceWithoutAllowedCounts, /\b23(?:-bay| covered| bays)/i, `${file} should not use 23 as the exact covered bay count`);
-    assert.doesNotMatch(source, /val:\s*"23",\s*label:\s*"Covered(?: Driving)? Bays/i, `${file} should not use 23 as an exact covered bay stat`);
+    assert.doesNotMatch(
+      sourceWithoutAllowedCounts,
+      /\b23(?:-bay| covered| bays)/i,
+      `${file} should not use 23 as the exact covered bay count`
+    );
+    assert.doesNotMatch(
+      source,
+      /val:\s*"23",\s*label:\s*"Covered(?: Driving)? Bays/i,
+      `${file} should not use 23 as an exact covered bay stat`
+    );
   }
 });
 
 test("summer registration explains weekly and drop-in signup options", () => {
   const summer = read("client/src/pages/Summer.tsx");
 
+  assert.match(summer, /summer2026Headline\(season\.today\)/);
+  assert.match(summer, /if \(!season\.showSummer2026\) return <PastSummerPage \/>/);
   assert.match(summer, /<strong[^>]*>\s*week-to-week\s*<\/strong>/i);
   assert.match(summer, /<strong[^>]*>\s*drop-ins\s*<\/strong>/i);
   assert.match(summer, /pricing information is available in CourtReserve/i);
@@ -135,8 +283,14 @@ test("summer Core Orange and Green tennis runs in the afternoon", () => {
   assert.match(summer, /label:\s*"Core Orange\/Green PM"/);
   assert.match(summer, /subtitle:\s*"Orange · Green"/);
   assert.match(summer, /ageNote:\s*"Ages 9–12"/);
-  assert.match(summer, /"tennis-core-orange-green-pm"[\s\S]*?time:\s*"1:00 PM"[\s\S]*?time:\s*"4:00 PM"/);
-  assert.doesNotMatch(summer, /subtitle:\s*"JumpStart · Red · Orange · Green · ½-Day Yellow"/);
+  assert.match(
+    summer,
+    /"tennis-core-orange-green-pm"[\s\S]*?time:\s*"1:00 PM"[\s\S]*?time:\s*"4:00 PM"/
+  );
+  assert.doesNotMatch(
+    summer,
+    /subtitle:\s*"JumpStart · Red · Orange · Green · ½-Day Yellow"/
+  );
 });
 
 test("policies page uses the full collapsible membership agreement", () => {
@@ -144,10 +298,22 @@ test("policies page uses the full collapsible membership agreement", () => {
 
   assert.match(policies, /Accordion/);
   assert.match(policies, /RELEASE OF LIABILITY AND ASSUMPTION OF RISK/);
-  assert.match(policies, /Member\/Passholder agrees to make timely payment of ALL fees/);
-  assert.match(policies, /WSC may take images or videos of Member\/Passholders and guests/);
-  assert.doesNotMatch(policies, /The WSC Membership Agreement was last updated on/);
-  assert.doesNotMatch(policies, /Using WSC facilities, services, or activities involves the risk of injury, ranging from minor to catastrophic injuries including death/);
+  assert.match(
+    policies,
+    /Member\/Passholder agrees to make timely payment of ALL fees/
+  );
+  assert.match(
+    policies,
+    /WSC may take images or videos of Member\/Passholders and guests/
+  );
+  assert.doesNotMatch(
+    policies,
+    /The WSC Membership Agreement was last updated on/
+  );
+  assert.doesNotMatch(
+    policies,
+    /Using WSC facilities, services, or activities involves the risk of injury, ranging from minor to catastrophic injuries including death/
+  );
 });
 
 test("privacy policy is consolidated under policies and terms", () => {
@@ -155,14 +321,19 @@ test("privacy policy is consolidated under policies and terms", () => {
   const policies = read("client/src/pages/Policies.tsx");
   const footer = read("client/src/components/Footer.tsx");
   const cookieConsent = read("client/src/components/CookieConsent.tsx");
-  const sitemapGenerator = read("scripts/seo-audit/generate-public-seo-files.ts");
+  const sitemapGenerator = read(
+    "scripts/seo-audit/generate-public-seo-files.ts"
+  );
   const vercel = JSON.parse(read("vercel.json"));
   const redirects = vercel.redirects ?? [];
 
   assert.match(policies, /type PolicyTab = "policies" \| "terms" \| "privacy"/);
   assert.match(policies, /<Privacy embedded \/>/);
   assert.match(app, /<Redirect to="\/policies#privacy" \/>/);
-  assert.equal(redirects.find((redirect) => redirect.source === "/privacy")?.destination, "/policies#privacy");
+  assert.equal(
+    redirects.find(redirect => redirect.source === "/privacy")?.destination,
+    "/policies#privacy"
+  );
   assert.doesNotMatch(footer, /href="\/privacy"/);
   assert.match(cookieConsent, /href="\/policies#privacy"/);
   assert.doesNotMatch(sitemapGenerator, /SEO\.privacy\.path/);
@@ -189,16 +360,28 @@ test("website forms are routed to WSC email notifications", () => {
   assert.match(formServer, /POSTMARK_SERVER_TOKEN/);
   assert.match(formServer, /FORM_ALERT_TO/);
   assert.match(formServer, /FORM_ALERT_FROM/);
-  assert.match(formServer, /GOLF_LESSONS_EMAIL = "tier1golf@woodinvillesportsclub\.com"/);
-  assert.match(formServer, /resolveNotificationRecipients\(submission\.formType\)/);
+  assert.match(
+    formServer,
+    /GOLF_LESSONS_EMAIL = "tier1golf@woodinvillesportsclub\.com"/
+  );
+  assert.match(
+    formServer,
+    /resolveNotificationRecipients\(submission\.formType\)/
+  );
   assert.match(formServer, /result\.email\.status !== "sent"/);
   assert.match(formServer, /CONSTANT_CONTACT_CLIENT_ID/);
   assert.match(formServer, /contacts\/sign_up_form/);
   assert.match(formServer, /CONSTANT_CONTACT_LIST_IDS/);
   assert.match(formServer, /buildNotificationSubject/);
   assert.match(formServer, /Title: \$\{submission\.subject\}/);
-  assert.equal(packageJson.scripts["postmark:check"], "node scripts/check-postmark-setup.mjs");
-  assert.equal(packageJson.scripts["postmark:smoke-forms"], "tsx scripts/smoke-test-form-delivery.mjs");
+  assert.equal(
+    packageJson.scripts["postmark:check"],
+    "node scripts/check-postmark-setup.mjs"
+  );
+  assert.equal(
+    packageJson.scripts["postmark:smoke-forms"],
+    "tsx scripts/smoke-test-form-delivery.mjs"
+  );
   assert.match(postmarkCheck, /POSTMARK_SERVER_TOKEN/);
   assert.match(postmarkCheck, /FORM_ALERT_TO/);
   assert.match(postmarkCheck, /FORM_ALERT_FROM/);
@@ -217,7 +400,10 @@ test("website forms are routed to WSC email notifications", () => {
   assert.match(postmarkSmoke, /private_event/);
   assert.match(postmarkSmoke, /career_application/);
   assert.match(readme, /FORM_ALERT_TO=info@woodinvillesportsclub\.com/);
-  assert.match(readme, /Golf lesson submissions are additionally routed to `tier1golf@woodinvillesportsclub\.com`/);
+  assert.match(
+    readme,
+    /Golf lesson submissions are additionally routed to `tier1golf@woodinvillesportsclub\.com`/
+  );
   assert.match(readme, /CONSTANT_CONTACT_REFRESH_TOKEN/);
   assert.match(readme, /CONSTANT_CONTACT_INTEREST_LIST_MAP/);
   assert.match(readme, /pnpm postmark:check/);
@@ -231,16 +417,34 @@ test("live website inquiry forms exist in the new build", () => {
   const events = read("client/src/pages/Events.tsx");
   const golf = read("client/src/pages/Golf.tsx");
 
-  assert.match(app, /<Route path="\/member-request" component=\{MemberCancellationFormPage\} \/>/);
-  assert.match(app, /<Route path="\/personal-training-interest-form" component=\{PersonalTrainingFormPage\} \/>/);
-  assert.match(app, /<Route path="\/golf-coaching" component=\{GolfLessonFormPage\} \/>/);
-  assert.match(app, /<Route path="\/newsletter-signup" component=\{NewsletterSignupPage\} \/>/);
+  assert.match(
+    app,
+    /<Route path="\/member-request" component=\{MemberCancellationFormPage\} \/>/
+  );
+  assert.match(
+    app,
+    /<Route path="\/personal-training-interest-form" component=\{PersonalTrainingFormPage\} \/>/
+  );
+  assert.match(
+    app,
+    /<Route path="\/golf-coaching" component=\{GolfLessonFormPage\} \/>/
+  );
+  assert.match(
+    app,
+    /<Route path="\/newsletter-signup" component=\{NewsletterSignupPage\} \/>/
+  );
 
   assert.match(forms, /Membership Cancellation Requests/);
   assert.match(forms, /Is there anything we could have done better\?/);
   assert.doesNotMatch(forms, /What's the primary reason for canceling\?/);
-  assert.doesNotMatch(forms, /Please provide more details regarding your above cancellation reason\./);
-  assert.doesNotMatch(forms, /Are you open to discussing options before finalizing your cancellation\?/);
+  assert.doesNotMatch(
+    forms,
+    /Please provide more details regarding your above cancellation reason\./
+  );
+  assert.doesNotMatch(
+    forms,
+    /Are you open to discussing options before finalizing your cancellation\?/
+  );
   assert.doesNotMatch(forms, /discussionPreference/);
 
   assert.match(forms, /Personal Training Interest Form/);
@@ -248,7 +452,10 @@ test("live website inquiry forms exist in the new build", () => {
   assert.match(forms, /Are you open to Small Group Training\?/);
 
   assert.match(forms, /Golf Lessons Inquiry/);
-  assert.match(forms, /Tell us a little about your golf experience and what you're looking for\./);
+  assert.match(
+    forms,
+    /Tell us a little about your golf experience and what you're looking for\./
+  );
   assert.match(forms, /Beginner/);
   assert.match(forms, /Intermediate/);
   assert.match(forms, /Advanced/);
@@ -258,8 +465,14 @@ test("live website inquiry forms exist in the new build", () => {
 
   assert.match(careers, /CareersApplicationForm/);
   assert.match(forms, /Department Applying For/);
-  assert.match(forms, /Are you legally authorized to work in the United States\?/);
-  assert.match(forms, /Will you now or in the future require sponsorship for employment visa status\?/);
+  assert.match(
+    forms,
+    /Are you legally authorized to work in the United States\?/
+  );
+  assert.match(
+    forms,
+    /Will you now or in the future require sponsorship for employment visa status\?/
+  );
   assert.match(forms, /Upload Resume/);
 
   assert.match(golf, /GolfLessonInquiryForm/);
@@ -302,6 +515,7 @@ test("live website forms are discoverable from site clicks", () => {
   const membership = read("client/src/pages/Membership.tsx");
   const gym = read("client/src/pages/Gym.tsx");
   const fitness = read("client/src/pages/Fitness.tsx");
+  const golf = read("client/src/pages/Golf.tsx");
   const vercel = JSON.parse(read("vercel.json"));
   const redirects = vercel.redirects ?? [];
 
@@ -309,14 +523,24 @@ test("live website forms are discoverable from site clicks", () => {
     "/member-request",
     "/free-fitness-assessment",
     "/personal-training-interest-form",
-    "/golf-coaching",
     "/newsletter-signup",
   ]) {
     assert.match(footer, new RegExp(`href="${href}"`));
+  }
+
+  assert.match(golf, /<GolfLessonInquiryForm tone="dark" source="\/golf" \/>/);
+  assert.doesNotMatch(footer, /href="\/golf-coaching"/);
+
+  for (const href of [
+    "/member-request",
+    "/personal-training-interest-form",
+    "/golf-coaching",
+    "/newsletter-signup",
+  ]) {
     assert.equal(
-      redirects.some((redirect) => redirect.source === href),
+      redirects.some(redirect => redirect.source === href),
       false,
-      `${href} should not be redirected away from its form route`,
+      `${href} should not be redirected away from its form route`
     );
   }
 
@@ -338,11 +562,23 @@ test("conversion tracking covers calls, forms, bookings, memberships, and outbou
   const attribution = read("client/src/components/MarketingAttribution.tsx");
   const forms = read("client/src/lib/forms.ts");
 
-  assert.match(attribution, /trackMarketingEvent\("contact_click"[\s\S]*?contact_method: "phone"/);
-  assert.match(attribution, /trackMarketingEvent\("contact_click"[\s\S]*?contact_method: "email"/);
+  assert.match(
+    attribution,
+    /trackMarketingEvent\("contact_click"[\s\S]*?contact_method: "phone"/
+  );
+  assert.match(
+    attribution,
+    /trackMarketingEvent\("contact_click"[\s\S]*?contact_method: "email"/
+  );
   assert.match(attribution, /trackMarketingEvent\("booking_click"/);
-  assert.match(attribution, /trackMarketingEvent\("membership_click"[\s\S]*?membership_action: "start_courtreserve"/);
-  assert.match(attribution, /trackMarketingEvent\("membership_click"[\s\S]*?membership_action: "view_options"/);
+  assert.match(
+    attribution,
+    /trackMarketingEvent\("membership_click"[\s\S]*?membership_action: "start_courtreserve"/
+  );
+  assert.match(
+    attribution,
+    /trackMarketingEvent\("membership_click"[\s\S]*?membership_action: "view_options"/
+  );
   assert.match(attribution, /trackMarketingEvent\("outbound_click"/);
   assert.match(forms, /gtag\("event", "form_submit"/);
   assert.match(forms, /AW-18217215416\/ouj7CNbhquccELjL0u5D/);
@@ -350,11 +586,17 @@ test("conversion tracking covers calls, forms, bookings, memberships, and outbou
 
 test("customer action forms stay indexable while newsletter and duplicate aliases stay out of search", () => {
   const seoHead = read("client/src/components/SEOHead.tsx");
-  const memberCancellation = read("client/src/pages/MemberCancellationFormPage.tsx");
+  const memberCancellation = read(
+    "client/src/pages/MemberCancellationFormPage.tsx"
+  );
   const newsletter = read("client/src/pages/NewsletterSignupPage.tsx");
-  const personalTraining = read("client/src/pages/PersonalTrainingFormPage.tsx");
+  const personalTraining = read(
+    "client/src/pages/PersonalTrainingFormPage.tsx"
+  );
   const golfLessons = read("client/src/pages/GolfLessonFormPage.tsx");
-  const sitemapGenerator = read("scripts/seo-audit/generate-public-seo-files.ts");
+  const sitemapGenerator = read(
+    "scripts/seo-audit/generate-public-seo-files.ts"
+  );
   const sitemap = read("client/public/sitemap.xml");
   const staticRoutes = read("scripts/seo-audit/generate-static-route-html.ts");
   const redirects = JSON.parse(read("vercel.json")).redirects ?? [];
@@ -370,19 +612,34 @@ test("customer action forms stay indexable while newsletter and duplicate aliase
   assert.doesNotMatch(sitemapGenerator, /SEO\.newsletterSignup\.path/);
   assert.match(sitemapGenerator, /SEO\.personalTrainingRequest\.path/);
   assert.match(sitemapGenerator, /SEO\.golfLessons\.path/);
-  assert.match(sitemap, /<loc>https:\/\/www\.woodinvillesportsclub\.com\/member-request<\/loc>/);
-  assert.doesNotMatch(sitemap, /<loc>https:\/\/www\.woodinvillesportsclub\.com\/newsletter-signup<\/loc>/);
   assert.match(
     sitemap,
-    /<loc>https:\/\/www\.woodinvillesportsclub\.com\/personal-training-interest-form<\/loc>/,
+    /<loc>https:\/\/www\.woodinvillesportsclub\.com\/member-request<\/loc>/
+  );
+  assert.doesNotMatch(
+    sitemap,
+    /<loc>https:\/\/www\.woodinvillesportsclub\.com\/newsletter-signup<\/loc>/
   );
   assert.match(
     sitemap,
-    /<loc>https:\/\/www\.woodinvillesportsclub\.com\/golf-coaching<\/loc>/,
+    /<loc>https:\/\/www\.woodinvillesportsclub\.com\/personal-training-interest-form<\/loc>/
   );
-  assert.match(staticRoutes, /canonicalPath: memberRoute\.path,[\s\S]{0,80}?robots: "noindex, follow"/);
-  assert.match(staticRoutes, /canonicalPath: trainingRoute\.path,[\s\S]{0,80}?robots: "noindex, follow"/);
-  assert.match(staticRoutes, /canonicalPath: golfRoute\.path,[\s\S]{0,80}?robots: "noindex, follow"/);
+  assert.match(
+    sitemap,
+    /<loc>https:\/\/www\.woodinvillesportsclub\.com\/golf-coaching<\/loc>/
+  );
+  assert.match(
+    staticRoutes,
+    /canonicalPath: memberRoute\.path,[\s\S]{0,80}?robots: "noindex, follow"/
+  );
+  assert.match(
+    staticRoutes,
+    /canonicalPath: trainingRoute\.path,[\s\S]{0,80}?robots: "noindex, follow"/
+  );
+  assert.match(
+    staticRoutes,
+    /canonicalPath: golfRoute\.path,[\s\S]{0,80}?robots: "noindex, follow"/
+  );
 
   for (const [source, destination] of [
     ["/member-cancellation", "/member-request"],
@@ -392,10 +649,13 @@ test("customer action forms stay indexable while newsletter and duplicate aliase
   ]) {
     assert.equal(
       redirects.some(
-        (redirect) => redirect.source === source && redirect.destination === destination && redirect.permanent,
+        redirect =>
+          redirect.source === source &&
+          redirect.destination === destination &&
+          redirect.permanent
       ),
       true,
-      `${source} should permanently redirect to ${destination}`,
+      `${source} should permanently redirect to ${destination}`
     );
   }
 });
@@ -423,7 +683,10 @@ test("gym page is positioned around memberships and personal training", () => {
 test("gym page does not mention APL class programming", () => {
   const gym = read("client/src/pages/Gym.tsx");
 
-  assert.doesNotMatch(gym, /Athletic Performance Lab|APL Group Classes|S&C|Tier 1 APL/i);
+  assert.doesNotMatch(
+    gym,
+    /Athletic Performance Lab|APL Group Classes|S&C|Tier 1 APL/i
+  );
   assert.doesNotMatch(gym, /packages?/i);
   assert.doesNotMatch(gym, /4\/8\/∞/);
 });
@@ -467,7 +730,10 @@ test("tennis page uses junior confidence and matchplay photos", () => {
   assert.match(tennis, /tennis-junior-confidence\.webp/);
   assert.match(tennis, /Confidence building/);
   assert.match(tennis, /tennis-matchplay-bench\.webp/);
-  assert.match(tennis, /Friday Night UTR Matchplay[\s\S]*?TENNIS_MATCHPLAY_BENCH_IMG/);
+  assert.match(
+    tennis,
+    /Friday Night UTR Matchplay[\s\S]*?TENNIS_MATCHPLAY_BENCH_IMG/
+  );
   assert.match(responsiveImages, /tennis-junior-confidence\.webp/);
   assert.match(responsiveImages, /tennis-matchplay-bench\.webp/);
 });
@@ -478,6 +744,23 @@ test("home facility chart includes golf sims and both fitness centers", () => {
   assert.match(home, /Indoor Golf Sims/);
   assert.match(home, /Fitness Centers/);
   assert.match(home, /Main Gym \+ APL/);
+});
+
+test("seasonal surfaces use the shared calendar instead of fixed Fall 1 copy", () => {
+  for (const file of [
+    "client/src/components/MarketingBanner.tsx",
+    "client/src/pages/Sessions.tsx",
+    "client/src/pages/Home.tsx",
+  ]) {
+    const source = read(file);
+    assert.match(source, /useSessionCalendar/);
+    assert.match(source, /season\.title/);
+    assert.match(source, /season\.description/);
+    assert.match(source, /season\.ctaLabel/);
+    assert.doesNotMatch(source, /Fall 1 Registration|Fall 1 registration is open now|Fall 1 programs begin August 31/);
+  }
+  assert.match(read("client/src/pages/Home.tsx"), /Now at WSC/);
+  assert.doesNotMatch(read("client/src/components/Navbar.tsx"), /MarketingBanner/);
 });
 
 test("founded year is 1976 across visible and structured content", () => {
@@ -506,8 +789,16 @@ test("structured location uses the official WSC parcel coordinates", () => {
   for (const file of files) {
     const source = read(file);
 
-    assert.match(source, /47\.73908/, `${file} should use the WSC parcel latitude`);
-    assert.match(source, /-122\.14327/, `${file} should use the WSC parcel longitude`);
+    assert.match(
+      source,
+      /47\.73908/,
+      `${file} should use the WSC parcel latitude`
+    );
+    assert.match(
+      source,
+      /-122\.14327/,
+      `${file} should use the WSC parcel longitude`
+    );
     assert.doesNotMatch(source, /47\.7543|-122\.1635/);
   }
 });
@@ -545,7 +836,10 @@ test("service and event structured data stay accurate and page-specific", () => 
   assert.match(structuredData, /mainEntityOfPage/);
   assert.match(structuredData, /"@type": "SportsEvent"/);
   assert.match(structuredData, /isAccessibleForFree: false/);
-  assert.doesNotMatch(structuredData, /availability: "https:\/\/schema\.org\/InStock"/);
+  assert.doesNotMatch(
+    structuredData,
+    /availability: "https:\/\/schema\.org\/InStock"/
+  );
 
   for (const page of servicePages) {
     assert.match(read(page), /getServiceSchema\(\{/);
@@ -558,6 +852,12 @@ test("Google Tag Manager is consent-gated instead of blocking initial page load"
 
   assert.doesNotMatch(index, /GTM-PKPNJDFR|googletagmanager\.com\/gtm\.js/);
   assert.match(analytics, /const GTM_CONTAINER_ID/);
-  assert.match(analytics, /if \(!analyticsAllowed \|\| !isConfigured\(GTM_CONTAINER_ID\)\)/);
-  assert.match(analytics, /script\.src = `https:\/\/www\.googletagmanager\.com\/gtm\.js\?id=\$\{GTM_CONTAINER_ID\}`/);
+  assert.match(
+    analytics,
+    /if \(!analyticsAllowed \|\| !isConfigured\(GTM_CONTAINER_ID\)\)/
+  );
+  assert.match(
+    analytics,
+    /script\.src = `https:\/\/www\.googletagmanager\.com\/gtm\.js\?id=\$\{GTM_CONTAINER_ID\}`/
+  );
 });

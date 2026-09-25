@@ -1,15 +1,28 @@
 import { expect, test } from "@playwright/test";
 
 const criticalPages = [
-  { path: "/", heading: /Level Up Your Game at WSC/i },
-  { path: "/tennis", heading: /Tennis/i },
-  { path: "/golf", heading: /Golf/i },
+  {
+    path: "/",
+    heading: /Level Up Your Game at WSC/i,
+    mobileHeading: /Play more\. Train better\./i,
+  },
+  { path: "/tennis", heading: /Tennis/i, mobileHeading: /Tennis/i },
+  { path: "/golf", heading: /Golf/i, mobileHeading: /Golf/i },
   {
     path: "/golf/driving-range",
     heading: /Driving Range & Golf Training Grounds/i,
+    mobileHeading: /Driving Range & Golf Training Grounds/i,
   },
-  { path: "/membership", heading: /Train Without Limits/i },
-  { path: "/contact", heading: /Get in Touch/i },
+  {
+    path: "/membership",
+    heading: /Train Without Limits/i,
+    mobileHeading: /Train Without Limits/i,
+  },
+  {
+    path: "/contact",
+    heading: /Get in Touch/i,
+    mobileHeading: /Get in Touch/i,
+  },
 ] as const;
 
 test.describe("critical visitor journeys", () => {
@@ -23,7 +36,11 @@ test.describe("critical visitor journeys", () => {
 
       await page.goto(pageDetails.path, { waitUntil: "domcontentloaded" });
 
-      await expect(page.locator("h1")).toContainText(pageDetails.heading);
+      const visiblePageHeading = page.getByRole("heading", { level: 1 });
+      await expect(visiblePageHeading).toBeVisible();
+      await expect(visiblePageHeading).toContainText(
+        isMobile ? pageDetails.mobileHeading : pageDetails.heading
+      );
       await expect(page.locator("main#main-content")).toBeVisible();
 
       if (isMobile) {
@@ -43,7 +60,7 @@ test.describe("critical visitor journeys", () => {
     });
   }
 
-  test("main navigation reaches the contact page", async ({
+  test("main navigation reaches the program calendar", async ({
     page,
     isMobile,
   }) => {
@@ -59,12 +76,12 @@ test.describe("critical visitor journeys", () => {
     }
 
     await navigation
-      .getByRole("link", { name: "Contact", exact: true })
+      .getByRole("link", { name: "Programs", exact: true })
       .click();
 
-    await expect(page).toHaveURL(/\/contact$/);
+    await expect(page).toHaveURL(/\/sessions$/);
     await expect(page.getByRole("heading", { level: 1 })).toContainText(
-      "Get in Touch"
+      "Mark your calendar"
     );
   });
 

@@ -3,15 +3,15 @@
  * membership agreement, court booking, and facility rules.
  * Accordion-style Q&A organized by category.
  */
-import PageHero from "@/components/PageHero";
-import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData";
+import UtilityPageHeader from "@/components/UtilityPageHeader";
+import StructuredData, {
+  getBreadcrumbSchema,
+} from "@/components/StructuredData";
 import { Link } from "wouter";
 import { useState } from "react";
 import { ChevronDown, Search } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
-
-const HERO_IMG = "/images/wsc/campus-dome.webp";
 
 /* ── FAQ Data ────────────────────────────────────────────── */
 
@@ -219,7 +219,17 @@ const FAQS: FAQItem[] = [
 
 /* ── Accordion Item ──────────────────────────────────────── */
 
-function AccordionItem({ item, itemId, isOpen, onToggle }: { item: FAQItem; itemId: string; isOpen: boolean; onToggle: () => void }) {
+function AccordionItem({
+  item,
+  itemId,
+  isOpen,
+  onToggle,
+}: {
+  item: FAQItem;
+  itemId: string;
+  isOpen: boolean;
+  onToggle: () => void;
+}) {
   const questionId = `faq-question-${itemId}`;
   const answerId = `faq-answer-${itemId}`;
 
@@ -233,7 +243,9 @@ function AccordionItem({ item, itemId, isOpen, onToggle }: { item: FAQItem; item
         aria-expanded={isOpen}
         aria-controls={answerId}
       >
-        <span className={`text-[15px] leading-[1.55] transition-colors duration-200 ${isOpen ? "text-ink font-medium" : "text-ink-mid group-hover:text-ink"}`}>
+        <span
+          className={`text-[15px] leading-[1.55] transition-colors duration-200 ${isOpen ? "text-ink font-medium" : "text-ink-mid group-hover:text-ink"}`}
+        >
           {item.q}
         </span>
         <ChevronDown
@@ -264,7 +276,7 @@ export default function FAQ() {
   const [openItems, setOpenItems] = useState<Set<number>>(new Set());
 
   const toggleItem = (index: number) => {
-    setOpenItems((prev) => {
+    setOpenItems(prev => {
       const next = new Set(prev);
       if (next.has(index)) {
         next.delete(index);
@@ -275,8 +287,9 @@ export default function FAQ() {
     });
   };
 
-  const filteredFAQs = FAQS.filter((faq) => {
-    const matchesCategory = activeCategory === "all" || faq.category === activeCategory;
+  const filteredFAQs = FAQS.filter(faq => {
+    const matchesCategory =
+      activeCategory === "all" || faq.category === activeCategory;
     const matchesSearch =
       searchQuery === "" ||
       faq.q.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -287,7 +300,7 @@ export default function FAQ() {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: FAQS.map((faq) => ({
+    mainEntity: FAQS.map(faq => ({
       "@type": "Question",
       name: faq.q,
       acceptedAnswer: {
@@ -300,32 +313,36 @@ export default function FAQ() {
   return (
     <div className="min-h-screen">
       <SEOHead {...SEO.faq} />
-      <StructuredData schemas={[
-        getBreadcrumbSchema([
-          { name: "Home", url: "https://www.woodinvillesportsclub.com/" },
-          { name: "FAQ", url: "https://www.woodinvillesportsclub.com/faq" },
-        ]),
-        faqSchema,
-      ]} />
+      <StructuredData
+        schemas={[
+          getBreadcrumbSchema([
+            { name: "Home", url: "https://www.woodinvillesportsclub.com/" },
+            { name: "FAQ", url: "https://www.woodinvillesportsclub.com/faq" },
+          ]),
+          faqSchema,
+        ]}
+      />
 
-      <PageHero
+      <UtilityPageHeader
         eyebrow="Frequently Asked Questions"
         headline="Quick Answers."
         subtitle="Find answers to the most common questions about membership, court booking, cancellations, and facility policies."
-        image={HERO_IMG}
       />
 
       {/* Search + Category Filter */}
-      <section className="bg-parchment border-b border-ink/8 sticky top-[130px] z-30">
+      <section className="bg-parchment border-b border-ink/8 sticky top-[var(--site-header-height,130px)] z-30">
         <div className="max-w-[900px] mx-auto px-6 lg:px-14 py-5">
           {/* Search Bar */}
           <div className="relative mb-4">
-            <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-ink-light" />
+            <Search
+              size={16}
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-ink-light"
+            />
             <input
               type="text"
               placeholder="Search questions..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={e => setSearchQuery(e.target.value)}
               className="w-full bg-parchment-mid text-ink text-[14px] pl-11 pr-4 py-3 border border-ink/10 focus:border-volt focus:outline-none transition-colors duration-200 placeholder:text-ink-light"
               aria-label="Search frequently asked questions"
             />
@@ -336,7 +353,10 @@ export default function FAQ() {
             <button
               type="button"
               aria-pressed={activeCategory === "all"}
-              onClick={() => { setActiveCategory("all"); setOpenItems(new Set()); }}
+              onClick={() => {
+                setActiveCategory("all");
+                setOpenItems(new Set());
+              }}
               className={`text-[11px] tracking-[0.1em] uppercase px-4 py-2 border transition-all duration-200 cursor-pointer ${
                 activeCategory === "all"
                   ? "bg-dark-bg text-volt-bright border-dark-bg"
@@ -345,14 +365,17 @@ export default function FAQ() {
             >
               All ({FAQS.length})
             </button>
-            {FAQ_CATEGORIES.map((cat) => {
-              const count = FAQS.filter((f) => f.category === cat.id).length;
+            {FAQ_CATEGORIES.map(cat => {
+              const count = FAQS.filter(f => f.category === cat.id).length;
               return (
                 <button
                   type="button"
                   key={cat.id}
                   aria-pressed={activeCategory === cat.id}
-                  onClick={() => { setActiveCategory(cat.id); setOpenItems(new Set()); }}
+                  onClick={() => {
+                    setActiveCategory(cat.id);
+                    setOpenItems(new Set());
+                  }}
                   className={`text-[11px] tracking-[0.1em] uppercase px-4 py-2 border transition-all duration-200 cursor-pointer ${
                     activeCategory === cat.id
                       ? "bg-dark-bg text-volt-bright border-dark-bg"
@@ -372,17 +395,31 @@ export default function FAQ() {
         <div className="max-w-[900px] mx-auto">
           {filteredFAQs.length > 0 ? (
             <>
-              <p className="text-ink-light text-[13px] tracking-[0.06em] mb-8" role="status" aria-live="polite">
+              <p
+                className="text-ink-light text-[13px] tracking-[0.06em] mb-8"
+                role="status"
+                aria-live="polite"
+              >
                 Showing {filteredFAQs.length} of {FAQS.length} questions
                 {activeCategory !== "all" && (
-                  <> in <span className="text-ink font-medium">{FAQ_CATEGORIES.find(c => c.id === activeCategory)?.label}</span></>
+                  <>
+                    {" "}
+                    in{" "}
+                    <span className="text-ink font-medium">
+                      {FAQ_CATEGORIES.find(c => c.id === activeCategory)?.label}
+                    </span>
+                  </>
                 )}
                 {searchQuery && (
-                  <> matching "<span className="text-ink font-medium">{searchQuery}</span>"</>
+                  <>
+                    {" "}
+                    matching "
+                    <span className="text-ink font-medium">{searchQuery}</span>"
+                  </>
                 )}
               </p>
               <div>
-                {filteredFAQs.map((faq) => {
+                {filteredFAQs.map(faq => {
                   const globalIndex = FAQS.indexOf(faq);
                   return (
                     <AccordionItem
@@ -398,13 +435,18 @@ export default function FAQ() {
             </>
           ) : (
             <div className="text-center py-16">
-              <p className="text-ink-mid text-[18px] font-light mb-3">No matching questions found.</p>
+              <p className="text-ink-mid text-[18px] font-light mb-3">
+                No matching questions found.
+              </p>
               <p className="text-ink-light text-[14px] mb-6">
                 Try a different search term or browse all categories.
               </p>
               <button
                 type="button"
-                onClick={() => { setSearchQuery(""); setActiveCategory("all"); }}
+                onClick={() => {
+                  setSearchQuery("");
+                  setActiveCategory("all");
+                }}
                 className="text-[12px] tracking-[0.1em] uppercase text-volt border border-volt px-6 py-2.5 bg-transparent cursor-pointer hover:bg-volt hover:text-dark-bg transition-colors duration-200"
               >
                 Show All Questions
@@ -419,12 +461,15 @@ export default function FAQ() {
         <div className="max-w-[900px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-parchment p-8">
-              <p className="text-volt text-[13px] tracking-[0.18em] uppercase mb-3">Need More Detail?</p>
-              <h3 className="text-ink text-[22px] font-light tracking-[-0.01em] mb-3">
+              <p className="text-volt text-[13px] tracking-[0.18em] uppercase mb-3">
+                Need More Detail?
+              </p>
+              <h2 className="text-ink text-[22px] font-light tracking-[-0.01em] mb-3">
                 Read the full policies.
-              </h3>
+              </h2>
               <p className="text-ink-mid text-[14px] leading-[1.72] mb-6">
-                Our comprehensive Club Policies page has the complete details on every rule, fee, and guideline.
+                Our comprehensive Club Policies page has the complete details on
+                every rule, fee, and guideline.
               </p>
               <Link
                 href="/policies"
@@ -434,21 +479,34 @@ export default function FAQ() {
               </Link>
             </div>
             <div className="bg-parchment p-8">
-              <p className="text-volt text-[13px] tracking-[0.18em] uppercase mb-3">Still Have Questions?</p>
-              <h3 className="text-ink text-[22px] font-light tracking-[-0.01em] mb-3">
+              <p className="text-volt text-[13px] tracking-[0.18em] uppercase mb-3">
+                Still Have Questions?
+              </p>
+              <h2 className="text-ink text-[22px] font-light tracking-[-0.01em] mb-3">
                 We're here to help.
-              </h3>
+              </h2>
               <p className="text-ink-mid text-[14px] leading-[1.72] mb-6">
-                Our front desk staff is trained to assist with all policy-related inquiries. Don't hesitate to reach out.
+                Our front desk staff is trained to assist with all
+                policy-related inquiries. Don't hesitate to reach out.
               </p>
               <div className="space-y-2">
                 <p className="text-ink text-[14px]">
                   <span className="text-ink-light">Phone:</span>{" "}
-                  <a href="tel:+14254871090" className="text-volt no-underline hover:underline">(425) 487-1090</a>
+                  <a
+                    href="tel:+14254871090"
+                    className="text-volt no-underline hover:underline"
+                  >
+                    (425) 487-1090
+                  </a>
                 </p>
                 <p className="text-ink text-[14px]">
                   <span className="text-ink-light">Email:</span>{" "}
-                  <a href="mailto:info@woodinvillesportsclub.com" className="text-volt no-underline hover:underline">info@woodinvillesportsclub.com</a>
+                  <a
+                    href="mailto:info@woodinvillesportsclub.com"
+                    className="text-volt no-underline hover:underline"
+                  >
+                    info@woodinvillesportsclub.com
+                  </a>
                 </p>
                 <Link
                   href="/contact"

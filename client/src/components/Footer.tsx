@@ -1,13 +1,10 @@
 /*
  * 4B Design: Dark footer (#161310), 4-column grid
  * Real content from WSC website crawl
- * Added: Quick Links column with Court Reserve and Tier 1
+ * Added: Quick Links column for common site destinations
  */
 import { Link } from "wouter";
 import { useSessionCalendar } from "@/hooks/useSessionCalendar";
-
-const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689";
-const TIER1_URL = "https://www.tier1nw.com";
 
 export default function Footer() {
   const season = useSessionCalendar();
@@ -79,26 +76,6 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <a
-                href={COURT_RESERVE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-parchment/75 text-[13px] no-underline hover:text-parchment transition-colors duration-200"
-              >
-                Book a Court
-              </a>
-            </li>
-            <li>
-              <a
-                href={COURT_RESERVE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-parchment/75 text-[13px] no-underline hover:text-parchment transition-colors duration-200"
-              >
-                Book a Simulator
-              </a>
-            </li>
-            <li>
               <Link
                 href="/membership"
                 className="text-parchment/75 text-[13px] no-underline hover:text-parchment transition-colors duration-200"
@@ -132,14 +109,6 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                href="/golf-coaching"
-                className="text-parchment/75 text-[13px] no-underline hover:text-parchment transition-colors duration-200"
-              >
-                Book Golf Lessons
-              </Link>
-            </li>
-            <li>
-              <Link
                 href="/newsletter-signup"
                 className="text-parchment/75 text-[13px] no-underline hover:text-parchment transition-colors duration-200"
               >
@@ -154,16 +123,6 @@ export default function Footer() {
                 Blog & Resources
               </Link>
             </li>
-            <li>
-              <a
-                href={TIER1_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-parchment/75 text-[13px] no-underline hover:text-parchment transition-colors duration-200"
-            >
-              Tier 1 Performance NW
-            </a>
-          </li>
           </ul>
         </div>
 

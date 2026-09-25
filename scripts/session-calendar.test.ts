@@ -93,3 +93,16 @@ test("all published session ranges are exact, ordered, and non-overlapping", () 
     if (index > 0) assert.ok(calendarDay(sessions[index - 1].end)! < start);
   }
 });
+
+// Preserve the original Fall 1 campaign during its actual registration window.
+test("Fall 1 registration follows the published dates and rolls forward", () => {
+  assert.equal(seasonalState("2026-08-02").open, undefined);
+  for (const today of ["2026-08-03", "2026-08-24", "2026-08-30"]) {
+    const state = seasonalState(today);
+    assert.equal(state.title, "Fall 1 Registration Is Open");
+    assert.equal(state.ctaLabel, "Register for Fall 1");
+    assert.equal(state.external, true);
+  }
+  assert.equal(seasonalState("2026-08-31").title, "Fall 1 Is in Session");
+  assert.equal(seasonalState("2026-09-07").ctaLabel, "Register for Fall 2");
+});

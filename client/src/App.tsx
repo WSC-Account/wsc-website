@@ -21,7 +21,6 @@ const Summer = lazy(() => import("./pages/Summer"));
 const Membership = lazy(() => import("./pages/Membership"));
 const Sessions = lazy(() => import("./pages/Sessions"));
 const Events = lazy(() => import("./pages/Events"));
-const FoodTrucks = lazy(() => import("./pages/FoodTrucks"));
 const Careers = lazy(() => import("./pages/Careers"));
 const MemberCancellationFormPage = lazy(() => import("./pages/MemberCancellationFormPage"));
 const PersonalTraining = lazy(() => import("./pages/PersonalTraining"));
@@ -112,7 +111,7 @@ function Router() {
         <Route path="/sessions" component={Sessions} />
         <Route path="/events" component={Events} />
         <Route path="/events-1" component={Events} />
-        <Route path="/food-trucks" component={FoodTrucks} />
+        <Route path="/food-trucks">{() => <Redirect to="/events" />}</Route>
         <Route path="/careers" component={Careers} />
         <Route path="/member-request" component={MemberCancellationFormPage} />
         <Route path="/member-cancellation" component={MemberCancellationFormPage} />

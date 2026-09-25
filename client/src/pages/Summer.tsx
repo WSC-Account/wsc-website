@@ -626,7 +626,7 @@ export default function Summer() {
               {summer2026Headline(season.today)}
             </span>
             <span className="text-dark-bg/60 text-[13px]">
-              Tennis, Golf, and Adventure Club programs run June 29 - August 30, 2026
+              Tennis, Golf, and Adventure Club programs end August 30, 2026
             </span>
           </div>
           <a
@@ -1424,12 +1424,12 @@ export default function Summer() {
       {/* Final CTA */}
       <section className="bg-parchment px-6 lg:px-14 py-20 lg:py-24">
         <div className="max-w-[1440px] mx-auto text-center">
-          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Registration is Open</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">{summer2026Headline(season.today)}</p>
           <h2 className="text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
             Build your summer schedule.
           </h2>
           <p className="text-ink-mid text-[15px] leading-[1.75] max-w-[480px] mx-auto mb-3">
-            Summer registration is open for Tennis, Golf, and Adventure Club programs. Bundles can pair a half-day of Adventure Club with Golf Club or Core Tennis for a full-day multi-sport experience.
+            Explore Tennis, Golf, and Adventure Club programs. Bundles can pair a half-day of Adventure Club with Golf Club or Core Tennis for a full-day multi-sport experience.
           </p>
           <p className="text-ink-mid text-[14px] leading-[1.7] max-w-[520px] mx-auto mb-3">
             Sign-ups are available{" "}

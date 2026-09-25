@@ -283,7 +283,7 @@ export default function Golf() {
         </div>
       </section>
 
-      {/* Tier 1 Golf Academy */}
+      {/* WSC Golf Academy */}
       <section className="bg-dark-bg px-6 lg:px-14 py-24 lg:py-28 overflow-hidden">
         <div
           ref={academyRef}

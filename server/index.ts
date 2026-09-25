@@ -12,6 +12,7 @@ const canonicalRedirects: Record<string, string> = {
   "/driving-range": "/golf/driving-range",
   "/golf-driving-range": "/golf/driving-range",
   "/golf-tournaments": "/golf/tournaments",
+  "/food-trucks": "/events",
   "/passes": "/membership",
   "/privacy": "/policies#privacy",
   "/terms": "/policies#terms",
@@ -26,9 +27,15 @@ async function startServer() {
     res.setHeader("X-Content-Type-Options", "nosniff");
     res.setHeader("X-Frame-Options", "SAMEORIGIN");
     res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
-    res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+    res.setHeader(
+      "Permissions-Policy",
+      "camera=(), microphone=(), geolocation=()"
+    );
     if (process.env.NODE_ENV === "production") {
-      res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+      res.setHeader(
+        "Strict-Transport-Security",
+        "max-age=31536000; includeSubDomains"
+      );
     }
     next();
   });
@@ -45,14 +52,18 @@ async function startServer() {
     res.status(200).json({ ok: true });
   });
 
-  app.get(Object.keys(canonicalRedirects), (req, res) => {
-    const destination = canonicalRedirects[req.path];
-    const queryIndex = req.originalUrl.indexOf("?");
-    const query = queryIndex >= 0 ? req.originalUrl.slice(queryIndex) : "";
-    const [destinationPath, destinationHash = ""] = destination.split("#");
+  for (const [source, destination] of Object.entries(canonicalRedirects)) {
+    app.get(source, (req, res) => {
+      const queryIndex = req.originalUrl.indexOf("?");
+      const query = queryIndex >= 0 ? req.originalUrl.slice(queryIndex) : "";
+      const [destinationPath, destinationHash = ""] = destination.split("#");
 
-    res.redirect(301, `${destinationPath}${query}${destinationHash ? `#${destinationHash}` : ""}`);
-  });
+      res.redirect(
+        301,
+        `${destinationPath}${query}${destinationHash ? `#${destinationHash}` : ""}`
+      );
+    });
+  }
 
   app.all("/api/forms", (req, res) => {
     void handleFormSubmissionRequest(req, res);
@@ -74,7 +85,7 @@ async function startServer() {
 
         res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
       },
-    }),
+    })
   );
 
   app.get("*", (req, res) => {

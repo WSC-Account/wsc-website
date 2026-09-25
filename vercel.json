@@ -188,6 +188,11 @@
       "permanent": true
     },
     {
+      "source": "/food-trucks",
+      "destination": "/events",
+      "permanent": true
+    },
+    {
       "source": "/faqs",
       "destination": "/faq",
       "permanent": true

@@ -4,8 +4,11 @@
  */
 import { useState } from "react";
 import { Link } from "wouter";
-import PageHero from "@/components/PageHero";
-import StructuredData, { getBreadcrumbSchema, getServiceSchema } from "@/components/StructuredData";
+import UtilityPageHeader from "@/components/UtilityPageHeader";
+import StructuredData, {
+  getBreadcrumbSchema,
+  getServiceSchema,
+} from "@/components/StructuredData";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
@@ -167,7 +170,7 @@ function FAQSection() {
   const [openItems, setOpenItems] = useState<Set<string>>(new Set());
 
   const toggle = (id: string) => {
-    setOpenItems((prev) => {
+    setOpenItems(prev => {
       const next = new Set(prev);
       if (next.has(id)) next.delete(id);
       else next.add(id);
@@ -182,16 +185,22 @@ function FAQSection() {
         className={`max-w-[1440px] mx-auto transition-all duration-700 ease-out ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
       >
         <div className="mb-14 pb-8 border-b border-wsc-border">
-          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Frequently Asked Questions</p>
+          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">
+            Frequently Asked Questions
+          </p>
           <h2 className="text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15]">
-            Common questions,<br />clear answers.
+            Common questions,
+            <br />
+            clear answers.
           </h2>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-14">
-          {FAQ_ITEMS.map((cat) => (
+          {FAQ_ITEMS.map(cat => (
             <div key={cat.category}>
-              <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-6">{cat.category}</p>
+              <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-6">
+                {cat.category}
+              </p>
               <div className="space-y-0">
                 {cat.items.map((item, i) => {
                   const id = `${cat.category}-${i}`;
@@ -219,7 +228,11 @@ function FAQSection() {
                           stroke="currentColor"
                           strokeWidth={2}
                         >
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M19 9l-7 7-7-7"
+                          />
                         </svg>
                       </button>
                       <div
@@ -228,7 +241,9 @@ function FAQSection() {
                         aria-labelledby={questionId}
                         aria-hidden={!isOpen}
                         className={`overflow-hidden transition-all duration-300 ease-out ${
-                          isOpen ? "max-h-[400px] opacity-100 pb-4" : "max-h-0 opacity-0"
+                          isOpen
+                            ? "max-h-[400px] opacity-100 pb-4"
+                            : "max-h-0 opacity-0"
                         }`}
                       >
                         <p className="text-ink-mid text-[13px] leading-[1.72] pr-6">
@@ -259,32 +274,38 @@ export default function Membership() {
   return (
     <div className="min-h-screen">
       <SEOHead {...SEO.membership} />
-      <StructuredData schemas={[
-        getBreadcrumbSchema([
-          { name: "Home", url: "https://www.woodinvillesportsclub.com/" },
-          { name: "Membership", url: "https://www.woodinvillesportsclub.com/membership" },
-        ]),
-        getServiceSchema({
-          name: "Woodinville Sports Club Memberships",
-          description: SEO.membership.description,
-          url: "https://www.woodinvillesportsclub.com/membership",
-          serviceType: "Sports club membership and facility access",
-          image: HERO_IMG,
-          audience: "Individuals, couples, and families",
-        }),
-      ]} />
-      <PageHero
+      <StructuredData
+        schemas={[
+          getBreadcrumbSchema([
+            { name: "Home", url: "https://www.woodinvillesportsclub.com/" },
+            {
+              name: "Membership",
+              url: "https://www.woodinvillesportsclub.com/membership",
+            },
+          ]),
+          getServiceSchema({
+            name: "Woodinville Sports Club Memberships",
+            description: SEO.membership.description,
+            url: "https://www.woodinvillesportsclub.com/membership",
+            serviceType: "Sports club membership and facility access",
+            image: HERO_IMG,
+            audience: "Individuals, couples, and families",
+          }),
+        ]}
+      />
+      <UtilityPageHeader
         eyebrow="Membership"
         headline="Train Without Limits."
         subtitle="Strength training. Court sports. Golf. Recovery. All under one roof. Choose the membership that fits your goals."
-        image={HERO_IMG}
       />
 
       {/* Tiers */}
       <section id="membership-options" className="bg-parchment px-6 lg:px-14 py-24 lg:py-28 scroll-mt-[var(--site-header-height,130px)]">
         <div className="max-w-[1440px] mx-auto">
           <div className="mb-14 pb-8 border-b border-wsc-border">
-            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Membership Options</p>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">
+              Membership Options
+            </p>
             <h2 className="text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15]">
               Five tiers. One campus.
             </h2>
@@ -296,16 +317,27 @@ export default function Membership() {
                 key={i}
                 className="bg-parchment-mid p-8 lg:p-10 border-t-2 border-transparent hover:border-volt transition-colors duration-300"
               >
-                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3">{t.type}</p>
-                <h3 className="text-[20px] font-light tracking-[-0.01em] mb-1">{t.name}</h3>
+                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3">
+                  {t.type}
+                </p>
+                <h3 className="text-[20px] font-light tracking-[-0.01em] mb-1">
+                  {t.name}
+                </h3>
                 <div className="mb-2">
-                  <span className="text-volt-bright text-[28px] font-light">{t.price}</span>
-                  <span className="text-ink-light text-[13px] ml-1">{t.period}</span>
+                  <span className="text-volt-bright text-[28px] font-light">
+                    {t.price}
+                  </span>
+                  <span className="text-ink-light text-[13px] ml-1">
+                    {t.period}
+                  </span>
                 </div>
                 <p className="text-ink-mid text-[13px] mb-5">{t.who}</p>
                 <ul className="space-y-2 mb-6">
                   {t.features.map((f, fi) => (
-                    <li key={fi} className="text-ink-mid text-[13px] leading-[1.6] flex items-start gap-2">
+                    <li
+                      key={fi}
+                      className="text-ink-mid text-[13px] leading-[1.6] flex items-start gap-2"
+                    >
                       <span className="text-volt text-[10px] mt-1">—</span> {f}
                     </li>
                   ))}
@@ -324,7 +356,9 @@ export default function Membership() {
 
           <div className="mt-8 p-6 bg-parchment-mid border-l-2 border-volt">
             <p className="text-ink-mid text-[14px] leading-[1.7] mb-2">
-              <span className="text-ink font-normal">All Memberships:</span> Auto-renew until cancelled under the applicable cancellation policy.
+              <span className="text-ink font-normal">All Memberships:</span>{" "}
+              Auto-renew until cancelled under the applicable cancellation
+              policy.
             </p>
             <Link
               href="/member-request"
@@ -333,9 +367,12 @@ export default function Membership() {
               Manage or Cancel Membership
             </Link>
             <p className="text-ink-mid text-[14px] leading-[1.7] mb-2">
-              <span className="text-ink font-normal">Annual Passes:</span> Auto-renew each year.
+              <span className="text-ink font-normal">Annual Passes:</span>{" "}
+              Auto-renew each year.
             </p>
-            <p className="text-ink-light text-[13px]">WSC TAX ID# is 82-3755991</p>
+            <p className="text-ink-light text-[13px]">
+              WSC TAX ID# is 82-3755991
+            </p>
           </div>
         </div>
       </section>
@@ -344,9 +381,12 @@ export default function Membership() {
       <section className="bg-parchment-mid px-6 lg:px-14 py-16 lg:py-20">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[3px]">
           <div className="bg-parchment p-8">
-            <h3 className="text-[18px] font-light tracking-[-0.01em] mb-3">Membership Agreement</h3>
+            <h3 className="text-[18px] font-light tracking-[-0.01em] mb-3">
+              Membership Agreement
+            </h3>
             <p className="text-ink-mid text-[14px] leading-[1.72] mb-4">
-              Review the full membership agreement including terms, conditions, and cancellation policies.
+              Review the full membership agreement including terms, conditions,
+              and cancellation policies.
             </p>
             <Link
               href="/policies#membership"
@@ -356,9 +396,12 @@ export default function Membership() {
             </Link>
           </div>
           <div className="bg-parchment p-8">
-            <h3 className="text-[18px] font-light tracking-[-0.01em] mb-3">Membership Policies</h3>
+            <h3 className="text-[18px] font-light tracking-[-0.01em] mb-3">
+              Membership Policies
+            </h3>
             <p className="text-ink-mid text-[14px] leading-[1.72] mb-4">
-              Review our membership policies including guest policies, code of conduct, and facility rules.
+              Review our membership policies including guest policies, code of
+              conduct, and facility rules.
             </p>
             <Link
               href="/policies"
@@ -368,9 +411,12 @@ export default function Membership() {
             </Link>
           </div>
           <div className="bg-parchment p-8">
-            <h3 className="text-[18px] font-light tracking-[-0.01em] mb-3">Cancellation Request</h3>
+            <h3 className="text-[18px] font-light tracking-[-0.01em] mb-3">
+              Cancellation Request
+            </h3>
             <p className="text-ink-mid text-[14px] leading-[1.72] mb-4">
-              Submit a membership cancellation request so the WSC team can review your account and follow up.
+              Submit a membership cancellation request so the WSC team can
+              review your account and follow up.
             </p>
             <Link
               href="/member-request"
@@ -388,12 +434,15 @@ export default function Membership() {
       {/* CTA */}
       <section className="bg-dark-mid px-6 lg:px-14 py-20 lg:py-24">
         <div className="max-w-[1440px] mx-auto text-center">
-          <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Get Started</p>
+          <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">
+            Get Started
+          </p>
           <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
             Ready to join the campus?
           </h2>
           <p className="text-parchment/80 text-[15px] leading-[1.75] max-w-[480px] mx-auto mb-8">
-            Contact us to learn more about membership options or to schedule a tour of our facilities.
+            Contact us to learn more about membership options or to schedule a
+            tour of our facilities.
           </p>
           <div className="flex flex-wrap justify-center gap-5">
             <a

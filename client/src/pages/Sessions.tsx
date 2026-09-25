@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { CalendarDays, Clock, ExternalLink, RefreshCw, ShieldX } from "lucide-react";
-import PageHero from "@/components/PageHero";
+import UtilityPageHeader from "@/components/UtilityPageHeader";
 import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData";
 import SEOHead from "@/components/SEOHead";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -8,7 +8,6 @@ import { SEO } from "@/lib/seo-data";
 import { sessions, sessionStatus } from "@/lib/session-calendar";
 import { useSessionCalendar } from "@/hooks/useSessionCalendar";
 
-const HERO_IMG = "/images/wsc/campus-dome.webp";
 const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689";
 
 function getSessionValue(name: string, start: string) {
@@ -40,11 +39,10 @@ export default function Sessions() {
         { name: "Session Dates", url: "https://www.woodinvillesportsclub.com/sessions" },
       ])]} />
 
-      <PageHero
+      <UtilityPageHeader
         eyebrow="WSC Session Calendar"
         headline="Mark your calendar."
         subtitle="Current WSC programming session dates, session drop windows, auto-enroll timing, and blackout notes for tennis, golf, pickleball, fitness, camps, and summer programs."
-        image={HERO_IMG}
       />
 
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
@@ -63,7 +61,7 @@ export default function Sessions() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment-dark transition-colors duration-200"
             >
-              Open CourtReserve
+              {season.open ? season.ctaLabel : "Open CourtReserve"}
               <ExternalLink size={14} />
             </a>
           </div>

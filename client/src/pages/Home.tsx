@@ -5,9 +5,19 @@
  */
 import { lazy, Suspense, useState, type ReactNode } from "react";
 import { Link } from "wouter";
-import { Instagram, Calendar, Clock, MapPin, ChevronRight, Quote } from "lucide-react";
+import {
+  Instagram,
+  Calendar,
+  Clock,
+  MapPin,
+  ChevronRight,
+  Quote,
+} from "lucide-react";
 import ResponsiveImage from "@/components/ResponsiveImage";
-import StructuredData, { getLocalBusinessSchema, getWebSiteSchema } from "@/components/StructuredData";
+import StructuredData, {
+  getLocalBusinessSchema,
+  getWebSiteSchema,
+} from "@/components/StructuredData";
 import { useScrollReveal, useStaggerReveal } from "@/hooks/useScrollReveal";
 import { useFormProtection } from "@/hooks/useFormProtection";
 import { useDeferredMount } from "@/hooks/useDeferredMount";
@@ -33,13 +43,15 @@ const GALLERY_TENNIS = "/images/wsc/tennis-core-group.webp";
 const GALLERY_GOLF = "/images/wsc/campus-sunset.webp";
 const GALLERY_YOUTH = "/images/wsc/apl-training.webp";
 const GALLERY_AERIAL = "/images/wsc/golf-range-aerial.webp";
+const GOLF_SCENERY_IMG = "/images/wsc/golf-range-sunset.webp";
 
 /* Real facility photos */
 const SWINGLAB_IMG = "/images/wsc/swing-lab-simulators.webp";
 const TENNIS_LESSON_IMG = "/images/wsc/tennis-junior-backhand.webp";
 const FITNESS_TRAINING_IMG = "/images/wsc/apl-training.webp";
 const SUMMER_KIDS_IMG = "/images/wsc/summer-camp.webp";
-const COURT_RESERVE_SIGN_UP_URL = "https://app.courtreserve.com/Online/Portal/Index/6689";
+const COURT_RESERVE_SIGN_UP_URL =
+  "https://app.courtreserve.com/Online/Portal/Index/6689";
 
 type HeroCollageImage = {
   src: string;
@@ -135,8 +147,8 @@ const evergreenUpdates = [
   {
     icon: Clock,
     tag: "New Program",
-    title: "Tier 1 Golf Foundations (Ages 7-9)",
-    desc: "Junior golf pathways now include Foundations for ages 7-9, Adult Golf Clinics, private lessons, and Swing Lab simulator training.",
+    title: "WSC Golf Academy Junior Pathway",
+    desc: "Junior golfers can progress from play-based Intro to Golf into age-group Golf Club training and approval-only Tier 1 High Performance.",
     date: "Ongoing",
     time: "",
   },
@@ -172,9 +184,11 @@ const disciplines = [
     tag: "Tennis",
     name: "Tier 1 Tennis",
     desc: "World-class tennis academy for junior players bound for the collegiate and professional ranks. Junior tennis classes for ages 3 and up, with pathways for recreational and elite development.",
-    detail: "8 indoor courts and 1 outdoor court. UTR matchplay. Adult group classes and tournaments.",
+    detail:
+      "8 indoor courts and 1 outdoor court. UTR matchplay. Adult group classes and tournaments.",
     img: TENNIS_CARD_IMG,
-    imageAlt: "Junior Tier 1 tennis player holding a trophy on court at Woodinville Sports Club",
+    imageAlt:
+      "Junior Tier 1 tennis player holding a trophy on court at Woodinville Sports Club",
     imagePosition: "center 34%",
     href: "/tennis",
     stat: "8+1 Courts",
@@ -184,7 +198,8 @@ const disciplines = [
     tag: "Golf",
     name: "Tier 1 Golf Academy",
     desc: "Scenic driving range with more than 23 covered bays, free Toptracer technology, grass tees and a 2.5-acre short-game practice area. Tier 1 Golf Academy for youth and adults.",
-    detail: "4 Swing Lab simulators capturing 24 data points. Expert coaching for juniors and adults.",
+    detail:
+      "4 Swing Lab simulators capturing 24 data points. Expert coaching for juniors and adults.",
     img: GOLF_IMG,
     imageAlt: "Tier 1 Golf Academy facilities at Woodinville Sports Club",
     imagePosition: "center",
@@ -196,7 +211,8 @@ const disciplines = [
     tag: "Fitness",
     name: "Fitness Center",
     desc: "Clean, accessible fitness memberships with cardio equipment, free weights, power racks, functional training tools, sauna, locker rooms, and personal training.",
-    detail: "Personal training is available with world-class WSC instructors; coached performance programming lives on the Athletic Performance Lab page.",
+    detail:
+      "Personal training is available with world-class WSC instructors; coached performance programming lives on the Athletic Performance Lab page.",
     img: PERF_IMG,
     imageAlt: "Fitness Center facilities at Woodinville Sports Club",
     imagePosition: "center",
@@ -208,7 +224,8 @@ const disciplines = [
     tag: "Pickleball",
     name: "The Dome",
     desc: "Play the nation's fastest-growing sport in our iconic dome. Open play 7 days a week, private court rentals, and classes for all levels.",
-    detail: "Four major tournaments per year in partnership with Pickleball is Great (PIG).",
+    detail:
+      "Four major tournaments per year in partnership with Pickleball is Great (PIG).",
     img: PICKLE_IMG,
     imageAlt: "The Dome pickleball facilities at Woodinville Sports Club",
     imagePosition: "center",
@@ -252,34 +269,84 @@ const dayAtWSC = [
 
 const testimonials = [
   {
-    quote: "My kids started in Adventure Club and now they're in the tennis academy full time. This place became our second home. The coaches know our kids by name.",
+    quote:
+      "My kids started in Adventure Club and now they're in the tennis academy full time. This place became our second home. The coaches know our kids by name.",
     name: "Sarah M.",
     role: "Family All-Access Member since 2019",
   },
   {
-    quote: "I joined for the driving range. I stayed for the community. Saturday mornings here — hitting balls, grabbing coffee, running into neighbors — it's the best part of my week.",
+    quote:
+      "I joined for the driving range. I stayed for the community. Saturday mornings here — hitting balls, grabbing coffee, running into neighbors — it's the best part of my week.",
     name: "David L.",
     role: "Individual All-Access Member",
   },
   {
-    quote: "As a competitive junior player, the Tier 1 program pushed my game to a level I didn't think was possible. Coach Filipp and the team genuinely care about every athlete.",
+    quote:
+      "As a competitive junior player, the Tier 1 program pushed my game to a level I didn't think was possible. Coach Filipp and the team genuinely care about every athlete.",
     name: "Maya K.",
     role: "Tier 1 Tennis Academy, Age 16",
   },
 ];
 
 const galleryImages = [
-  { src: GALLERY_AERIAL, alt: "WSC campus aerial view", caption: "67 acres of world-class athletic facilities in the heart of Woodinville", span: "wide" as const },
-  { src: TENNIS_IMG, alt: "Adult tennis clinic at WSC", caption: "Tier 1 Tennis instruction across juniors and adults", span: "normal" as const },
-  { src: SWINGLAB_IMG, alt: "Swing Lab simulators", caption: "Swing Lab — 4 Uneekor simulators with 24 data points", span: "normal" as const },
-  { src: GALLERY_TENNIS, alt: "Junior tennis players training with WSC coaches", caption: "Tier 1 Tennis — training future champions", span: "normal" as const },
-  { src: GALLERY_YOUTH, alt: "Youth athletic training", caption: "APL youth strength and conditioning", span: "normal" as const },
-  { src: GALLERY_GOLF, alt: "Driving range at sunset", caption: "More than 23 covered bays with free Toptracer technology", span: "wide" as const },
-  { src: PICKLE_IMG, alt: "Pickleball dome", caption: "The Dome — open play 7 days a week", span: "normal" as const },
-  { src: FITNESS_TRAINING_IMG, alt: "Fitness training", caption: "Full-service gym and APL Training Center", span: "normal" as const },
+  {
+    src: GALLERY_AERIAL,
+    alt: "WSC campus aerial view",
+    caption:
+      "67 acres of world-class athletic facilities in the heart of Woodinville",
+    span: "wide" as const,
+  },
+  {
+    src: TENNIS_IMG,
+    alt: "Adult tennis clinic at WSC",
+    caption: "Tier 1 Tennis instruction across juniors and adults",
+    span: "normal" as const,
+  },
+  {
+    src: SWINGLAB_IMG,
+    alt: "Swing Lab simulators",
+    caption: "Swing Lab — 4 Uneekor simulators with 24 data points",
+    span: "normal" as const,
+  },
+  {
+    src: GALLERY_TENNIS,
+    alt: "Junior tennis players training with WSC coaches",
+    caption: "Tier 1 Tennis — training future champions",
+    span: "normal" as const,
+  },
+  {
+    src: GALLERY_YOUTH,
+    alt: "Youth athletic training",
+    caption: "APL youth strength and conditioning",
+    span: "normal" as const,
+  },
+  {
+    src: GALLERY_GOLF,
+    alt: "Driving range at sunset",
+    caption: "More than 23 covered bays with free Toptracer technology",
+    span: "wide" as const,
+  },
+  {
+    src: PICKLE_IMG,
+    alt: "Pickleball dome",
+    caption: "The Dome — open play 7 days a week",
+    span: "normal" as const,
+  },
+  {
+    src: FITNESS_TRAINING_IMG,
+    alt: "Fitness training",
+    caption: "Full-service gym and APL Training Center",
+    span: "normal" as const,
+  },
 ];
 
-function DeferredHomeSection({ children, delayMs = 600 }: { children: ReactNode; delayMs?: number }) {
+function DeferredHomeSection({
+  children,
+  delayMs = 600,
+}: {
+  children: ReactNode;
+  delayMs?: number;
+}) {
   const ready = useDeferredMount(delayMs);
   if (!ready) return null;
 
@@ -304,20 +371,39 @@ export default function Home() {
   const [activeDayStep, setActiveDayStep] = useState(0);
 
   // Scroll-reveal hooks
-  const { containerRef: disciplineRef, visibleItems: disciplineVisible } = useStaggerReveal(4, { staggerDelay: 140, threshold: 0.08 });
-  const { ref: summerRef, isVisible: summerVisible } = useScrollReveal({ threshold: 0.15 });
-  const { ref: swingLabRef, isVisible: swingLabVisible } = useScrollReveal({ threshold: 0.12 });
-  const { ref: tier1GolfRef, isVisible: tier1GolfVisible } = useScrollReveal({ threshold: 0.12 });
-  const { ref: dayRef, isVisible: dayVisible } = useScrollReveal({ threshold: 0.08 });
-  const { containerRef: testimonialRef, visibleItems: testimonialVisible } = useStaggerReveal(3, { staggerDelay: 160, threshold: 0.1 });
-  const { ref: membershipRef, isVisible: membershipVisible } = useScrollReveal({ threshold: 0.1 });
+  const { containerRef: disciplineRef, visibleItems: disciplineVisible } =
+    useStaggerReveal(4, { staggerDelay: 140, threshold: 0.08 });
+  const { ref: summerRef, isVisible: summerVisible } = useScrollReveal({
+    threshold: 0.15,
+  });
+  const { ref: swingLabRef, isVisible: swingLabVisible } = useScrollReveal({
+    threshold: 0.12,
+  });
+  const { ref: tier1GolfRef, isVisible: tier1GolfVisible } = useScrollReveal({
+    threshold: 0.12,
+  });
+  const { ref: dayRef, isVisible: dayVisible } = useScrollReveal({
+    threshold: 0.08,
+  });
+  const { containerRef: testimonialRef, visibleItems: testimonialVisible } =
+    useStaggerReveal(3, { staggerDelay: 160, threshold: 0.1 });
+  const { ref: membershipRef, isVisible: membershipVisible } = useScrollReveal({
+    threshold: 0.1,
+  });
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [newsletterStatus, setNewsletterStatus] = useState("");
-  const [newsletterStatusType, setNewsletterStatusType] = useState<"success" | "error">("success");
+  const [newsletterStatusType, setNewsletterStatusType] = useState<
+    "success" | "error"
+  >("success");
   const [isNewsletterSubmitting, setIsNewsletterSubmitting] = useState(false);
-  const { honeypotProps: newsletterHoneypotProps, validateSubmission: validateNewsletterSubmission } = useFormProtection(1);
+  const {
+    honeypotProps: newsletterHoneypotProps,
+    validateSubmission: validateNewsletterSubmission,
+  } = useFormProtection(1);
 
-  const handleNewsletterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleNewsletterSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault();
     const check = validateNewsletterSubmission();
     if (!check.valid) {
@@ -354,7 +440,9 @@ export default function Home() {
       setNewsletterEmail("");
       notifySuccess("Thanks, you're on the WSC newsletter list.");
     } catch {
-      setNewsletterStatus("We could not subscribe you right now. Please try again.");
+      setNewsletterStatus(
+        "We could not subscribe you right now. Please try again."
+      );
       setNewsletterStatusType("error");
       notifyError("We could not subscribe you right now. Please try again.");
     } finally {
@@ -365,7 +453,9 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <SEOHead {...SEO.home} />
-      <StructuredData schemas={[getLocalBusinessSchema(), getWebSiteSchema()]} />
+      <StructuredData
+        schemas={[getLocalBusinessSchema(), getWebSiteSchema()]}
+      />
 
       {/* ── MOBILE HERO ── */}
       <section className="bg-dark-bg pt-[var(--site-header-height,130px)] lg:hidden">
@@ -383,11 +473,12 @@ export default function Home() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[rgba(22,19,16,0.9)] via-[rgba(22,19,16,0.48)] to-[rgba(22,19,16,0.16)]" />
           <div className="relative z-10">
-            <h2 className="mb-4 text-[36px] font-light leading-[1.08] tracking-[-0.02em] text-parchment">
+            <h1 className="mb-4 text-[36px] font-light leading-[1.08] tracking-[-0.02em] text-parchment">
               Play more. Train better.
-            </h2>
+            </h1>
             <p className="max-w-[320px] text-[15px] leading-[1.62] text-parchment/75">
-              Courts, camps, programs, and memberships across one Woodinville campus.
+              Courts, camps, programs, and memberships across one Woodinville
+              campus.
             </p>
           </div>
         </div>
@@ -441,7 +532,7 @@ export default function Home() {
         <div className="bg-dark-bg px-4 py-5">
           <div className="bg-parchment p-5 text-ink">
             <p className="mb-2 text-[10px] uppercase tracking-[0.18em] text-volt">
-              This Week at WSC
+              Now at WSC
             </p>
             <h2 className="mb-2 text-[20px] font-light leading-[1.2] tracking-[-0.01em]">
               {season.title}
@@ -449,12 +540,14 @@ export default function Home() {
             <p className="mb-4 text-[13px] leading-[1.58] text-ink-mid">
               {season.description}
             </p>
-            <Link
-              href="/sessions"
+            <a
+              href={season.ctaHref}
+              target={season.external ? "_blank" : undefined}
+              rel={season.external ? "noopener noreferrer" : undefined}
               className="inline-flex min-h-10 items-center justify-center bg-volt-bright px-4 text-[10px] uppercase tracking-[0.15em] text-dark-bg no-underline transition-colors duration-200 hover:bg-parchment-mid"
             >
-              View Session Calendar
-            </Link>
+              {season.ctaLabel}
+            </a>
           </div>
         </div>
 
@@ -486,11 +579,18 @@ export default function Home() {
           aria-hidden="true"
         >
           {heroCollageImages.map((tile, index) => (
-            <div key={tile.src} className={`relative overflow-hidden ${tile.className}`}>
+            <div
+              key={tile.src}
+              className={`relative overflow-hidden ${tile.className}`}
+            >
               <ResponsiveImage
                 src={tile.src}
                 alt={tile.alt}
-                sizes={index === 0 ? "(min-width: 1024px) 34vw, 100vw" : "(min-width: 1024px) 25vw, 50vw"}
+                sizes={
+                  index === 0
+                    ? "(min-width: 1024px) 34vw, 100vw"
+                    : "(min-width: 1024px) 25vw, 50vw"
+                }
                 pictureClassName="block h-full w-full"
                 loading={index === 0 ? "eager" : "lazy"}
                 fetchPriority={index === 0 ? "high" : "auto"}
@@ -511,14 +611,21 @@ export default function Home() {
               Woodinville, Washington — Pacific Northwest
             </p>
             <h1 className="text-parchment text-[clamp(40px,5.2vw,76px)] font-light leading-[1.06] tracking-[-0.025em] mb-7">
-              Level Up Your<br className="hidden lg:block" />
-              {" "}Game at WSC.
+              Level Up Your
+              <br className="hidden lg:block" /> Game at WSC.
             </h1>
             <p className="text-parchment/75 text-[16px] leading-[1.72] max-w-[440px] mb-5">
-              The definitive destination in the Pacific Northwest for athletes and families seeking unparalleled sports training, holistic development, and a thriving community.
+              The definitive destination in the Pacific Northwest for athletes
+              and families seeking unparalleled sports training, holistic
+              development, and a thriving community.
             </p>
             <p className="text-parchment/80 text-[13px] leading-[1.65] max-w-[440px] mb-8">
-              Home to <strong className="text-parchment/80 font-normal">Tier 1 Sports</strong> — one of the nation's leading developmental programs in tennis, golf, and athletic performance.
+              Home to{" "}
+              <strong className="text-parchment/80 font-normal">
+                Tier 1 Sports
+              </strong>{" "}
+              — one of the nation's leading developmental programs in tennis,
+              golf, and athletic performance.
             </p>
             <div className="flex flex-wrap gap-5 items-center">
               <Link
@@ -551,7 +658,9 @@ export default function Home() {
                 <div
                   key={i}
                   className={`flex justify-between gap-5 items-baseline py-5 sm:py-6 ${
-                    i < metrics.length - 1 ? "border-b border-parchment/[0.08]" : ""
+                    i < metrics.length - 1
+                      ? "border-b border-parchment/[0.08]"
+                      : ""
                   }`}
                 >
                   <span className="text-parchment/85 text-[12px] tracking-[0.12em] uppercase">
@@ -574,16 +683,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── THIS WEEK AT WSC ── */}
+      {/* ── NOW AT WSC ── */}
       <section className="hidden bg-dark-bg border-t border-parchment/[0.08] px-6 py-14 lg:block lg:px-14 lg:py-16">
         <div className="max-w-[1440px] mx-auto">
           <div className="flex items-center gap-3 mb-8">
             <div className="w-2 h-2 rounded-full bg-volt-bright animate-pulse" />
             <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase">
-              This Week at WSC
+              Now at WSC
             </p>
           </div>
-          <h2 className="sr-only">This Week at WSC</h2>
+          <h2 className="sr-only">Now at WSC</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-[1px] bg-parchment/[0.06]">
             {thisWeekItems.map((item, i) => (
               <div
@@ -603,11 +712,12 @@ export default function Home() {
                   {item.desc}
                 </p>
                 <div className="text-parchment/70 text-[11px] tracking-[0.08em] uppercase">
-                  {item.date}{item.time && ` · ${item.time}`}
+                  {item.date}
+                  {item.time && ` · ${item.time}`}
                 </div>
                 {item.actions && (
                   <div className="flex flex-wrap gap-2 pt-5 mt-auto">
-                    {item.actions.map((action) =>
+                    {item.actions.map(action =>
                       action.external ? (
                         <a
                           key={action.label}
@@ -628,7 +738,7 @@ export default function Home() {
                           {action.label}
                           <ChevronRight size={12} />
                         </Link>
-                      ),
+                      )
                     )}
                   </div>
                 )}
@@ -649,11 +759,12 @@ export default function Home() {
       {/* ── FULL-WIDTH VISUAL BREAK — Campus ── */}
       <DeferredHomeSection>
         <FullWidthImage
-          src={GALLERY_AERIAL}
-          alt="WSC campus from above"
+          src={GOLF_SCENERY_IMG}
+          alt="Sunset over the golf driving range at Woodinville Sports Club"
           caption="67 acres of athletic excellence in the Pacific Northwest."
           subcaption="Woodinville, Washington"
           height="tall"
+          imagePosition="center 58%"
         />
       </DeferredHomeSection>
 
@@ -661,32 +772,50 @@ export default function Home() {
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-32">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20 items-start">
           <div>
-            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">The Club</p>
+            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">
+              The Club
+            </p>
             <h2 className="text-[clamp(28px,3vw,44px)] font-light leading-[1.12] tracking-[-0.02em]">
-              Elevate Your Game.<br />Enrich Your Life.
+              Elevate Your Game.
+              <br />
+              Enrich Your Life.
             </h2>
           </div>
           <div>
             <p className="text-ink-mid text-[16px] leading-[1.82] mb-9">
-              Helping every athlete grow their game, their community, and their potential. For over four decades, Woodinville Sports Club has been the heart of athletic pursuit in the Pacific Northwest, fostering a legacy of excellence that continues to shape the future of sports and fitness in our region.
+              Helping every athlete grow their game, their community, and their
+              potential. For over four decades, Woodinville Sports Club has been
+              the heart of athletic pursuit in the Pacific Northwest, fostering
+              a legacy of excellence that continues to shape the future of
+              sports and fitness in our region.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-wsc-border">
               <div>
-                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-2">Memberships</p>
+                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-2">
+                  Memberships
+                </p>
                 <p className="text-ink-mid text-[14px] leading-[1.72]">
-                  Annual and monthly membership options for court booking, class registration, golf, and fitness.
+                  Annual and monthly membership options for court booking, class
+                  registration, golf, and fitness.
                 </p>
               </div>
               <div>
-                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-2">Training</p>
+                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-2">
+                  Training
+                </p>
                 <p className="text-ink-mid text-[14px] leading-[1.72]">
-                  Private and group training in tennis, fitness, and golf from expert coaches for athletes of all ages and levels.
+                  Private and group training in tennis, fitness, and golf from
+                  expert coaches for athletes of all ages and levels.
                 </p>
               </div>
               <div>
-                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-2">Facilities</p>
+                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-2">
+                  Facilities
+                </p>
                 <p className="text-ink-mid text-[14px] leading-[1.72]">
-                  Eight indoor tennis courts, one outdoor tennis court, pickleball courts, comprehensive fitness facilities, and golf driving range on a scenic historic property.
+                  Eight indoor tennis courts, one outdoor tennis court,
+                  pickleball courts, comprehensive fitness facilities, and golf
+                  driving range on a scenic historic property.
                 </p>
               </div>
             </div>
@@ -695,13 +824,20 @@ export default function Home() {
       </section>
 
       {/* ── DISCIPLINES — Interactive Cards ── */}
-      <section id="home-programs" className="scroll-mt-[var(--site-header-height,130px)] bg-parchment-mid px-6 py-24 lg:px-14 lg:py-28">
+      <section
+        id="home-programs"
+        className="scroll-mt-[var(--site-header-height,130px)] bg-parchment-mid px-6 py-24 lg:px-14 lg:py-28"
+      >
         <div className="max-w-[1440px] mx-auto">
           <div className="flex flex-col lg:flex-row justify-between lg:items-end mb-14 pb-8 border-b border-wsc-border">
             <div>
-              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Campus Programs</p>
+              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">
+                Campus Programs
+              </p>
               <h2 className="text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15]">
-                World-class facilities.<br />Expert coaching.
+                World-class facilities.
+                <br />
+                Expert coaching.
               </h2>
             </div>
             <Link
@@ -713,7 +849,10 @@ export default function Home() {
           </div>
 
           {/* 2-column layout for bigger cards */}
-          <div ref={disciplineRef} className="grid grid-cols-1 md:grid-cols-2 gap-[3px]">
+          <div
+            ref={disciplineRef}
+            className="grid grid-cols-1 md:grid-cols-2 gap-[3px]"
+          >
             {disciplines.map((d, i) => (
               <div
                 key={d.num}
@@ -754,15 +893,23 @@ export default function Home() {
                   <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-2.5">
                     {d.num} — {d.tag}
                   </p>
-                  <h3 className="text-[22px] font-light tracking-[-0.01em] mb-3">{d.name}</h3>
-                  <p className="text-ink-mid text-[14px] leading-[1.72] mb-2">{d.desc}</p>
+                  <h3 className="text-[22px] font-light tracking-[-0.01em] mb-3">
+                    {d.name}
+                  </h3>
+                  <p className="text-ink-mid text-[14px] leading-[1.72] mb-2">
+                    {d.desc}
+                  </p>
                   {/* Expanded detail on hover */}
                   <div
                     className={`overflow-hidden transition-all duration-500 ease-out ${
-                      hoveredCard === i ? "max-h-[80px] opacity-100 mb-5" : "max-h-0 opacity-0 mb-0"
+                      hoveredCard === i
+                        ? "max-h-[80px] opacity-100 mb-5"
+                        : "max-h-0 opacity-0 mb-0"
                     }`}
                   >
-                    <p className="text-ink text-[13px] leading-[1.65] pt-2">{d.detail}</p>
+                    <p className="text-ink text-[13px] leading-[1.65] pt-2">
+                      {d.detail}
+                    </p>
                   </div>
                   <Link
                     href={d.href}
@@ -785,14 +932,20 @@ export default function Home() {
           {season.showSummer2026 && <div
             ref={summerRef}
             className={`mt-[3px] bg-parchment p-8 lg:p-12 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 transition-all duration-700 ease-out ${
-              summerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              summerVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-6"
             }`}
           >
             <div className="max-w-[600px]">
               <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-2.5">05 — Summer Training</p>
               <h3 className="text-[22px] font-light tracking-[-0.01em] mb-3">{summer2026Headline(season.today)}</h3>
               <p className="text-ink-mid text-[14px] leading-[1.72]">
-                Our year-round Tennis and Golf Academy programs continue throughout the summer with the same amazing coaches our kids know and love. Plus Adventure Club, a multi-sport offering where kids learn about athletes from around the world. Ages 3–18, June 29 – August 30.
+                Our year-round Tennis and Golf Academy programs continue
+                throughout the summer with the same amazing coaches our kids
+                know and love. Plus Adventure Club, a multi-sport offering where
+                kids learn about athletes from around the world. Ages 3–18, June
+                29 – August 30.
               </p>
             </div>
             <Link
@@ -824,15 +977,23 @@ export default function Home() {
       {/* ── YOUR DAY AT WSC ── */}
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div ref={dayRef} className="max-w-[1440px] mx-auto">
-          <div className={`grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-12 lg:gap-20 transition-all duration-800 ease-out ${dayVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+          <div
+            className={`grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-12 lg:gap-20 transition-all duration-800 ease-out ${dayVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+          >
             {/* Left: intro */}
             <div className="lg:sticky lg:top-32 lg:self-start">
-              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Experience</p>
+              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">
+                Experience
+              </p>
               <h2 className="text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15] mb-5">
-                Your Saturday<br />at WSC.
+                Your Saturday
+                <br />
+                at WSC.
               </h2>
               <p className="text-ink-mid text-[15px] leading-[1.75] mb-8">
-                One campus. Three sports. A full morning of training for the whole family — and you never leave the property. Here's what a typical Saturday looks like.
+                One campus. Three sports. A full morning of training for the
+                whole family — and you never leave the property. Here's what a
+                typical Saturday looks like.
               </p>
               <a
                 href="https://app.courtreserve.com/Online/Portal/Index/6689"
@@ -893,7 +1054,9 @@ export default function Home() {
                         <span
                           id={`day-at-wsc-step-${i}`}
                           className={`overflow-hidden transition-all duration-500 ease-out ${
-                            activeDayStep === i ? "max-h-[100px] opacity-100" : "max-h-0 opacity-0"
+                            activeDayStep === i
+                              ? "max-h-[100px] opacity-100"
+                              : "max-h-0 opacity-0"
                           }`}
                         >
                           <span className="block text-ink-mid text-[14px] leading-[1.72] mb-2">
@@ -944,10 +1107,16 @@ export default function Home() {
                 />
               </div>
               <div className="p-8">
-                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3">Now Open</p>
-                <h3 className="text-[22px] font-light tracking-[-0.01em] mb-3">Swing Lab Golf Simulators</h3>
+                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3">
+                  Now Open
+                </p>
+                <h3 className="text-[22px] font-light tracking-[-0.01em] mb-3">
+                  Swing Lab Golf Simulators
+                </h3>
                 <p className="text-ink-mid text-[14px] leading-[1.72] mb-5">
-                  Four professional-grade Uneekor simulators capturing 24 data points in real time. Over 2,000 courses. Train with the same precision technology used by tour professionals.
+                  Four professional-grade Uneekor simulators capturing 24 data
+                  points in real time. Over 2,000 courses. Train with the same
+                  precision technology used by tour professionals.
                 </p>
                 <Link
                   href="/golf"
@@ -959,7 +1128,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Tier 1 Golf Teaser */}
+            {/* WSC Golf Academy Teaser */}
             <div
               ref={tier1GolfRef}
               className={`bg-parchment overflow-hidden group transition-all duration-700 ease-out delay-150 ${tier1GolfVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
@@ -973,10 +1142,16 @@ export default function Home() {
                 />
               </div>
               <div className="p-8">
-                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3">Tier 1 Golf Academy</p>
-                <h3 className="text-[22px] font-light tracking-[-0.01em] mb-3">Junior & Adult Golf Programs</h3>
+                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3">
+                  WSC Golf Academy
+                </p>
+                <h3 className="text-[22px] font-light tracking-[-0.01em] mb-3">
+                  A Clear Junior Golf Pathway
+                </h3>
                 <p className="text-ink-mid text-[14px] leading-[1.72] mb-5">
-                  Classes for all levels, from first swing to elite golfers. Junior Academy for ages 7–18. Led by WGTF Master Certified Coach, Daniel Jarvie. Full-time youth academy launching in 2026.
+                  Play-based Intro to Golf leads into age-group Golf Club
+                  training and approval-only Tier 1 High Performance for
+                  dedicated competitive athletes.
                 </p>
                 <div className="flex flex-wrap gap-4 items-center">
                   <a
@@ -1018,21 +1193,31 @@ export default function Home() {
       <section className="bg-dark-bg px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto">
           <div className="mb-14">
-            <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Community</p>
+            <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">
+              Community
+            </p>
             <h2 className="text-parchment text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15]">
               Why they stay.
             </h2>
           </div>
 
-          <div ref={testimonialRef} className="grid grid-cols-1 md:grid-cols-3 gap-[1px] bg-parchment/[0.06]">
+          <div
+            ref={testimonialRef}
+            className="grid grid-cols-1 md:grid-cols-3 gap-[1px] bg-parchment/[0.06]"
+          >
             {testimonials.map((t, i) => (
-              <div key={i} className={`bg-dark-bg p-8 lg:p-10 group transition-all duration-700 ease-out ${testimonialVisible[i] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+              <div
+                key={i}
+                className={`bg-dark-bg p-8 lg:p-10 group transition-all duration-700 ease-out ${testimonialVisible[i] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              >
                 <Quote size={20} className="text-volt-bright/40 mb-6" />
                 <p className="text-parchment/80 text-[15px] leading-[1.75] mb-8 font-light italic">
                   "{t.quote}"
                 </p>
                 <div className="border-t border-parchment/[0.08] pt-5">
-                  <p className="text-parchment text-[14px] font-light mb-1">{t.name}</p>
+                  <p className="text-parchment text-[14px] font-light mb-1">
+                    {t.name}
+                  </p>
                   <p className="text-parchment/75 text-[11px] tracking-[0.1em] uppercase">
                     {t.role}
                   </p>
@@ -1056,17 +1241,23 @@ export default function Home() {
 
       {/* ── MEMBERSHIP — Experience-First ── */}
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
-        <div ref={membershipRef} className={`max-w-[1440px] mx-auto transition-all duration-800 ease-out ${membershipVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+        <div
+          ref={membershipRef}
+          className={`max-w-[1440px] mx-auto transition-all duration-800 ease-out ${membershipVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+        >
           {/* Aspirational lead */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-end mb-6">
             <div>
-              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Membership</p>
+              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">
+                Membership
+              </p>
               <h2 className="text-[clamp(26px,2.6vw,38px)] font-light tracking-[-0.02em] leading-[1.15]">
                 Train Without Limits.
               </h2>
             </div>
             <p className="text-ink-mid text-[15px] leading-[1.75]">
-              Strength training. Court sports. Golf. Recovery. All under one roof. Choose the membership that fits your goals.
+              Strength training. Court sports. Golf. Recovery. All under one
+              roof. Choose the membership that fits your goals.
             </p>
           </div>
 
@@ -1074,14 +1265,30 @@ export default function Home() {
           <div className="bg-parchment-mid p-8 lg:p-10 mb-10">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 lg:gap-8">
               {[
-                { label: "Book Courts", desc: "Reserve tennis, pickleball, and simulator time online — anytime, from anywhere." },
-                { label: "Train Daily", desc: "Full gym access, APL Training Center, group S&C classes, and personal training." },
-                { label: "Play Year-Round", desc: "Indoor courts and covered bays mean weather never cancels your plans." },
-                { label: "Belong", desc: "Tournaments, social events, and a community of athletes who push each other." },
+                {
+                  label: "Book Courts",
+                  desc: "Reserve tennis, pickleball, and simulator time online — anytime, from anywhere.",
+                },
+                {
+                  label: "Train Daily",
+                  desc: "Full gym access, APL Training Center, group S&C classes, and personal training.",
+                },
+                {
+                  label: "Play Year-Round",
+                  desc: "Indoor courts and covered bays mean weather never cancels your plans.",
+                },
+                {
+                  label: "Belong",
+                  desc: "Tournaments, social events, and a community of athletes who push each other.",
+                },
               ].map((item, i) => (
                 <div key={i}>
-                  <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-2">{item.label}</p>
-                  <p className="text-ink-mid text-[13px] leading-[1.65]">{item.desc}</p>
+                  <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-2">
+                    {item.label}
+                  </p>
+                  <p className="text-ink-mid text-[13px] leading-[1.65]">
+                    {item.desc}
+                  </p>
                 </div>
               ))}
             </div>
@@ -1113,10 +1320,18 @@ export default function Home() {
                 key={i}
                 className="bg-parchment-mid p-8 lg:p-10 border-t-2 border-transparent hover:border-volt transition-colors duration-300"
               >
-                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3.5">{m.type}</p>
-                <h3 className="text-[20px] font-light tracking-[-0.01em] mb-1">{m.name}</h3>
-                <p className="text-volt-bright text-[18px] font-light mb-4">{m.price}</p>
-                <p className="text-ink-mid text-[14px] leading-[1.7] mb-6">{m.desc}</p>
+                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3.5">
+                  {m.type}
+                </p>
+                <h3 className="text-[20px] font-light tracking-[-0.01em] mb-1">
+                  {m.name}
+                </h3>
+                <p className="text-volt-bright text-[18px] font-light mb-4">
+                  {m.price}
+                </p>
+                <p className="text-ink-mid text-[14px] leading-[1.7] mb-6">
+                  {m.desc}
+                </p>
                 <Link
                   href="/membership"
                   className="text-ink text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt pb-[3px]"
@@ -1143,23 +1358,31 @@ export default function Home() {
       {/* ── NEWSLETTER SIGNUP ── */}
       <section className="bg-dark-mid px-6 lg:px-14 py-20 lg:py-28">
         <div className="max-w-[640px] mx-auto text-center">
-          <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Stay Connected</p>
+          <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">
+            Stay Connected
+          </p>
           <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light tracking-[-0.02em] leading-[1.15] mb-4">
             Get the WSC Newsletter.
           </h2>
           <p className="text-parchment/75 text-[15px] leading-[1.75] mb-8">
-            Weekly schedules, open play times, registration deadlines, and member-only updates — delivered to your inbox every Monday.
+            Weekly schedules, open play times, registration deadlines, and
+            member-only updates — delivered to your inbox every Monday.
           </p>
-          <form onSubmit={handleNewsletterSubmit} data-form-name="Newsletter Signup">
+          <form
+            onSubmit={handleNewsletterSubmit}
+            data-form-name="Newsletter Signup"
+          >
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <label htmlFor="newsletter-email" className="sr-only">Email address</label>
+              <label htmlFor="newsletter-email" className="sr-only">
+                Email address
+              </label>
               <input
                 id="newsletter-email"
                 name="email"
                 type="email"
                 required
                 value={newsletterEmail}
-                onChange={(e) => setNewsletterEmail(e.target.value)}
+                onChange={e => setNewsletterEmail(e.target.value)}
                 placeholder="Your email address"
                 aria-label="Email address for newsletter subscription"
                 disabled={isNewsletterSubmitting}
@@ -1184,7 +1407,9 @@ export default function Home() {
                 aria-live="polite"
                 aria-atomic="true"
                 className={`mt-4 text-[13px] leading-[1.6] ${
-                  newsletterStatusType === "error" ? "text-red-200" : "text-parchment"
+                  newsletterStatusType === "error"
+                    ? "text-red-200"
+                    : "text-parchment"
                 }`}
               >
                 {newsletterStatus}
@@ -1192,7 +1417,13 @@ export default function Home() {
             ) : null}
             <p className="text-parchment/75 text-[11px] leading-[1.6] mt-4">
               Unsubscribe at any time. See our{" "}
-              <Link href="/policies#privacy" className="text-parchment/70 underline hover:text-parchment transition-colors">Privacy Policy</Link>.
+              <Link
+                href="/policies#privacy"
+                className="text-parchment/70 underline hover:text-parchment transition-colors"
+              >
+                Privacy Policy
+              </Link>
+              .
             </p>
           </form>
         </div>
@@ -1204,7 +1435,9 @@ export default function Home() {
           <div className="max-w-[1440px] mx-auto">
             <div className="flex flex-col gap-5 mb-10 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-3">Follow Us</p>
+                <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-3">
+                  Follow Us
+                </p>
                 <h2 className="text-[clamp(22px,2.4vw,32px)] font-light tracking-[-0.02em] leading-[1.15]">
                   @woodinvillesportsclub
                 </h2>
