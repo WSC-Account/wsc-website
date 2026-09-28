@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import DeferredAppServices from "./components/DeferredAppServices";
 import MarketingAttribution from "./components/MarketingAttribution";
 
+const AdultTennis = lazy(() => import("./pages/AdultTennis"));
 const Tennis = lazy(() => import("./pages/Tennis"));
 const SummerTennis = lazy(() => import("./pages/SummerTennis"));
 const Golf = lazy(() => import("./pages/Golf"));
@@ -97,6 +98,7 @@ function Router() {
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/tennis" component={Tennis} />
+        <Route path="/tennis/adult" component={AdultTennis} />
         <Route path="/tennis/summer-tennis" component={SummerTennis} />
         <Route path="/golf/driving-range" component={DrivingRange} />
         <Route path="/golf/tournaments" component={GolfTournaments} />

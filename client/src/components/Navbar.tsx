@@ -28,8 +28,8 @@ const navLinks = [
     href: "/tennis",
     label: "Tennis",
     children: [
+      { href: "/tennis/adult", label: "Adult Tennis" },
       { href: "/tennis#junior-tennis", label: "Junior Tennis" },
-      { href: "/tennis#adult-tennis", label: "Adult Tennis" },
     ],
   },
   {

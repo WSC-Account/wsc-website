@@ -15,6 +15,7 @@ import StructuredData, { getBreadcrumbSchema, getServiceSchema } from "@/compone
 import { useScrollReveal, useStaggerReveal } from "@/hooks/useScrollReveal";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
+import { adultClasses, ADULT_CLASS_DETAILS } from "@/lib/adult-tennis";
 
 const TENNIS_COURTS_IMG = "/images/wsc/tennis-courts.webp";
 const TENNIS_PLAYER_IMG = "/images/wsc/tennis-player.webp";
@@ -72,39 +73,6 @@ const corePathway = [
     name: "Yellow Ball",
     ages: "Ages 12+",
     color: "#facc15",
-  },
-];
-
-const adultClasses = [
-  {
-    name: "Intro to Tennis",
-    level: "Beginner",
-    desc: "For players with little to no tennis experience. Covers the five basic strokes, grips, and footwork.",
-  },
-  {
-    name: "Co-ed Doubles Strategy Clinic",
-    level: "NTRP 2.5-3.0",
-    desc: "Net play, positioning, shot selection, movement patterns, communication, and match-play readiness.",
-  },
-  {
-    name: "Shot Spotlight",
-    level: "UTR 1.0-3.5",
-    desc: "A weekly deep dive into one featured shot, focused on form, execution, and repetition.",
-  },
-  {
-    name: "Patterns & Point Play",
-    level: "NTRP 2.5 advanced-3.5",
-    desc: "Fast-paced rallying, player-fed points, consistency work, and competitive pattern training.",
-  },
-  {
-    name: "Technique & Live Ball",
-    level: "NTRP 2.5 advanced-3.5",
-    desc: "Coach-fed technical instruction followed by champion/challenger style live-ball play.",
-  },
-  {
-    name: "Small Group Intensives",
-    level: "NTRP 1.0-5.5+",
-    desc: "High-repetition training for players who want a harder, more focused class format.",
   },
 ];
 
@@ -249,6 +217,13 @@ export default function Tennis() {
         imagePosition="0% 8%"
       />
 
+      <nav aria-label="Tennis pathways" className="bg-dark-bg px-6 py-6 lg:px-14">
+        <div className="max-w-[1440px] mx-auto flex flex-wrap gap-4">
+          <Link href="/tennis/adult" className="border border-parchment/40 px-6 py-3 text-parchment no-underline hover:bg-parchment/10">Explore Adult Tennis</Link>
+          <a href="#junior-tennis" className="border border-parchment/40 px-6 py-3 text-parchment no-underline hover:bg-parchment/10">Explore Junior Tennis</a>
+        </div>
+      </nav>
+
       {/* Programs */}
       <section className={`bg-parchment ${SECTION_SPACING}`}>
         <div
@@ -348,7 +323,10 @@ export default function Tennis() {
             <div>
               <h3 className="text-[20px] font-light tracking-[-0.01em] mb-2">Adult Tennis</h3>
               <p className="text-ink-mid text-[14px] leading-[1.72] mb-3">
-                Rigorous group classes for players of all levels. Regular tournaments and UTR matchplay opportunities.
+                Start playing, sharpen your skills, or find your next match. Coached classes for beginners through advanced players, plus team tennis and UTR matchplay.
+              </p>
+              <p className="text-ink text-[14px] mb-3">
+                Adult Tennis Director: Connor Vordale
               </p>
               <ul className="space-y-1.5">
                 {[
@@ -363,14 +341,12 @@ export default function Tennis() {
                 ))}
               </ul>
             </div>
-            <a
-              href="https://app.courtreserve.com/Online/Portal/Index/6689"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/tennis/adult"
               className="text-ink text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt pb-[3px]"
             >
-              View Adult Tennis Schedule
-            </a>
+              Explore Adult Tennis
+            </Link>
           </div>
         </div>
       </section>
@@ -702,7 +678,7 @@ export default function Tennis() {
                 Classes, socials, and matchplay.
               </h2>
               <p className="text-ink-mid text-[16px] leading-[1.82] max-w-[720px]">
-                Adult classes meet weekly, with drop-ins opening one week prior when available. Pricing varies by class length and session duration, typically $45-$75 + tax per class or $225-$325 + tax per 5-week session. Coaches evaluate new players and may suggest level adjustments.
+                {ADULT_CLASS_DETAILS}
               </p>
             </div>
             <div className="hidden lg:block">

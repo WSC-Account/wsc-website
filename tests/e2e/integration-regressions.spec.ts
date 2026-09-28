@@ -90,11 +90,20 @@ test("merged navigation retains hash destinations and mobile keyboard controls",
     await nav.getByRole("link", { name: "Tennis", exact: true }).hover();
   }
   await nav.getByRole("link", { name: "Adult Tennis", exact: true }).click();
-  await expect(page).toHaveURL(/\/tennis#adult-tennis$/);
-  await expect(page.locator("#adult-tennis")).toBeInViewport();
+  await expect(page).toHaveURL(/\/tennis\/adult$/);
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Your game.");
+  if (isMobile) {
+    await nav.getByRole("button", { name: "Open navigation menu" }).click();
+    await nav.getByRole("button", { name: "Show Tennis submenu" }).click();
+  } else {
+    await nav.getByRole("link", { name: "Tennis", exact: true }).hover();
+  }
+  await nav.getByRole("link", { name: "Junior Tennis", exact: true }).click();
+  await expect(page).toHaveURL(/\/tennis#junior-tennis$/);
+  await expect(page.locator("#junior-tennis")).toBeInViewport();
   await expect
     .poll(() =>
-      page.locator("#adult-tennis").evaluate(element => {
+      page.locator("#junior-tennis").evaluate(element => {
         const header = document.querySelector("nav > div")!;
         return Math.abs(
           element.getBoundingClientRect().top -

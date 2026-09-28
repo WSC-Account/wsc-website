@@ -49,22 +49,22 @@
     },
     {
       "source": "/adult-rpm-classes/rpm-adult-2.0",
-      "destination": "/tennis",
+      "destination": "/tennis/adult",
       "permanent": true
     },
     {
       "source": "/adult-rpm-classes/rpm-adult-2.5",
-      "destination": "/tennis",
+      "destination": "/tennis/adult",
       "permanent": true
     },
     {
       "source": "/adult-rpm-classes/rpm-adult-3.0",
-      "destination": "/tennis",
+      "destination": "/tennis/adult",
       "permanent": true
     },
     {
       "source": "/adult-wsc-tennis",
-      "destination": "/tennis",
+      "destination": "/tennis/adult",
       "permanent": true
     },
     {

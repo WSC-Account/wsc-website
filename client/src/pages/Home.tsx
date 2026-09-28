@@ -33,7 +33,7 @@ const FacilityGallery = lazy(() => import("@/components/FacilityGallery"));
 const FullWidthImage = lazy(() => import("@/components/FullWidthImage"));
 
 const TENNIS_IMG = "/images/wsc/tennis-adult-clinic.webp";
-const TENNIS_CARD_IMG = "/images/wsc/tennis-junior-trophy.webp";
+const TENNIS_CARD_IMG = "/images/wsc/tennis-adult-clinic.webp";
 const GOLF_IMG = "/images/wsc/golf-practice-area.webp";
 const PERF_IMG = "/images/wsc/gym-main-interior.webp";
 const PICKLE_IMG = "/images/wsc/pickleball-dome.webp";
@@ -182,14 +182,14 @@ const disciplines = [
   {
     num: "01",
     tag: "Tennis",
-    name: "Tier 1 Tennis",
-    desc: "World-class tennis academy for junior players bound for the collegiate and professional ranks. Junior tennis classes for ages 3 and up, with pathways for recreational and elite development.",
+    name: "Tennis for Adults & Juniors",
+    desc: "Learn the game, sharpen your skills, and find your next match. Adult classes and team tennis sit alongside junior programs for ages 3 and up, from first lessons to the Tier 1 academy.",
     detail:
       "8 indoor courts and 1 outdoor court. UTR matchplay. Adult group classes and tournaments.",
     img: TENNIS_CARD_IMG,
     imageAlt:
-      "Junior Tier 1 tennis player holding a trophy on court at Woodinville Sports Club",
-    imagePosition: "center 34%",
+      "Adult tennis coaching at Woodinville Sports Club",
+    imagePosition: "center 55%",
     href: "/tennis",
     stat: "8+1 Courts",
   },
@@ -911,18 +911,35 @@ export default function Home() {
                       {d.detail}
                     </p>
                   </div>
-                  <Link
-                    href={d.href}
-                    className="inline-flex items-center gap-1.5 text-ink text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt pb-[3px] group-hover:text-volt transition-colors duration-200"
-                  >
-                    Explore {d.tag}
-                    <ChevronRight
-                      size={12}
-                      className={`transition-transform duration-300 ${
-                        hoveredCard === i ? "translate-x-1" : ""
-                      }`}
-                    />
-                  </Link>
+                  {d.tag === "Tennis" ? (
+                    <div className="mt-5 flex flex-wrap gap-3">
+                      <Link
+                        href="/tennis/adult"
+                        className="inline-flex items-center min-h-11 border border-volt px-4 py-3 text-ink text-[12px] no-underline hover:bg-volt-bright/15"
+                      >
+                        Explore Adult Tennis
+                      </Link>
+                      <Link
+                        href="/tennis#junior-tennis"
+                        className="inline-flex items-center min-h-11 border border-volt px-4 py-3 text-ink text-[12px] no-underline hover:bg-volt-bright/15"
+                      >
+                        Explore Junior Tennis
+                      </Link>
+                    </div>
+                  ) : (
+                    <Link
+                      href={d.href}
+                      className="inline-flex items-center gap-1.5 text-ink text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt pb-[3px] group-hover:text-volt transition-colors duration-200"
+                    >
+                      Explore {d.tag}
+                      <ChevronRight
+                        size={12}
+                        className={`transition-transform duration-300 ${
+                          hoveredCard === i ? "translate-x-1" : ""
+                        }`}
+                      />
+                    </Link>
+                  )}
                 </div>
               </div>
             ))}

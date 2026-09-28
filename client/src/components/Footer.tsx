@@ -40,6 +40,7 @@ export default function Footer() {
           <ul className="list-none space-y-2.5">
             {[
               { href: "/tennis", label: "Tennis" },
+              { href: "/tennis/adult", label: "Adult Tennis" },
               { href: "/golf", label: "Golf" },
               { href: "/golf/tournaments", label: "Golf Tournaments" },
               { href: "/gym", label: "Fitness Center" },

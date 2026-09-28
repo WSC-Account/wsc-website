@@ -29,6 +29,7 @@ async function main() {
   const routes: SitemapRoute[] = [
     { path: SEO.home.path, changefreq: "weekly", priority: "1.0" },
     { path: SEO.tennis.path, changefreq: "monthly", priority: "0.8" },
+    { path: SEO.adultTennis.path, changefreq: "monthly", priority: "0.8" },
     { path: SEO.summerTennis.path, changefreq: "weekly", priority: "0.7" },
     { path: SEO.golf.path, changefreq: "monthly", priority: "0.8" },
     { path: SEO.drivingRange.path, changefreq: "monthly", priority: "0.8" },
