@@ -10,7 +10,7 @@ import { adultClasses, ADULT_CLASS_DETAILS } from "@/lib/adult-tennis";
 
 const PORTAL = "https://app.courtreserve.com/Online/Portal/Index/6689";
 const HELP =
-  "mailto:info@woodinvillesportsclub.com?subject=Adult%20Tennis%20-%20Class%20Placement";
+  "mailto:cvordale@woodinvillesportsclub.com?subject=Adult%20Tennis%20-%20Class%20Placement";
 const button =
   "inline-flex min-h-11 items-center justify-center gap-2 px-6 py-3 text-sm no-underline transition-colors";
 const section = "px-6 py-16 lg:px-14 lg:py-24";
@@ -147,8 +147,8 @@ export default function AdultTennis() {
           </p>
           <p className="text-ink-mid leading-relaxed max-w-3xl mb-10">
             NTRP and UTR are different player rating systems. You don’t need to
-            know your rating to ask for help finding a class. The front desk can
-            connect you with Connor Vordale, our Adult Tennis Director.
+            know your rating to ask for help finding a class. Email Connor Vordale,
+            our Adult Tennis Director, for guidance.
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {adultClasses.map((item, index) => (
@@ -288,44 +288,40 @@ export default function AdultTennis() {
                 href={HELP}
                 className={`${button} bg-volt-bright text-dark-bg hover:bg-parchment`}
               >
-                Email for class guidance
+                Email Connor for class guidance
               </a>
               <a
                 href="tel:+14254871090"
                 className={`${button} border border-parchment/40 text-parchment hover:bg-parchment/10`}
               >
-                Call (425) 487-1090
+                Front desk: (425) 487-1090
               </a>
             </div>
           </div>
           <div className="border-t lg:border-t-0 lg:border-l border-parchment/20 pt-8 lg:pt-0 lg:pl-10">
-            <p className="text-volt-bright text-xs tracking-[0.2em] uppercase mb-4">
-              Adult Tennis Director
-            </p>
-            <h3 className="text-2xl font-light mb-4">
-              Connor Vordale
-            </h3>
-            <p className="text-parchment/75 leading-relaxed mb-6">
-              Connor leads adult tennis at WSC. Contact the front desk to connect
-              with Connor about the right class or next step for your game.
-            </p>
+            <div className="flex flex-wrap items-center gap-6">
+              <img
+                src="/images/wsc/connor-vordale.jpg"
+                alt="Connor Vordale, Adult Tennis Director at WSC"
+                width={1373}
+                height={1920}
+                loading="lazy"
+                decoding="async"
+                className="w-40 h-auto"
+              />
+              <div>
+                <p className="text-volt-bright text-xs tracking-[0.2em] uppercase mb-3">
+                  Adult Tennis Director
+                </p>
+                <h3 className="text-2xl font-light">Connor Vordale</h3>
+              </div>
+            </div>
             <a
-              href="https://www.tier1nw.com/tennis#tennis-coaches"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-parchment underline underline-offset-4"
+              href="mailto:cvordale@woodinvillesportsclub.com"
+              className="inline-block mt-6 text-parchment underline underline-offset-4 break-all"
             >
-              Meet the Tier 1 coaches
+              cvordale@woodinvillesportsclub.com
             </a>
-            <p className="mt-8 text-parchment/75">
-              Looking for a junior program instead?
-            </p>
-            <Link
-              href="/tennis#junior-tennis"
-              className="inline-block mt-2 text-parchment underline underline-offset-4"
-            >
-              Explore Junior Tennis
-            </Link>
           </div>
         </div>
       </section>
