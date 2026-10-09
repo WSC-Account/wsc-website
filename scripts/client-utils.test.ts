@@ -13,6 +13,10 @@ import {
 } from "../client/src/lib/responsive-image.ts";
 import { SEO } from "../client/src/lib/seo-data.ts";
 
+const allowedConsentStorage = {
+  getItem: () => JSON.stringify({ analytics: true, marketing: true }),
+};
+
 const originalFetch = globalThis.fetch;
 const originalWindow = globalThis.window;
 
@@ -43,6 +47,7 @@ test("the browser form helper sends JSON and tracks only successful submissions"
     });
   };
   globalThis.window = {
+    localStorage: allowedConsentStorage,
     gtag: (...args: unknown[]) => analyticsCalls.push(args),
   } as unknown as Window & typeof globalThis;
 
@@ -51,15 +56,20 @@ test("the browser form helper sends JSON and tracks only successful submissions"
   assert.deepEqual(result, { ok: true, id: "submission-1" });
   assert.equal(request?.input, "/api/contact");
   assert.equal(request?.init?.method, "POST");
-  assert.deepEqual(request?.init?.headers, {
-    "Content-Type": "application/json",
-  });
+  const headers = new Headers(request?.init?.headers);
+  assert.equal(headers.get("Content-Type"), "application/json");
+  assert.match(headers.get("Idempotency-Key") || "", /^[0-9a-f-]{36}$/);
   assert.deepEqual(JSON.parse(String(request?.init?.body)), payload);
   assert.deepEqual(analyticsCalls, [
     [
       "event",
       "form_submit",
-      { form_name: "Contact Form", form_type: "contact", source: "/contact" },
+      {
+        form_name: "Contact Form",
+        form_type: "contact",
+        source: "/contact",
+        send_to: "G-S6448TRP0T",
+      },
     ],
   ]);
 });
@@ -72,6 +82,7 @@ test("the browser form helper reports free fitness assessment conversions", asyn
       headers: { "Content-Type": "application/json" },
     });
   globalThis.window = {
+    localStorage: allowedConsentStorage,
     gtag: (...args: unknown[]) => analyticsCalls.push(args),
   } as unknown as Window & typeof globalThis;
 
@@ -90,13 +101,10 @@ test("the browser form helper reports free fitness assessment conversions", asyn
         form_name: "Free Fitness Assessment",
         form_type: "free_fitness_assessment",
         source: "/fitness",
+        send_to: "G-S6448TRP0T",
       },
     ],
-    [
-      "event",
-      "conversion",
-      { send_to: "AW-18217215416/ouj7CNbhquccELjL0u5D" },
-    ],
+    ["event", "conversion", { send_to: "AW-18217215416/ouj7CNbhquccELjL0u5D" }],
   ]);
 });
 
@@ -110,6 +118,7 @@ test("the browser form helper attaches Google Business Profile attribution", asy
     });
   };
   globalThis.window = {
+    localStorage: allowedConsentStorage,
     sessionStorage: {
       getItem: () =>
         JSON.stringify({

@@ -4,6 +4,7 @@
  * Added: Quick Links column for common site destinations
  */
 import { Link } from "wouter";
+import { openCookiePreferences } from "@/lib/consent";
 import { useSessionCalendar } from "@/hooks/useSessionCalendar";
 
 export default function Footer() {
@@ -221,6 +222,7 @@ export default function Footer() {
           <p className="text-parchment/70 text-[11px] tracking-[0.1em] uppercase">
             &copy; {new Date().getFullYear()} Woodinville Sports Club. All rights reserved.
           </p>
+          <button type="button" onClick={openCookiePreferences} className="min-h-[44px] text-parchment/75 text-[11px] hover:text-parchment">Cookie preferences</button>
           <span className="text-parchment/70 text-[10px] tracking-[0.12em] uppercase">
             Woodinville, WA
           </span>

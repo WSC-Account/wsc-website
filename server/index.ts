@@ -4,7 +4,7 @@ import fs from "fs";
 import { createServer } from "http";
 import path from "path";
 import { fileURLToPath } from "url";
-import { handleFormSubmissionRequest } from "./form-submissions";
+import { handleFormSubmissionRequest } from "./form-submissions.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,9 +18,13 @@ const canonicalRedirects: Record<string, string> = {
   "/terms": "/policies#terms",
 };
 
-async function startServer() {
+export function createApp(
+  staticPath = process.env.NODE_ENV === "production"
+    ? path.resolve(__dirname, "public")
+    : path.resolve(__dirname, "..", "dist", "public")
+) {
+  staticPath = path.resolve(staticPath);
   const app = express();
-  const server = createServer(app);
 
   app.disable("x-powered-by");
   app.use((_req, res, next) => {
@@ -41,12 +45,6 @@ async function startServer() {
   });
   app.use(compression({ threshold: 1024 }));
   app.use(express.json({ limit: "5.5mb" }));
-
-  // Serve static files from dist/public in production
-  const staticPath =
-    process.env.NODE_ENV === "production"
-      ? path.resolve(__dirname, "public")
-      : path.resolve(__dirname, "..", "dist", "public");
 
   app.get("/healthz", (_req, res) => {
     res.status(200).json({ ok: true });
@@ -100,8 +98,15 @@ async function startServer() {
       req.path === "/"
         ? path.join(staticPath, "index.html")
         : path.join(staticPath, `${req.path.replace(/^\/+/, "")}.html`);
+    const relativeRoutePath = path.relative(staticPath, routePath);
+    const isWithinStaticRoot =
+      relativeRoutePath !== ".." &&
+      !relativeRoutePath.startsWith(`..${path.sep}`) &&
+      !path.isAbsolute(relativeRoutePath);
 
-    if (fs.existsSync(routePath)) {
+    // Raw HTTP paths can contain dot segments that browsers normally normalize.
+    // Never let the HTML fallback bypass express.static's directory confinement.
+    if (isWithinStaticRoot && fs.existsSync(routePath)) {
       res.sendFile(routePath);
       return;
     }
@@ -109,6 +114,11 @@ async function startServer() {
     res.status(404).sendFile(path.join(staticPath, "404.html"));
   });
 
+  return app;
+}
+
+async function startServer() {
+  const server = createServer(createApp());
   const port = Number(process.env.PORT) || 3000;
 
   server.listen(port, () => {
@@ -116,4 +126,6 @@ async function startServer() {
   });
 }
 
-startServer().catch(console.error);
+if (process.argv[1] && path.resolve(process.argv[1]) === __filename) {
+  startServer().catch(console.error);
+}

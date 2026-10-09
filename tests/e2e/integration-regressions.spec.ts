@@ -1,17 +1,18 @@
 import { expect, test } from "@playwright/test";
 
-test.beforeEach(async ({ page }) => {
-  await page.addInitScript(() => {
+test.beforeEach(async ({ page }, testInfo) => {
+  const trackingTest = testInfo.title.includes("fitness assessment tracks");
+  await page.addInitScript((trackingTest) => {
     localStorage.setItem(
       "wsc-cookie-consent",
       JSON.stringify({
         necessary: true,
-        analytics: false,
-        marketing: false,
+        analytics: trackingTest,
+        marketing: trackingTest,
         timestamp: new Date().toISOString(),
       })
     );
-  });
+  }, trackingTest);
 });
 
 test("Fall 1 registration rolls forward on an open page and retires summer links", async ({
@@ -166,6 +167,7 @@ test("a stale lazy route recovers by reloading the current URL", async ({
 test("fitness assessment tracks one conversion only after a successful submission", async ({
   page,
 }) => {
+  await page.route(/https:\/\/(?:www\.)?googletagmanager\.com\//, route => route.fulfill({ status: 200, contentType: "application/javascript", body: "" }));
   const startedAt = Date.now();
   await page.clock.setFixedTime(new Date(startedAt));
   const events: unknown[][] = [];

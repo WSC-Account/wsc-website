@@ -4,6 +4,12 @@
   "installCommand": "pnpm install --frozen-lockfile",
   "outputDirectory": "dist/public",
   "framework": "vite",
+  "functions": {
+    "api/*.ts": {
+      "maxDuration": 150,
+      "excludeFiles": "{data/**,.env*,output/**,outputs/**,test-results/**,playwright-report/**,coverage/**,.playwright-cli/**,.playwright-mcp/**,.scrape/**}"
+    }
+  },
   "headers": [
     {
       "source": "/(.*)",

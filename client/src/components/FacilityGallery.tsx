@@ -1,9 +1,8 @@
 /**
  * FacilityGallery — Full-width immersive photo gallery
- * Masonry-style layout with hover overlays and lightbox-style interaction
+ * Masonry-style layout with persistent captions for mouse, keyboard, and touch
  * Used on homepage and about page for visual impact
  */
-import { useState } from "react";
 import ResponsiveImage from "@/components/ResponsiveImage";
 
 interface GalleryImage {
@@ -26,8 +25,6 @@ export default function FacilityGallery({
   eyebrow = "Gallery",
   dark = false,
 }: FacilityGalleryProps) {
-  const [activeImg, setActiveImg] = useState<number | null>(null);
-
   const bgClass = dark ? "bg-dark-bg" : "bg-parchment-mid";
   const eyebrowClass = dark ? "text-volt-bright" : "text-volt";
   const titleClass = dark ? "text-parchment" : "text-ink";
@@ -64,43 +61,25 @@ export default function FacilityGallery({
                 : "aspect-square";
 
             return (
-              <div
+              <figure
                 key={i}
-                className={`${spanClass} relative group overflow-hidden cursor-pointer`}
-                onMouseEnter={() => setActiveImg(i)}
-                onMouseLeave={() => setActiveImg(null)}
+                className={`${spanClass} relative group overflow-hidden`}
               >
                 <ResponsiveImage
                   src={img.src}
                   alt={img.alt}
-                  className={`w-full h-full object-cover ${aspectClass} transition-all duration-700 ease-out ${
-                    activeImg === i
-                      ? "scale-[1.04] brightness-[0.6]"
-                      : "brightness-[0.85] saturate-[0.8]"
-                  }`}
+                  className={`w-full h-full object-cover ${aspectClass} brightness-[0.85] saturate-[0.8] transition-transform duration-700 ease-out group-hover:scale-[1.04]`}
                   loading="lazy"
                 />
 
-                {/* Hover caption overlay */}
-                <div
-                  className={`absolute inset-0 flex items-end p-5 lg:p-6 transition-opacity duration-400 ${
-                    activeImg === i ? "opacity-100" : "opacity-0"
-                  }`}
-                >
+                <figcaption className="absolute inset-x-0 bottom-0 p-3 lg:p-6">
                   <div className={`${captionBg} px-4 py-3 max-w-full`}>
                     <p className="text-parchment text-[13px] lg:text-[14px] font-light tracking-[-0.01em] leading-[1.5]">
                       {img.caption}
                     </p>
                   </div>
-                </div>
-
-                {/* Subtle corner accent on hover */}
-                <div
-                  className={`absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-volt-bright transition-opacity duration-300 ${
-                    activeImg === i ? "opacity-100" : "opacity-0"
-                  }`}
-                />
-              </div>
+                </figcaption>
+              </figure>
             );
           })}
         </div>

@@ -1,7 +1,6 @@
 import { lazy, Suspense, useEffect } from "react";
-import { Redirect, Route, Switch, useLocation } from "wouter";
+import { Redirect, Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
-import { ThemeProvider } from "./contexts/ThemeContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -55,40 +54,57 @@ function PageLoading() {
 }
 
 function ScrollToTopOnRouteChange() {
-  const [location] = useLocation();
-
   useEffect(() => {
-    const scrollToHash = (hash: string, attempt = 0) => {
-      const target = document.getElementById(hash);
-      const headerBar = document.querySelector("nav > div");
-      const headerHeight = headerBar?.getBoundingClientRect().height ?? 0;
-
-      if (target) {
-        const targetTop = target.getBoundingClientRect().top + window.scrollY - headerHeight;
-        window.scrollTo({ top: Math.max(targetTop, 0), left: 0, behavior: "auto" });
-        return;
-      }
-
-      if (attempt < 30) {
-        timeoutId = window.setTimeout(() => scrollToHash(hash, attempt + 1), 50);
-      }
-    };
-
-    const hash = window.location.hash.slice(1);
+    let observer: MutationObserver | undefined;
     let timeoutId: number | undefined;
-
-    if (!hash) {
-      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-      return;
-    }
-
-    scrollToHash(hash);
-
-    return () => {
-      if (timeoutId) window.clearTimeout(timeoutId);
+    let frameId = 0;
+    let previousPath = window.location.pathname;
+    let pendingTopReset = true;
+    const cleanup = () => {
+      observer?.disconnect();
+      window.clearTimeout(timeoutId);
+      window.cancelAnimationFrame(frameId);
     };
-  }, [location]);
-
+    const scroll = () => {
+      // A single navigation can emit multiple history/hash events before the
+      // frame runs. Keep its required reset when replacing a scheduled frame.
+      pendingTopReset ||= previousPath !== window.location.pathname;
+      previousPath = window.location.pathname;
+      cleanup();
+      frameId = window.requestAnimationFrame(() => {
+        const resetTop = pendingTopReset;
+        pendingTopReset = false;
+        let hash = window.location.hash.slice(1);
+        try { hash = decodeURIComponent(hash); } catch { /* Use the literal malformed hash. */ }
+        if (!hash) {
+          if (resetTop) window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+          return;
+        }
+        const scrollToTarget = () => {
+          const target = document.getElementById(hash);
+          if (!target) return false;
+          const headerHeight = document.querySelector("nav > div")?.getBoundingClientRect().height ?? 0;
+          const top = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+          window.scrollTo({ top: Math.max(top, 0), left: 0, behavior: "auto" });
+          observer?.disconnect();
+          window.clearTimeout(timeoutId);
+          return true;
+        };
+        if (scrollToTarget()) return;
+        observer = new MutationObserver(scrollToTarget);
+        observer.observe(document.getElementById("main-content") ?? document.body, { childList: true, subtree: true });
+        timeoutId = window.setTimeout(() => observer?.disconnect(), 10_000);
+      });
+    };
+    // Wouter emits the History API events, including same-path hash changes.
+    const events = ["popstate", "hashchange", "pushState", "replaceState"];
+    events.forEach(event => window.addEventListener(event, scroll));
+    scroll();
+    return () => {
+      cleanup();
+      events.forEach(event => window.removeEventListener(event, scroll));
+    };
+  }, []);
   return null;
 }
 
@@ -146,18 +162,16 @@ function Router() {
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider defaultTheme="light">
-        <MarketingAttribution />
-        <ScrollToTopOnRouteChange />
-        <header>
-          <Navbar />
-        </header>
-        <main id="main-content" tabIndex={-1}>
-          <Router />
-        </main>
-        <Footer />
-        <DeferredAppServices />
-      </ThemeProvider>
+      <MarketingAttribution />
+      <ScrollToTopOnRouteChange />
+      <header>
+        <Navbar />
+      </header>
+      <main id="main-content" tabIndex={-1}>
+        <Router />
+      </main>
+      <Footer />
+      <DeferredAppServices />
     </ErrorBoundary>
   );
 }

@@ -4,7 +4,12 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { handleFormSubmissionRequest } from "../server/form-submissions.ts";
+import { createFormSubmissionHandler } from "../server/form-submissions.ts";
+import { MemoryFormStore } from "../server/form-store.ts";
+import { hasSharedFormStorage } from "./check-form-storage.mjs";
+
+// Provider smoke tests must not write synthetic records to production Redis.
+const handleFormSubmissionRequest = createFormSubmissionHandler({ store: new MemoryFormStore() });
 
 const PROJECT_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const DEFAULT_TO = "Info@woodinvillesportsclub.com";
@@ -28,6 +33,10 @@ if (args.has("--help") || args.has("-h")) {
 const env = loadEnvironment();
 const deliver = args.has("--deliver");
 const syncConstantContact = args.has("--constant-contact") || args.has("--sync-constant-contact");
+if (syncConstantContact && hasSharedFormStorage(env)) {
+  console.error("[error] Shared form storage is configured. This isolated smoke test cannot coordinate shared credentials. Use the application's coordinated newsletter flow; ordinary Postmark test mode remains available.");
+  process.exit(1);
+}
 const requestedForm = clean(argValues.get("--form"));
 const targetRecipient = clean(argValues.get("--to") || env.FORM_ALERT_TO || env.FORM_EMAIL_TO || DEFAULT_TO);
 const from = clean(argValues.get("--from") || env.FORM_ALERT_FROM || env.FORM_EMAIL_FROM || `WSC Website <${DEFAULT_TO}>`);
@@ -126,6 +135,15 @@ function buildPayloads() {
     },
     {
       ...base,
+      formType: "free_fitness_assessment",
+      source: "/free-fitness-assessment",
+      metadata: {
+        assessmentDays: "Monday",
+        preferredTime: "Morning (7am - 12pm)",
+      },
+    },
+    {
+      ...base,
       formType: "newsletter_signup",
       source: "/",
       metadata: {
@@ -177,7 +195,10 @@ function buildPayloads() {
         sponsorshipRequired: false,
       },
     },
-  ];
+  ].map((payload) => ({
+    ...payload,
+    email: base.email.replace("@", `+${payload.formType}@`),
+  }));
 }
 
 async function submit(payload) {

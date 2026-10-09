@@ -9,8 +9,6 @@
   src: url("/fonts/inter-latin.woff2") format("woff2");
 }
 
-@custom-variant dark (&:is(.dark *));
-
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

@@ -3,6 +3,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { hasSharedFormStorage } from "./check-form-storage.mjs";
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.resolve(SCRIPT_DIR, "..");
@@ -29,6 +30,12 @@ if (args.has("--help") || args.has("-h")) {
 const env = loadEnvironment();
 const refreshToken = args.has("--refresh-token");
 const syncTest = args.has("--sync-test");
+// This legacy utility writes a local token file and does not acquire the shared
+// refresh lock. Rotating a token here could invalidate the deployed token pair.
+if ((refreshToken || syncTest) && hasSharedFormStorage(env)) {
+  console.error("[error] Shared form storage is configured. This utility's refresh/sync modes use only a local token cache and cannot coordinate shared credentials. Use the application's coordinated newsletter flow. The default offline setup check remains available.");
+  process.exit(1);
+}
 const testEmail = clean(argValues.get("--email") || env.CONSTANT_CONTACT_TEST_EMAIL);
 const firstName = clean(argValues.get("--first-name") || "WSC");
 const lastName = clean(argValues.get("--last-name") || "Website Test");

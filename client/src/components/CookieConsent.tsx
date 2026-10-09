@@ -1,5 +1,5 @@
 /*
- * Cookie Consent Banner — GDPR / CCPA Compliant
+ * Cookie Consent Banner
  * Full-width bottom banner with accept, decline, and manage preferences.
  * Persists consent state in localStorage. Shows only once until cleared.
  * Design: dark bg matching WSC footer, volt-bright accent, minimal type.
@@ -8,31 +8,7 @@ import { useState, useEffect, useCallback } from "react";
 import { X, Cookie, ChevronDown, ChevronUp } from "lucide-react";
 import { Link } from "wouter";
 
-interface ConsentState {
-  necessary: boolean;
-  analytics: boolean;
-  marketing: boolean;
-  timestamp: string;
-}
-
-const STORAGE_KEY = "wsc-cookie-consent";
-
-function getStoredConsent(): ConsentState | null {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return null;
-    return JSON.parse(raw) as ConsentState;
-  } catch {
-    return null;
-  }
-}
-
-function storeConsent(consent: ConsentState) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(consent));
-  window.dispatchEvent(
-    new CustomEvent("wsc-cookie-consent-changed", { detail: consent }),
-  );
-}
+import { consumeCookiePreferencesRequest, OPEN_COOKIE_PREFERENCES_EVENT, readStoredConsent, saveCookieConsent, type CookieConsentState } from "@/lib/consent";
 
 export default function CookieConsent() {
   const [visible, setVisible] = useState(false);
@@ -41,17 +17,30 @@ export default function CookieConsent() {
   const [marketing, setMarketing] = useState(false);
 
   useEffect(() => {
-    const stored = getStoredConsent();
-    if (!stored) {
-      // Small delay so the banner doesn't flash on initial load
-      const timer = setTimeout(() => setVisible(true), 800);
-      return () => clearTimeout(timer);
-    }
+    const openPreferences = () => {
+      consumeCookiePreferencesRequest();
+      const stored = readStoredConsent();
+      setAnalytics(stored?.analytics ?? false);
+      setMarketing(stored?.marketing ?? false);
+      setExpanded(true);
+      setVisible(true);
+    };
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    if (consumeCookiePreferencesRequest()) openPreferences();
+    else if (!readStoredConsent()) timer = setTimeout(() => setVisible(true), 800);
+    window.addEventListener(OPEN_COOKIE_PREFERENCES_EVENT, openPreferences);
+    return () => {
+      if (timer) clearTimeout(timer);
+      window.removeEventListener(OPEN_COOKIE_PREFERENCES_EVENT, openPreferences);
+    };
   }, []);
 
-  const dismiss = useCallback((consent: ConsentState) => {
-    storeConsent(consent);
+  const dismiss = useCallback((consent: CookieConsentState) => {
+    const revoked = saveCookieConsent(consent);
     setVisible(false);
+    // Removing a script does not remove an initialized SDK's listeners. Start a
+    // fresh document with the saved permissions after withdrawing consent.
+    if (revoked) window.location.reload();
   }, []);
 
   const acceptAll = () => {
@@ -88,7 +77,7 @@ export default function CookieConsent() {
       role="dialog"
       aria-label="Cookie consent"
       aria-modal="false"
-      className="fixed bottom-3 left-3 right-3 z-[60] animate-in slide-in-from-bottom duration-500 lg:left-auto lg:right-6 lg:w-[min(430px,calc(100vw-48px))]"
+      className="fixed bottom-3 left-3 right-3 max-h-[calc(100dvh-1.5rem)] overflow-y-auto z-[60] animate-in slide-in-from-bottom duration-500 lg:left-auto lg:right-6 lg:w-[min(430px,calc(100vw-48px))]"
     >
       <div className="border border-white/[0.08] bg-dark-bg/[0.97] shadow-2xl backdrop-blur-md">
         <div className="px-4 py-3.5 sm:px-5 lg:py-4">
@@ -103,7 +92,7 @@ export default function CookieConsent() {
                 <p className="pr-9 text-parchment text-[13px] font-light leading-[1.45] mb-1 lg:text-[14px] lg:leading-[1.55]">
                   We use cookies to improve the site and understand traffic.
                 </p>
-                <p className="hidden text-parchment/70 text-[12px] leading-[1.6]">
+                <p className="text-parchment/70 text-[12px] leading-[1.6]">
                   By clicking "Accept All," you consent to our use of cookies. You can manage your preferences or decline non-essential cookies.{" "}
                   <Link
                     href="/policies#privacy"
@@ -160,7 +149,7 @@ export default function CookieConsent() {
               id="cookie-preferences"
               className="mt-4 pt-4 border-t border-white/[0.06] lg:mt-6 lg:pt-6"
             >
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6 mb-6">
+              <div className="grid grid-cols-1 gap-3 mb-6">
                 {/* Necessary — always on */}
                 <div className="bg-dark-mid p-5">
                   <div className="flex items-center justify-between mb-3">
@@ -197,7 +186,7 @@ export default function CookieConsent() {
                     </button>
                   </div>
                   <p className="text-parchment/70 text-[12px] leading-[1.65]">
-                    Help us understand how visitors interact with our website by collecting anonymous usage data.
+                    Help us understand how visitors use our website. Google measurement runs only when both Analytics and Marketing are on.
                   </p>
                 </div>
 
@@ -226,11 +215,12 @@ export default function CookieConsent() {
                     </button>
                   </div>
                   <p className="text-parchment/70 text-[12px] leading-[1.65]">
-                    Used to deliver relevant advertisements and track campaign effectiveness across platforms.
+                    Remember campaign details for your inquiries. Advertising measurement runs only when both Analytics and Marketing are on.
                   </p>
                 </div>
               </div>
 
+              <p className="mb-4 text-parchment/70 text-[12px] leading-[1.6]">Turning a category off refreshes this page. You can reopen these preferences from the footer.</p>
               <div className="flex justify-end">
                 <button
                   type="button"

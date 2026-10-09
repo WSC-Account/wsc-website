@@ -5,6 +5,14 @@ import assert from "node:assert/strict";
 const read = path =>
   readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
 
+const routeMetadata = JSON.parse(read("shared/route-metadata.json"));
+const readFormImplementation = () => [
+  "server/form-submissions.ts",
+  "server/form-validation.ts",
+  "server/form-providers.ts",
+  "shared/form-contracts.ts",
+].map(read).join("\n");
+
 test("main navigation separates Fitness and APL", () => {
   const navbar = read("client/src/components/Navbar.tsx");
 
@@ -50,9 +58,6 @@ test("food trucks is retired until a dated schedule is available", () => {
   const app = read("client/src/App.tsx");
   const server = read("server/index.ts");
   const seo = read("client/src/lib/seo-data.ts");
-  const sitemapGenerator = read(
-    "scripts/seo-audit/generate-public-seo-files.ts"
-  );
   const sitemap = read("client/public/sitemap.xml");
   const vercel = JSON.parse(read("vercel.json"));
 
@@ -68,7 +73,7 @@ test("food trucks is retired until a dated schedule is available", () => {
     "/events"
   );
   assert.doesNotMatch(seo, /foodTrucks|path:\s*"\/food-trucks"/);
-  assert.doesNotMatch(sitemapGenerator, /SEO\.foodTrucks\.path/);
+  assert.equal("foodTrucks" in routeMetadata, false);
   assert.doesNotMatch(
     sitemap,
     /<loc>https:\/\/www\.woodinvillesportsclub\.com\/food-trucks<\/loc>/
@@ -134,9 +139,6 @@ test("fitness route renders the Athletic Performance Lab page", () => {
 
 test("Athletic Performance Lab is directly public in production", () => {
   const server = read("server/index.ts");
-  const sitemapGenerator = read(
-    "scripts/seo-audit/generate-public-seo-files.ts"
-  );
   const vercel = JSON.parse(read("vercel.json"));
   const redirects = vercel.redirects ?? [];
 
@@ -151,7 +153,7 @@ test("Athletic Performance Lab is directly public in production", () => {
     "/fitness"
   );
   assert.doesNotMatch(server, /"\/fitness":\s*"\/gym"/);
-  assert.match(sitemapGenerator, /SEO\.apl\.path/);
+  assert.ok(routeMetadata.apl.sitemap);
 });
 
 test("personal training roster lives on buried ads landing page", () => {
@@ -159,7 +161,6 @@ test("personal training roster lives on buried ads landing page", () => {
   const gym = read("client/src/pages/Gym.tsx");
   const personalTraining = read("client/src/pages/PersonalTraining.tsx");
   const seo = read("client/src/lib/seo-data.ts");
-  const sitemapGenerator = read("scripts/seo-audit/generate-public-seo-files.ts");
 
   assert.match(app, /const PersonalTraining = lazy\(\(\) => import\("\.\/pages\/PersonalTraining"\)\)/);
   assert.match(app, /<Route path="\/personal-training" component=\{PersonalTraining\} \/>/);
@@ -167,7 +168,7 @@ test("personal training roster lives on buried ads landing page", () => {
   assert.match(personalTraining, /Request a Match/);
   assert.match(seo, /personalTraining:\s*\{[\s\S]*?path:\s*"\/personal-training"[\s\S]*?robots:\s*"noindex, follow"/);
   assert.doesNotMatch(gym, /Trainer Roster|personal-training-trainers|Meet the trainers/);
-  assert.doesNotMatch(sitemapGenerator, /SEO\.personalTraining\.path/);
+  assert.equal(routeMetadata.personalTraining.sitemap, false);
 });
 
 test("golf academy section matches the four-program junior pathway", () => {
@@ -243,7 +244,6 @@ test("covered driving bay count is not capped at 23", () => {
     "client/src/pages/Home.tsx",
     "client/src/pages/Summer.tsx",
     "client/src/pages/Policies.tsx",
-    "client/src/pages/Terms.tsx",
     "client/src/components/StructuredData.tsx",
     "client/index.html",
   ];
@@ -316,27 +316,26 @@ test("policies page uses the full collapsible membership agreement", () => {
   );
 });
 
-test("privacy policy is consolidated under policies and terms", () => {
+test("privacy and terms remain available through the consolidated policies page", () => {
   const app = read("client/src/App.tsx");
   const policies = read("client/src/pages/Policies.tsx");
   const footer = read("client/src/components/Footer.tsx");
   const cookieConsent = read("client/src/components/CookieConsent.tsx");
-  const sitemapGenerator = read(
-    "scripts/seo-audit/generate-public-seo-files.ts"
-  );
   const vercel = JSON.parse(read("vercel.json"));
   const redirects = vercel.redirects ?? [];
 
   assert.match(policies, /type PolicyTab = "policies" \| "terms" \| "privacy"/);
   assert.match(policies, /<Privacy embedded \/>/);
+  assert.match(policies, /activeTab === "terms" \? <TermsContent \/>/);
   assert.match(app, /<Redirect to="\/policies#privacy" \/>/);
+  assert.match(app, /<Redirect to="\/policies#terms" \/>/);
   assert.equal(
     redirects.find(redirect => redirect.source === "/privacy")?.destination,
     "/policies#privacy"
   );
   assert.doesNotMatch(footer, /href="\/privacy"/);
   assert.match(cookieConsent, /href="\/policies#privacy"/);
-  assert.doesNotMatch(sitemapGenerator, /SEO\.privacy\.path/);
+  assert.equal(routeMetadata.privacy.sitemap, false);
 });
 
 test("membership auto-renewal is clearly disclosed", () => {
@@ -349,7 +348,7 @@ test("membership auto-renewal is clearly disclosed", () => {
 
 test("website forms are routed to WSC email notifications", () => {
   const apiRoute = read("api/contact.ts");
-  const formServer = read("server/form-submissions.ts");
+  const formServer = readFormImplementation();
   const packageJson = JSON.parse(read("package.json"));
   const readme = read("README.md");
   const postmarkCheck = read("scripts/check-postmark-setup.mjs");
@@ -368,7 +367,8 @@ test("website forms are routed to WSC email notifications", () => {
     formServer,
     /resolveNotificationRecipients\(submission\.formType\)/
   );
-  assert.match(formServer, /result\.email\.status !== "sent"/);
+  // Delivery outcomes are exercised with fake providers in form-delivery.test.ts.
+  assert.match(formServer, /createFormSubmissionHandler/);
   assert.match(formServer, /CONSTANT_CONTACT_CLIENT_ID/);
   assert.match(formServer, /contacts\/sign_up_form/);
   assert.match(formServer, /CONSTANT_CONTACT_LIST_IDS/);
@@ -484,9 +484,13 @@ test("live website inquiry forms exist in the new build", () => {
 
 test("form submission API accepts all live website form types", () => {
   const clientForms = read("client/src/lib/forms.ts");
-  const formServer = read("server/form-submissions.ts");
+  const formContracts = read("shared/form-contracts.ts");
+  const formServer = readFormImplementation();
+
+  assert.match(clientForms, /from "@shared\/form-contracts"/);
 
   for (const formType of [
+    "contact",
     "member_cancellation",
     "free_fitness_assessment",
     "personal_training",
@@ -495,7 +499,7 @@ test("form submission API accepts all live website form types", () => {
     "career_application",
     "newsletter_signup",
   ]) {
-    assert.match(clientForms, new RegExp(`"${formType}"`));
+    assert.match(formContracts, new RegExp(`"${formType}"`));
     assert.match(formServer, new RegExp(`"${formType}"`));
   }
 
@@ -580,7 +584,7 @@ test("conversion tracking covers calls, forms, bookings, memberships, and outbou
     /trackMarketingEvent\("membership_click"[\s\S]*?membership_action: "view_options"/
   );
   assert.match(attribution, /trackMarketingEvent\("outbound_click"/);
-  assert.match(forms, /gtag\("event", "form_submit"/);
+  assert.match(forms, /trackAnalyticsEvent\("form_submit"/);
   assert.match(forms, /AW-18217215416\/ouj7CNbhquccELjL0u5D/);
 });
 
@@ -594,9 +598,6 @@ test("customer action forms stay indexable while newsletter and duplicate aliase
     "client/src/pages/PersonalTrainingFormPage.tsx"
   );
   const golfLessons = read("client/src/pages/GolfLessonFormPage.tsx");
-  const sitemapGenerator = read(
-    "scripts/seo-audit/generate-public-seo-files.ts"
-  );
   const sitemap = read("client/public/sitemap.xml");
   const staticRoutes = read("scripts/seo-audit/generate-static-route-html.ts");
   const redirects = JSON.parse(read("vercel.json")).redirects ?? [];
@@ -608,10 +609,10 @@ test("customer action forms stay indexable while newsletter and duplicate aliase
   assert.doesNotMatch(personalTraining, /noindex/);
   assert.doesNotMatch(golfLessons, /noindex/);
 
-  assert.match(sitemapGenerator, /SEO\.memberCancellation\.path/);
-  assert.doesNotMatch(sitemapGenerator, /SEO\.newsletterSignup\.path/);
-  assert.match(sitemapGenerator, /SEO\.personalTrainingRequest\.path/);
-  assert.match(sitemapGenerator, /SEO\.golfLessons\.path/);
+  assert.ok(routeMetadata.memberCancellation.sitemap);
+  assert.equal(routeMetadata.newsletterSignup.sitemap, false);
+  assert.ok(routeMetadata.personalTrainingRequest.sitemap);
+  assert.ok(routeMetadata.golfLessons.sitemap);
   assert.match(
     sitemap,
     /<loc>https:\/\/www\.woodinvillesportsclub\.com\/member-request<\/loc>/
@@ -746,9 +747,8 @@ test("home facility chart includes golf sims and both fitness centers", () => {
   assert.match(home, /Main Gym \+ APL/);
 });
 
-test("seasonal surfaces use the shared calendar instead of fixed Fall 1 copy", () => {
+test("active seasonal surfaces use the shared calendar instead of fixed Fall 1 copy", () => {
   for (const file of [
-    "client/src/components/MarketingBanner.tsx",
     "client/src/pages/Sessions.tsx",
     "client/src/pages/Home.tsx",
   ]) {
@@ -760,7 +760,6 @@ test("seasonal surfaces use the shared calendar instead of fixed Fall 1 copy", (
     assert.doesNotMatch(source, /Fall 1 Registration|Fall 1 registration is open now|Fall 1 programs begin August 31/);
   }
   assert.match(read("client/src/pages/Home.tsx"), /Now at WSC/);
-  assert.doesNotMatch(read("client/src/components/Navbar.tsx"), /MarketingBanner/);
 });
 
 test("founded year is 1976 across visible and structured content", () => {
@@ -854,10 +853,10 @@ test("Google Tag Manager is consent-gated instead of blocking initial page load"
   assert.match(analytics, /const GTM_CONTAINER_ID/);
   assert.match(
     analytics,
-    /if \(!analyticsAllowed \|\| !isConfigured\(GTM_CONTAINER_ID\)\)/
+    /consent\.marketing\s*&&\s*configured\(GTM_CONTAINER_ID\)/
   );
   assert.match(
     analytics,
-    /script\.src = `https:\/\/www\.googletagmanager\.com\/gtm\.js\?id=\$\{GTM_CONTAINER_ID\}`/
+    /addScript\(\s*"wsc-gtm-script",\s*`https:\/\/www\.googletagmanager\.com\/gtm\.js\?id=\$\{GTM_CONTAINER_ID\}`/
   );
 });

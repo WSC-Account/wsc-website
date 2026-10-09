@@ -90,61 +90,14 @@ export default function Navbar() {
     setExpandedMobileSection(null);
   };
 
-  const getHeaderOffset = () =>
-    navRef.current?.getBoundingClientRect().height ?? 0;
-
-  const scrollToHashTarget = (hash: string, attempt = 0) => {
-    const target = document.getElementById(hash);
-    const headerHeight = getHeaderOffset();
-
-    if (target) {
-      const targetTop =
-        target.getBoundingClientRect().top + window.scrollY - headerHeight;
-      window.scrollTo({
-        top: Math.max(targetTop, 0),
-        left: 0,
-        behavior: "auto",
-      });
-      return true;
-    }
-
-    if (attempt < 30) {
-      window.setTimeout(() => scrollToHashTarget(hash, attempt + 1), 50);
-    }
-
-    return false;
-  };
-
-  const scrollToHashLink = (href: string) => {
-    const url = new URL(href, window.location.origin);
-    const hash = url.hash.slice(1);
-
-    if (!hash) return;
-
-    const targetPath = url.pathname;
-    const targetHref = `${targetPath}#${hash}`;
-
-    if (targetPath !== window.location.pathname) {
-      setLocation(targetPath);
-      window.setTimeout(() => {
-        window.history.pushState(null, "", targetHref);
-        scrollToHashTarget(hash);
-      }, 50);
-      return;
-    }
-
-    window.history.pushState(null, "", targetHref);
-    scrollToHashTarget(hash);
-  };
-
   const handleHashLinkClick = (
     event: MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
-    if (!href.includes("#")) return;
+    if (!href.includes("#") || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
 
     event.preventDefault();
-    scrollToHashLink(href);
+    setLocation(href);
   };
 
   useLayoutEffect(() => {

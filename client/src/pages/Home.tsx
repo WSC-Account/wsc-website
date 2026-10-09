@@ -23,7 +23,7 @@ import { useFormProtection } from "@/hooks/useFormProtection";
 import { useDeferredMount } from "@/hooks/useDeferredMount";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
-import { submitWebsiteForm } from "@/lib/forms";
+import { newsletterSubmissionMessage, submitWebsiteForm } from "@/lib/forms";
 import { notifyError, notifySuccess } from "@/lib/notify";
 import { useSessionCalendar } from "@/hooks/useSessionCalendar";
 import { summer2026Headline } from "@/lib/session-calendar";
@@ -407,10 +407,15 @@ export default function Home() {
     e.preventDefault();
     const check = validateNewsletterSubmission();
     if (!check.valid) {
-      if (check.reason === "honeypot" || check.reason === "too_fast") {
+      if (check.reason === "honeypot") {
         setNewsletterStatus("Thank you for subscribing.");
         setNewsletterStatusType("success");
         setNewsletterEmail("");
+        return;
+      }
+      if (check.reason === "too_fast") {
+        setNewsletterStatus("Please wait a moment, then try again. Your information has been kept.");
+        setNewsletterStatusType("error");
         return;
       }
       if (check.reason === "rate_limited") {
@@ -423,7 +428,7 @@ export default function Home() {
     setIsNewsletterSubmitting(true);
     setNewsletterStatus("");
     try {
-      await submitWebsiteForm({
+      const result = await submitWebsiteForm({
         formType: "newsletter_signup",
         source: "/",
         formName: "Newsletter Signup",
@@ -435,16 +440,18 @@ export default function Home() {
         },
       });
 
-      setNewsletterStatus("Thank you for subscribing.");
+      const message = newsletterSubmissionMessage(result);
+      setNewsletterStatus(message);
       setNewsletterStatusType("success");
       setNewsletterEmail("");
-      notifySuccess("Thanks, you're on the WSC newsletter list.");
-    } catch {
-      setNewsletterStatus(
-        "We could not subscribe you right now. Please try again."
-      );
+      notifySuccess(message);
+    } catch (error) {
+      const message = error instanceof Error
+        ? error.message
+        : "We could not subscribe you right now. Please try again.";
+      setNewsletterStatus(message);
       setNewsletterStatusType("error");
-      notifyError("We could not subscribe you right now. Please try again.");
+      notifyError(message);
     } finally {
       setIsNewsletterSubmitting(false);
     }
@@ -462,6 +469,7 @@ export default function Home() {
         <div className="relative flex h-[392px] flex-col justify-end overflow-hidden px-6 pb-8">
           <ResponsiveImage
             src={GALLERY_GOLF}
+            media="(width < 1024px)"
             alt="Woodinville Sports Club campus at sunset"
             sizes="100vw"
             loading="eager"
@@ -585,6 +593,7 @@ export default function Home() {
             >
               <ResponsiveImage
                 src={tile.src}
+                media="(min-width: 1024px)"
                 alt={tile.alt}
                 sizes={
                   index === 0

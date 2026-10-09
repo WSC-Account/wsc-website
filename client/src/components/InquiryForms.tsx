@@ -1,10 +1,10 @@
 import { useEffect, useState, type FormEvent } from "react";
-import { submitWebsiteForm, type WebsiteFormAttachment, type WebsiteFormType } from "@/lib/forms";
+import { newsletterSubmissionMessage, submitWebsiteForm, type WebsiteFormAttachment, type WebsiteFormType } from "@/lib/forms";
 import { useFormProtection } from "@/hooks/useFormProtection";
 import { notifyError, notifySuccess } from "@/lib/notify";
 
 type FormTone = "light" | "dark";
-type FormStatus = { type: "success" | "error"; message: string } | null;
+type FormStatus = { type: "success" | "error"; message: string; confirmed?: boolean } | null;
 type FormValue = string | string[];
 type BaseState = Record<string, FormValue>;
 
@@ -164,10 +164,17 @@ function useInquirySubmit<T extends BaseState>(initialState: T, options: SubmitO
     const check = validateSubmission();
 
     if (!check.valid) {
-      if (check.reason === "honeypot" || check.reason === "too_fast") {
+      if (check.reason === "honeypot") {
         setStatus({ type: "success", message: options.successMessage });
         notifySuccess(options.successMessage);
         setForm(initialState);
+        return;
+      }
+
+      if (check.reason === "too_fast") {
+        const message = "Please wait a moment, then try again. Your information has been kept.";
+        setStatus({ type: "error", message });
+        notifyError(message);
         return;
       }
 
@@ -184,15 +191,18 @@ function useInquirySubmit<T extends BaseState>(initialState: T, options: SubmitO
 
     try {
       const payload = await options.buildPayload(form);
-      await submitWebsiteForm({
+      const result = await submitWebsiteForm({
         formType: options.formType,
         source: options.source,
         formName: options.formName,
         ...payload,
       });
 
-      setStatus({ type: "success", message: options.successMessage });
-      notifySuccess(options.successMessage);
+      const message = options.formType === "newsletter_signup"
+        ? newsletterSubmissionMessage(result)
+        : options.successMessage;
+      setStatus({ type: "success", message, confirmed: true });
+      notifySuccess(message);
       setForm(initialState);
     } catch (error) {
       const message = error instanceof Error ? error.message : options.fallbackError;
@@ -604,7 +614,7 @@ export function FreeFitnessAssessmentForm({
   });
 
   useEffect(() => {
-    if (status?.type === "success") onSuccess?.();
+    if (status?.type === "success" && status.confirmed) onSuccess?.();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
 

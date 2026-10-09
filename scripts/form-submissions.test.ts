@@ -14,6 +14,11 @@ import { handleFormSubmissionRequest } from "../server/form-submissions.ts";
 const MANAGED_ENV_KEYS = [
   "FORM_SUBMISSIONS_DIR",
   "FORM_WEBHOOK_URL",
+  "FORM_REDIS_REST_URL",
+  "FORM_REDIS_REST_TOKEN",
+  "KV_REST_API_URL",
+  "KV_REST_API_TOKEN",
+  "VERCEL",
   "POSTMARK_SERVER_TOKEN",
   "FORM_ALERT_TO",
   "FORM_EMAIL_TO",

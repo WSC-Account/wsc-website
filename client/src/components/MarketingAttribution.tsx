@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { CONSENT_CHANGED_EVENT } from "@/lib/consent";
 import {
   captureMarketingAttribution,
   trackMarketingEvent,
@@ -11,6 +12,7 @@ function linkLabel(link: HTMLAnchorElement) {
 export default function MarketingAttribution() {
   useEffect(() => {
     captureMarketingAttribution();
+    window.addEventListener(CONSENT_CHANGED_EVENT, captureMarketingAttribution);
 
     const trackLinkClick = (event: MouseEvent) => {
       const target = event.target;
@@ -55,7 +57,10 @@ export default function MarketingAttribution() {
     };
 
     document.addEventListener("click", trackLinkClick);
-    return () => document.removeEventListener("click", trackLinkClick);
+    return () => {
+      document.removeEventListener("click", trackLinkClick);
+      window.removeEventListener(CONSENT_CHANGED_EVENT, captureMarketingAttribution);
+    };
   }, []);
 
   return null;

@@ -1,36 +1,27 @@
+import type {
+  WebsiteFormPayload,
+  WebsiteFormResult,
+  WebsiteFormType,
+} from "@shared/form-contracts";
+import { formRequestCache } from "./form-idempotency";
 import { marketingAttributionMetadata } from "./marketing-attribution";
+import { trackAnalyticsEvent, trackAdvertisingConversion } from "./tracking";
 
-const FREE_FITNESS_ASSESSMENT_CONVERSION_ID = "AW-18217215416/ouj7CNbhquccELjL0u5D";
+const FREE_FITNESS_ASSESSMENT_CONVERSION_ID =
+  "AW-18217215416/ouj7CNbhquccELjL0u5D";
 
-export type WebsiteFormType =
-  | "contact"
-  | "free_fitness_assessment"
-  | "golf_lesson"
-  | "newsletter_signup"
-  | "member_cancellation"
-  | "personal_training"
-  | "private_event"
-  | "career_application";
+export type {
+  WebsiteFormAttachment,
+  WebsiteFormPayload,
+  WebsiteFormResult,
+  WebsiteFormType,
+} from "@shared/form-contracts";
 
-export type WebsiteFormAttachment = {
-  name: string;
-  contentType: string;
-  contentBase64: string;
-};
-
-export type WebsiteFormPayload = {
-  formType: WebsiteFormType;
-  source: string;
-  email: string;
-  name?: string;
-  phone?: string;
-  subject?: string;
-  message?: string;
-  formName?: string;
-  companyWebsite?: string;
-  metadata?: Record<string, string | number | boolean | null | undefined>;
-  attachments?: WebsiteFormAttachment[];
-};
+export function newsletterSubmissionMessage(result: WebsiteFormResult) {
+  return result.constantContactStatus === "synced"
+    ? "Thanks, you're on the WSC newsletter list."
+    : "We received your signup request. Our team will add you to the newsletter list.";
+}
 
 export class FormSubmissionError extends Error {
   status: number;
@@ -54,15 +45,21 @@ export async function submitWebsiteForm(payload: WebsiteFormPayload) {
       }
     : payload;
 
+  const body = JSON.stringify(trackedPayload);
+  const pending = await formRequestCache.claim(
+    `${payload.formType}:${payload.source}`,
+    body
+  );
   const response = await fetch("/api/contact", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Idempotency-Key": pending.key,
     },
-    body: JSON.stringify(trackedPayload),
+    body,
   });
 
-  let result: { ok?: boolean; success?: boolean; error?: string } = {};
+  let result: WebsiteFormResult = {};
 
   try {
     result = await response.json();
@@ -72,32 +69,27 @@ export async function submitWebsiteForm(payload: WebsiteFormPayload) {
 
   if (!response.ok || (!result.ok && !result.success)) {
     throw new FormSubmissionError(
-      result.error || "We could not submit the form right now. Please try again.",
-      response.status,
+      result.error ||
+        "We could not submit the form right now. Please try again.",
+      response.status
     );
   }
 
+  formRequestCache.complete(pending);
   trackFormSubmit(payload);
 
   return result;
 }
 
 function trackFormSubmit(payload: WebsiteFormPayload) {
-  if (typeof window === "undefined") return;
-
-  const gtag = (window as Window & { gtag?: (...args: unknown[]) => void }).gtag;
-  if (typeof gtag !== "function") return;
-
-  gtag("event", "form_submit", {
+  trackAnalyticsEvent("form_submit", {
     form_name: payload.formName || labelForFormType(payload.formType),
     form_type: payload.formType,
     source: payload.source,
   });
 
   if (payload.formType === "free_fitness_assessment") {
-    gtag("event", "conversion", {
-      send_to: FREE_FITNESS_ASSESSMENT_CONVERSION_ID,
-    });
+    trackAdvertisingConversion(FREE_FITNESS_ASSESSMENT_CONVERSION_ID);
   }
 }
 
@@ -105,8 +97,10 @@ function labelForFormType(formType: WebsiteFormType) {
   if (formType === "contact") return "Contact Form";
   if (formType === "free_fitness_assessment") return "Free Fitness Assessment";
   if (formType === "golf_lesson") return "Golf Lessons Inquiry";
-  if (formType === "member_cancellation") return "Membership Cancellation Requests";
-  if (formType === "personal_training") return "Personal Training Interest Form";
+  if (formType === "member_cancellation")
+    return "Membership Cancellation Requests";
+  if (formType === "personal_training")
+    return "Personal Training Interest Form";
   if (formType === "private_event") return "Private Events Inquiry";
   if (formType === "career_application") return "Careers Application Form";
   return "Newsletter Signup";

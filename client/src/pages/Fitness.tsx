@@ -1,3 +1,4 @@
+import { trackAdvertisingConversion } from "@/lib/tracking";
 /*
  * 4B Design - Athletic Performance Lab Page
  * Covers: purpose, offerings, coaches, registration paths
@@ -33,13 +34,11 @@ function reportCourtReserveConversion(url?: string) {
     window.location.href = url;
   };
 
-  if (typeof window.gtag === "function") {
-    window.gtag("event", "conversion", {
-      send_to: COURT_RESERVE_CONVERSION_ID,
-      value: 1.0,
-      currency: "USD",
-      event_callback: redirect,
-    });
+  if (trackAdvertisingConversion(COURT_RESERVE_CONVERSION_ID, {
+    value: 1.0,
+    currency: "USD",
+    event_callback: redirect,
+  })) {
 
     if (url) {
       window.setTimeout(redirect, 700);
