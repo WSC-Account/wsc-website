@@ -1,17 +1,18 @@
 import { expect, test } from "@playwright/test";
 
-test.beforeEach(async ({ page }) => {
-  await page.addInitScript(() => {
+test.beforeEach(async ({ page }, testInfo) => {
+  const trackingTest = testInfo.title.includes("fitness assessment tracks");
+  await page.addInitScript((trackingTest) => {
     localStorage.setItem(
       "wsc-cookie-consent",
       JSON.stringify({
         necessary: true,
-        analytics: false,
-        marketing: false,
+        analytics: trackingTest,
+        marketing: trackingTest,
         timestamp: new Date().toISOString(),
       })
     );
-  });
+  }, trackingTest);
 });
 
 test("Fall 1 registration rolls forward on an open page and retires summer links", async ({
@@ -90,11 +91,20 @@ test("merged navigation retains hash destinations and mobile keyboard controls",
     await nav.getByRole("link", { name: "Tennis", exact: true }).hover();
   }
   await nav.getByRole("link", { name: "Adult Tennis", exact: true }).click();
-  await expect(page).toHaveURL(/\/tennis#adult-tennis$/);
-  await expect(page.locator("#adult-tennis")).toBeInViewport();
+  await expect(page).toHaveURL(/\/tennis\/adult$/);
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Your game.");
+  if (isMobile) {
+    await nav.getByRole("button", { name: "Open navigation menu" }).click();
+    await nav.getByRole("button", { name: "Show Tennis submenu" }).click();
+  } else {
+    await nav.getByRole("link", { name: "Tennis", exact: true }).hover();
+  }
+  await nav.getByRole("link", { name: "Junior Tennis", exact: true }).click();
+  await expect(page).toHaveURL(/\/tennis#junior-tennis$/);
+  await expect(page.locator("#junior-tennis")).toBeInViewport();
   await expect
     .poll(() =>
-      page.locator("#adult-tennis").evaluate(element => {
+      page.locator("#junior-tennis").evaluate(element => {
         const header = document.querySelector("nav > div")!;
         return Math.abs(
           element.getBoundingClientRect().top -
@@ -157,6 +167,7 @@ test("a stale lazy route recovers by reloading the current URL", async ({
 test("fitness assessment tracks one conversion only after a successful submission", async ({
   page,
 }) => {
+  await page.route(/https:\/\/(?:www\.)?googletagmanager\.com\//, route => route.fulfill({ status: 200, contentType: "application/javascript", body: "" }));
   const startedAt = Date.now();
   await page.clock.setFixedTime(new Date(startedAt));
   const events: unknown[][] = [];

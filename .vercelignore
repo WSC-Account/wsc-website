@@ -8,7 +8,16 @@ build/
 .playwright-cli/
 .playwright-mcp/
 scripts/seo-audit/output/
-data/form-submissions/
+# Local runtime state must never be uploaded with source deployments.
+data/
+.env
+.env.*
+!.env.example
+# Local audit reports and browser test artifacts are not deployment inputs.
+output/
+outputs/
+test-results/
+playwright-report/
 coverage/
 *.log
 *.tsbuildinfo

@@ -4,17 +4,21 @@ on:
   pull_request:
   push:
     branches: [main]
+  schedule:
+    - cron: "23 15 * * *"
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: website-checks-${{ github.workflow }}-${{ github.ref }}
+  group: website-checks-${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   test:
     name: Tests and production build
+    if: github.event_name != 'schedule'
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -31,7 +35,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: pnpm
 
       - name: Install dependencies
@@ -43,7 +47,7 @@ jobs:
       - name: Install Chromium
         run: pnpm exec playwright install --with-deps chromium
 
-      - name: Run desktop and mobile browser tests
+      - name: Run desktop and mobile browser tests against the production server
         run: pnpm test:e2e
 
       - name: Upload browser failure report
@@ -54,3 +58,22 @@ jobs:
           path: output/playwright/
           if-no-files-found: ignore
           retention-days: 7
+
+  dependency-audit:
+    name: Dependency security audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Audit locked dependencies for high and critical advisories
+        run: pnpm audit --audit-level=high

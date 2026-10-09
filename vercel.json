@@ -4,6 +4,12 @@
   "installCommand": "pnpm install --frozen-lockfile",
   "outputDirectory": "dist/public",
   "framework": "vite",
+  "functions": {
+    "api/*.ts": {
+      "maxDuration": 150,
+      "excludeFiles": "{data/**,.env*,output/**,outputs/**,test-results/**,playwright-report/**,coverage/**,.playwright-cli/**,.playwright-mcp/**,.scrape/**}"
+    }
+  },
   "headers": [
     {
       "source": "/(.*)",
@@ -49,22 +55,22 @@
     },
     {
       "source": "/adult-rpm-classes/rpm-adult-2.0",
-      "destination": "/tennis",
+      "destination": "/tennis/adult",
       "permanent": true
     },
     {
       "source": "/adult-rpm-classes/rpm-adult-2.5",
-      "destination": "/tennis",
+      "destination": "/tennis/adult",
       "permanent": true
     },
     {
       "source": "/adult-rpm-classes/rpm-adult-3.0",
-      "destination": "/tennis",
+      "destination": "/tennis/adult",
       "permanent": true
     },
     {
       "source": "/adult-wsc-tennis",
-      "destination": "/tennis",
+      "destination": "/tennis/adult",
       "permanent": true
     },
     {

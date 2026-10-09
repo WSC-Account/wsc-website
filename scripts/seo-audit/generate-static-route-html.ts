@@ -6,24 +6,15 @@ import {
   responsiveAvifSrcSet,
   responsiveWebpSrcSet,
 } from "../../client/src/lib/responsive-image";
-import { SEO } from "../../client/src/lib/seo-data";
+import { pageRoutes } from "./route-metadata";
 
 const SITE_NAME = "Woodinville Sports Club";
 const BASE_URL = "https://www.woodinvillesportsclub.com";
 const DIST_DIR = path.resolve("dist/public");
 const DEFAULT_IMAGE = "/images/wsc/campus-dome.webp";
-const UTILITY_HEADER_COPY: Record<
-  string,
-  { eyebrow: string; headline: string }
-> = {
-  "/sessions": {
-    eyebrow: "WSC Session Calendar",
-    headline: "Mark your calendar.",
-  },
-  "/membership": { eyebrow: "Membership", headline: "Train Without Limits." },
-  "/faq": { eyebrow: "Frequently Asked Questions", headline: "Quick Answers." },
-  "/policies": { eyebrow: "Policies & Terms", headline: "Policies & Terms." },
-};
+const UTILITY_HEADER_COPY = Object.fromEntries(
+  pageRoutes.filter(route => route.utilityHeader).map(route => [route.path, route.utilityHeader!])
+);
 
 type StaticRoute = {
   path: string;
@@ -35,36 +26,6 @@ type StaticRoute = {
   eyebrow: string;
   headline: string;
   subtitle: string;
-};
-
-const pageImages: Record<string, string> = {
-  "/": "/images/wsc/campus-sunset.webp",
-  "/tennis": "/images/wsc/tennis-courts.webp",
-  "/tennis/summer-tennis": "/images/wsc/tennis-courts.webp",
-  "/golf": "/images/wsc/golf-range-sunset.webp",
-  "/golf/driving-range": "/images/wsc/golf-range-sunset.webp",
-  "/golf/tournaments": "/images/wsc/junior-golf-academy-group.webp",
-  "/gym": "/images/wsc/fitness-center-hero.webp",
-  "/free-fitness-assessment": "/images/wsc/fitness-center-hero.webp",
-  "/fitness": "/images/wsc/gym-main.webp",
-  "/pickleball": "/images/wsc/pickleball-dome.webp",
-  "/summer": "/images/wsc/campus-dome.webp",
-  "/membership": "/images/wsc/campus-dome.webp",
-  "/sessions": "/images/wsc/campus-dome.webp",
-  "/events": "/images/wsc/campus-sunset.webp",
-  "/careers": "/images/wsc/campus-sunset.webp",
-  "/member-request": "/images/wsc/campus-dome.webp",
-  "/personal-training": "/images/wsc/fitness-center-hero.webp",
-  "/personal-training-interest-form": "/images/wsc/gym-main.webp",
-  "/golf-coaching": "/images/wsc/swing-lab-simulators.webp",
-  "/newsletter-signup": "/images/wsc/contact-campus.webp",
-  "/blog": "/images/wsc/campus-sunset.webp",
-  "/about": "/images/wsc/campus-dome.webp",
-  "/contact": "/images/wsc/contact-campus.webp",
-  "/pro-shop": "/images/wsc/racket-stringing.webp",
-  "/policies": "/images/wsc/campus-dome.webp",
-  "/faq": "/images/wsc/campus-dome.webp",
-  "/accessibility": "/images/wsc/campus-dome.webp",
 };
 
 const categoryImages: Record<string, string> = {
@@ -110,14 +71,22 @@ function srcSetCandidateUrl(srcSet: string, preferredWidth = 1200) {
   );
 }
 
-function responsiveImagePreload(route: StaticRoute) {
-  const avif = responsiveAvifSrcSet(route.image);
+function imagePreload(image: string, sizes = "100vw", media?: string) {
+  const avif = responsiveAvifSrcSet(image);
+  const mediaAttribute = media ? ` media="${media}"` : "";
   if (!avif) {
-    return `    <link rel="preload" as="image" href="${route.image}" fetchpriority="high" />\n`;
+    return `    <link rel="preload" as="image" href="${image}"${mediaAttribute} fetchpriority="high" />\n`;
   }
-
   const href = srcSetCandidateUrl(avif);
-  return `    <link rel="preload" as="image" href="${href}" type="image/avif" imagesrcset="${escapeHtml(avif)}" imagesizes="100vw" fetchpriority="high" />\n`;
+  return `    <link rel="preload" as="image" href="${href}" type="image/avif" imagesrcset="${escapeHtml(avif)}" imagesizes="${sizes}"${mediaAttribute} fetchpriority="high" />\n`;
+}
+
+function responsiveImagePreload(route: StaticRoute) {
+  if (route.path === "/") {
+    return imagePreload(route.image, "100vw", "(width < 1024px)") +
+      imagePreload("/images/wsc/golf-range-aerial.webp", "34vw", "(min-width: 1024px)");
+  }
+  return imagePreload(route.image);
 }
 
 function routeOutputPath(routePath: string) {
@@ -131,7 +100,10 @@ function staticShell(route: StaticRoute) {
   const imageDimensions = imageDimensionsFor(route.image);
   const avif = responsiveAvifSrcSet(route.image);
   const webp = responsiveWebpSrcSet(route.image);
-  return `<div id="root"><section style="position:relative;min-height:100vh;background:#161310;color:#efe7d7;display:flex;align-items:flex-end;overflow:hidden;padding:150px 24px 64px;box-sizing:border-box;font-family:Inter,ui-sans-serif,system-ui,sans-serif;"><picture style="position:absolute;inset:0;display:block;"><source type="image/avif" srcset="${escapeHtml(avif ?? "")}" sizes="100vw"><source type="image/webp" srcset="${escapeHtml(webp ?? "")}" sizes="100vw"><img src="${image}" alt="${escapeHtml(route.headline)} at Woodinville Sports Club" width="${imageDimensions.width}" height="${imageDimensions.height}" loading="eager" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:cover;filter:saturate(.62) brightness(.46);"></picture><div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(22,19,16,.78),rgba(22,19,16,.48),rgba(22,19,16,.16));"></div><div style="position:relative;z-index:1;max-width:760px;"><p style="margin:0 0 20px;color:#83b7ff;font-size:11px;letter-spacing:.22em;text-transform:uppercase;">${escapeHtml(route.eyebrow)}</p><h1 style="margin:0 0 22px;color:#efe7d7;font-size:clamp(40px,8vw,76px);font-weight:300;line-height:1.06;letter-spacing:0;">${escapeHtml(route.headline)}</h1><p style="margin:0;max-width:560px;color:rgba(239,231,215,.82);font-size:16px;line-height:1.72;">${escapeHtml(route.subtitle)}</p></div></section></div>`;
+  const desktopSources = route.path === "/"
+    ? `<source media="(min-width: 1024px)" type="image/avif" srcset="${escapeHtml(responsiveAvifSrcSet("/images/wsc/golf-range-aerial.webp") ?? "")}" sizes="34vw"><source media="(min-width: 1024px)" type="image/webp" srcset="${escapeHtml(responsiveWebpSrcSet("/images/wsc/golf-range-aerial.webp") ?? "")}" sizes="34vw">`
+    : "";
+  return `<div id="root"><section style="position:relative;min-height:100vh;background:#161310;color:#efe7d7;display:flex;align-items:flex-end;overflow:hidden;padding:150px 24px 64px;box-sizing:border-box;font-family:Inter,ui-sans-serif,system-ui,sans-serif;"><picture style="position:absolute;inset:0;display:block;">${desktopSources}<source type="image/avif" srcset="${escapeHtml(avif ?? "")}" sizes="100vw"><source type="image/webp" srcset="${escapeHtml(webp ?? "")}" sizes="100vw"><img src="${image}" alt="${escapeHtml(route.headline)} at Woodinville Sports Club" width="${imageDimensions.width}" height="${imageDimensions.height}" loading="eager" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:cover;filter:saturate(.62) brightness(.46);"></picture><div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(22,19,16,.78),rgba(22,19,16,.48),rgba(22,19,16,.16));"></div><div style="position:relative;z-index:1;max-width:760px;"><p style="margin:0 0 20px;color:#83b7ff;font-size:11px;letter-spacing:.22em;text-transform:uppercase;">${escapeHtml(route.eyebrow)}</p><h1 style="margin:0 0 22px;color:#efe7d7;font-size:clamp(40px,8vw,76px);font-weight:300;line-height:1.06;letter-spacing:0;">${escapeHtml(route.headline)}</h1><p style="margin:0;max-width:560px;color:rgba(239,231,215,.82);font-size:16px;line-height:1.72;">${escapeHtml(route.subtitle)}</p></div></section></div>`;
 }
 
 function utilityStaticShell(route: StaticRoute) {
@@ -197,8 +169,8 @@ function replaceMeta(html: string, route: StaticRoute) {
 }
 
 function baseRoutes(): StaticRoute[] {
-  return Object.values(SEO)
-    .filter(entry => entry.path !== "/privacy")
+  return pageRoutes
+    .filter(entry => entry.staticShell)
     .map(entry => {
       const utilityCopy = UTILITY_HEADER_COPY[entry.path];
 
@@ -206,7 +178,7 @@ function baseRoutes(): StaticRoute[] {
         path: entry.path,
         title: entry.title,
         description: entry.description,
-        image: pageImages[entry.path] ?? DEFAULT_IMAGE,
+        image: entry.image,
         eyebrow:
           utilityCopy?.eyebrow ??
           (entry.path === "/" ? "Woodinville, Washington" : entry.title),

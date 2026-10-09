@@ -13,6 +13,7 @@ interface State {
 }
 
 const CHUNK_RELOAD_STORAGE_PREFIX = "wsc:chunk-load-reload:";
+const CHUNK_RELOAD_COOLDOWN_MS = 5 * 60_000;
 const CHUNK_LOAD_ERROR_PATTERNS = [
   /ChunkLoadError/i,
   /Failed to fetch dynamically imported module/i,
@@ -39,6 +40,26 @@ function chunkReloadStorageKey() {
   return `${CHUNK_RELOAD_STORAGE_PREFIX}${route}`;
 }
 
+// Persist across document reloads. If storage is unavailable, leave a usable
+// retry screen instead of risking an unbounded reload loop.
+export function claimChunkReload(
+  storage: Pick<Storage, "getItem" | "setItem">,
+  key: string,
+  now = Date.now(),
+) {
+  try {
+    const previous = storage.getItem(key);
+    if (previous !== null) {
+      const timestamp = Number(previous);
+      if (!Number.isFinite(timestamp) || now - timestamp < CHUNK_RELOAD_COOLDOWN_MS) return false;
+    }
+    storage.setItem(key, String(now));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 class ErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -53,34 +74,27 @@ class ErrorBoundary extends Component<Props, State> {
     };
   }
 
-  componentDidMount() {
-    if (typeof window !== "undefined") {
-      window.sessionStorage.removeItem(chunkReloadStorageKey());
-    }
-  }
-
   componentDidCatch(error: Error) {
     if (!isRecoverableChunkLoadError(error) || typeof window === "undefined") {
       return;
     }
 
-    const storageKey = chunkReloadStorageKey();
-
-    if (window.sessionStorage.getItem(storageKey) === "1") {
-      return;
+    try {
+      if (claimChunkReload(window.sessionStorage, chunkReloadStorageKey())) {
+        window.location.reload();
+      }
+    } catch {
+      // Accessing sessionStorage itself can throw in restricted browsers.
     }
-
-    window.sessionStorage.setItem(storageKey, "1");
-    window.location.reload();
   }
 
   render() {
     if (this.state.hasError) {
       const title = this.state.isChunkLoadError
-        ? "Refreshing the latest page version."
+        ? "This page couldn't load."
         : "An unexpected error occurred.";
       const message = this.state.isChunkLoadError
-        ? "This can happen right after a website update. If the page does not refresh automatically, use the button below."
+        ? "Check your connection, then try reloading the page."
         : "Please reload the page and try again.";
 
       return (

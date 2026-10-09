@@ -5,26 +5,25 @@ import ResponsiveImage from "@/components/ResponsiveImage";
 import SEOHead from "@/components/SEOHead";
 import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData";
 import { SEO } from "@/lib/seo-data";
+import { useSessionCalendar } from "@/hooks/useSessionCalendar";
+import { tournamentState, type TournamentDates, type TournamentStatus } from "@/lib/tournament-calendar";
 
 const HERO_IMG = "/images/wsc/junior-golf-academy-group.webp";
 const RANGE_IMG = "/images/wsc/golf-range-field.webp";
 const SIM_IMG = "/images/wsc/swing-lab-junior-practice.webp";
 const GOLF_EMAIL = "Tier1golf@woodinvillesportsclub.com";
 
-type TournamentStatus = "Completed" | "Upcoming" | "TBD";
 type TournamentAgeFilter = "all" | "8-11" | "12-13" | "14-18";
 type TournamentFitFilter = "all" | "first-events" | "developing" | "competitive" | "championship";
 type TournamentDistanceFilter = "all" | "30" | "90" | "travel";
 type TournamentEligibilityFilter = "all" | "pathway" | "open" | "qualifier" | "invitational" | "championship";
 
-type CompetitiveTournament = {
+type CompetitiveTournament = TournamentDates & {
   date: string;
-  sortDate: string;
   title: string;
   organizer: string;
   location: string;
   level: string;
-  status: TournamentStatus;
   source: string;
 };
 
@@ -48,322 +47,323 @@ type RecreationalTournament = {
 const competitiveTournaments: CompetitiveTournament[] = [
   {
     date: "March 20-22, 2026",
-    sortDate: "2026-03-20",
+    startDate: "2026-03-20",
+    endDate: "2026-03-22",
     title: "WJGA State Match Play",
     organizer: "WJGA",
     location: "Eagles Pride GC",
     level: "14-18 open event",
-    status: "Completed",
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
     date: "March 28, 2026",
-    sortDate: "2026-03-28",
+    startDate: "2026-03-28",
+    endDate: "2026-03-28",
     title: "WJGA Jr. Tour #1",
     organizer: "WJGA",
     location: "Meadow Park GC / Williams Nine",
     level: "8-11 and 12-13 divisions",
-    status: "Completed",
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
     date: "April 18-19, 2026",
-    sortDate: "2026-04-18",
+    startDate: "2026-04-18",
+    endDate: "2026-04-19",
     title: "WJGA Western Open",
     organizer: "WJGA",
     location: "Capitol City GC",
     level: "14-18 open event",
-    status: "Completed",
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
     date: "April 25, 2026",
-    sortDate: "2026-04-25",
+    startDate: "2026-04-25",
+    endDate: "2026-04-25",
     title: "WJGA Jr. Tour #2",
     organizer: "WJGA",
     location: "Alderbrook GC",
     level: "8-11 and 12-13 divisions",
-    status: "Completed",
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
     date: "April 25-26, 2026",
-    sortDate: "2026-04-25",
+    startDate: "2026-04-25",
+    endDate: "2026-04-26",
     title: "WJGA Eastern Open + Junior World Qualifier",
     organizer: "WJGA",
     location: "Veterans Memorial GC",
     level: "14-18 open event / Junior World qualifier",
-    status: "Completed",
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
     date: "May 16, 2026",
-    sortDate: "2026-05-16",
+    startDate: "2026-05-16",
+    endDate: "2026-05-16",
     title: "WJGA Jr. Tour #3",
     organizer: "WJGA",
     location: "The Links GC",
     level: "8-11 and 12-13 divisions",
-    status: "Completed",
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
     date: "May 16-17, 2026",
-    sortDate: "2026-05-16",
+    startDate: "2026-05-16",
+    endDate: "2026-05-17",
     title: "WJGA Players Open",
     organizer: "WJGA",
     location: "The Links GC",
     level: "14-18 open event",
-    status: "Completed",
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
     date: "May 26, 2026",
-    sortDate: "2026-05-26",
+    startDate: "2026-05-26",
+    endDate: "2026-05-26",
     title: "U.S. Girls' Junior Qualifying",
     organizer: "WA Golf / USGA",
     location: "McCormick Woods Golf Club",
     level: "USGA junior championship qualifier",
-    status: "Completed",
     source: "https://wagolf.org/compete/usga-qualifying",
   },
   {
     date: "May 26, 2026",
-    sortDate: "2026-05-26",
+    startDate: "2026-05-26",
+    endDate: "2026-05-26",
     title: "U.S. Junior Amateur Qualifying",
     organizer: "WA Golf / USGA",
     location: "McCormick Woods Golf Club",
     level: "USGA junior championship qualifier",
-    status: "Completed",
     source: "https://wagolf.org/compete/usga-qualifying",
   },
   {
     date: "June 6, 2026",
-    sortDate: "2026-06-06",
+    startDate: "2026-06-06",
+    endDate: "2026-06-06",
     title: "WJGA Jr. Tour #4",
     organizer: "WJGA",
     location: "Sun Country GC",
     level: "8-11 and 12-13 divisions",
-    status: "Completed",
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
     date: "June 6-7, 2026",
-    sortDate: "2026-06-06",
+    startDate: "2026-06-06",
+    endDate: "2026-06-07",
     title: "Washington State Junior Amateur",
     organizer: "WJGA",
     location: "Yakima Elks G&CC",
     level: "Junior championship",
-    status: "Completed",
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
     date: "June 19, 2026",
-    sortDate: "2026-06-19",
+    startDate: "2026-06-19",
+    endDate: "2026-06-19",
     title: "WJGA Jr. Tour #5",
     organizer: "WJGA",
     location: "Tahoma Valley GC",
     level: "8-11 and 12-13 divisions",
-    status: "Completed",
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
     date: "June 22, 2026",
-    sortDate: "2026-06-22",
+    startDate: "2026-06-22",
+    endDate: "2026-06-22",
     title: "WJGA District 1 Sub-District 1",
     organizer: "WJGA",
     location: "Walter Hall GC",
     level: "Everett to north border district pathway",
-    status: "Completed",
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
     date: "June 22, 2026",
-    sortDate: "2026-06-22",
+    startDate: "2026-06-22",
+    endDate: "2026-06-22",
     title: "WJGA District 2 Sub-District 1",
     organizer: "WJGA",
     location: "Seattle GC",
     level: "Seattle-area district pathway",
-    status: "Completed",
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
     date: "June 25-26, 2026",
-    sortDate: "2026-06-25",
+    startDate: "2026-06-25",
+    endDate: "2026-06-26",
     title: "U.S. Kids Golf Northwest State Invitational",
     organizer: "U.S. Kids Golf",
     location: "Wine Valley GC, Walla Walla",
     level: "Regional junior event",
-    status: "Completed",
     source: "https://tournaments.uskidsgolf.com/tournaments/state/rental-cars",
   },
   {
     date: "June 25, 2026",
-    sortDate: "2026-06-25",
+    startDate: "2026-06-25",
+    endDate: "2026-06-25",
     title: "WJGA District 6 Sub-District 1",
     organizer: "WJGA",
     location: "Riverbend GC",
     level: "South King / East Pierce district pathway",
-    status: "Completed",
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
     date: "June 29, 2026",
-    sortDate: "2026-06-29",
+    startDate: "2026-06-29",
+    endDate: "2026-06-29",
     title: "WJGA District 1 Sub-District 2",
     organizer: "WJGA",
     location: "Camaloch GC",
     level: "Everett to north border district pathway",
-    status: "Completed",
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
     date: "June 29, 2026",
-    sortDate: "2026-06-29",
+    startDate: "2026-06-29",
+    endDate: "2026-06-29",
     title: "WJGA District 2 Sub-District 2",
     organizer: "WJGA",
     location: "West Seattle GC",
     level: "Seattle-area district pathway",
-    status: "Completed",
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
     date: "June 29, 2026",
-    sortDate: "2026-06-29",
+    startDate: "2026-06-29",
+    endDate: "2026-06-29",
     title: "WJGA District 6 Sub-District 2",
     organizer: "WJGA",
     location: "North Shore GC",
     level: "South King / East Pierce district pathway",
-    status: "Completed",
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
     date: "June 30, 2026",
-    sortDate: "2026-06-30",
+    startDate: "2026-06-30",
+    endDate: "2026-06-30",
     title: "WJGA Joel Dahmen Invitational",
     organizer: "WJGA",
     location: "Oakbrook GC",
     level: "Invitational",
-    status: "Completed",
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
     date: "July 3-4, 2026",
-    sortDate: "2026-07-03",
+    startDate: "2026-07-03",
+    endDate: "2026-07-04",
     title: "U.S. Kids Golf Washington State Invitational",
     organizer: "U.S. Kids Golf",
     location: "Gamble Sands, Brewster",
     level: "State junior event",
-    status: "Completed",
     source: "https://tournaments.uskidsgolf.com/tournaments/state/rental-cars",
   },
   {
     date: "July 6, 2026",
-    sortDate: "2026-07-06",
+    startDate: "2026-07-06",
+    endDate: "2026-07-06",
     title: "WJGA District 2 Sub-District 3",
     organizer: "WJGA",
     location: "Snoqualmie Falls GC",
     level: "Seattle-area district pathway",
-    status: "Completed",
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
     date: "July 9, 2026",
-    sortDate: "2026-07-09",
+    startDate: "2026-07-09",
+    endDate: "2026-07-09",
     title: "WJGA District 1 Sub-District 3",
     organizer: "WJGA",
     location: "Bellingham G&CC",
     level: "Everett to north border district pathway",
-    status: "Upcoming",
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
     date: "July 9, 2026",
-    sortDate: "2026-07-09",
+    startDate: "2026-07-09",
+    endDate: "2026-07-09",
     title: "WJGA District 6 Sub-District 3",
     organizer: "WJGA",
     location: "Allenmore GC",
     level: "South King / East Pierce district pathway",
-    status: "Upcoming",
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
     date: "July 13-14, 2026",
-    sortDate: "2026-07-13",
+    startDate: "2026-07-13",
+    endDate: "2026-07-14",
     title: "WJGA District 1 Championship",
     organizer: "WJGA",
     location: "Avalon Golf Links",
     level: "District championship",
-    status: "Upcoming",
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
     date: "July 13-14, 2026",
-    sortDate: "2026-07-13",
+    startDate: "2026-07-13",
+    endDate: "2026-07-14",
     title: "WJGA District 2 Championship",
     organizer: "WJGA",
     location: "Echo Falls GC",
     level: "Seattle-area district championship",
-    status: "Upcoming",
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
     date: "July 13-14, 2026",
-    sortDate: "2026-07-13",
+    startDate: "2026-07-13",
+    endDate: "2026-07-14",
     title: "WJGA District 6 Championship",
     organizer: "WJGA",
     location: "High Cedars GC",
     level: "South King / East Pierce district championship",
-    status: "Upcoming",
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
     date: "July 21-22, 2026",
-    sortDate: "2026-07-21",
+    startDate: "2026-07-21",
+    endDate: "2026-07-22",
     title: "WJGA Cup",
     organizer: "WJGA",
     location: "Lakeview G&CC",
     level: "All ages",
-    status: "Upcoming",
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
     date: "August 4-6, 2026",
-    sortDate: "2026-08-04",
+    startDate: "2026-08-04",
+    endDate: "2026-08-06",
     title: "WJGA State Championship",
     organizer: "WJGA",
     location: "Manito G&CC / Latah Creek GC / Esmeralda GC",
     level: "State championship",
-    status: "Upcoming",
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
     date: "August 10-14, 2026",
-    sortDate: "2026-08-10",
+    startDate: "2026-08-10",
+    endDate: "2026-08-14",
     title: "PNGA Junior Boys' Amateur",
     organizer: "PNGA",
     location: "Vandal Golf Course",
     level: "Regional junior championship",
-    status: "Upcoming",
     source: "https://thepnga.org/championships/",
   },
   {
     date: "August 10-14, 2026",
-    sortDate: "2026-08-10",
+    startDate: "2026-08-10",
+    endDate: "2026-08-14",
     title: "PNGA Junior Girls' Amateur",
     organizer: "PNGA",
     location: "Vandal Golf Course",
     level: "Regional junior championship",
-    status: "Upcoming",
     source: "https://thepnga.org/championships/",
   },
   {
     date: "November 11, 2026",
-    sortDate: "2026-11-11",
+    startDate: "2026-11-11",
+    endDate: "2026-11-11",
     title: "WJGA Turkey Shoot",
     organizer: "WJGA",
     location: "TBD",
     level: "Season-end junior event",
-    status: "TBD",
+    statusOverride: "TBD",
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
 ];
@@ -400,7 +400,7 @@ const recreationalTournaments: RecreationalTournament[] = [
 ];
 
 const sortedCompetitiveTournaments = [...competitiveTournaments].sort((a, b) =>
-  a.sortDate.localeCompare(b.sortDate),
+  a.startDate.localeCompare(b.startDate),
 );
 
 const tournamentDistanceMiles: Record<string, number> = {
@@ -581,7 +581,7 @@ const preparationSteps = [
 
 function StatusBadge({ status }: { status: TournamentStatus }) {
   const classes =
-    status === "Upcoming"
+    status === "Upcoming" || status === "In progress"
       ? "bg-volt-bright text-dark-bg"
       : status === "TBD"
         ? "bg-parchment border border-ink/20 text-ink-mid"
@@ -632,6 +632,7 @@ function FilterSelect({
 }
 
 export default function GolfTournaments() {
+  const { today } = useSessionCalendar();
   const [ageFilter, setAgeFilter] = useState<TournamentAgeFilter>("all");
   const [fitFilter, setFitFilter] = useState<TournamentFitFilter>("all");
   const [distanceFilter, setDistanceFilter] = useState<TournamentDistanceFilter>("all");
@@ -639,17 +640,17 @@ export default function GolfTournaments() {
 
   const filteredTournaments = useMemo(
     () =>
-      enhancedCompetitiveTournaments.filter((event) => {
+      enhancedCompetitiveTournaments.map((event) => ({ ...event, ...tournamentState(event, today) })).filter((event) => {
         const matchesAge = ageFilter === "all" || event.ageGroups.includes(ageFilter);
         const matchesFit = fitFilter === "all" || event.fit.includes(fitFilter);
         const matchesEligibility = eligibilityFilter === "all" || event.eligibility.includes(eligibilityFilter);
 
         return matchesAge && matchesFit && matchesEligibility && matchesDistance(event, distanceFilter);
       }),
-    [ageFilter, distanceFilter, eligibilityFilter, fitFilter],
+    [ageFilter, distanceFilter, eligibilityFilter, fitFilter, today],
   );
-  const filteredUpcomingTournaments = filteredTournaments.filter((event) => event.status !== "Completed");
-  const visibleTournamentCards = (filteredUpcomingTournaments.length > 0 ? filteredUpcomingTournaments : filteredTournaments).slice(0, 6);
+  const filteredUpcomingTournaments = filteredTournaments.filter((event) => event.showInUpcoming);
+  const visibleTournamentCards = filteredUpcomingTournaments.slice(0, 6);
   const hasActiveFilters =
     ageFilter !== "all" || fitFilter !== "all" || distanceFilter !== "all" || eligibilityFilter !== "all";
 
@@ -779,8 +780,8 @@ export default function GolfTournaments() {
                 </div>
                 <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <p className="text-ink-mid text-[13px] leading-[1.6]">
-                    Showing {visibleTournamentCards.length} of {filteredTournaments.length} matching tournament
-                    {filteredTournaments.length === 1 ? "" : "s"}.
+                    Showing {visibleTournamentCards.length} of {filteredUpcomingTournaments.length} matching current or upcoming tournament
+                    {filteredUpcomingTournaments.length === 1 ? "" : "s"}.
                   </p>
                   {hasActiveFilters && (
                     <button
@@ -798,7 +799,7 @@ export default function GolfTournaments() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[3px] mb-12">
             {visibleTournamentCards.map((event) => (
-              <article key={`${event.title}-${event.sortDate}-${event.location}`} className="bg-parchment-mid p-7 border-t-2 border-transparent hover:border-volt transition-colors duration-300">
+              <article key={`${event.title}-${event.startDate}-${event.location}`} className="bg-parchment-mid p-7 border-t-2 border-transparent hover:border-volt transition-colors duration-300">
                 <div className="flex items-start justify-between gap-4 mb-5">
                   <div>
                     <p className="text-volt text-[12px] tracking-[0.18em] uppercase mb-1">{event.date}</p>
@@ -830,9 +831,9 @@ export default function GolfTournaments() {
             ))}
             {visibleTournamentCards.length === 0 && (
               <div className="md:col-span-2 xl:col-span-3 bg-parchment-mid p-8 border-l-2 border-volt">
-                <h3 className="text-[24px] font-light leading-[1.14] mb-3">No exact matches yet.</h3>
+                <h3 className="text-[24px] font-light leading-[1.14] mb-3">No upcoming matches yet.</h3>
                 <p className="text-ink-mid text-[14px] leading-[1.7] mb-5">
-                  Try widening the distance or event type, or connect with the golf team for placement help.
+                  Try widening your filters, view past events in the full schedule below, or ask the golf team about the next season.
                 </p>
                 <button
                   type="button"
@@ -876,7 +877,7 @@ export default function GolfTournaments() {
             </summary>
             <div className="mt-8 grid grid-cols-1 gap-[2px]">
               {filteredTournaments.map((event) => (
-                <article key={`${event.title}-${event.sortDate}-${event.location}`} className="grid grid-cols-1 lg:grid-cols-[150px_1fr_220px_120px] gap-4 bg-parchment p-5 items-start">
+                <article key={`${event.title}-${event.startDate}-${event.location}`} className="grid grid-cols-1 lg:grid-cols-[150px_1fr_220px_120px] gap-4 bg-parchment p-5 items-start">
                   <div>
                     <p className="text-volt text-[12px] tracking-[0.16em] uppercase mb-1">{event.date}</p>
                     <p className="text-ink-light text-[12px]">{event.organizer}</p>

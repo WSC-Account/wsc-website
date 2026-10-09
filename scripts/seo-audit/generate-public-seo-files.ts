@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { BLOG_CATEGORIES, BLOG_POSTS } from "../../client/src/lib/blog-data";
-import { SEO } from "../../client/src/lib/seo-data";
+import { pageRoutes } from "./route-metadata";
 
 const BASE_URL = "https://www.woodinvillesportsclub.com";
 const PUBLIC_DIR = path.resolve("client/public");
@@ -27,32 +27,7 @@ async function main() {
   const lastmod = new Date().toISOString().slice(0, 10);
 
   const routes: SitemapRoute[] = [
-    { path: SEO.home.path, changefreq: "weekly", priority: "1.0" },
-    { path: SEO.tennis.path, changefreq: "monthly", priority: "0.8" },
-    { path: SEO.summerTennis.path, changefreq: "weekly", priority: "0.7" },
-    { path: SEO.golf.path, changefreq: "monthly", priority: "0.8" },
-    { path: SEO.drivingRange.path, changefreq: "monthly", priority: "0.8" },
-    { path: SEO.golfTournaments.path, changefreq: "weekly", priority: "0.6" },
-    { path: SEO.gym.path, changefreq: "monthly", priority: "0.8" },
-    { path: SEO.apl.path, changefreq: "monthly", priority: "0.7" },
-    { path: SEO.pickleball.path, changefreq: "monthly", priority: "0.8" },
-    { path: SEO.summer.path, changefreq: "monthly", priority: "0.8" },
-    { path: SEO.membership.path, changefreq: "monthly", priority: "0.7" },
-    { path: SEO.sessions.path, changefreq: "weekly", priority: "0.7" },
-    { path: SEO.events.path, changefreq: "monthly", priority: "0.6" },
-    { path: SEO.careers.path, changefreq: "monthly", priority: "0.5" },
-    {
-      path: SEO.memberCancellation.path,
-      changefreq: "monthly",
-      priority: "0.4",
-    },
-    {
-      path: SEO.personalTrainingRequest.path,
-      changefreq: "monthly",
-      priority: "0.5",
-    },
-    { path: SEO.golfLessons.path, changefreq: "monthly", priority: "0.5" },
-    { path: SEO.blog.path, changefreq: "weekly", priority: "0.7" },
+    ...pageRoutes.flatMap(route => route.sitemap ? [{ path: route.path, ...route.sitemap }] : []),
     ...BLOG_CATEGORIES.map(category => ({
       path: `/blog/categories/${category.slug}`,
       changefreq: "monthly" as const,
@@ -63,32 +38,6 @@ async function main() {
       changefreq: "monthly" as const,
       priority: "0.6",
     })),
-    { path: SEO.about.path, changefreq: "monthly", priority: "0.6" },
-    { path: SEO.contact.path, changefreq: "monthly", priority: "0.6" },
-    { path: SEO.proShop.path, changefreq: "monthly", priority: "0.7" },
-    { path: SEO.faq.path, changefreq: "monthly", priority: "0.7" },
-    { path: SEO.policies.path, changefreq: "monthly", priority: "0.6" },
-    {
-      path: SEO.bookingPoliciesExpanded.path,
-      changefreq: "monthly",
-      priority: "0.5",
-    },
-    {
-      path: SEO.membershipPoliciesExpanded.path,
-      changefreq: "monthly",
-      priority: "0.5",
-    },
-    {
-      path: SEO.ustaPoliciesExpanded.path,
-      changefreq: "monthly",
-      priority: "0.5",
-    },
-    {
-      path: SEO.cupsPoliciesExpanded.path,
-      changefreq: "monthly",
-      priority: "0.5",
-    },
-    { path: SEO.accessibility.path, changefreq: "yearly", priority: "0.3" },
   ];
 
   const uniqueRoutes = Array.from(

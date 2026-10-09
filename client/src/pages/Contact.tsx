@@ -25,11 +25,17 @@ export default function Contact() {
     const check = validateSubmission();
     if (!check.valid) {
       // Silently reject bot submissions — show fake success so bots think it worked
-      if (check.reason === "honeypot" || check.reason === "too_fast") {
+      if (check.reason === "honeypot") {
         const message = "Message sent! We'll be in touch shortly.";
         setFormStatus({ type: "success", message });
         notifySuccess(message);
         setForm({ firstName: "", lastName: "", email: "", message: "" });
+        return;
+      }
+      if (check.reason === "too_fast") {
+        const message = "Please wait a moment, then try again. Your information has been kept.";
+        setFormStatus({ type: "error", message });
+        notifyError(message);
         return;
       }
       if (check.reason === "rate_limited") {
@@ -58,8 +64,8 @@ export default function Contact() {
       setFormStatus({ type: "success", message });
       notifySuccess(message);
       setForm({ firstName: "", lastName: "", email: "", message: "" });
-    } catch {
-      const message = "We could not send your message right now. Please try again or email info@woodinvillesportsclub.com.";
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "We could not send your message right now. Please try again or email info@woodinvillesportsclub.com.";
       setFormStatus({ type: "error", message });
       notifyError(message);
     } finally {

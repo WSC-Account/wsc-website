@@ -1,0 +1,270 @@
+{
+  "home": {
+    "image": "/images/wsc/campus-sunset.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "weekly",
+      "priority": "1.0"
+    }
+  },
+  "tennis": {
+    "image": "/images/wsc/tennis-courts.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "monthly",
+      "priority": "0.8"
+    }
+  },
+  "adultTennis": {
+    "image": "/images/wsc/tennis-adult-clinic.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "monthly",
+      "priority": "0.8"
+    }
+  },
+  "summerTennis": {
+    "image": "/images/wsc/tennis-courts.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "weekly",
+      "priority": "0.7"
+    }
+  },
+  "golf": {
+    "image": "/images/wsc/golf-range-sunset.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "monthly",
+      "priority": "0.8"
+    }
+  },
+  "drivingRange": {
+    "image": "/images/wsc/golf-range-sunset.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "monthly",
+      "priority": "0.8"
+    }
+  },
+  "golfTournaments": {
+    "image": "/images/wsc/junior-golf-academy-group.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "weekly",
+      "priority": "0.6"
+    }
+  },
+  "gym": {
+    "image": "/images/wsc/fitness-center-hero.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "monthly",
+      "priority": "0.8"
+    }
+  },
+  "freeFitnessAssessment": {
+    "image": "/images/wsc/fitness-center-hero.webp",
+    "staticShell": true,
+    "sitemap": false
+  },
+  "apl": {
+    "image": "/images/wsc/gym-main.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "monthly",
+      "priority": "0.7"
+    }
+  },
+  "pickleball": {
+    "image": "/images/wsc/pickleball-dome.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "monthly",
+      "priority": "0.8"
+    }
+  },
+  "summer": {
+    "image": "/images/wsc/campus-dome.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "monthly",
+      "priority": "0.8"
+    }
+  },
+  "membership": {
+    "image": "/images/wsc/campus-dome.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "monthly",
+      "priority": "0.7"
+    },
+    "utilityHeader": {
+      "eyebrow": "Membership",
+      "headline": "Train Without Limits."
+    }
+  },
+  "sessions": {
+    "image": "/images/wsc/campus-dome.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "weekly",
+      "priority": "0.7"
+    },
+    "utilityHeader": {
+      "eyebrow": "WSC Session Calendar",
+      "headline": "Mark your calendar."
+    }
+  },
+  "events": {
+    "image": "/images/wsc/campus-sunset.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "monthly",
+      "priority": "0.6"
+    }
+  },
+  "careers": {
+    "image": "/images/wsc/campus-sunset.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "monthly",
+      "priority": "0.5"
+    }
+  },
+  "memberCancellation": {
+    "image": "/images/wsc/campus-dome.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "monthly",
+      "priority": "0.4"
+    }
+  },
+  "personalTraining": {
+    "image": "/images/wsc/fitness-center-hero.webp",
+    "staticShell": true,
+    "sitemap": false
+  },
+  "personalTrainingRequest": {
+    "image": "/images/wsc/gym-main.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "monthly",
+      "priority": "0.5"
+    }
+  },
+  "golfLessons": {
+    "image": "/images/wsc/swing-lab-simulators.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "monthly",
+      "priority": "0.5"
+    }
+  },
+  "newsletterSignup": {
+    "image": "/images/wsc/contact-campus.webp",
+    "staticShell": true,
+    "sitemap": false
+  },
+  "blog": {
+    "image": "/images/wsc/campus-sunset.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "weekly",
+      "priority": "0.7"
+    }
+  },
+  "about": {
+    "image": "/images/wsc/campus-dome.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "monthly",
+      "priority": "0.6"
+    }
+  },
+  "contact": {
+    "image": "/images/wsc/contact-campus.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "monthly",
+      "priority": "0.6"
+    }
+  },
+  "proShop": {
+    "image": "/images/wsc/racket-stringing.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "monthly",
+      "priority": "0.7"
+    }
+  },
+  "policies": {
+    "image": "/images/wsc/campus-dome.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "monthly",
+      "priority": "0.6"
+    },
+    "utilityHeader": {
+      "eyebrow": "Policies & Terms",
+      "headline": "Policies & Terms."
+    }
+  },
+  "bookingPoliciesExpanded": {
+    "image": "/images/wsc/campus-dome.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "monthly",
+      "priority": "0.5"
+    }
+  },
+  "membershipPoliciesExpanded": {
+    "image": "/images/wsc/campus-dome.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "monthly",
+      "priority": "0.5"
+    }
+  },
+  "ustaPoliciesExpanded": {
+    "image": "/images/wsc/campus-dome.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "monthly",
+      "priority": "0.5"
+    }
+  },
+  "cupsPoliciesExpanded": {
+    "image": "/images/wsc/campus-dome.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "monthly",
+      "priority": "0.5"
+    }
+  },
+  "privacy": {
+    "image": "/images/wsc/campus-dome.webp",
+    "staticShell": false,
+    "sitemap": false
+  },
+  "faq": {
+    "image": "/images/wsc/campus-dome.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "monthly",
+      "priority": "0.7"
+    },
+    "utilityHeader": {
+      "eyebrow": "Frequently Asked Questions",
+      "headline": "Quick Answers."
+    }
+  },
+  "accessibility": {
+    "image": "/images/wsc/campus-dome.webp",
+    "staticShell": true,
+    "sitemap": {
+      "changefreq": "yearly",
+      "priority": "0.3"
+    }
+  }
+}

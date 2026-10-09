@@ -5,12 +5,14 @@ type ResponsiveImageProps = Omit<ImgHTMLAttributes<HTMLImageElement>, "src" | "s
   src: string;
   sizes?: string;
   pictureClassName?: string;
+  media?: string;
 };
 
 export default function ResponsiveImage({
   src,
   sizes = "(min-width: 1024px) 50vw, 100vw",
   pictureClassName = "block",
+  media,
   width,
   height,
   ...imageProps
@@ -21,19 +23,20 @@ export default function ResponsiveImage({
 
   const image = (
     <img
-      src={src}
+      src={media ? "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" : src}
       width={width ?? dimensions.width}
       height={height ?? dimensions.height}
       {...imageProps}
     />
   );
 
-  if (!avif && !webp) return image;
+  if (!avif && !webp && !media) return image;
 
   return (
     <picture className={pictureClassName}>
-      {avif && <source type="image/avif" srcSet={avif} sizes={sizes} />}
-      {webp && <source type="image/webp" srcSet={webp} sizes={sizes} />}
+      {avif && <source type="image/avif" media={media} srcSet={avif} sizes={sizes} />}
+      {webp && <source type="image/webp" media={media} srcSet={webp} sizes={sizes} />}
+      {media && <source media={media} srcSet={src} />}
       {image}
     </picture>
   );

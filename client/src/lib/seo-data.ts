@@ -15,6 +15,11 @@ export const SEO = {
       "Book 8 indoor tennis courts and 1 outdoor court, Tier 1 junior training, adult classes, private lessons, USTA teams, and CourtReserve access at WSC.",
     path: "/tennis",
   },
+  adultTennis: {
+    title: "Adult Tennis Classes & Matchplay in Woodinville",
+    description: "Find adult tennis at WSC: beginner lessons, doubles clinics, live-ball classes, UTR matchplay, and team tennis. Explore classes and get help finding your level.",
+    path: "/tennis/adult",
+  },
   summerTennis: {
     title: "Summer Tennis Tournaments",
     description:

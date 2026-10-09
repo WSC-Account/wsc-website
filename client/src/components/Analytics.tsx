@@ -1,6 +1,15 @@
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "wouter";
+import { GA4_MEASUREMENT_ID } from "@/lib/tracking-config";
+import {
+  applyGoogleConsent,
+  canUseGoogleTracking,
+  CONSENT_CHANGED_EVENT,
+  CONSENT_STORAGE_KEY,
+  getCookieConsent,
+  googleConsentSettings,
+} from "@/lib/consent";
 
 declare global {
   interface Window {
@@ -9,154 +18,147 @@ declare global {
   }
 }
 
-const CONSENT_STORAGE_KEY = "wsc-cookie-consent";
-const ANALYTICS_SCRIPT_ID = "wsc-analytics-script";
-const GA4_SCRIPT_ID = "wsc-ga4-script";
-const GTM_SCRIPT_ID = "wsc-gtm-script";
-const GTM_CONTAINER_ID = import.meta.env.VITE_GTM_CONTAINER_ID || "GTM-PKPNJDFR";
-const GA4_MEASUREMENT_ID =
-  import.meta.env.NEXT_PUBLIC_GA_ID || import.meta.env.VITE_GA4_MEASUREMENT_ID || "G-S6448TRP0T";
+const GTM_CONTAINER_ID =
+  import.meta.env.VITE_GTM_CONTAINER_ID || "GTM-PKPNJDFR";
+const GOOGLE_ADS_ID = "AW-18217215416";
 
-function hasAnalyticsConsent() {
-  try {
-    const raw = localStorage.getItem(CONSENT_STORAGE_KEY);
-    if (!raw) return false;
-    const parsed = JSON.parse(raw) as { analytics?: boolean };
-    return parsed.analytics === true;
-  } catch {
-    return false;
-  }
+function configured(value: string) {
+  return (
+    value.length > 0 &&
+    !value.includes("REPLACE_ME") &&
+    !value.includes("PLACEHOLDER")
+  );
 }
 
-function removeAnalyticsScript() {
-  document.getElementById(ANALYTICS_SCRIPT_ID)?.remove();
-  document.getElementById(GA4_SCRIPT_ID)?.remove();
-  document.getElementById(GTM_SCRIPT_ID)?.remove();
-}
-
-function isConfigured(value: string) {
-  return value.length > 0 && !value.includes("REPLACE_ME") && !value.includes("PLACEHOLDER");
+function addScript(id: string, src: string, websiteId?: string) {
+  if (document.getElementById(id)) return;
+  const script = document.createElement("script");
+  script.id = id;
+  script.async = true;
+  script.src = src;
+  if (websiteId) script.dataset.websiteId = websiteId;
+  document.body.appendChild(script);
 }
 
 export default function Analytics() {
   const [location] = useLocation();
-  const [analyticsAllowed, setAnalyticsAllowed] = useState(false);
-  const lastGa4PageView = useRef<string | null>(null);
+  const [consent, setConsent] = useState(getCookieConsent);
+  const gaConfigured = useRef(false);
+  const adsConfigured = useRef(false);
+  const lastPageView = useRef<string | null>(null);
 
   useEffect(() => {
-    const syncConsent = () => setAnalyticsAllowed(hasAnalyticsConsent());
-
-    syncConsent();
-    window.addEventListener("wsc-cookie-consent-changed", syncConsent);
-
+    const sync = () => setConsent(getCookieConsent());
+    window.addEventListener(CONSENT_CHANGED_EVENT, sync);
+    const syncOtherTab = (event: StorageEvent) => {
+      if (event.key !== CONSENT_STORAGE_KEY && event.key !== null) return;
+      applyGoogleConsent();
+      window.location.reload();
+    };
+    window.addEventListener("storage", syncOtherTab);
     return () => {
-      window.removeEventListener("wsc-cookie-consent-changed", syncConsent);
+      window.removeEventListener(CONSENT_CHANGED_EVENT, sync);
+      window.removeEventListener("storage", syncOtherTab);
     };
   }, []);
 
   useEffect(() => {
-    const endpoint = import.meta.env.VITE_ANALYTICS_ENDPOINT;
-    const websiteId = import.meta.env.VITE_ANALYTICS_WEBSITE_ID;
-
-    const syncAnalytics = () => {
-      if (!endpoint || !websiteId) {
-        return;
-      }
-
-      if (!hasAnalyticsConsent()) {
-        removeAnalyticsScript();
-        return;
-      }
-
-      if (document.getElementById(ANALYTICS_SCRIPT_ID)) {
-        return;
-      }
-
-      const script = document.createElement("script");
-      script.id = ANALYTICS_SCRIPT_ID;
-      script.defer = true;
-      script.src = `${endpoint.replace(/\/$/, "")}/umami`;
-      script.dataset.websiteId = websiteId;
-      document.body.appendChild(script);
-    };
-
-    const syncGa4 = () => {
-      if (!analyticsAllowed || !isConfigured(GA4_MEASUREMENT_ID)) {
-        document.getElementById(GA4_SCRIPT_ID)?.remove();
-        return;
-      }
-
-      if (document.getElementById(GA4_SCRIPT_ID)) return;
-
-      window.dataLayer = window.dataLayer || [];
-      window.gtag =
-        window.gtag ||
-        function gtag() {
-          window.dataLayer.push(arguments);
-        };
-      window.gtag("js", new Date());
-      window.gtag("config", GA4_MEASUREMENT_ID, {
-        page_path: location,
-        page_location: window.location.href,
-        page_title: document.title,
-      });
-      lastGa4PageView.current = location;
-
-      const script = document.createElement("script");
-      script.id = GA4_SCRIPT_ID;
-      script.async = true;
-      script.src = `https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`;
-      document.body.appendChild(script);
-    };
-
-    const syncGtm = () => {
-      if (!analyticsAllowed || !isConfigured(GTM_CONTAINER_ID)) {
-        document.getElementById(GTM_SCRIPT_ID)?.remove();
-        return;
-      }
-
-      if (document.getElementById(GTM_SCRIPT_ID)) return;
-
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
-
-      const script = document.createElement("script");
-      script.id = GTM_SCRIPT_ID;
-      script.async = true;
-      script.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_CONTAINER_ID}`;
-      document.body.appendChild(script);
-    };
-
-    if (!analyticsAllowed) {
-      removeAnalyticsScript();
+    if (GA4_MEASUREMENT_ID) {
+      (window as unknown as Record<string, unknown>)[
+        `ga-disable-${GA4_MEASUREMENT_ID}`
+      ] = !canUseGoogleTracking(consent);
+    }
+    // Public Google configuration currently links Analytics to Ads and Ads to
+    // Analytics. Script-level product gating alone cannot separate them.
+    if (!canUseGoogleTracking(consent)) {
+      applyGoogleConsent(consent);
       return;
     }
 
-    syncAnalytics();
-    syncGtm();
-    syncGa4();
-  }, [analyticsAllowed, location]);
+    window.dataLayer = window.dataLayer || [];
+    if (typeof window.gtag !== "function") {
+      window.gtag = function gtag() {
+        window.dataLayer.push(arguments);
+      };
+      window.gtag(
+        "consent",
+        "default",
+        googleConsentSettings({ analytics: false, marketing: false })
+      );
+      window.gtag("js", new Date());
+    }
+    applyGoogleConsent(consent);
+    addScript(
+      "wsc-google-script",
+      `https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID || GOOGLE_ADS_ID}`
+    );
+
+    if (consent.analytics && GA4_MEASUREMENT_ID && !gaConfigured.current) {
+      window.gtag("config", GA4_MEASUREMENT_ID, { send_page_view: false });
+      gaConfigured.current = true;
+    }
+    if (consent.marketing && !adsConfigured.current) {
+      window.gtag("config", GOOGLE_ADS_ID);
+      adsConfigured.current = true;
+    }
+    // The shared Google gate above also covers advertising tags inside GTM.
+    if (
+      consent.marketing &&
+      configured(GTM_CONTAINER_ID) &&
+      !document.getElementById("wsc-gtm-script")
+    ) {
+      window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
+      addScript(
+        "wsc-gtm-script",
+        `https://www.googletagmanager.com/gtm.js?id=${GTM_CONTAINER_ID}`
+      );
+    }
+  }, [consent.analytics, consent.marketing]);
 
   useEffect(() => {
-    if (!analyticsAllowed || !isConfigured(GA4_MEASUREMENT_ID)) return;
-    if (typeof window.gtag !== "function") return;
-    if (lastGa4PageView.current === location) return;
+    const endpoint = import.meta.env.VITE_ANALYTICS_ENDPOINT;
+    const websiteId = import.meta.env.VITE_ANALYTICS_WEBSITE_ID;
+    if (consent.analytics && endpoint && websiteId) {
+      addScript(
+        "wsc-analytics-script",
+        `${endpoint.replace(/\/$/, "")}/umami`,
+        websiteId
+      );
+    }
+  }, [consent.analytics]);
 
-    window.gtag("config", GA4_MEASUREMENT_ID, {
+  useEffect(() => {
+    if (
+      !canUseGoogleTracking(consent) ||
+      !GA4_MEASUREMENT_ID ||
+      typeof window.gtag !== "function"
+    )
+      return;
+    if (lastPageView.current === location) return;
+    window.gtag("event", "page_view", {
+      send_to: GA4_MEASUREMENT_ID,
       page_path: location,
-      page_location: window.location.href,
+      // Do not forward campaign identifiers when marketing consent is declined.
+      page_location: consent.marketing
+        ? window.location.href
+        : `${window.location.origin}${location}`,
       page_title: document.title,
     });
-    lastGa4PageView.current = location;
-  }, [analyticsAllowed, location]);
+    lastPageView.current = location;
+  }, [consent.analytics, consent.marketing, location]);
 
-  if (!analyticsAllowed) return null;
-
-  return (
+  return consent.analytics ? (
     <VercelAnalytics
       mode={import.meta.env.DEV ? "development" : "production"}
       path={location}
       route={location}
+      beforeSend={event => {
+        const current = getCookieConsent();
+        if (!current.analytics) return null;
+        if (current.marketing) return event;
+        const url = new URL(event.url);
+        return { ...event, url: `${url.origin}${url.pathname}` };
+      }}
     />
-  );
+  ) : null;
 }

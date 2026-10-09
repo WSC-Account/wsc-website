@@ -37,6 +37,16 @@ const protectedLandingPages = [
     seoKey: "personalTrainingRequest",
     aliases: ["/personal-training-request"],
   },
+  {
+    name: "Free Fitness Assessment",
+    route: "/free-fitness-assessment",
+    pageFile: "client/src/pages/FreeFitnessAssessment.tsx",
+    component: "FreeFitnessAssessment",
+    seoKey: "freeFitnessAssessment",
+    aliases: [],
+    includeInSitemap: false,
+    preserveIndexable: true,
+  },
 ];
 
 const confirmationRequiredFiles = new Set([
@@ -45,6 +55,8 @@ const confirmationRequiredFiles = new Set([
   "client/src/lib/seo-data.ts",
   "scripts/seo-audit/generate-public-seo-files.ts",
   "scripts/seo-audit/generate-static-route-html.ts",
+  "scripts/seo-audit/route-metadata.ts",
+  "shared/route-metadata.json",
   "vercel.json",
   ...protectedLandingPages.map((page) => page.pageFile),
 ]);
@@ -58,6 +70,7 @@ function assertRouteContract() {
   const seo = read("client/src/lib/seo-data.ts");
   const sitemapGenerator = read("scripts/seo-audit/generate-public-seo-files.ts");
   const staticGenerator = read("scripts/seo-audit/generate-static-route-html.ts");
+  const routeMetadata = JSON.parse(read("shared/route-metadata.json"));
   const sitemap = read("client/public/sitemap.xml");
   const vercel = JSON.parse(read("vercel.json"));
   const redirects = vercel.redirects ?? [];
@@ -79,21 +92,26 @@ function assertRouteContract() {
       new RegExp(`${page.seoKey}:\\s*\\{[\\s\\S]*?path:\\s*"${escapeRegExp(page.route)}"`),
       `${page.name} route must stay in SEO metadata`,
     );
-    assert.match(
-      sitemapGenerator,
-      new RegExp(`SEO\\.${page.seoKey}\\.path`),
-      `${page.name} route must stay in sitemap generation`,
-    );
-    assert.match(
-      staticGenerator,
-      new RegExp(`"${escapeRegExp(page.route)}"`),
-      `${page.name} route must stay in static shell generation image metadata`,
-    );
-    assert.match(
-      sitemap,
-      new RegExp(`https://www\\.woodinvillesportsclub\\.com${escapeRegExp(page.route)}`),
-      `${page.name} route must stay in the committed sitemap`,
-    );
+    const metadata = routeMetadata[page.seoKey];
+    assert.ok(metadata, `${page.name} build metadata is missing`);
+    assert.match(sitemapGenerator, /pageRoutes/, "Sitemap generation must use the shared route metadata");
+    const sitemapUrlPattern = new RegExp(`https://www\\.woodinvillesportsclub\\.com${escapeRegExp(page.route)}<`);
+    if (page.includeInSitemap === false) {
+      assert.equal(metadata.sitemap, false, `${page.name} must retain its existing sitemap exclusion`);
+      assert.doesNotMatch(sitemap, sitemapUrlPattern, `${page.name} must stay out of the committed sitemap`);
+    } else {
+      assert.ok(metadata.sitemap, `${page.name} route must stay in sitemap generation`);
+      assert.match(sitemap, sitemapUrlPattern, `${page.name} route must stay in the committed sitemap`);
+    }
+
+    if (page.preserveIndexable) {
+      const seoEntry = seo.match(new RegExp(`${page.seoKey}:\\s*\\{([\\s\\S]*?)\\n\\s*\\}`))?.[1] ?? "";
+      assert.doesNotMatch(seoEntry, /robots:\s*["']noindex/, `${page.name} must retain its existing indexability`);
+      assert.doesNotMatch(read(page.pageFile), /robots\s*=\s*(?:\{\s*)?["']noindex/, `${page.name} must retain its existing indexability`);
+    }
+    assert.match(staticGenerator, /pageRoutes/, "Static shell generation must use the shared route metadata");
+    assert.equal(metadata.staticShell, true, `${page.name} route must keep a static shell`);
+    assert.ok(metadata.image, `${page.name} route must keep its static shell image`);
 
     for (const alias of page.aliases) {
       assert.equal(

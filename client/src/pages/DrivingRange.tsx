@@ -1,3 +1,4 @@
+import { trackAdvertisingConversion } from "@/lib/tracking";
 import { useEffect } from "react";
 import { Link } from "wouter";
 import PageHero from "@/components/PageHero";
@@ -45,11 +46,7 @@ function reportConversion(sendTo: string, url?: string) {
     window.location.href = url;
   };
 
-  if (typeof window.gtag === "function") {
-    window.gtag("event", "conversion", {
-      send_to: sendTo,
-      event_callback: redirect,
-    });
+  if (trackAdvertisingConversion(sendTo, { event_callback: redirect })) {
 
     if (url) {
       window.setTimeout(redirect, 700);
