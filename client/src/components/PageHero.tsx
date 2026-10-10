@@ -11,6 +11,7 @@ interface PageHeroProps {
   image: string;
   imagePosition?: string;
   avoidHeaderCrop?: boolean;
+  overlayClassName?: string;
 }
 
 const HERO_IMAGE_POSITIONS: Record<string, string> = {
@@ -29,6 +30,7 @@ export default function PageHero({
   image,
   imagePosition = HERO_IMAGE_POSITIONS[image] ?? "center",
   avoidHeaderCrop = false,
+  overlayClassName = "bg-gradient-to-t from-[rgba(22,19,16,0.42)] via-[rgba(22,19,16,0.18)] to-[rgba(22,19,16,0.04)]",
 }: PageHeroProps) {
   const imageLayerClass = avoidHeaderCrop
     ? "absolute inset-x-0 bottom-0 top-[var(--site-header-height,130px)] block"
@@ -60,7 +62,7 @@ export default function PageHero({
           style={{ objectPosition: imagePosition }}
         />
       </picture>
-      <div className={`${imageLayerClass} bg-gradient-to-t from-[rgba(22,19,16,0.42)] via-[rgba(22,19,16,0.18)] to-[rgba(22,19,16,0.04)]`} />
+      <div className={`${imageLayerClass} ${overlayClassName}`} />
       <div className="hero-safe-content relative z-10 px-6 lg:px-14 pb-16 lg:pb-20 pt-10 max-w-[1440px] w-full mx-auto min-h-[60vh] lg:min-h-[70vh] flex flex-col justify-end">
         <p className="hero-eyebrow text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">
           {eyebrow}

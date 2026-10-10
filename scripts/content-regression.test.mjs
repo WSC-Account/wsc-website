@@ -156,7 +156,7 @@ test("Athletic Performance Lab is directly public in production", () => {
   assert.ok(routeMetadata.apl.sitemap);
 });
 
-test("personal training roster lives on buried ads landing page", () => {
+test("personal training matching lives on buried ads landing page", () => {
   const app = read("client/src/App.tsx");
   const gym = read("client/src/pages/Gym.tsx");
   const personalTraining = read("client/src/pages/PersonalTraining.tsx");
@@ -164,7 +164,7 @@ test("personal training roster lives on buried ads landing page", () => {
 
   assert.match(app, /const PersonalTraining = lazy\(\(\) => import\("\.\/pages\/PersonalTraining"\)\)/);
   assert.match(app, /<Route path="\/personal-training" component=\{PersonalTraining\} \/>/);
-  assert.match(personalTraining, /Trainer Roster/);
+  assert.match(personalTraining, /Personal Coaching/);
   assert.match(personalTraining, /Request a Match/);
   assert.match(seo, /personalTraining:\s*\{[\s\S]*?path:\s*"\/personal-training"[\s\S]*?robots:\s*"noindex, follow"/);
   assert.doesNotMatch(gym, /Trainer Roster|personal-training-trainers|Meet the trainers/);
@@ -672,7 +672,7 @@ test("gym page is positioned around memberships and personal training", () => {
   assert.match(gym, /World-class instructors/);
   assert.match(gym, /Accessible hours/);
   assert.match(gym, /gym-main-interior\.webp/);
-  assert.match(gym, /gym-training-tools\.webp/);
+  assert.match(gym, /gym-free-weights\.webp/);
   assert.match(gym, /gym-functional-zone\.webp/);
   assert.doesNotMatch(gym, /const GYM_WEIGHTS = GYM_MAIN/);
   assert.doesNotMatch(gym, /const GYM_FUNCTIONAL = GYM_MAIN/);

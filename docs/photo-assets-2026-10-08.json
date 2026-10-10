@@ -1,0 +1,442 @@
+{
+  "createdAtUtc": "2026-10-09T04:52:45.109441+00:00",
+  "approval": "Six existing WSC photographs selected and approved by the user in this task on 2026-10-08.",
+  "processing": {
+    "frames": "Complete source frame, EXIF orientation applied, no crop or retouch.",
+    "color": "Display P3 source pixels converted to sRGB when ICC profile exists; other RGB sources treated as sRGB. Metadata omitted from exports.",
+    "resampler": "Pillow LANCZOS",
+    "webpQuality": 82,
+    "webpMethod": 6,
+    "avifQuality": 55,
+    "avifSpeed": 6,
+    "maxBaseWidth": 1920,
+    "responsiveMaxDimensions": [
+      720,
+      900,
+      1200
+    ]
+  },
+  "images": [
+    {
+      "source": "output/photo-review-2026-10-08/source/adults-07.jpg",
+      "sourceBytes": 5322662,
+      "sourceSha256": "ac9fe598749a5b2d93751ecb1dee377abe80618ca262352ece36ef6311e695ec",
+      "sourceDimensions": [
+        5712,
+        4284
+      ],
+      "sourceColorProfile": "Display P3",
+      "slug": "apl-adult-group",
+      "outputs": [
+        {
+          "path": "client/public/images/wsc/apl-adult-group.webp",
+          "width": 1920,
+          "height": 1440,
+          "bytes": 410960,
+          "sha256": "0a649b74004ebb13cc91c2b70c2a8eb1bc4c8b3fda1a550845b05165fd1c090e"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-adult-group-full.avif",
+          "width": 1920,
+          "height": 1440,
+          "bytes": 266835,
+          "sha256": "c5a3a4a8ee21e6cc27524843beadb8e9dd9e170c353cc2f4c8d23d896ca9b99e"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-adult-group-720.webp",
+          "width": 720,
+          "height": 540,
+          "bytes": 69632,
+          "sha256": "67af523d0a3069b43bd9da27ca472101882391e64587361bac2f0fedebc56c9d"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-adult-group-720.avif",
+          "width": 720,
+          "height": 540,
+          "bytes": 44724,
+          "sha256": "a2ce13f1c81c68a16345512cbd2df160407eac0591dbc7e36584533cb50cbb39"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-adult-group-900.webp",
+          "width": 900,
+          "height": 675,
+          "bytes": 105404,
+          "sha256": "c594e54ce815a7c9206b3707cd891331233b2533e9c3de7c34b5c093ca2d3c5b"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-adult-group-900.avif",
+          "width": 900,
+          "height": 675,
+          "bytes": 68107,
+          "sha256": "1c0b53b948790ee5efce177a0614b74da73c0a0949fc9a57f2f3f3f09d9d31d0"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-adult-group-1200.webp",
+          "width": 1200,
+          "height": 900,
+          "bytes": 179072,
+          "sha256": "ea5406b7b581d483cefc481cb73d501e9f41546d169213ac50acf187e520c3c9"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-adult-group-1200.avif",
+          "width": 1200,
+          "height": 900,
+          "bytes": 116115,
+          "sha256": "2c77b3b6478e9877b09ba3211b06aaa8c07104130e57af65c7abf3339be5bc52"
+        }
+      ]
+    },
+    {
+      "source": "output/photo-review-2026-10-08/source/adults-08.jpg",
+      "sourceBytes": 4095548,
+      "sourceSha256": "a475c82a17013cf19e6985eb367b868dbfd01e0ed1ea1a40d0a90bd9518f3242",
+      "sourceDimensions": [
+        5712,
+        4284
+      ],
+      "sourceColorProfile": "Display P3",
+      "slug": "apl-medicine-ball",
+      "outputs": [
+        {
+          "path": "client/public/images/wsc/apl-medicine-ball.webp",
+          "width": 1920,
+          "height": 1440,
+          "bytes": 308330,
+          "sha256": "1b5a00b3283f5336801655e8cf20cb40c4e321afa9dce4fc0e65d53663d05834"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-medicine-ball-full.avif",
+          "width": 1920,
+          "height": 1440,
+          "bytes": 188395,
+          "sha256": "bd7f4fa93f762c55c8666d92ee9afe0c4552d2a88166384ce53d58e26273e85c"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-medicine-ball-720.webp",
+          "width": 720,
+          "height": 540,
+          "bytes": 58718,
+          "sha256": "db4eda9f973085519b7d7fed1398bc3804ae8e611a15fcbbca7bc2a056e1a196"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-medicine-ball-720.avif",
+          "width": 720,
+          "height": 540,
+          "bytes": 37387,
+          "sha256": "aff2530b9474c15ecfedd674afe6a5f70461b1ad5ec8efee6eef5bca301d2783"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-medicine-ball-900.webp",
+          "width": 900,
+          "height": 675,
+          "bytes": 89462,
+          "sha256": "4802ff0ebae395e8c622880bc2092381eee4bbe1bf13ca0b9061fd5f6ead81c9"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-medicine-ball-900.avif",
+          "width": 900,
+          "height": 675,
+          "bytes": 57068,
+          "sha256": "85d48bbe0e43a5e02c3f78b623f84f5c2e6ba104bd350359a6ab7c7aa8b8e53a"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-medicine-ball-1200.webp",
+          "width": 1200,
+          "height": 900,
+          "bytes": 147432,
+          "sha256": "a7dc750ebe3eeccf9cf6f8901a900c8ae47fae3948b30b95d36779c3e06a8d27"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-medicine-ball-1200.avif",
+          "width": 1200,
+          "height": 900,
+          "bytes": 94892,
+          "sha256": "1a0882778c3d85942bc1e3c8d1b89b5970616e1213e49943c67c374ee14f9f22"
+        }
+      ]
+    },
+    {
+      "source": "output/photo-review-2026-10-08/source/speed-03.jpg",
+      "sourceBytes": 5882614,
+      "sourceSha256": "b6c6adff9f97f9a2887d1ad667684a0c22c0968e8e571281a829183ac90d55c1",
+      "sourceDimensions": [
+        6240,
+        4160
+      ],
+      "sourceColorProfile": null,
+      "slug": "apl-speed-training",
+      "outputs": [
+        {
+          "path": "client/public/images/wsc/apl-speed-training.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 141848,
+          "sha256": "ce2fc7bfacfe907593f76e7261485d71ee79b97bf9d58912c85280979f01e2a1"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-speed-training-full.avif",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 68911,
+          "sha256": "e5ab22a78e2d28161cefffa5c679f60619c23f861092afc40626b43ac7ad6a9d"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-speed-training-720.webp",
+          "width": 720,
+          "height": 480,
+          "bytes": 41532,
+          "sha256": "cfa2461989281f7caeb58d3a6b1760ac6676aa3536467fa2ecf3ac7c6e96c4ab"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-speed-training-720.avif",
+          "width": 720,
+          "height": 480,
+          "bytes": 25049,
+          "sha256": "ea2ddecf2e65b4a98189d44c7d9cd7501cde18978983cc56b6dc637d51dba8bd"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-speed-training-900.webp",
+          "width": 900,
+          "height": 600,
+          "bytes": 55036,
+          "sha256": "29e8abc6534498aec03f1df04da2ad76eac75c38291c2afbab874d7df87eb9c0"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-speed-training-900.avif",
+          "width": 900,
+          "height": 600,
+          "bytes": 31718,
+          "sha256": "0a53a042db099bfa3913a9e6fc5e2e91c4db5d7ac6c4602141f3ae2da3bbff18"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-speed-training-1200.webp",
+          "width": 1200,
+          "height": 800,
+          "bytes": 78598,
+          "sha256": "09168e1081d17586dc5529effb88a23c404db1199f5d35621d2893dc59012648"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-speed-training-1200.avif",
+          "width": 1200,
+          "height": 800,
+          "bytes": 42290,
+          "sha256": "38deee9b4ba4859c78f0a08afe2717a38d242d51c85344bf7251c0fff44c2e09"
+        }
+      ]
+    },
+    {
+      "source": "output/photo-review-2026-10-08/source/apl-64.jpg",
+      "sourceBytes": 1886684,
+      "sourceSha256": "7d71bb710c473dca31217bf2b5af294145eb8c6884cf79b5df6d1db5e6bcc1ea",
+      "sourceDimensions": [
+        2592,
+        1728
+      ],
+      "sourceColorProfile": null,
+      "slug": "apl-strength-stability",
+      "outputs": [
+        {
+          "path": "client/public/images/wsc/apl-strength-stability.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 120790,
+          "sha256": "47ef5a1bec40f97b4f5e81c1231b51fb6e89527f8a7e5d69df14fd0883cc1383"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-strength-stability-full.avif",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 58397,
+          "sha256": "4034551dbd524eaa1921c1835492fca22ae6a0f975ac1541e6ac7e6b2a8be8b1"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-strength-stability-720.webp",
+          "width": 720,
+          "height": 480,
+          "bytes": 26190,
+          "sha256": "8f6ec928b06af6586b8ae6da6ac54a22240c8cdc9d2ef37c34a35db4f5f80269"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-strength-stability-720.avif",
+          "width": 720,
+          "height": 480,
+          "bytes": 14848,
+          "sha256": "b942a131f744d3644564e3d9c9d2a3a41eeb2cf3ddea3e523f4c702f8e0b8228"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-strength-stability-900.webp",
+          "width": 900,
+          "height": 600,
+          "bytes": 37928,
+          "sha256": "344f210d87dfdb51e1cfa89876e23f3564aa6107652aa0042e9b05ac3775db70"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-strength-stability-900.avif",
+          "width": 900,
+          "height": 600,
+          "bytes": 20500,
+          "sha256": "df5d717d7558b498f60ba4eaef1099033aa893c1db8c9715048487d5dd5a0105"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-strength-stability-1200.webp",
+          "width": 1200,
+          "height": 800,
+          "bytes": 58372,
+          "sha256": "451d3da354c9a0fb28e9012b0ee76db0e1b230bcdd8ab9feacb421a5ed3429a1"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-strength-stability-1200.avif",
+          "width": 1200,
+          "height": 800,
+          "bytes": 30530,
+          "sha256": "514147cd7f1cd8daa377aa1f3a677f1c3d0d49122173c13474ff9d01d6d348c4"
+        }
+      ]
+    },
+    {
+      "source": "output/photo-review-2026-10-08/source/apl-71.jpg",
+      "sourceBytes": 1983041,
+      "sourceSha256": "65a9b6316cab79e8bc747f1a1bc8002d1cda4462accae14ffbdb178c0ffc43b4",
+      "sourceDimensions": [
+        2592,
+        1728
+      ],
+      "sourceColorProfile": null,
+      "slug": "apl-core-strength",
+      "outputs": [
+        {
+          "path": "client/public/images/wsc/apl-core-strength.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 145484,
+          "sha256": "f380b596c989742bfbd05519e04b859ead6081085674210c987441487b7fbf08"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-core-strength-full.avif",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 73322,
+          "sha256": "cfa46bc54a4f079ae7dd9e336f26f0043aa64e6c01f3cd45f6fbf5faa2bc09a2"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-core-strength-720.webp",
+          "width": 720,
+          "height": 480,
+          "bytes": 29422,
+          "sha256": "b4715ffccedd831a760c573e502e9db96312ea4a6864e1ee7c4fadc365c7c015"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-core-strength-720.avif",
+          "width": 720,
+          "height": 480,
+          "bytes": 17455,
+          "sha256": "36c91d2a3ef95d13f8e3811728222d8254741965027c2d13028c09783699dbe2"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-core-strength-900.webp",
+          "width": 900,
+          "height": 600,
+          "bytes": 42662,
+          "sha256": "1cc90cd7e219577eb02a0e506ae4d226a79e05a7173d58d05247ed6d8f66e8ad"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-core-strength-900.avif",
+          "width": 900,
+          "height": 600,
+          "bytes": 24285,
+          "sha256": "683dd63f367782fa11ee4678b8162e2b1125ce92550af252c82e9ce498aa5b19"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-core-strength-1200.webp",
+          "width": 1200,
+          "height": 800,
+          "bytes": 66346,
+          "sha256": "c1502d38a7de7aad0c668b11c1f2f948e34798681bb05e7718e88378c98243f6"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/apl-core-strength-1200.avif",
+          "width": 1200,
+          "height": 800,
+          "bytes": 36621,
+          "sha256": "694274ac3b226fddd4ecda545867be51988db33e680859349989de6e6a0ef89e"
+        }
+      ]
+    },
+    {
+      "source": "output/photo-review-2026-10-08/source/gym-35.jpg",
+      "sourceBytes": 8224684,
+      "sourceSha256": "9c4da23c50b4c7403cbb54acef545a2537151f2b5a617070ba7887a4c26c0ee3",
+      "sourceDimensions": [
+        6240,
+        4160
+      ],
+      "sourceColorProfile": null,
+      "slug": "gym-free-weights",
+      "outputs": [
+        {
+          "path": "client/public/images/wsc/gym-free-weights.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 134884,
+          "sha256": "ae2a4d56ef1faa66d82ae1051777bec23d94f6d1103be00d7fc5f858f436f9d2"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/gym-free-weights-full.avif",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 73270,
+          "sha256": "3bf01e5cce7df157625011812616763300edfd54a025eb6289187021f18a7f1d"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/gym-free-weights-720.webp",
+          "width": 720,
+          "height": 480,
+          "bytes": 38094,
+          "sha256": "bf92a313061203096e7eb9890f9b3cbcacba583500ca16331fa209b164046b48"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/gym-free-weights-720.avif",
+          "width": 720,
+          "height": 480,
+          "bytes": 26418,
+          "sha256": "5c5f6e5ebb7d2ac0fdd565f3470759b8ad846ea48d22c26be2f9e93794549ffc"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/gym-free-weights-900.webp",
+          "width": 900,
+          "height": 600,
+          "bytes": 50278,
+          "sha256": "063ae97a6991e11302f0e7a75e972c0683ed11b786c2ca85dbfe6a6cd99e3fcd"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/gym-free-weights-900.avif",
+          "width": 900,
+          "height": 600,
+          "bytes": 33553,
+          "sha256": "ba7ae757eace7ed1591378a53ceb62839be1d2667da49158cd260cfc58df23a1"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/gym-free-weights-1200.webp",
+          "width": 1200,
+          "height": 800,
+          "bytes": 71550,
+          "sha256": "36661b3ded4a93669561474332e3691506a25d1ebf1efa92bef806e386c1e9c6"
+        },
+        {
+          "path": "client/public/images/wsc/responsive/gym-free-weights-1200.avif",
+          "width": 1200,
+          "height": 800,
+          "bytes": 44897,
+          "sha256": "77376a2b96a1e6017f00f89d39b255979d309937f0009abceebfa91ffcbb0c7d"
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "sourceBytes": 27395233,
+    "outputBytes": 4003611,
+    "outputFiles": 48,
+    "fullWebpBytes": 1262296,
+    "fullAvifBytes": 729130
+  }
+}

@@ -12,8 +12,8 @@ import StructuredData, { getBreadcrumbSchema, getServiceSchema } from "@/compone
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
 
-const PERF_IMG = "/images/wsc/gym-main.webp";
-const TRAINING_IMG = "/images/wsc/apl-training.webp";
+const PERF_IMG = "/images/wsc/apl-adult-group.webp";
+const TRAINING_IMG = "/images/wsc/apl-strength-stability.webp";
 const COACH_JORDY_IMG = "/images/wsc/jordy-champagne.png";
 const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Events/List/6689/C7BR91B9SH6689";
 const TIER1_APL_URL = "https://www.tier1nw.com/apl";
@@ -139,7 +139,7 @@ export default function Fitness() {
 
   return (
     <div className="min-h-screen">
-      <SEOHead {...SEO.apl} />
+      <SEOHead {...SEO.apl} image={PERF_IMG} />
       <StructuredData schemas={[
         getBreadcrumbSchema([
           { name: "Home", url: "https://www.woodinvillesportsclub.com/" },
@@ -159,6 +159,9 @@ export default function Fitness() {
         headline="Where Champions Are Built."
         subtitle="The Athletic Performance Lab is WSC's dedicated coaching program for strength, speed, power, agility, durability, and confident movement for youth and adult athletes."
         image={PERF_IMG}
+        imagePosition="center 55%"
+        avoidHeaderCrop
+        overlayClassName="bg-gradient-to-r from-dark-bg/80 via-dark-bg/45 to-dark-bg/15"
       />
 
       <section id="free-fitness-assessment" className="scroll-mt-[var(--site-header-height,130px)] bg-parchment px-6 lg:px-14 py-16 lg:py-20" aria-labelledby="fitness-interest-form-heading">
@@ -245,9 +248,9 @@ export default function Fitness() {
           </div>
           <ResponsiveImage
             src={TRAINING_IMG}
-            alt="Athletes training in the Athletic Performance Lab at WSC"
+            alt="Athlete working on strength and stability with a resistance band in the WSC Athletic Performance Lab"
             loading="lazy"
-            className="w-full aspect-[4/3] object-cover brightness-[0.78] saturate-[0.85]"
+            className="w-full aspect-[3/2] object-cover"
           />
         </div>
       </section>

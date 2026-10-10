@@ -2,7 +2,7 @@ import PageHero from "@/components/PageHero";
 import { PersonalTrainingRequestForm } from "@/components/InquiryForms";
 import SEOHead from "@/components/SEOHead";
 
-const HERO_IMG = "/images/wsc/gym-main.webp";
+const HERO_IMG = "/images/wsc/gym-floor.webp";
 
 export default function PersonalTrainingFormPage() {
   return (
@@ -11,6 +11,7 @@ export default function PersonalTrainingFormPage() {
         title="Personal Training Request"
         description="Request personal training at Woodinville Sports Club."
         path="/personal-training-interest-form"
+        image={HERO_IMG}
       />
       <PageHero
         eyebrow="Personal Training"
