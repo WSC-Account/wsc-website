@@ -41,7 +41,8 @@ const PICKLE_IMG = "/images/wsc/pickleball-dome.webp";
 /* Generated gallery images */
 const GALLERY_TENNIS = "/images/wsc/tennis-core-group.webp";
 const GALLERY_GOLF = "/images/wsc/campus-sunset.webp";
-const GALLERY_YOUTH = "/images/wsc/apl-training.webp";
+const GALLERY_YOUTH = "/images/wsc/apl-speed-training.webp";
+const GALLERY_ADULT_FITNESS = "/images/wsc/apl-medicine-ball.webp";
 const GALLERY_AERIAL = "/images/wsc/golf-range-aerial.webp";
 const GOLF_SCENERY_IMG = "/images/wsc/golf-range-sunset.webp";
 
@@ -316,9 +317,10 @@ const galleryImages = [
   },
   {
     src: GALLERY_YOUTH,
-    alt: "Youth athletic training",
-    caption: "APL youth strength and conditioning",
+    alt: "Youth athletes running speed drills on an outdoor court at WSC",
+    caption: "APL youth speed and athletic development",
     span: "normal" as const,
+    uncropped: true,
   },
   {
     src: GALLERY_GOLF,
@@ -333,10 +335,11 @@ const galleryImages = [
     span: "normal" as const,
   },
   {
-    src: FITNESS_TRAINING_IMG,
-    alt: "Fitness training",
-    caption: "Full-service gym and APL Training Center",
+    src: GALLERY_ADULT_FITNESS,
+    alt: "Adults training with medicine balls and resistance bands at WSC",
+    caption: "Adult APL strength and movement training",
     span: "normal" as const,
+    uncropped: true,
   },
 ];
 

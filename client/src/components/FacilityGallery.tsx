@@ -10,6 +10,7 @@ interface GalleryImage {
   alt: string;
   caption: string;
   span?: "wide" | "tall" | "normal";
+  uncropped?: boolean;
 }
 
 interface FacilityGalleryProps {
@@ -63,16 +64,18 @@ export default function FacilityGallery({
             return (
               <figure
                 key={i}
-                className={`${spanClass} relative group overflow-hidden`}
+                className={`${spanClass} relative group overflow-hidden ${img.uncropped ? "flex flex-col justify-center bg-dark-bg" : ""}`}
               >
                 <ResponsiveImage
                   src={img.src}
                   alt={img.alt}
-                  className={`w-full h-full object-cover ${aspectClass} brightness-[0.85] saturate-[0.8] transition-transform duration-700 ease-out group-hover:scale-[1.04]`}
+                  className={img.uncropped
+                    ? "w-full h-auto object-contain brightness-[0.85] saturate-[0.8]"
+                    : `w-full h-full object-cover ${aspectClass} brightness-[0.85] saturate-[0.8] transition-transform duration-700 ease-out group-hover:scale-[1.04]`}
                   loading="lazy"
                 />
 
-                <figcaption className="absolute inset-x-0 bottom-0 p-3 lg:p-6">
+                <figcaption className={img.uncropped ? "p-3 lg:p-6" : "absolute inset-x-0 bottom-0 p-3 lg:p-6"}>
                   <div className={`${captionBg} px-4 py-3 max-w-full`}>
                     <p className="text-parchment text-[13px] lg:text-[14px] font-light tracking-[-0.01em] leading-[1.5]">
                       {img.caption}

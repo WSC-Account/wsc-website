@@ -9,6 +9,11 @@ const DEFAULT_IMAGE_DIMENSIONS: ImageDimensions = {
 };
 
 const WSC_IMAGE_DIMENSIONS = {
+  "/images/wsc/apl-adult-group.webp": { width: 1920, height: 1440 },
+  "/images/wsc/apl-core-strength.webp": { width: 1920, height: 1280 },
+  "/images/wsc/apl-medicine-ball.webp": { width: 1920, height: 1440 },
+  "/images/wsc/apl-speed-training.webp": { width: 1920, height: 1280 },
+  "/images/wsc/apl-strength-stability.webp": { width: 1920, height: 1280 },
   "/images/wsc/apl-training.webp": { width: 1185, height: 1800 },
   "/images/wsc/campus-dome.webp": { width: 1800, height: 1202 },
   "/images/wsc/campus-sunset.webp": { width: 1800, height: 1038 },
@@ -28,6 +33,7 @@ const WSC_IMAGE_DIMENSIONS = {
   "/images/wsc/grass-tees.webp": { width: 1513, height: 1039 },
   "/images/wsc/gym-functional-zone.webp": { width: 1920, height: 1280 },
   "/images/wsc/gym-floor.webp": { width: 1800, height: 1350 },
+  "/images/wsc/gym-free-weights.webp": { width: 1920, height: 1280 },
   "/images/wsc/gym-main.webp": { width: 1920, height: 1280 },
   "/images/wsc/gym-main-interior.webp": { width: 1920, height: 1280 },
   "/images/wsc/gym-training-tools.webp": { width: 1280, height: 1920 },

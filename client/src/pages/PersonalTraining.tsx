@@ -5,8 +5,8 @@ import StructuredData, { getBreadcrumbSchema, getServiceSchema } from "@/compone
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
 
-const HERO_IMG = "/images/wsc/fitness-center-hero.webp";
-const TRAINING_IMG = "/images/wsc/gym-functional-zone.webp";
+const HERO_IMG = "/images/wsc/gym-functional-zone.webp";
+const TRAINING_IMG = "/images/wsc/apl-core-strength.webp";
 
 const trainerFocusAreas = [
   "Strength & form",
@@ -89,25 +89,25 @@ export default function PersonalTraining() {
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-20 items-center">
           <ResponsiveImage
             src={TRAINING_IMG}
-            alt="WSC functional training space for personal training"
+            alt="Athlete performing a side-plank exercise with a bench in the WSC training space"
             loading="lazy"
-            className="w-full aspect-[4/3] object-cover brightness-[0.82] saturate-[0.85]"
+            className="w-full aspect-[3/2] object-cover"
           />
 
           <div>
-            <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-6">Trainer Roster</p>
+            <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-6">Personal Coaching</p>
             <h2 className="text-parchment text-[clamp(26px,3vw,42px)] font-light leading-[1.1] mb-6">
-              Meet the trainers.
+              Coaching built around you.
             </h2>
             <p className="text-parchment/80 text-[15px] leading-[1.8] mb-8 max-w-[560px]">
-              This page is ready for WSC trainer profiles, including names, focus areas, credentials, short bios, approved headshots, and booking paths.
+              Whether you are learning your way around the gym or building on an existing routine, work one-on-one with a trainer on the movements and habits that support your goals.
             </p>
 
             <div className="bg-dark-bg p-8 lg:p-10">
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-8">
                 <div>
-                  <p className="text-volt-bright text-[12px] tracking-[0.2em] uppercase mb-3">Profiles Coming Soon</p>
-                  <h3 className="text-parchment text-[22px] font-light leading-[1.25]">WSC Personal Training Team</h3>
+                  <p className="text-volt-bright text-[12px] tracking-[0.2em] uppercase mb-3">Find Your Fit</p>
+                  <h3 className="text-parchment text-[22px] font-light leading-[1.25]">Start with a trainer match.</h3>
                 </div>
                 <Link
                   href="/personal-training-interest-form"
@@ -117,7 +117,7 @@ export default function PersonalTraining() {
                 </Link>
               </div>
               <p className="text-parchment/78 text-[14px] leading-[1.72] mb-7">
-                Send the trainer names, roles, specialties, short bios, and approved photos when ready, and these profile slots can become individual trainer cards.
+                Share your goals, training experience, and preferred schedule. The WSC fitness team will follow up to discuss a trainer match and help you take the next step.
               </p>
               <div className="flex flex-wrap gap-3">
                 {trainerFocusAreas.map((item) => (

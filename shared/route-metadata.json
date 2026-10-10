@@ -69,7 +69,7 @@
     "sitemap": false
   },
   "apl": {
-    "image": "/images/wsc/gym-main.webp",
+    "image": "/images/wsc/apl-adult-group.webp",
     "staticShell": true,
     "sitemap": {
       "changefreq": "monthly",
@@ -141,12 +141,12 @@
     }
   },
   "personalTraining": {
-    "image": "/images/wsc/fitness-center-hero.webp",
+    "image": "/images/wsc/gym-functional-zone.webp",
     "staticShell": true,
     "sitemap": false
   },
   "personalTrainingRequest": {
-    "image": "/images/wsc/gym-main.webp",
+    "image": "/images/wsc/gym-floor.webp",
     "staticShell": true,
     "sitemap": {
       "changefreq": "monthly",

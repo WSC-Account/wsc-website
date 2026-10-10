@@ -12,7 +12,7 @@ import { SEO } from "@/lib/seo-data";
 
 const GYM_HERO = "/images/wsc/fitness-center-hero.webp";
 const GYM_MAIN = "/images/wsc/gym-main-interior.webp";
-const GYM_WEIGHTS = "/images/wsc/gym-training-tools.webp";
+const GYM_WEIGHTS = "/images/wsc/gym-free-weights.webp";
 const GYM_FUNCTIONAL = "/images/wsc/gym-functional-zone.webp";
 
 export default function Gym() {
@@ -153,7 +153,7 @@ export default function Gym() {
             </div>
             <ResponsiveImage
               src={GYM_WEIGHTS}
-              alt="WSC kettlebells, medicine balls, and strength training tools"
+              alt="Dumbbell racks and free-weight training space at Woodinville Sports Club"
               loading="lazy"
               className="w-full aspect-[4/3] object-cover object-center"
             />

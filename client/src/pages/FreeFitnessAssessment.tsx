@@ -5,7 +5,7 @@ import SEOHead from "@/components/SEOHead";
 import FreeAssessmentModal, { trackAssessmentCtaClick } from "@/components/FreeAssessmentModal";
 
 const HERO_IMG = "/images/wsc/fitness-center-hero.webp";
-const COACHING_IMG = "/images/wsc/apl-training.webp";
+const MOVEMENT_IMG = "/images/wsc/apl-strength-stability.webp";
 const OUTCOME_IMG = "/images/wsc/gym-functional-zone.webp";
 
 const PAGE_URL = "https://www.woodinvillesportsclub.com/free-fitness-assessment";
@@ -220,10 +220,11 @@ export default function FreeFitnessAssessment() {
             </button>
           </div>
           <ResponsiveImage
-            src={COACHING_IMG}
-            alt="A WSC coach guiding an athlete through strength training at the Athletic Performance Lab in Woodinville"
+            src={MOVEMENT_IMG}
+            alt="Athlete practicing a resistance-band movement in the Woodinville Sports Club Athletic Performance Lab"
             loading="lazy"
-            className="aspect-[4/5] w-full object-cover brightness-[0.85] saturate-[0.85] lg:aspect-[4/4.4]"
+            className="aspect-[4/5] w-full object-cover lg:aspect-[4/4.4]"
+            style={{ objectPosition: "35% center" }}
           />
         </div>
       </section>
