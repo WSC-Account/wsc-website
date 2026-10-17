@@ -38,7 +38,10 @@ export default function MarketingAttribution() {
         return;
       }
 
-      if (link.hostname === "app.courtreserve.com") {
+      if (
+        link.hostname === "book.woodinvillesportsclub.com" ||
+        link.hostname === "app.courtreserve.com"
+      ) {
         trackMarketingEvent("booking_click", { ...common, booking_provider: "CourtReserve" });
         if (common.page_path === "/membership" || /membership|join/i.test(common.link_text)) {
           trackMarketingEvent("membership_click", { ...common, membership_action: "start_courtreserve" });

@@ -53,12 +53,12 @@
     },
     {
       "source": "/book",
-      "destination": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "destination": "https://book.woodinvillesportsclub.com/Online/Portal/Index/6689",
       "permanent": true
     },
     {
       "source": "/book-online",
-      "destination": "https://app.courtreserve.com/Online/Portal/Index/6689",
+      "destination": "https://book.woodinvillesportsclub.com/Online/Portal/Index/6689",
       "permanent": true
     },
     {

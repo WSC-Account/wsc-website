@@ -30,7 +30,7 @@ const TENNIS_JUNIOR_SERVE_IMG = "/images/wsc/tennis-junior-serve.webp";
 const TENNIS_MATCHPLAY_BENCH_IMG = "/images/wsc/tennis-matchplay-bench.webp";
 const TENNIS_ALUMNI_SIGN_IMG = "/images/wsc/tennis-tier1-alumni-sign.webp";
 const TENNIS_PLAYER_FOREHAND_IMG = "/images/wsc/tennis-player-forehand.webp";
-const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689";
+const COURT_RESERVE_URL = "https://book.woodinvillesportsclub.com/Online/Portal/Index/6689";
 const TIER1_TENNIS_URL = "https://www.tier1nw.com/tennis";
 const TIER1_CORE_URL = "https://www.tier1nw.com/tennis/intro-classes";
 const TIER1_COACHES_URL = "https://www.tier1nw.com/tennis#tennis-coaches";
@@ -861,7 +861,7 @@ export default function Tennis() {
               View Membership
             </Link>
             <a
-              href="https://app.courtreserve.com/Online/Portal/Index/6689"
+              href="https://book.woodinvillesportsclub.com/Online/Portal/Index/6689"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline text-parchment border border-volt-bright px-8 py-3.5 hover:bg-volt hover:border-volt transition-colors duration-200"

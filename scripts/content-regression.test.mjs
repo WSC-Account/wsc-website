@@ -179,7 +179,7 @@ test("golf academy section matches the four-program junior pathway", () => {
 
   assert.notEqual(sectionStart, -1);
   assert.notEqual(sectionEnd, -1);
-  assert.match(golf, /const COURT_RESERVE_URL = "https:\/\/app\.courtreserve\.com\/Online\/Portal\/Index\/6689"/);
+  assert.match(golf, /const COURT_RESERVE_URL = "https:\/\/book\.woodinvillesportsclub\.com\/Online\/Portal\/Index\/6689"/);
   assert.match(academySection, /href=\{COURT_RESERVE_URL\}/);
   assert.match(academySection, />Junior<\/span>[\s\S]*?>Golf Pathway<\/span>/);
   assert.match(academySection, /Class Times &amp; Registration/);
@@ -214,7 +214,7 @@ test("golf coaching page keeps the new junior pathway high level", () => {
   assert.match(golfLessons, /Tier1golf@woodinvillesportsclub\.com/);
   assert.match(
     golfLessons,
-    /const COURT_RESERVE_URL = "https:\/\/app\.courtreserve\.com\/Online\/Portal\/Index\/6689"/
+    /const COURT_RESERVE_URL = "https:\/\/book\.woodinvillesportsclub\.com\/Online\/Portal\/Index\/6689"/
   );
   assert.match(
     golfLessons,

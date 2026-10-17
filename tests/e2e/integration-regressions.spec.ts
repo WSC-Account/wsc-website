@@ -1,7 +1,9 @@
 import { expect, test } from "@playwright/test";
 
 test.beforeEach(async ({ page }, testInfo) => {
-  const trackingTest = testInfo.title.includes("fitness assessment tracks");
+  const trackingTest =
+    testInfo.title.includes("fitness assessment tracks") ||
+    testInfo.title.includes("branded CourtReserve");
   await page.addInitScript((trackingTest) => {
     localStorage.setItem(
       "wsc-cookie-consent",
@@ -13,6 +15,59 @@ test.beforeEach(async ({ page }, testInfo) => {
       })
     );
   }, trackingTest);
+});
+
+test("branded CourtReserve links retain booking destinations and conversions", async ({
+  page,
+  context,
+}) => {
+  const portal = "https://book.woodinvillesportsclub.com/Online/Portal/Index/6689";
+  const classes = "https://book.woodinvillesportsclub.com/Online/Events/List/6689/C7BR91B9SH6689";
+  // Exercise real click/navigation behavior without sending analytics or booking requests.
+  await context.route(/https:\/\/(?:www\.)?googletagmanager\.com\//, route =>
+    route.fulfill({ status: 200, contentType: "application/javascript", body: "" })
+  );
+  await context.route("https://book.woodinvillesportsclub.com/**", route =>
+    route.fulfill({ status: 200, contentType: "text/html", body: "<h1>Booking destination</h1>" })
+  );
+  const events: unknown[][] = [];
+  await page.exposeFunction("recordBookingAnalytics", (...args: unknown[]) => events.push(args));
+  await page.addInitScript(() => {
+    window.gtag = (...args) => {
+      (window as unknown as { recordBookingAnalytics: (...args: unknown[]) => void })
+        .recordBookingAnalytics(...args);
+    };
+  });
+
+  await page.goto("/membership");
+  const signup = page.getByRole("link", { name: "Sign Up", exact: true }).first();
+  await expect(signup).toHaveAttribute("href", portal);
+  const [bookingTab] = await Promise.all([
+    page.waitForEvent("popup"),
+    signup.click(),
+  ]);
+  await expect(bookingTab).toHaveURL(portal);
+  await expect.poll(() => events.filter(event => event[1] === "booking_click")).toEqual([
+    ["event", "booking_click", expect.objectContaining({ link_url: portal, booking_provider: "CourtReserve" })],
+  ]);
+  expect(events.filter(event => event[1] === "membership_click")).toEqual([
+    ["event", "membership_click", expect.objectContaining({ membership_action: "start_courtreserve" })],
+  ]);
+  expect(events.filter(event => event[1] === "outbound_click")).toEqual([]);
+  await bookingTab.close();
+
+  events.length = 0;
+  await page.goto("/fitness");
+  await page.locator(`a[href="${classes}"]`).first().click();
+  // Fitness waits for its advertising callback, with a timeout fallback, before navigating.
+  await expect(page).toHaveURL(classes);
+  expect(events.filter(event => event[1] === "booking_click")).toEqual([
+    ["event", "booking_click", expect.objectContaining({ link_url: classes, booking_provider: "CourtReserve" })],
+  ]);
+  expect(events.filter(event => event[1] === "conversion")).toEqual([
+    ["event", "conversion", expect.objectContaining({ send_to: "AW-18217215416/-Y8cCL7y9-McELjL0u5D" })],
+  ]);
+  expect(events.filter(event => event[1] === "outbound_click")).toEqual([]);
 });
 
 test("Fall 1 registration rolls forward on an open page and retires summer links", async ({
@@ -43,7 +98,7 @@ test("Fall 1 registration rolls forward on an open page and retires summer links
     page.getByRole("link", { name: "Register for Fall 2", exact: true })
   ).toHaveAttribute(
     "href",
-    "https://app.courtreserve.com/Online/Portal/Index/6689"
+    "https://book.woodinvillesportsclub.com/Online/Portal/Index/6689"
   );
   await expect(
     page.locator(

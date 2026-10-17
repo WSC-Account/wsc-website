@@ -19,7 +19,7 @@ const HERO_IMG = "/images/wsc/campus-dome.webp";
 const TENNIS_IMG = "/images/wsc/tennis-junior-point-play.webp";
 const GOLF_IMG = "/images/wsc/golf-practice-area.webp";
 const PERF_IMG = "/images/wsc/apl-training.webp";
-const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689";
+const COURT_RESERVE_URL = "https://book.woodinvillesportsclub.com/Online/Portal/Index/6689";
 
 /* ─── Program Explorer Types ─── */
 type ProgramKey = "tennis" | "golf" | "adventure";

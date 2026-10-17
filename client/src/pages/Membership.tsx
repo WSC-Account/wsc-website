@@ -343,7 +343,7 @@ export default function Membership() {
                   ))}
                 </ul>
                 <a
-                  href="https://app.courtreserve.com/Online/Portal/Index/6689"
+                  href="https://book.woodinvillesportsclub.com/Online/Portal/Index/6689"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-ink text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt pb-[3px]"
@@ -446,7 +446,7 @@ export default function Membership() {
           </p>
           <div className="flex flex-wrap justify-center gap-5">
             <a
-              href="https://app.courtreserve.com/Online/Portal/Index/6689"
+              href="https://book.woodinvillesportsclub.com/Online/Portal/Index/6689"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment transition-colors duration-200"
