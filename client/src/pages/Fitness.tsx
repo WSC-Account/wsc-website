@@ -15,7 +15,7 @@ import { SEO } from "@/lib/seo-data";
 const PERF_IMG = "/images/wsc/apl-adult-group.webp";
 const TRAINING_IMG = "/images/wsc/apl-strength-stability.webp";
 const COACH_JORDY_IMG = "/images/wsc/jordy-champagne.png";
-const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Events/List/6689/C7BR91B9SH6689";
+const COURT_RESERVE_URL = "https://book.woodinvillesportsclub.com/Online/Events/List/6689/C7BR91B9SH6689";
 const TIER1_APL_URL = "https://www.tier1nw.com/apl";
 const CLASS_PASS_DISCLOSURE = "A $50/year Class Pass is required to register - get yours in CourtReserve.";
 const COURT_RESERVE_CONVERSION_ID = "AW-18217215416/-Y8cCL7y9-McELjL0u5D";

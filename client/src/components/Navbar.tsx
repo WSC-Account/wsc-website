@@ -15,7 +15,7 @@ import { ChevronDown, Menu, X, Phone } from "lucide-react";
 import { useSessionCalendar } from "@/hooks/useSessionCalendar";
 
 const COURT_RESERVE_URL =
-  "https://app.courtreserve.com/Online/Portal/Index/6689";
+  "https://book.woodinvillesportsclub.com/Online/Portal/Index/6689";
 
 const membershipLinks = [
   { href: "/membership#membership-options", label: "Membership Options" },

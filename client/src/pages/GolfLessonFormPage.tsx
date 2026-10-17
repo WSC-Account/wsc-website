@@ -4,7 +4,7 @@ import SEOHead from "@/components/SEOHead";
 import { ArrowUpRight } from "lucide-react";
 
 const HERO_IMG = "/images/wsc/swing-lab-simulators.webp";
-const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689";
+const COURT_RESERVE_URL = "https://book.woodinvillesportsclub.com/Online/Portal/Index/6689";
 const TIER1_GOLF_URL = "https://www.tier1nw.com/golf";
 const TIER1_GOLF_EMAIL = "Tier1golf@woodinvillesportsclub.com";
 

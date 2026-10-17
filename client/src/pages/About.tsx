@@ -146,7 +146,7 @@ export default function About() {
               <p className="text-volt text-[13px] tracking-[0.22em] uppercase font-medium">Court Scheduling</p>
             </div>
             <p className="text-ink-mid text-[15px] leading-[1.75]">
-              As a training-focused facility, court time at WSC is prioritized for academy programming through Tier 1 Sports. Recreational and member play is welcome and available — we recommend checking <a href="https://app.courtreserve.com/Online/Portal/Index/6689" target="_blank" rel="noopener noreferrer" className="text-volt hover:text-ink transition-colors duration-200 underline">CourtReserve</a> for current availability or calling us at <a href="tel:4254871090" className="text-volt hover:text-ink transition-colors duration-200 underline">(425) 487-1090</a>.
+              As a training-focused facility, court time at WSC is prioritized for academy programming through Tier 1 Sports. Recreational and member play is welcome and available — we recommend checking <a href="https://book.woodinvillesportsclub.com/Online/Portal/Index/6689" target="_blank" rel="noopener noreferrer" className="text-volt hover:text-ink transition-colors duration-200 underline">CourtReserve</a> for current availability or calling us at <a href="tel:4254871090" className="text-volt hover:text-ink transition-colors duration-200 underline">(425) 487-1090</a>.
             </p>
           </div>
         </div>

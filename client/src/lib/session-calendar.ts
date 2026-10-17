@@ -211,7 +211,7 @@ export function seasonalState(today: string, calendar: Session[] = sessions) {
     badge: current ? `${current.name} · In Session` : "WSC Programs",
     ctaLabel: open ? `Register for ${open.name}` : "View Session Calendar",
     ctaHref: open
-      ? "https://app.courtreserve.com/Online/Portal/Index/6689"
+      ? "https://book.woodinvillesportsclub.com/Online/Portal/Index/6689"
       : "/sessions",
     external: Boolean(open),
     showSummer2026: summer2026Available(today),

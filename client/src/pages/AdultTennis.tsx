@@ -8,7 +8,7 @@ import StructuredData, {
 import { SEO } from "@/lib/seo-data";
 import { adultClasses, ADULT_CLASS_DETAILS } from "@/lib/adult-tennis";
 
-const PORTAL = "https://app.courtreserve.com/Online/Portal/Index/6689";
+const PORTAL = "https://book.woodinvillesportsclub.com/Online/Portal/Index/6689";
 const HELP =
   "mailto:cvordale@woodinvillesportsclub.com?subject=Adult%20Tennis%20-%20Class%20Placement";
 const button =

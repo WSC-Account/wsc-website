@@ -52,7 +52,7 @@ const TENNIS_LESSON_IMG = "/images/wsc/tennis-junior-backhand.webp";
 const FITNESS_TRAINING_IMG = "/images/wsc/apl-training.webp";
 const SUMMER_KIDS_IMG = "/images/wsc/summer-camp.webp";
 const COURT_RESERVE_SIGN_UP_URL =
-  "https://app.courtreserve.com/Online/Portal/Index/6689";
+  "https://book.woodinvillesportsclub.com/Online/Portal/Index/6689";
 
 type HeroCollageImage = {
   src: string;
@@ -1025,7 +1025,7 @@ export default function Home() {
                 typical Saturday looks like.
               </p>
               <a
-                href="https://app.courtreserve.com/Online/Portal/Index/6689"
+                href="https://book.woodinvillesportsclub.com/Online/Portal/Index/6689"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment-mid hover:text-ink transition-colors duration-200"
@@ -1373,7 +1373,7 @@ export default function Home() {
 
           <div className="text-center">
             <a
-              href="https://app.courtreserve.com/Online/Portal/Index/6689"
+              href="https://book.woodinvillesportsclub.com/Online/Portal/Index/6689"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-10 py-3.5 hover:bg-parchment-mid hover:text-ink transition-colors duration-200"

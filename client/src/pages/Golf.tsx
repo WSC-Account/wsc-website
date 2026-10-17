@@ -27,7 +27,7 @@ const GOLF_COACHES_FIELD_GROUP_IMG = "/images/wsc/golf-coaches-field-group.webp"
 const GOLF_COACH_JOHN_IMG = "/images/wsc/golf-coach-john-wang.webp";
 const GOLF_COACH_DANIEL_IMG = "/images/wsc/golf-coach-daniel-jarvie.webp";
 const GOLF_COACH_STELLA_IMG = "/images/wsc/golf-coach-stella-kim.webp";
-const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689";
+const COURT_RESERVE_URL = "https://book.woodinvillesportsclub.com/Online/Portal/Index/6689";
 const TIER1_GOLF_EMAIL = "Tier1golf@woodinvillesportsclub.com";
 
 const GOLF_TRAINING_GROUNDS = [

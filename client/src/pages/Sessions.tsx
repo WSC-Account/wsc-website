@@ -8,7 +8,7 @@ import { SEO } from "@/lib/seo-data";
 import { sessions, sessionStatus } from "@/lib/session-calendar";
 import { useSessionCalendar } from "@/hooks/useSessionCalendar";
 
-const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689";
+const COURT_RESERVE_URL = "https://book.woodinvillesportsclub.com/Online/Portal/Index/6689";
 
 function getSessionValue(name: string, start: string) {
   return `${name}-${start}`.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");

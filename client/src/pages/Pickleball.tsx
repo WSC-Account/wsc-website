@@ -18,7 +18,7 @@ const PICKLE_READY_IMG = "/images/wsc/pickleball-ready-position.webp";
 const PICKLE_TOURNAMENT_WINNERS_IMG = "/images/wsc/pickleball-tournament-winners.webp";
 const PICKLE_TOURNAMENT_PODIUM_IMG = "/images/wsc/pickleball-tournament-podium.webp";
 const PICKLE_TOURNAMENT_FINALISTS_IMG = "/images/wsc/pickleball-tournament-finalists.webp";
-const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Portal/Index/6689";
+const COURT_RESERVE_URL = "https://book.woodinvillesportsclub.com/Online/Portal/Index/6689";
 
 const TOURNAMENT_PHOTOS = [
   {

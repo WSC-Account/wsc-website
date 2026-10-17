@@ -722,7 +722,7 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
     cta: {
       label: "Book Online",
-      href: "https://app.courtreserve.com/Online/Portal/Index/6689",
+      href: "https://book.woodinvillesportsclub.com/Online/Portal/Index/6689",
       text: "Open CourtReserve to manage court and simulator reservations.",
     },
   },
