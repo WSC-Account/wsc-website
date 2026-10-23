@@ -39,6 +39,7 @@ const navLinks = [
       { href: "/golf/driving-range", label: "Driving Range" },
       { href: "/golf#swing-lab", label: "Golf Simulators" },
       { href: "/golf-coaching", label: "Golf Lessons" },
+      { href: "https://www.tier1nw.com/golf", label: "Tier 1 Golf" },
     ],
   },
   { href: "/pickleball", label: "Pickleball" },
@@ -240,26 +241,39 @@ export default function Navbar() {
                     {link.children && (
                       <div className="absolute left-1/2 top-full z-[55] min-w-[240px] -translate-x-1/2 pt-4 opacity-0 pointer-events-none transition-all duration-200 group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto">
                         <ul className="list-none bg-dark-bg border border-parchment/15 shadow-xl">
-                          {link.children.map(child => (
-                            <li key={child.href}>
-                              <Link
-                                href={child.href}
-                                onClick={event =>
-                                  handleHashLinkClick(event, child.href)
-                                }
-                                aria-current={
-                                  location === child.href ? "page" : undefined
-                                }
-                                className={`block px-5 py-3 text-[11px] tracking-[0.1em] uppercase no-underline transition-colors duration-200 ${
-                                  location === child.href
-                                    ? "bg-parchment/10 text-parchment"
-                                    : "text-parchment/75 hover:bg-parchment/10 hover:text-parchment"
-                                }`}
-                              >
-                                {child.label}
-                              </Link>
-                            </li>
-                          ))}
+                          {link.children.map(child => {
+                            const isExternal =
+                              child.href.startsWith("https://");
+                            const SubmenuLink = isExternal ? "a" : Link;
+
+                            return (
+                              <li key={child.href}>
+                                <SubmenuLink
+                                  href={child.href}
+                                  target={isExternal ? "_blank" : undefined}
+                                  rel={
+                                    isExternal
+                                      ? "noopener noreferrer"
+                                      : undefined
+                                  }
+                                  onClick={event =>
+                                    !isExternal &&
+                                    handleHashLinkClick(event, child.href)
+                                  }
+                                  aria-current={
+                                    location === child.href ? "page" : undefined
+                                  }
+                                  className={`block px-5 py-3 text-[11px] tracking-[0.1em] uppercase no-underline transition-colors duration-200 ${
+                                    location === child.href
+                                      ? "bg-parchment/10 text-parchment"
+                                      : "text-parchment/75 hover:bg-parchment/10 hover:text-parchment"
+                                  }`}
+                                >
+                                  {child.label}
+                                </SubmenuLink>
+                              </li>
+                            );
+                          })}
                         </ul>
                       </div>
                     )}
@@ -359,27 +373,37 @@ export default function Navbar() {
                         id={submenuId}
                         className="list-none mt-2 ml-4 pl-4 border-l border-parchment/15 space-y-2"
                       >
-                        {link.children.map(child => (
-                          <li key={child.href}>
-                            <Link
-                              href={child.href}
-                              aria-current={
-                                location === child.href ? "page" : undefined
-                              }
-                              className={`text-[12px] tracking-[0.1em] uppercase no-underline py-2 block ${
-                                location === child.href
-                                  ? "text-parchment font-medium"
-                                  : "text-parchment/65"
-                              }`}
-                              onClick={event => {
-                                closeMobileMenu();
-                                handleHashLinkClick(event, child.href);
-                              }}
-                            >
-                              {child.label}
-                            </Link>
-                          </li>
-                        ))}
+                        {link.children.map(child => {
+                          const isExternal = child.href.startsWith("https://");
+                          const SubmenuLink = isExternal ? "a" : Link;
+
+                          return (
+                            <li key={child.href}>
+                              <SubmenuLink
+                                href={child.href}
+                                target={isExternal ? "_blank" : undefined}
+                                rel={
+                                  isExternal ? "noopener noreferrer" : undefined
+                                }
+                                aria-current={
+                                  location === child.href ? "page" : undefined
+                                }
+                                className={`text-[12px] tracking-[0.1em] uppercase no-underline py-2 block ${
+                                  location === child.href
+                                    ? "text-parchment font-medium"
+                                    : "text-parchment/65"
+                                }`}
+                                onClick={event => {
+                                  closeMobileMenu();
+                                  if (!isExternal)
+                                    handleHashLinkClick(event, child.href);
+                                }}
+                              >
+                                {child.label}
+                              </SubmenuLink>
+                            </li>
+                          );
+                        })}
                       </ul>
                     )}
                   </li>

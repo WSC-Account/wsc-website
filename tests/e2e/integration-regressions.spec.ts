@@ -178,6 +178,50 @@ test("merged navigation retains hash destinations and mobile keyboard controls",
   }
 });
 
+test("Golf submenu opens Tier 1 in a new tab and keeps WSC navigation usable", async ({
+  page,
+  context,
+  isMobile,
+}) => {
+  const tier1GolfUrl = "https://www.tier1nw.com/golf";
+  await context.route(tier1GolfUrl, route =>
+    route.fulfill({
+      contentType: "text/html",
+      body: "<h1>Tier 1 Golf</h1>",
+    })
+  );
+  await page.goto("/golf");
+  const nav = page.getByRole("navigation", { name: "Main navigation" });
+  const openGolfMenu = async () => {
+    if (isMobile) {
+      await nav.getByRole("button", { name: "Open navigation menu" }).click();
+      await nav.getByRole("button", { name: "Show Golf submenu" }).click();
+    } else {
+      await nav.getByRole("link", { name: "Golf", exact: true }).hover();
+    }
+  };
+  await openGolfMenu();
+  const popupPromise = page.waitForEvent("popup");
+  await nav.getByRole("link", { name: "Tier 1 Golf", exact: true }).click();
+  const popup = await popupPromise;
+  await expect(popup).toHaveURL(tier1GolfUrl);
+  await expect(popup.getByRole("heading", { level: 1 })).toHaveText(
+    "Tier 1 Golf"
+  );
+  await expect(page).toHaveURL(/\/golf$/);
+  if (isMobile) {
+    await expect(
+      nav.getByRole("button", { name: "Open navigation menu" })
+    ).toHaveAttribute("aria-expanded", "false");
+    await expect(page.locator("body")).not.toHaveCSS("overflow", "hidden");
+  }
+  await popup.close();
+  await openGolfMenu();
+  await nav.getByRole("link", { name: "Golf Simulators", exact: true }).click();
+  await expect(page).toHaveURL(/\/golf#swing-lab$/);
+  await expect(page.locator("#swing-lab")).toBeInViewport();
+});
+
 test("a stale lazy route recovers by reloading the current URL", async ({
   page,
 }) => {
