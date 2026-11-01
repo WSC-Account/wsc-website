@@ -86,7 +86,7 @@ test("homepage golf promotion matches the current junior pathway", () => {
   assert.match(home, /WSC Golf Academy Junior Pathway/);
   assert.match(home, /Intro to Golf/);
   assert.match(home, /age-group Golf Club training/);
-  assert.match(home, /approval-only Tier 1 High Performance/);
+  assert.match(home, /approval-only\s+Tier 1 High Performance/);
   assert.doesNotMatch(
     home,
     /Foundations \(Ages 7-9\)|Junior Academy for ages 7–18|Full-time youth academy launching in 2026/i

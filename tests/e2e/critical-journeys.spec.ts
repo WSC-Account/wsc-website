@@ -3,8 +3,8 @@ import { expect, test } from "@playwright/test";
 const criticalPages = [
   {
     path: "/",
-    heading: /Level Up Your Game at WSC/i,
-    mobileHeading: /Play more\. Train better\./i,
+    heading: /Train in\s*Woodinville\./i,
+    mobileHeading: /Train in\s*Woodinville\./i,
   },
   { path: "/tennis", heading: /Tennis/i, mobileHeading: /Tennis/i },
   { path: "/golf", heading: /Golf/i, mobileHeading: /Golf/i },
