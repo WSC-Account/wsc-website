@@ -1184,7 +1184,7 @@ export default function Home() {
                 </p>
                 <div className="flex flex-wrap gap-4 items-center">
                   <a
-                    href="https://www.tier1nw.com"
+                    href="https://www.tier1nw.com/golf"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-ink text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt pb-[3px] group-hover:text-volt transition-colors duration-200"
