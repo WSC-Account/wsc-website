@@ -1,5 +1,5 @@
 /*
- * 4B Design: Dark nav bar (#161310), Inter 500 logo, 12px uppercase links
+ * 4B Design: Dark nav bar, full-contrast Inter 600 primary links
  * Volt-bright CTA button, subtle border-bottom on nav-inner
  * Simplified primary navigation with program and fitness sub-navigation.
  */
@@ -216,7 +216,7 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop links */}
-            <ul className="hidden lg:flex gap-9 list-none">
+            <ul className="hidden lg:flex gap-6 xl:gap-9 list-none">
               {visibleNavLinks.map(link => {
                 const isActive =
                   location === link.href ||
@@ -230,10 +230,10 @@ export default function Navbar() {
                     <Link
                       href={link.href}
                       aria-current={location === link.href ? "page" : undefined}
-                      className={`text-[12px] tracking-[0.1em] uppercase no-underline transition-colors duration-200 py-2 ${
+                      className={`text-[13px] font-semibold tracking-[0.08em] uppercase no-underline transition-colors duration-200 py-2 ${
                         isActive
-                          ? "text-parchment font-medium"
-                          : "text-parchment/75 hover:text-parchment"
+                          ? "text-volt-bright"
+                          : "text-parchment hover:text-white"
                       }`}
                     >
                       {link.label}
@@ -263,10 +263,10 @@ export default function Navbar() {
                                   aria-current={
                                     location === child.href ? "page" : undefined
                                   }
-                                  className={`block px-5 py-3 text-[11px] tracking-[0.1em] uppercase no-underline transition-colors duration-200 ${
+                                  className={`block px-5 py-3 text-[12px] font-medium tracking-[0.08em] uppercase no-underline transition-colors duration-200 ${
                                     location === child.href
-                                      ? "bg-parchment/10 text-parchment"
-                                      : "text-parchment/75 hover:bg-parchment/10 hover:text-parchment"
+                                      ? "bg-parchment/10 text-volt-bright"
+                                      : "text-parchment hover:bg-parchment/10 hover:text-white"
                                   }`}
                                 >
                                   {child.label}
@@ -287,7 +287,7 @@ export default function Navbar() {
               href={COURT_RESERVE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden lg:flex text-[12px] tracking-[0.1em] uppercase no-underline text-dark-bg bg-volt-bright px-6 py-3 min-h-[44px] items-center hover:bg-parchment transition-colors duration-200"
+              className="hidden lg:flex text-[13px] font-semibold tracking-[0.08em] uppercase no-underline text-dark-bg bg-volt-bright px-6 py-3 min-h-[44px] items-center hover:bg-parchment transition-colors duration-200"
             >
               Book / Register
             </a>
@@ -306,7 +306,7 @@ export default function Navbar() {
               aria-expanded={mobileOpen}
               aria-controls={mobileMenuId}
             >
-              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+              {mobileOpen ? <X size={24} strokeWidth={2.5} /> : <Menu size={24} strokeWidth={2.5} />}
             </button>
           </div>
         </div>
@@ -338,10 +338,10 @@ export default function Navbar() {
                         aria-current={
                           location === link.href ? "page" : undefined
                         }
-                        className={`block flex-1 py-2 text-[13px] tracking-[0.1em] uppercase no-underline ${
+                        className={`block flex-1 py-2 text-[14px] font-semibold tracking-[0.08em] uppercase no-underline ${
                           isActive
-                            ? "text-parchment font-medium"
-                            : "text-parchment/75"
+                            ? "text-volt-bright"
+                            : "text-parchment"
                         }`}
                         onClick={closeMobileMenu}
                       >
@@ -350,7 +350,7 @@ export default function Navbar() {
                       {link.children && (
                         <button
                           type="button"
-                          className="flex min-h-[44px] min-w-[44px] items-center justify-center text-parchment/70"
+                          className="flex min-h-[44px] min-w-[44px] items-center justify-center text-parchment"
                           aria-expanded={isExpanded}
                           aria-controls={submenuId}
                           aria-label={`${isExpanded ? "Hide" : "Show"} ${link.label} submenu`}
@@ -362,6 +362,7 @@ export default function Navbar() {
                         >
                           <ChevronDown
                             size={18}
+                            strokeWidth={2.5}
                             className={`transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`}
                             aria-hidden="true"
                           />
@@ -388,10 +389,10 @@ export default function Navbar() {
                                 aria-current={
                                   location === child.href ? "page" : undefined
                                 }
-                                className={`text-[12px] tracking-[0.1em] uppercase no-underline py-2 block ${
+                                className={`text-[13px] font-medium tracking-[0.08em] uppercase no-underline py-2 block ${
                                   location === child.href
-                                    ? "text-parchment font-medium"
-                                    : "text-parchment/65"
+                                    ? "text-volt-bright"
+                                    : "text-parchment"
                                 }`}
                                 onClick={event => {
                                   closeMobileMenu();
@@ -414,7 +415,7 @@ export default function Navbar() {
                   href={COURT_RESERVE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full text-[12px] tracking-[0.1em] uppercase no-underline text-dark-bg bg-volt-bright px-6 py-3 min-h-[44px] inline-flex items-center justify-center"
+                  className="w-full text-[13px] font-semibold tracking-[0.08em] uppercase no-underline text-dark-bg bg-volt-bright px-6 py-3 min-h-[44px] inline-flex items-center justify-center"
                   onClick={closeMobileMenu}
                 >
                   Book / Register
@@ -423,7 +424,7 @@ export default function Navbar() {
               <li className="mt-1">
                 <a
                   href="tel:+14254871090"
-                  className="flex items-center gap-1.5 text-parchment/70 text-[11px] tracking-[0.1em] uppercase no-underline"
+                  className="flex items-center gap-1.5 text-parchment text-[12px] font-medium tracking-[0.08em] uppercase no-underline"
                 >
                   <Phone size={11} />
                   (425) 487-1090

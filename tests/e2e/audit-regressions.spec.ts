@@ -52,14 +52,49 @@ test("section navigation adds one history entry and Back returns home", async ({
   await expect(page).toHaveURL(/\/$/);
 });
 
-test("hidden responsive heroes do not select a real eager image", async ({ page }) => {
+test("homepage loads its collage with one high-priority tennis image and no hidden eager downloads", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByRole("navigation", { name: "Main navigation" })).toBeVisible();
-  const hiddenImages = await page.locator("img[loading=eager]").evaluateAll(images =>
-    images.filter(image => !image.getClientRects().length).map(image => (image as HTMLImageElement).currentSrc),
+  const hero = page.locator(".home-hero");
+  const collageImages = hero.locator(".home-hero-collage img");
+  await expect(collageImages).toHaveCount(7);
+  const heroImage = hero.locator(".home-hero-collage img[loading=eager]");
+  await expect(heroImage).toHaveCount(1);
+  await expect(hero.locator('img[fetchpriority="high"]')).toHaveCount(1);
+  await expect(heroImage).toBeVisible();
+  await expect(heroImage).toHaveAttribute("alt", /tennis.*Woodinville Sports Club/i);
+  await expect(heroImage).toHaveAttribute("loading", "eager");
+  await expect(heroImage).toHaveAttribute("fetchpriority", "high");
+  await expect.poll(() => heroImage.evaluate(image => {
+    const hero = image as HTMLImageElement;
+    return hero.complete && hero.naturalWidth > 1 && /^https?:/.test(hero.currentSrc);
+  })).toBe(true);
+
+  for (const image of await collageImages.all()) {
+    await expect(image).toBeVisible();
+  }
+  await expect.poll(() => collageImages.evaluateAll(images =>
+    images.every(image => {
+      const img = image as HTMLImageElement;
+      return img.complete && img.naturalWidth > 1 && /^https?:/.test(img.currentSrc);
+    }),
+  )).toBe(true);
+
+  const adultTennis = hero.getByRole("link", { name: "Adult Tennis", exact: true });
+  const juniorTennis = hero.getByRole("link", { name: "Junior Tennis", exact: true });
+  await expect(adultTennis).toBeVisible();
+  await expect(adultTennis).toHaveAttribute("href", "/tennis/adult");
+  await expect(juniorTennis).toBeVisible();
+  await expect(juniorTennis).toHaveAttribute("href", "/tennis#junior-tennis");
+
+  const hiddenRealImages = await page.locator("img[loading=eager]").evaluateAll(images =>
+    images.filter(image => {
+      const style = getComputedStyle(image);
+      const hidden = !image.getClientRects().length || style.visibility === "hidden";
+      return hidden && /^https?:/.test((image as HTMLImageElement).currentSrc);
+    }).map(image => (image as HTMLImageElement).currentSrc),
   );
-  expect(hiddenImages.length).toBeGreaterThan(0);
-  expect(hiddenImages.every(src => src.startsWith("data:image/"))).toBe(true);
+  expect(hiddenRealImages).toEqual([]);
 });
 
 test("production output serves metadata, legacy redirects, and real 404 statuses", async ({ request }) => {
