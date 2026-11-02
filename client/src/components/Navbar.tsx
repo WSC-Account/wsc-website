@@ -30,6 +30,7 @@ const navLinks = [
     children: [
       { href: "/tennis/adult", label: "Adult Tennis" },
       { href: "/tennis#junior-tennis", label: "Junior Tennis" },
+      { href: "https://www.tier1nw.com/tennis", label: "Tier 1 Tennis" },
     ],
   },
   {
