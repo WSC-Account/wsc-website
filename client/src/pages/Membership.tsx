@@ -365,7 +365,7 @@ export default function Membership() {
               href="/member-request"
               className="inline-block mb-3 text-ink text-[12px] tracking-[0.1em] uppercase no-underline border-b border-volt pb-[3px]"
             >
-              Manage or Cancel Membership
+              Request cancellation
             </Link>
             <p className="text-ink-mid text-[14px] leading-[1.7] mb-2">
               <span className="text-ink font-normal">Annual Passes:</span>{" "}
@@ -423,7 +423,7 @@ export default function Membership() {
               href="/member-request"
               className="text-ink text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt pb-[3px]"
             >
-              Open Form
+              Request cancellation
             </Link>
           </div>
         </div>

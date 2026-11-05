@@ -6,14 +6,13 @@ import SEOHead from "@/components/SEOHead";
 import StructuredData, { getBreadcrumbSchema } from "@/components/StructuredData";
 import { SEO } from "@/lib/seo-data";
 import { useSessionCalendar } from "@/hooks/useSessionCalendar";
-import { tournamentState, type TournamentDates, type TournamentStatus } from "@/lib/tournament-calendar";
+import { matchesTournamentAge, tournamentState, type TournamentAgeFilter, type TournamentAgeGroup, type TournamentDates, type TournamentStatus } from "@/lib/tournament-calendar";
 
 const HERO_IMG = "/images/wsc/junior-golf-academy-group.webp";
 const RANGE_IMG = "/images/wsc/golf-range-field.webp";
 const SIM_IMG = "/images/wsc/swing-lab-junior-practice.webp";
 const GOLF_EMAIL = "Tier1golf@woodinvillesportsclub.com";
 
-type TournamentAgeFilter = "all" | "8-11" | "12-13" | "14-18";
 type TournamentFitFilter = "all" | "first-events" | "developing" | "competitive" | "championship";
 type TournamentDistanceFilter = "all" | "30" | "90" | "travel";
 type TournamentEligibilityFilter = "all" | "pathway" | "open" | "qualifier" | "invitational" | "championship";
@@ -25,12 +24,15 @@ type CompetitiveTournament = TournamentDates & {
   location: string;
   level: string;
   source: string;
+  ageGroups: TournamentAgeGroup[] | null;
+  registrationNote?: string;
+  fit?: TournamentFit[];
+  eligibility?: TournamentEligibility[];
 };
 
 type TournamentFit = Exclude<TournamentFitFilter, "all">;
 type TournamentEligibility = Exclude<TournamentEligibilityFilter, "all">;
 type EnhancedCompetitiveTournament = CompetitiveTournament & {
-  ageGroups: TournamentAgeFilter[];
   distanceMiles: number | null;
   fit: TournamentFit[];
   eligibility: TournamentEligibility[];
@@ -44,6 +46,9 @@ type RecreationalTournament = {
   note: string;
 };
 
+// WJGA district/state age divisions checked November 4, 2026:
+// https://www.wjga.net/membership/new-to-wjga/ and /about/awards/ (2026 results).
+// Keep unverified ages null; organizer names are not eligibility rules.
 const competitiveTournaments: CompetitiveTournament[] = [
   {
     date: "March 20-22, 2026",
@@ -53,6 +58,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "WJGA",
     location: "Eagles Pride GC",
     level: "14-18 open event",
+    ageGroups: ["14-18"],
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
@@ -63,6 +69,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "WJGA",
     location: "Meadow Park GC / Williams Nine",
     level: "8-11 and 12-13 divisions",
+    ageGroups: ["8-11", "12-13"],
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
@@ -73,6 +80,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "WJGA",
     location: "Capitol City GC",
     level: "14-18 open event",
+    ageGroups: ["14-18"],
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
@@ -83,6 +91,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "WJGA",
     location: "Alderbrook GC",
     level: "8-11 and 12-13 divisions",
+    ageGroups: ["8-11", "12-13"],
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
@@ -93,6 +102,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "WJGA",
     location: "Veterans Memorial GC",
     level: "14-18 open event / Junior World qualifier",
+    ageGroups: ["14-18"],
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
@@ -103,6 +113,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "WJGA",
     location: "The Links GC",
     level: "8-11 and 12-13 divisions",
+    ageGroups: ["8-11", "12-13"],
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
@@ -113,6 +124,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "WJGA",
     location: "The Links GC",
     level: "14-18 open event",
+    ageGroups: ["14-18"],
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
@@ -123,6 +135,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "WA Golf / USGA",
     location: "McCormick Woods Golf Club",
     level: "USGA junior championship qualifier",
+    ageGroups: null,
     source: "https://wagolf.org/compete/usga-qualifying",
   },
   {
@@ -133,6 +146,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "WA Golf / USGA",
     location: "McCormick Woods Golf Club",
     level: "USGA junior championship qualifier",
+    ageGroups: null,
     source: "https://wagolf.org/compete/usga-qualifying",
   },
   {
@@ -143,6 +157,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "WJGA",
     location: "Sun Country GC",
     level: "8-11 and 12-13 divisions",
+    ageGroups: ["8-11", "12-13"],
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
@@ -153,6 +168,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "WJGA",
     location: "Yakima Elks G&CC",
     level: "Junior championship",
+    ageGroups: null,
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
@@ -163,6 +179,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "WJGA",
     location: "Tahoma Valley GC",
     level: "8-11 and 12-13 divisions",
+    ageGroups: ["8-11", "12-13"],
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
@@ -173,6 +190,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "WJGA",
     location: "Walter Hall GC",
     level: "Everett to north border district pathway",
+    ageGroups: ["8-11", "12-13", "14-18"],
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
@@ -183,6 +201,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "WJGA",
     location: "Seattle GC",
     level: "Seattle-area district pathway",
+    ageGroups: ["8-11", "12-13", "14-18"],
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
@@ -193,6 +212,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "U.S. Kids Golf",
     location: "Wine Valley GC, Walla Walla",
     level: "Regional junior event",
+    ageGroups: null,
     source: "https://tournaments.uskidsgolf.com/tournaments/state/rental-cars",
   },
   {
@@ -203,6 +223,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "WJGA",
     location: "Riverbend GC",
     level: "South King / East Pierce district pathway",
+    ageGroups: ["8-11", "12-13", "14-18"],
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
@@ -213,6 +234,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "WJGA",
     location: "Camaloch GC",
     level: "Everett to north border district pathway",
+    ageGroups: ["8-11", "12-13", "14-18"],
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
@@ -223,6 +245,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "WJGA",
     location: "West Seattle GC",
     level: "Seattle-area district pathway",
+    ageGroups: ["8-11", "12-13", "14-18"],
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
@@ -233,6 +256,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "WJGA",
     location: "North Shore GC",
     level: "South King / East Pierce district pathway",
+    ageGroups: ["8-11", "12-13", "14-18"],
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
@@ -243,6 +267,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "WJGA",
     location: "Oakbrook GC",
     level: "Invitational",
+    ageGroups: null,
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
@@ -253,6 +278,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "U.S. Kids Golf",
     location: "Gamble Sands, Brewster",
     level: "State junior event",
+    ageGroups: null,
     source: "https://tournaments.uskidsgolf.com/tournaments/state/rental-cars",
   },
   {
@@ -263,6 +289,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "WJGA",
     location: "Snoqualmie Falls GC",
     level: "Seattle-area district pathway",
+    ageGroups: ["8-11", "12-13", "14-18"],
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
@@ -273,6 +300,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "WJGA",
     location: "Bellingham G&CC",
     level: "Everett to north border district pathway",
+    ageGroups: ["8-11", "12-13", "14-18"],
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
@@ -283,6 +311,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "WJGA",
     location: "Allenmore GC",
     level: "South King / East Pierce district pathway",
+    ageGroups: ["8-11", "12-13", "14-18"],
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
@@ -293,6 +322,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "WJGA",
     location: "Avalon Golf Links",
     level: "District championship",
+    ageGroups: ["8-11", "12-13", "14-18"],
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
@@ -303,6 +333,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "WJGA",
     location: "Echo Falls GC",
     level: "Seattle-area district championship",
+    ageGroups: ["8-11", "12-13", "14-18"],
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
@@ -313,6 +344,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "WJGA",
     location: "High Cedars GC",
     level: "South King / East Pierce district championship",
+    ageGroups: ["8-11", "12-13", "14-18"],
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
@@ -323,6 +355,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "WJGA",
     location: "Lakeview G&CC",
     level: "All ages",
+    ageGroups: ["8-11", "12-13", "14-18"],
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
@@ -333,6 +366,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "WJGA",
     location: "Manito G&CC / Latah Creek GC / Esmeralda GC",
     level: "State championship",
+    ageGroups: ["8-11", "12-13", "14-18"],
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
   {
@@ -343,6 +377,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "PNGA",
     location: "Vandal Golf Course",
     level: "Regional junior championship",
+    ageGroups: null,
     source: "https://thepnga.org/championships/",
   },
   {
@@ -353,6 +388,7 @@ const competitiveTournaments: CompetitiveTournament[] = [
     organizer: "PNGA",
     location: "Vandal Golf Course",
     level: "Regional junior championship",
+    ageGroups: null,
     source: "https://thepnga.org/championships/",
   },
   {
@@ -361,9 +397,26 @@ const competitiveTournaments: CompetitiveTournament[] = [
     endDate: "2026-11-11",
     title: "WJGA Turkey Shoot",
     organizer: "WJGA",
-    location: "TBD",
+    location: "High Cedars GC",
     level: "Season-end junior event",
-    statusOverride: "TBD",
+    registrationNote: "Registration portal coming soon. Confirm divisions and entry details with WJGA.",
+    fit: [],
+    eligibility: [],
+    ageGroups: null,
+    source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
+  },
+  {
+    date: "December 21, 2026",
+    startDate: "2026-12-21",
+    endDate: "2026-12-21",
+    title: "WJGA Winter Classic",
+    organizer: "WJGA",
+    location: "Riverbend GC",
+    level: "Winter junior event",
+    ageGroups: null,
+    registrationNote: "Registration portal coming soon. Confirm divisions and entry details with WJGA.",
+    fit: [],
+    eligibility: [],
     source: "https://www.wjga.net/tournaments/complete-wjga-schedule/",
   },
 ];
@@ -381,7 +434,7 @@ const recreationalTournaments: RecreationalTournament[] = [
     timing: "Club event idea",
     format: "Two-player scramble",
     audience: "Academy families and WSC members",
-    note: "A community bridge between junior golf development and WSC family programming.",
+    note: "A proposed two-player format for a junior golfer and a parent.",
   },
   {
     title: "Short-Game Shootout",
@@ -395,7 +448,7 @@ const recreationalTournaments: RecreationalTournament[] = [
     timing: "Club event idea",
     format: "Team points across range, short game, and simulator challenges",
     audience: "Members introducing guests to WSC golf",
-    note: "A conversion-friendly event that shows the full training grounds experience.",
+    note: "A proposed team challenge for members and their guests across the range, short-game area, and simulators.",
   },
 ];
 
@@ -473,13 +526,6 @@ const tournamentSourceOverrides: Record<string, string> = {
   "PNGA Junior Girls' Amateur|Vandal Golf Course": "https://thepnga.org/championships/junior-girls-amateur/",
 };
 
-function getTournamentAgeGroups(event: CompetitiveTournament): TournamentAgeFilter[] {
-  if (event.level.includes("All ages")) return ["8-11", "12-13", "14-18"];
-  if (event.level.includes("8-11") || event.level.includes("12-13")) return ["8-11", "12-13"];
-  if (event.organizer === "U.S. Kids Golf") return ["8-11", "12-13", "14-18"];
-  return ["14-18"];
-}
-
 function getTournamentFit(event: CompetitiveTournament): TournamentFit[] {
   const text = `${event.title} ${event.level}`.toLowerCase();
 
@@ -509,10 +555,9 @@ function getTournamentEligibility(event: CompetitiveTournament): TournamentEligi
 const enhancedCompetitiveTournaments: EnhancedCompetitiveTournament[] = sortedCompetitiveTournaments.map((event) => ({
   ...event,
   source: tournamentSourceOverrides[getTournamentSourceKey(event)] ?? event.source,
-  ageGroups: getTournamentAgeGroups(event),
   distanceMiles: tournamentDistanceMiles[event.location] ?? null,
-  fit: getTournamentFit(event),
-  eligibility: getTournamentEligibility(event),
+  fit: event.fit ?? getTournamentFit(event),
+  eligibility: event.eligibility ?? getTournamentEligibility(event),
 }));
 
 const filterOptions = {
@@ -567,7 +612,7 @@ const pathwayCards = [
   {
     title: "Already playing tournaments",
     kicker: "Ask the team",
-    copy: "Connect with our team to place better, shoot lower, achieve greater.",
+    copy: "Ask a coach which event fits your scoring average and goals.",
   },
 ];
 
@@ -614,9 +659,10 @@ function FilterSelect({
 }) {
   return (
     <label htmlFor={id} className="block">
-      <span className="block text-[11px] tracking-[0.14em] uppercase text-ink-light mb-2">{label}</span>
+      <span id={`${id}-label`} className="block text-[11px] tracking-[0.14em] uppercase text-ink-light mb-2">{label}</span>
       <select
         id={id}
+        aria-labelledby={`${id}-label`}
         value={value}
         onChange={(event) => onChange(event.target.value)}
         className="w-full appearance-none rounded-none border border-ink/15 bg-parchment px-4 py-3 text-[14px] text-ink outline-none transition-colors duration-200 hover:border-volt focus:border-volt"
@@ -641,7 +687,7 @@ export default function GolfTournaments() {
   const filteredTournaments = useMemo(
     () =>
       enhancedCompetitiveTournaments.map((event) => ({ ...event, ...tournamentState(event, today) })).filter((event) => {
-        const matchesAge = ageFilter === "all" || event.ageGroups.includes(ageFilter);
+        const matchesAge = matchesTournamentAge(event.ageGroups, ageFilter);
         const matchesFit = fitFilter === "all" || event.fit.includes(fitFilter);
         const matchesEligibility = eligibilityFilter === "all" || event.eligibility.includes(eligibilityFilter);
 
@@ -744,7 +790,7 @@ export default function GolfTournaments() {
                 <p className="text-[12px] tracking-[0.18em] uppercase text-volt mb-3">Tournament finder</p>
                 <h3 className="text-[28px] font-light leading-[1.12] mb-4">Filter by player fit.</h3>
                 <p className="text-ink-mid text-[14px] leading-[1.7]">
-                  Start with the basics, then confirm final eligibility on the live tournament source before registering.
+                  Age filters show confirmed age groups. Choose Any age to include events with unconfirmed ages, and check the organizer for full entry requirements.
                 </p>
               </div>
               <div>
@@ -810,9 +856,12 @@ export default function GolfTournaments() {
                 <h3 className="text-[24px] font-light leading-[1.14] mb-4">{event.title}</h3>
                 <p className="text-ink-mid text-[14px] leading-[1.6] mb-2">{event.location}</p>
                 <p className="text-ink-mid text-[14px] leading-[1.65] mb-3">{event.level}</p>
+                {event.registrationNote && (
+                  <p className="text-ink-mid text-[13px] leading-[1.6] mb-3">{event.registrationNote}</p>
+                )}
                 <div className="flex flex-wrap gap-2 mb-6">
                   <span className="text-[10px] tracking-[0.12em] uppercase text-ink-mid border border-ink/12 px-3 py-1">
-                    {event.ageGroups.join(", ")}
+                    {event.ageGroups?.join(", ") ?? "Ages unconfirmed"}
                   </span>
                   <span className="text-[10px] tracking-[0.12em] uppercase text-ink-mid border border-ink/12 px-3 py-1">
                     {formatDistance(event.distanceMiles)}
@@ -885,8 +934,11 @@ export default function GolfTournaments() {
                   <div>
                     <h4 className="text-[20px] font-light leading-[1.18] mb-2">{event.title}</h4>
                     <p className="text-ink-mid text-[13px] leading-[1.6] mb-2">{event.level}</p>
+                    {event.registrationNote && event.status !== "Past" && (
+                      <p className="text-ink-mid text-[13px] leading-[1.6] mb-2">{event.registrationNote}</p>
+                    )}
                     <p className="text-ink-light text-[12px] leading-[1.5]">
-                      {event.ageGroups.join(", ")} · {formatDistance(event.distanceMiles)}
+                      {event.ageGroups?.join(", ") ?? "Ages unconfirmed"} · {formatDistance(event.distanceMiles)}
                     </p>
                   </div>
                   <p className="text-ink-mid text-[13px] leading-[1.6]">{event.location}</p>
@@ -948,12 +1000,12 @@ export default function GolfTournaments() {
         <div className="max-w-[1440px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[0.75fr_1.25fr] gap-12 lg:gap-20 mb-14">
             <div>
-              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Recreational Tournaments</p>
+              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Club event ideas</p>
               <h2 className="text-[clamp(28px,3.2vw,46px)] font-light leading-[1.08] mb-6">
-                More ways to compete without the pressure.
+                Proposed formats for local play.
               </h2>
               <p className="text-ink-mid text-[15px] leading-[1.82]">
-                Not every competitive moment needs to be travel-heavy. These approachable event formats use the range, short-game grounds, and Swing Lab to create local ways for members, families, and newer golfers to compete.
+                These ideas do not have confirmed dates or registration. Contact the golf team if one interests you.
               </p>
             </div>
             <ResponsiveImage

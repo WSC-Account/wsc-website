@@ -716,7 +716,7 @@ export default function Home() {
             <div className="flex flex-col gap-5 mb-10 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <h2 className="text-[clamp(22px,2.4vw,32px)] font-light tracking-[-0.02em] leading-[1.15]">
-                  @woodinvillesportsclub
+                  Past Instagram highlights
                 </h2>
               </div>
               <a

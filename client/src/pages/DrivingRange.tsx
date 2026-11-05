@@ -221,7 +221,7 @@ export default function DrivingRange() {
                 </h3>
                 <p className="mb-3 text-[13px] text-ink-light">{card.detail}</p>
                 <p className="text-[28px] font-light text-volt-bright">
-                  {card.price}
+                  {card.price} <span className="text-[14px]">+ tax</span>
                 </p>
               </article>
             ))}

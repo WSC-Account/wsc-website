@@ -14,7 +14,7 @@ function getBlogPostingSchema(post: NonNullable<ReturnType<typeof getBlogPost>>)
     description: post.description,
     image: `https://www.woodinvillesportsclub.com${post.image}`,
     datePublished: "2026-05-13",
-    dateModified: "2026-05-13",
+    dateModified: post.dateModified ?? "2026-05-13",
     author: {
       "@type": "Organization",
       name: "Woodinville Sports Club",
