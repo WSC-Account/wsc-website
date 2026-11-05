@@ -96,6 +96,8 @@ export default function InstagramFeed() {
           <ResponsiveImage
             src={post.thumbnail}
             alt={post.caption}
+            pictureClassName="absolute inset-0 block h-full w-full"
+            sizes="(min-width: 768px) 25vw, 50vw"
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             style={{ filter: "saturate(0.85) brightness(0.95)" }}
             loading="lazy"
