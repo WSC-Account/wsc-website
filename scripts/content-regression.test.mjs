@@ -551,7 +551,7 @@ test("live website forms are discoverable from site clicks", () => {
   assert.match(membership, /Cancellation Request/);
   assert.match(membership, /href="\/member-request"/);
   assert.match(membership, /Open the membership cancellation form/);
-  assert.match(membership, /Manage or Cancel Membership/);
+  assert.match(membership, /Request cancellation/);
   assert.match(gym, /Request Personal Training/);
   assert.match(gym, /href="\/personal-training-interest-form"/);
   assert.match(gym, /Explore Fitness Memberships/);

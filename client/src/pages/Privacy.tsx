@@ -195,7 +195,7 @@ export default function Privacy({ embedded = false }: PrivacyProps = {}) {
 
             <SubHeading>Managing Your Cookie Preferences</SubHeading>
             <p>
-              When you first visit our Site, a cookie consent banner will appear allowing you to accept all cookies, decline non-essential cookies, or manage your preferences for each category. You can change your cookie preferences at any time by clearing your browser cookies and revisiting the Site, which will trigger the consent banner again.
+              When you first visit our Site, a cookie consent banner will appear allowing you to accept all cookies, decline non-essential cookies, or manage your preferences for each category. To change your choices at any time, select "Cookie preferences" in the footer of any page.
             </p>
             <p>
               You can also control cookies through your browser settings. Most browsers allow you to block or delete cookies, though this may affect your experience on our Site. For more information on managing cookies in your browser, visit your browser's help documentation.

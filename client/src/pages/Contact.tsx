@@ -276,7 +276,7 @@ export default function Contact() {
                 name: "Pickleball",
                 hours: [
                   { day: "Open Play", time: "7 days/week" },
-                  { day: "See schedule", time: "for session times" },
+                  { day: "See schedule", time: "for session times", href: "/pickleball#open-play-schedule" },
                 ],
               },
             ].map((h, i) => (
@@ -285,7 +285,11 @@ export default function Contact() {
                 <div className="space-y-3">
                   {h.hours.map((hr, hi) => (
                     <div key={hi} className="flex justify-between py-2 border-b border-wsc-border">
-                      <span className="text-ink-mid text-[14px]">{hr.day}</span>
+                      {hr.href ? (
+                        <Link href={hr.href} className="text-accent-on-light text-[14px] underline underline-offset-4 hover:text-ink">{hr.day}</Link>
+                      ) : (
+                        <span className="text-ink-mid text-[14px]">{hr.day}</span>
+                      )}
                       <span className="text-ink text-[14px]">{hr.time}</span>
                     </div>
                   ))}

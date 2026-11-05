@@ -83,7 +83,7 @@ export const SEO = {
   sessions: {
     title: "Session Dates Calendar",
     description:
-      "View WSC's published programming session dates, session drop windows, auto-enroll dates, start dates, end dates, and blackout notes.",
+      "View WSC's published programming session dates, registration opening dates, auto-enroll dates, start dates, end dates, and blackout notes.",
     path: "/sessions",
   },
   events: {

@@ -1,10 +1,7 @@
 /*
- * Instagram Feed Component — 4B Design
- * Displays a curated grid of recent WSC Instagram posts using oEmbed iframes
- * Falls back to a visual grid linking to the Instagram profile
+ * Curated past Instagram highlights, with dates and links to the original posts.
  */
-import { useState } from "react";
-import { Instagram, Heart, MessageCircle } from "lucide-react";
+import { Instagram } from "lucide-react";
 import ResponsiveImage from "@/components/ResponsiveImage";
 
 interface InstaPost {
@@ -13,7 +10,6 @@ interface InstaPost {
   caption: string;
   type: "image" | "reel";
   thumbnail: string;
-  likes?: string;
   date: string;
 }
 
@@ -24,7 +20,6 @@ const POSTS: InstaPost[] = [
     caption: "This club has it all. Welcome to Woodinville Sports Club — 67 acres of tennis, golf, fitness, and pickleball.",
     type: "reel",
     thumbnail: "/images/wsc/campus-dome.webp",
-    likes: "142",
     date: "Mar 2026",
   },
   {
@@ -33,7 +28,6 @@ const POSTS: InstaPost[] = [
     caption: "The range is open to the public daily, with covered bays, free Toptracer, grass tees, and a 2.5-acre short-game practice area.",
     type: "image",
     thumbnail: "/images/wsc/golf-practice-area.webp",
-    likes: "87",
     date: "Feb 2026",
   },
   {
@@ -42,7 +36,6 @@ const POSTS: InstaPost[] = [
     caption: "Our first Tier 1 Women's Golf Clinic is in the books! Great turnout and even better swings.",
     type: "image",
     thumbnail: "/images/wsc/golf-practice-area.webp",
-    likes: "33",
     date: "Feb 2026",
   },
   {
@@ -51,16 +44,14 @@ const POSTS: InstaPost[] = [
     caption: "Welcome Stella Kim to the WSC golf family! Stella is a certified LPGA Teaching Professional with nearly a decade of experience.",
     type: "image",
     thumbnail: "/images/wsc/golf-range-aerial.webp",
-    likes: "56",
     date: "Feb 2026",
   },
   {
     id: "5",
     url: "https://www.instagram.com/p/DS3g2B2Fu1p/",
-    caption: "Four state-of-the-art indoor golf simulators are arriving at WSC — just in time for the launch of our Tier 1 Junior Golf Academy.",
+    caption: "From the archives: WSC's January 2026 announcement of four indoor golf simulators.",
     type: "image",
     thumbnail: "/images/wsc/swing-lab-simulators.webp",
-    likes: "94",
     date: "Jan 2026",
   },
   {
@@ -69,7 +60,6 @@ const POSTS: InstaPost[] = [
     caption: "WSC's Tier 1 Coach Filipp traveled with Daniel Malacek to the ITF J200 Corpus Christi Tournament.",
     type: "image",
     thumbnail: "/images/wsc/tennis-player.webp",
-    likes: "71",
     date: "Jan 2026",
   },
   {
@@ -78,7 +68,6 @@ const POSTS: InstaPost[] = [
     caption: "All-Access memberships include gym and fitness access, court and range privileges, class registration access, sauna, and locker rooms.",
     type: "image",
     thumbnail: "/images/wsc/apl-training.webp",
-    likes: "45",
     date: "Feb 2026",
   },
   {
@@ -87,14 +76,11 @@ const POSTS: InstaPost[] = [
     caption: "From the archives: Summer 2026 Tennis, Golf, and Adventure Club programs at WSC.",
     type: "image",
     thumbnail: "/images/wsc/summer-camp.webp",
-    likes: "62",
     date: "Feb 2026",
   },
 ];
 
 export default function InstagramFeed() {
-  const [hoveredId, setHoveredId] = useState<string | null>(null);
-
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-[3px]">
       {POSTS.map((post) => (
@@ -104,9 +90,7 @@ export default function InstagramFeed() {
           target="_blank"
           rel="noopener noreferrer"
           className="relative group aspect-square overflow-hidden bg-parchment-mid block no-underline"
-          onMouseEnter={() => setHoveredId(post.id)}
-          onMouseLeave={() => setHoveredId(null)}
-          aria-label={`Instagram post: ${post.caption.substring(0, 80)}${post.caption.length > 80 ? '...' : ''}`}
+          aria-label={`Past Instagram highlight, ${post.date}: ${post.caption.substring(0, 80)}${post.caption.length > 80 ? '...' : ''}`}
         >
           {/* Thumbnail */}
           <ResponsiveImage
@@ -119,23 +103,11 @@ export default function InstagramFeed() {
 
           {/* Hover overlay */}
           <div
-            className={`absolute inset-0 bg-dark-bg/70 flex flex-col items-center justify-center p-4 transition-opacity duration-300 ${
-              hoveredId === post.id ? "opacity-100" : "opacity-0"
-            }`}
+            className="absolute inset-0 bg-dark-bg/70 flex flex-col items-center justify-center p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100"
           >
-            {/* Stats */}
-            <div className="flex items-center gap-5 mb-4">
-              {post.likes && (
-                <div className="flex items-center gap-1.5">
-                  <Heart size={14} className="text-parchment" fill="currentColor" />
-                  <span className="text-parchment text-[13px] font-light">{post.likes}</span>
-                </div>
-              )}
-              <div className="flex items-center gap-1.5">
-                <MessageCircle size={14} className="text-parchment" />
-                <span className="text-parchment text-[13px] font-light">View</span>
-              </div>
-            </div>
+            <p className="mb-3 text-parchment text-[10px] tracking-[0.1em] uppercase">
+              Past highlight · {post.date}
+            </p>
 
             {/* Caption preview */}
             <p className="text-parchment/75 text-[11px] leading-[1.6] text-center line-clamp-3 max-w-[200px]">
@@ -156,7 +128,7 @@ export default function InstagramFeed() {
           </div>
 
           {/* Date badge (always visible) */}
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark-bg/50 to-transparent px-3 py-2 group-hover:opacity-0 transition-opacity duration-300">
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark-bg/50 to-transparent px-3 py-2 group-hover:opacity-0 group-focus-visible:opacity-0 transition-opacity duration-300">
             <p className="text-parchment/70 text-[10px] tracking-[0.1em] uppercase">{post.date}</p>
           </div>
         </a>

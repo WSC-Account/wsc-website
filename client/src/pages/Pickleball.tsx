@@ -8,7 +8,8 @@ import { Link } from "wouter";
 import PageHero from "@/components/PageHero";
 import ResponsiveImage from "@/components/ResponsiveImage";
 import StructuredData, { getBreadcrumbSchema, getServiceSchema } from "@/components/StructuredData";
-import { useScrollReveal, useStaggerReveal } from "@/hooks/useScrollReveal";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useSessionCalendar } from "@/hooks/useSessionCalendar";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
 
@@ -19,6 +20,26 @@ const PICKLE_TOURNAMENT_WINNERS_IMG = "/images/wsc/pickleball-tournament-winners
 const PICKLE_TOURNAMENT_PODIUM_IMG = "/images/wsc/pickleball-tournament-podium.webp";
 const PICKLE_TOURNAMENT_FINALISTS_IMG = "/images/wsc/pickleball-tournament-finalists.webp";
 const COURT_RESERVE_URL = "https://book.woodinvillesportsclub.com/Online/Portal/Index/6689";
+
+const TOURNAMENT_DATES = [
+  { name: "Shamrock Shootout", date: "March 20–22, 2026", archiveAfter: "2026-03-22", approximate: false },
+  { name: "Spring Fling", date: "May 29–31, 2026", archiveAfter: "2026-05-31", approximate: false },
+  // Month-end is only an archive cutoff, not a claim about exact event dates.
+  { name: "Dominate the Dome", date: "September 2026", archiveAfter: "2026-09-30", approximate: true },
+  { name: "Holiday Classic", date: "December 2026", archiveAfter: "2026-12-31", approximate: true },
+];
+
+function TournamentDateCard({ event, past = false }: { event: typeof TOURNAMENT_DATES[number]; past?: boolean }) {
+  return (
+    <article className="bg-dark-bg p-8 border-t-2 border-transparent hover:border-volt-bright transition-colors">
+      <p className="text-volt-bright text-[12px] tracking-[0.2em] uppercase mb-3">
+        {past ? "Past date" : event.approximate ? "Exact dates to be confirmed" : "Published dates"}
+      </p>
+      <h3 className="text-parchment text-[18px] font-light tracking-[-0.01em] mb-2">{event.name}</h3>
+      <p className="text-parchment/70 text-[13px]">{event.date}</p>
+    </article>
+  );
+}
 
 const TOURNAMENT_PHOTOS = [
   {
@@ -39,12 +60,14 @@ const TOURNAMENT_PHOTOS = [
 ];
 
 export default function Pickleball() {
+  const { today } = useSessionCalendar();
+  const upcomingTournaments = TOURNAMENT_DATES.filter(event => today <= event.archiveAfter);
+  const pastTournaments = TOURNAMENT_DATES.filter(event => today > event.archiveAfter).reverse();
   const { ref: courtsRef, isVisible: courtsVisible } = useScrollReveal({ threshold: 0.08 });
   const { ref: scheduleRef, isVisible: scheduleVisible } = useScrollReveal({ threshold: 0.08 });
   const { ref: pricingRef, isVisible: pricingVisible } = useScrollReveal({ threshold: 0.08 });
   const { ref: rentalRef, isVisible: rentalVisible } = useScrollReveal({ threshold: 0.08 });
   const { ref: classesRef, isVisible: classesVisible } = useScrollReveal({ threshold: 0.08 });
-  const { containerRef: tournamentsRef, visibleItems: tournamentsVisible } = useStaggerReveal(4, { staggerDelay: 120, threshold: 0.1 });
   const { ref: duprRef, isVisible: duprVisible } = useScrollReveal({ threshold: 0.1 });
   const { ref: guidelinesRef, isVisible: guidelinesVisible } = useScrollReveal({ threshold: 0.08 });
   const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal({ threshold: 0.15 });
@@ -127,7 +150,7 @@ export default function Pickleball() {
       </section>
 
       {/* Schedule */}
-      <section className="bg-parchment-mid px-6 lg:px-14 py-24 lg:py-28">
+      <section id="open-play-schedule" className="bg-parchment-mid px-6 lg:px-14 py-24 lg:py-28">
         <div
           ref={scheduleRef}
           className={`max-w-[1440px] mx-auto transition-all duration-700 ease-out ${scheduleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
@@ -364,7 +387,7 @@ export default function Pickleball() {
       </section>
 
       {/* Tournaments */}
-      <section className="bg-dark-mid px-6 lg:px-14 py-24 lg:py-28">
+      <section id="pickleball-tournaments" className="bg-dark-mid px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto">
           <div className="text-center mb-14">
             <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Tournaments</p>
@@ -393,23 +416,24 @@ export default function Pickleball() {
             ))}
           </div>
 
-          <div ref={tournamentsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[3px]">
-            {[
-              { name: "Spring Fling", date: "May 29–31, 2026", season: "Upcoming" },
-              { name: "Dominate the Dome", date: "September 2026", season: "Fall" },
-              { name: "Holiday Classic", date: "December 2026", season: "Winter" },
-              { name: "Shamrock Shootout", date: "Completed March 20–22, 2026", season: "Completed" },
-            ].map((t, i) => (
-              <div
-                key={i}
-                className={`bg-dark-bg p-8 border-t-2 border-transparent hover:border-volt-bright transition-all duration-700 ease-out ${tournamentsVisible[i] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-              >
-                <p className="text-volt-bright text-[12px] tracking-[0.2em] uppercase mb-3">{t.season}</p>
-                <h3 className="text-parchment text-[18px] font-light tracking-[-0.01em] mb-2">{t.name}</h3>
-                <p className="text-parchment/70 text-[13px]">{t.date}</p>
+          <div aria-label="Upcoming tournament dates">
+            {upcomingTournaments.length ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-[3px]">
+                {upcomingTournaments.map(event => <TournamentDateCard key={event.name} event={event} />)}
               </div>
-            ))}
+            ) : (
+              <p className="text-parchment/80 text-[15px]">New tournament dates have not been published. Contact the tournament organizer below for current information.</p>
+            )}
           </div>
+
+          {pastTournaments.length > 0 && (
+            <details className="mt-6 border border-parchment/20 p-6">
+              <summary className="cursor-pointer text-parchment text-[14px]">Past tournament dates</summary>
+              <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[3px]">
+                {pastTournaments.map(event => <TournamentDateCard key={event.name} event={event} past />)}
+              </div>
+            </details>
+          )}
 
           <div className="mt-8 p-6 bg-dark-bg border-l-2 border-volt-bright">
             <p className="text-parchment/80 text-[14px] leading-[1.7]">

@@ -15,6 +15,7 @@ export interface BlogPost {
   category: string;
   categorySlug: BlogCategorySlug;
   date: string;
+  dateModified?: string;
   readTime: string;
   image: string;
   tags: string[];
@@ -642,81 +643,87 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "wsc-2025-pricing-and-policy-changes",
-    title: "WSC Pricing and Policy Updates for Members",
-    seoTitle: "WSC Pricing and Policy Updates",
+    title: "Before You Choose a WSC Membership",
+    seoTitle: "Before You Choose a WSC Membership",
     description:
-      "A member-friendly guide to WSC pricing, taxes, guest fees, court booking, cancellations, memberships, policy reminders, and facility access.",
+      "A short checklist for comparing WSC pass access, separate activity fees, booking privileges and cancellation terms.",
     excerpt:
-      "A plain-English resource for understanding WSC membership access, pricing notes, court booking policies, and member responsibilities.",
+      "Check what your pass includes, which activities cost extra and which terms apply before choosing a membership.",
     category: "Membership",
     categorySlug: "membership",
-    date: "May 13, 2026",
-    readTime: "5 min read",
+    date: "November 4, 2026",
+    dateModified: "2026-11-04",
+    readTime: "1 min read",
     image: "/images/wsc/campus-dome.webp",
     tags: ["Membership", "Pricing", "Policies"],
     sections: [
       {
-        heading: "Why pricing and policy pages matter",
+        heading: "Match the pass to your visit",
         paragraphs: [
-          "Club policies are easiest to follow when they are easy to find. This guide summarizes the areas members usually ask about: membership access, taxes, guest policies, booking windows, cancellations, and class registration.",
-          "Always use the official membership and policy pages for the current terms, but this resource gives members a readable overview of what to review.",
+          "Start with the activities you plan to use: classes, court reservations, range practice or the gym. Compare the Membership page's included privileges with that list before choosing a pass.",
         ],
       },
       {
-        heading: "Membership and access reminders",
+        heading: "Check the full cost",
         paragraphs: [
-          "Different WSC membership types include different privileges. Some are designed for court and range access. Others include gym and fitness facilities. Class registration and court booking may also depend on the membership type.",
-          "Before registering for a program or booking a court, confirm that your membership level matches the activity you want to use.",
+          "Registration or booking privileges do not mean the activity is included in the pass price. Review the listed activity charge before registering or reserving.",
+        ],
+        bullets: [
+          "Pass price, renewal frequency and tax.",
+          "Separate class, court, simulator or guest charges.",
+          "Any discount that applies to your chosen pass.",
         ],
       },
       {
-        heading: "Booking, cancellation, and guest basics",
+        heading: "Clarify the terms before purchasing",
         paragraphs: [
-          "Members should review cancellation timing, no-show expectations, guest fees, and booking windows before reserving courts or simulators. Clear policies help keep space available and fair for the whole community.",
-          "When in doubt, contact the front desk before your reservation rather than after a missed window.",
+          "Review the membership and booking policies for the product you are buying. If you are unsure which refund, cancellation, guest or access rule applies, ask the front desk before completing the purchase.",
         ],
       },
     ],
     cta: {
       label: "Read Policies",
       href: "/policies",
-      text: "Review official WSC policies, agreement terms, and booking guidance.",
+      text: "Review membership and booking policies.",
     },
   },
   {
     slug: "wsc-updated-court-booking-guide",
-    title: "WSC Court Booking Guide for Members",
-    seoTitle: "WSC Court Booking Guide 2026",
+    title: "Before You Book a Court or Simulator",
+    seoTitle: "Court and Simulator Booking Checklist",
     description:
-      "Learn how WSC members can approach tennis, pickleball, and simulator booking windows, cancellations, guest policies, CourtReserve, and planning.",
+      "Check your pass access, reservation details, price and applicable cancellation terms before booking through WSC's CourtReserve portal.",
     excerpt:
-      "A practical member guide for booking courts and simulators, understanding cancellation windows, and planning visits through CourtReserve.",
+      "A quick checklist to use before confirming a court or simulator reservation in CourtReserve.",
     category: "Policies",
     categorySlug: "policies",
-    date: "May 13, 2026",
-    readTime: "4 min read",
+    date: "November 4, 2026",
+    dateModified: "2026-11-04",
+    readTime: "1 min read",
     image: "/images/wsc/tennis-courts.webp",
     tags: ["Court booking", "CourtReserve", "Member guide"],
     sections: [
       {
-        heading: "Start with CourtReserve",
+        heading: "Check your booking access",
         paragraphs: [
-          "WSC uses CourtReserve for court and simulator bookings. Members should use the online portal to reserve tennis courts, pickleball courts, and golf simulator time according to the access rules for their membership type.",
-          "Booking online helps keep reservations organized and gives members a central place to manage upcoming visits.",
+          "Court and simulator access depends on your pass. Check your membership privileges before choosing a reservation in CourtReserve. Contact the front desk if you are unsure whether your pass qualifies.",
         ],
       },
       {
-        heading: "Know your booking window",
+        heading: "Review the reservation before confirming",
         paragraphs: [
-          "Booking windows can vary by membership type and activity. Review your membership access before planning a week of court time, simulator sessions, or class registration.",
-          "If you are unsure what your pass includes, contact the front desk so the staff can help you avoid booking issues.",
+          "Use the live portal to check available dates and the charge for the reservation you want.",
+        ],
+        bullets: [
+          "Activity, date, start time and duration.",
+          "Players or guests joining you and any guest charges.",
+          "Total price and the cancellation rule for that activity.",
         ],
       },
       {
-        heading: "Cancel early when plans change",
+        heading: "When plans change",
         paragraphs: [
-          "Cancellations and no-shows affect other members who may be trying to reserve the same time. Review the official cancellation policy and cancel as early as possible when your plans change.",
-          "Good booking habits keep the club easier to use for everyone.",
+          "Manage your reservation in CourtReserve. If the applicable cancellation deadline or charge is unclear, contact the front desk before making a change. A court, simulator, class and camp may have different terms.",
         ],
       },
     ],

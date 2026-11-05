@@ -519,7 +519,10 @@ type PolicyTab = "policies" | "terms" | "privacy";
 function tabFromHash(): PolicyTab {
   if (typeof window === "undefined") return "policies";
 
-  if (window.location.hash === "#terms") return "terms";
+  const hash = window.location.hash.slice(1);
+  if (hash === "terms" || TERMS_SECTIONS.some(section => section.id === hash)) {
+    return "terms";
+  }
   if (window.location.hash === "#privacy") return "privacy";
   return "policies";
 }

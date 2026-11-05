@@ -42,7 +42,7 @@ export default function Sessions() {
       <UtilityPageHeader
         eyebrow="WSC Session Calendar"
         headline="Mark your calendar."
-        subtitle="Current WSC programming session dates, session drop windows, auto-enroll timing, and blackout notes for tennis, golf, pickleball, fitness, camps, and summer programs."
+        subtitle="Current WSC programming session dates, registration opening dates, auto-enroll timing, and blackout notes for tennis, golf, pickleball, fitness, camps, and summer programs."
       />
 
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
@@ -103,7 +103,7 @@ export default function Sessions() {
                     </span>
 
                     <span className="text-[12px] leading-[1.55] text-ink-light md:text-right">
-                      Drop: <span className="text-ink-mid">{session.sessionDrop}</span>
+                      Registration opens: <span className="text-ink-mid">{session.sessionDrop}</span>
                     </span>
                   </span>
                 </AccordionTrigger>

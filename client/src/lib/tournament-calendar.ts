@@ -1,6 +1,13 @@
 import { pacificDay } from "./session-calendar";
 
-export type TournamentStatus = "Completed" | "Upcoming" | "In progress" | "TBD";
+export type TournamentStatus = "Past" | "Upcoming" | "In progress" | "TBD";
+
+export type TournamentAgeGroup = "8-11" | "12-13" | "14-18";
+export type TournamentAgeFilter = "all" | TournamentAgeGroup;
+
+export function matchesTournamentAge(ageGroups: readonly TournamentAgeGroup[] | null, filter: TournamentAgeFilter) {
+  return filter === "all" || Boolean(ageGroups?.includes(filter));
+}
 
 export type TournamentDates = {
   startDate: string;
@@ -25,7 +32,7 @@ export function tournamentState(event: TournamentDates, today = pacificDay()) {
     : today < event.startDate
       ? "Upcoming"
       : today > event.endDate
-        ? "Completed"
+        ? "Past"
         : "In progress";
 
   return { status, showInUpcoming: today <= event.endDate };

@@ -441,7 +441,7 @@ export function MemberCancellationForm({ tone = "light", source = "/member-reque
       email: state.email,
       phone: state.phone,
       subject: `Membership cancellation request from ${fullName(state)}`,
-      message: state.improvements,
+      message: state.improvements.trim() || "Membership cancellation requested. No feedback provided.",
     }),
   });
 
@@ -451,11 +451,10 @@ export function MemberCancellationForm({ tone = "light", source = "/member-reque
       <ContactFields form={form} update={update} tone={tone} prefix="member-cancel" phoneRequired />
       <TextAreaField
         id="member-cancel-improvements"
-        label="Is there anything we could have done better?"
+        label="Is there anything we could have done better? (optional)"
         value={form.improvements}
         onChange={(value) => update("improvements", value)}
         tone={tone}
-        required
       />
       <input {...honeypotProps} />
       <SubmitArea tone={tone} isSubmitting={isSubmitting} status={status} buttonLabel="Submit Request" />
