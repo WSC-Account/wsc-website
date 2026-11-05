@@ -24,7 +24,7 @@ export default function MemberCancellationFormPage() {
       <section className="bg-parchment px-6 lg:px-14 py-20 lg:py-24">
         <div className="max-w-[860px] mx-auto">
           <div className="mb-8 border border-wsc-border bg-parchment-mid p-6 lg:p-7">
-            <p className="text-volt text-[12px] tracking-[0.18em] uppercase mb-3">
+            <p className="text-accent-on-light text-[12px] tracking-[0.18em] uppercase mb-3">
               Before You Submit
             </p>
             <p className="text-ink-mid text-[15px] leading-[1.75] mb-4">
@@ -32,7 +32,7 @@ export default function MemberCancellationFormPage() {
             </p>
             <Link
               href="/policies/membership-policies-expanded"
-              className="inline-flex text-[12px] tracking-[0.14em] uppercase text-volt no-underline border-b border-volt pb-1 hover:text-ink transition-colors duration-200"
+              className="inline-flex text-[12px] tracking-[0.14em] uppercase text-accent-on-light no-underline border-b border-volt pb-1 hover:text-ink transition-colors duration-200"
             >
               Review Membership Policies
             </Link>

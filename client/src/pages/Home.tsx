@@ -3,6 +3,8 @@ import { lazy, Suspense, useState, type ReactNode } from "react";
 import { Link } from "wouter";
 import { Instagram, ChevronRight, Quote } from "lucide-react";
 import ResponsiveImage from "@/components/ResponsiveImage";
+import HomeHero from "@/components/HomeHero";
+import { COURT_RESERVE_PORTAL_URL, TIER_1_TENNIS_URL } from "@/lib/booking-links";
 import StructuredData, {
   getLocalBusinessSchema,
   getWebSiteSchema,
@@ -20,7 +22,6 @@ const InstagramFeed = lazy(() => import("@/components/InstagramFeed"));
 const FacilityGallery = lazy(() => import("@/components/FacilityGallery"));
 const FullWidthImage = lazy(() => import("@/components/FullWidthImage"));
 
-const TENNIS_HERO_IMG = "/images/wsc/tennis-junior-backhand.webp";
 const TENNIS_IMG = "/images/wsc/tennis-adult-clinic.webp";
 const GOLF_IMG = "/images/wsc/golf-practice-area.webp";
 const PERF_IMG = "/images/wsc/gym-main-interior.webp";
@@ -35,60 +36,7 @@ const GALLERY_ADULT_FITNESS = "/images/wsc/apl-medicine-ball.webp";
 /* Real facility photos */
 const SWINGLAB_IMG = "/images/wsc/swing-lab-simulators.webp";
 const SUMMER_KIDS_IMG = "/images/wsc/summer-camp.webp";
-const COURT_RESERVE_SIGN_UP_URL =
-  "https://book.woodinvillesportsclub.com/Online/Portal/Index/6689";
 
-const heroCollageImages = [
-  {
-    src: TENNIS_HERO_IMG,
-    alt: "Junior tennis player practicing a backhand at Woodinville Sports Club",
-    tile: "lead",
-    position: "center 68%",
-    sizes: "(min-width: 1024px) 42vw, 50vw",
-  },
-  {
-    src: TENNIS_IMG,
-    alt: "Adult tennis player working with a coach at Woodinville Sports Club",
-    tile: "adult",
-    position: "center 35%",
-    sizes: "25vw",
-  },
-  {
-    src: SUMMER_KIDS_IMG,
-    alt: "Golf swing practice at Woodinville Sports Club",
-    tile: "camp",
-    position: "center 32%",
-    sizes: "(min-width: 1024px) 17vw, 25vw",
-  },
-  {
-    src: GOLF_IMG,
-    alt: "Golf driving range at Woodinville Sports Club",
-    tile: "golf",
-    position: "center",
-    sizes: "(min-width: 1024px) 17vw, 25vw",
-  },
-  {
-    src: "/images/wsc/apl-training.webp",
-    alt: "Athletic Performance Lab training at Woodinville Sports Club",
-    tile: "fitness",
-    position: "center 20%",
-    sizes: "(min-width: 1024px) 17vw, 25vw",
-  },
-  {
-    src: PICKLE_IMG,
-    alt: "Pickleball in the WSC dome",
-    tile: "pickleball",
-    position: "center",
-    sizes: "(min-width: 1024px) 17vw, 25vw",
-  },
-  {
-    src: SWINGLAB_IMG,
-    alt: "Swing Lab indoor golf simulators at Woodinville Sports Club",
-    tile: "simulators",
-    position: "center",
-    sizes: "25vw",
-  },
-];
 
 const campusFacts = [
   { label: "Tennis courts", detail: "8 indoor + 1 outdoor" },
@@ -295,66 +243,7 @@ export default function Home() {
         schemas={[getLocalBusinessSchema(), getWebSiteSchema()]}
       />
 
-      {/* The original whole-club collage, with tennis leading the composition. */}
-      <section
-        className="bg-dark-bg pt-[var(--site-header-height,130px)]"
-        aria-labelledby="home-title"
-      >
-        <div className="home-hero relative isolate overflow-hidden">
-          <div className="home-hero-collage">
-            {heroCollageImages.map((tile, index) => (
-              <div
-                key={tile.tile}
-                className={`home-hero-tile home-hero-tile--${tile.tile}`}
-              >
-                <ResponsiveImage
-                  src={tile.src}
-                  alt={tile.alt}
-                  sizes={tile.sizes}
-                  loading={index === 0 ? "eager" : "lazy"}
-                  fetchPriority={index === 0 ? "high" : "auto"}
-                  decoding="async"
-                  pictureClassName="block h-full w-full"
-                  className="h-full w-full object-cover"
-                  style={{ objectPosition: tile.position }}
-                />
-              </div>
-            ))}
-          </div>
-          <div
-            className="home-hero-shade absolute inset-0 -z-10"
-            aria-hidden="true"
-          />
-          <div className="home-hero-copy mx-auto w-full max-w-[1440px] px-6 py-9 sm:py-12 lg:px-14 lg:py-20">
-            <h1
-              id="home-title"
-              className="max-w-[560px] text-[clamp(42px,5vw,72px)] font-light leading-[1.04] tracking-[-0.035em] text-parchment"
-            >
-              Train in
-              <br />
-              Woodinville.
-            </h1>
-            <p className="mt-5 max-w-[360px] text-[17px] leading-[1.6] text-parchment">
-              Adult classes, junior programs from age 3, and Tier 1 academy
-              training.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
-              <Link
-                href="/tennis/adult"
-                className="home-button bg-volt-bright text-dark-bg hover:bg-parchment"
-              >
-                Adult Tennis <ChevronRight size={16} aria-hidden="true" />
-              </Link>
-              <Link
-                href="/tennis#junior-tennis"
-                className="home-button border border-parchment/70 text-parchment hover:bg-parchment hover:text-ink"
-              >
-                Junior Tennis
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HomeHero linkComponent={Link} />
 
       <div className="border-b border-wsc-border bg-parchment px-6 lg:px-14">
         <dl className="home-campus-facts mx-auto max-w-[1328px]">
@@ -471,7 +360,7 @@ export default function Home() {
               </p>
             </div>
             <a
-              href="https://www.tier1nw.com"
+              href={TIER_1_TENNIS_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="home-button self-start border border-parchment/60 text-parchment hover:bg-parchment hover:text-ink lg:shrink-0"
@@ -730,7 +619,7 @@ export default function Home() {
 
           <div className="text-center">
             <a
-              href={COURT_RESERVE_SIGN_UP_URL}
+              href={COURT_RESERVE_PORTAL_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block text-[14px] font-medium no-underline bg-volt-bright text-dark-bg px-10 py-3.5 hover:bg-parchment-mid hover:text-ink transition-colors duration-200"

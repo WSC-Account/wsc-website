@@ -25,7 +25,7 @@ import Privacy from "./Privacy";
 
 function SectionEyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">
+    <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">
       {children}
     </p>
   );
@@ -63,7 +63,7 @@ function BulletList({ items }: { items: string[] }) {
           key={i}
           className="text-ink-mid text-[14px] leading-[1.72] flex items-start gap-3"
         >
-          <span className="text-volt text-[10px] mt-1.5">—</span> {item}
+          <span className="text-accent-on-light text-[10px] mt-1.5">—</span> {item}
         </li>
       ))}
     </ul>
@@ -93,7 +93,7 @@ function SmallPolicyLink({
     <p className="mt-4">
       <Link
         href={href}
-        className="text-ink text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt pb-[3px] hover:text-volt transition-colors duration-200"
+        className="text-ink text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt pb-[3px] hover:text-accent-on-light transition-colors duration-200"
       >
         {children}
       </Link>
@@ -141,7 +141,7 @@ function NumberedItem({
 }) {
   return (
     <div className="flex gap-5 items-start my-6">
-      <span className="text-volt text-[28px] font-light leading-none mt-0.5 shrink-0 w-8 text-right">
+      <span className="text-accent-on-light text-[28px] font-light leading-none mt-0.5 shrink-0 w-8 text-right">
         {number}
       </span>
       <div>
@@ -919,14 +919,14 @@ function ClubPoliciesContent() {
                 Contact the front desk at{" "}
                 <a
                   href="tel:+14254871090"
-                  className="text-volt no-underline hover:underline"
+                  className="text-accent-on-light underline underline-offset-4"
                 >
                   (425) 487-1090
                 </a>{" "}
                 or email{" "}
                 <a
                   href="mailto:info@woodinvillesportsclub.com"
-                  className="text-volt no-underline hover:underline"
+                  className="text-accent-on-light underline underline-offset-4"
                 >
                   info@woodinvillesportsclub.com
                 </a>

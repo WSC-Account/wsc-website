@@ -180,7 +180,7 @@ export default function FreeFitnessAssessment() {
         <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-[3px] md:grid-cols-3">
           {summaryBlocks.map((block) => (
             <div key={block.label} className="bg-parchment-mid p-8 text-center md:text-left">
-              <p className="mb-2 text-[clamp(24px,2.6vw,34px)] font-light leading-[1.1] tracking-[-0.02em] text-volt-bright">
+              <p className="mb-2 text-[clamp(24px,2.6vw,34px)] font-light leading-[1.1] tracking-[-0.02em] text-accent-on-light">
                 {block.value}
               </p>
               <p className="text-[13px] uppercase tracking-[0.14em] text-ink-mid">{block.label}</p>
@@ -193,7 +193,7 @@ export default function FreeFitnessAssessment() {
       <section className="bg-parchment px-6 py-20 lg:px-14 lg:py-24">
         <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20 lg:items-center">
           <div>
-            <p className="mb-5 text-[13px] uppercase tracking-[0.22em] text-volt">
+            <p className="mb-5 text-[13px] uppercase tracking-[0.22em] text-accent-on-light">
               What Is A Free Fitness Assessment?
             </p>
             <h2 className="mb-6 text-[clamp(26px,3vw,42px)] font-light leading-[1.12] tracking-[-0.02em]">
@@ -322,7 +322,7 @@ export default function FreeFitnessAssessment() {
             className="order-2 aspect-[16/11] w-full object-cover brightness-[0.85] saturate-[0.85] lg:order-1"
           />
           <div className="order-1 lg:order-2">
-            <p className="mb-5 text-[13px] uppercase tracking-[0.22em] text-volt">Your Outcome</p>
+            <p className="mb-5 text-[13px] uppercase tracking-[0.22em] text-accent-on-light">Your Outcome</p>
             <h2 className="mb-6 text-[clamp(26px,3vw,42px)] font-light leading-[1.12] tracking-[-0.02em]">
               Leave With A Clearer Training Direction
             </h2>
@@ -355,7 +355,7 @@ export default function FreeFitnessAssessment() {
       <section className="bg-parchment px-6 pb-20 lg:px-14 lg:pb-24">
         <div className="mx-auto max-w-[1440px]">
           <div className="mb-12 border-b border-wsc-border pb-8">
-            <p className="mb-5 text-[13px] uppercase tracking-[0.22em] text-volt">Who It's For</p>
+            <p className="mb-5 text-[13px] uppercase tracking-[0.22em] text-accent-on-light">Who It's For</p>
             <h2 className="text-[clamp(26px,3vw,42px)] font-light leading-[1.12] tracking-[-0.02em]">
               Built For Adults &amp; Kids
             </h2>
@@ -434,7 +434,7 @@ export default function FreeFitnessAssessment() {
       <section className="bg-parchment px-6 py-20 lg:px-14 lg:py-24">
         <div className="mx-auto max-w-[1440px]">
           <div className="mb-12 border-b border-wsc-border pb-8">
-            <p className="mb-5 text-[13px] uppercase tracking-[0.22em] text-volt">How To Claim</p>
+            <p className="mb-5 text-[13px] uppercase tracking-[0.22em] text-accent-on-light">How To Claim</p>
             <h2 className="text-[clamp(26px,3vw,42px)] font-light leading-[1.12] tracking-[-0.02em]">
               Claiming Your Assessment Is Simple
             </h2>
@@ -443,7 +443,7 @@ export default function FreeFitnessAssessment() {
           <div className="grid grid-cols-1 gap-[3px] md:grid-cols-3">
             {processSteps.map((item) => (
               <article key={item.step} className="bg-parchment-mid p-8 lg:p-10">
-                <p className="mb-5 text-[32px] font-light leading-none text-volt-bright">
+                <p className="mb-5 text-[32px] font-light leading-none text-accent-on-light">
                   {item.step}
                 </p>
                 <h3 className="mb-3 text-[20px] font-light tracking-[-0.01em]">{item.title}</h3>

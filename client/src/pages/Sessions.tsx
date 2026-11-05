@@ -48,7 +48,7 @@ export default function Sessions() {
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[0.75fr_1.45fr] gap-12 lg:gap-20 items-start">
           <div>
-            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Programming Calendar</p>
+            <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Programming Calendar</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
               {season.title}
             </h2>
@@ -86,7 +86,7 @@ export default function Sessions() {
                             session.status.tone === "active"
                               ? "text-dark-bg bg-volt-bright border-volt-bright"
                               : session.status.tone === "future"
-                                ? "text-volt border-volt/40"
+                                ? "text-accent-on-light border-volt/40"
                                 : "text-ink-light border-ink/10"
                           }`}
                         >
@@ -110,35 +110,35 @@ export default function Sessions() {
                 <AccordionContent className="px-5 pb-6 sm:px-6 lg:px-8">
                   <div className="grid grid-cols-1 gap-4 border-t border-ink/10 pt-5 sm:grid-cols-2 lg:grid-cols-5">
                     <div className="flex items-start gap-3">
-                      <CalendarDays size={16} className="text-volt mt-0.5 shrink-0" />
+                      <CalendarDays size={16} className="text-accent-on-light mt-0.5 shrink-0" />
                       <div>
                         <p className="text-ink-light text-[10px] tracking-[0.14em] uppercase mb-1">Start</p>
                         <p className="text-ink text-[13px]">{session.start}</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <CalendarDays size={16} className="text-volt mt-0.5 shrink-0" />
+                      <CalendarDays size={16} className="text-accent-on-light mt-0.5 shrink-0" />
                       <div>
                         <p className="text-ink-light text-[10px] tracking-[0.14em] uppercase mb-1">End</p>
                         <p className="text-ink text-[13px]">{session.end}</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <RefreshCw size={16} className="text-volt mt-0.5 shrink-0" />
+                      <RefreshCw size={16} className="text-accent-on-light mt-0.5 shrink-0" />
                       <div>
                         <p className="text-ink-light text-[10px] tracking-[0.14em] uppercase mb-1">Auto-Enroll</p>
                         <p className="text-ink text-[13px]">{session.autoEnroll}</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <Clock size={16} className="text-volt mt-0.5 shrink-0" />
+                      <Clock size={16} className="text-accent-on-light mt-0.5 shrink-0" />
                       <div>
                         <p className="text-ink-light text-[10px] tracking-[0.14em] uppercase mb-1">Duration</p>
                         <p className="text-ink text-[13px]">{session.duration}</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <ShieldX size={16} className="text-volt mt-0.5 shrink-0" />
+                      <ShieldX size={16} className="text-accent-on-light mt-0.5 shrink-0" />
                       <div>
                         <p className="text-ink-light text-[10px] tracking-[0.14em] uppercase mb-1">Blackout</p>
                         <p className="text-ink text-[13px]">{session.blackout}</p>

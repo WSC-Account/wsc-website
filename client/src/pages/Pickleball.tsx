@@ -80,7 +80,7 @@ export default function Pickleball() {
           className={`max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start transition-all duration-700 ease-out ${courtsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
           <div>
-            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Open Play</p>
+            <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Open Play</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-8">
               Eight indoor courts.<br />Seven days a week.
             </h2>
@@ -95,7 +95,7 @@ export default function Pickleball() {
                 { val: "PIG", label: "Tournament Partner" },
               ].map((m, i) => (
                 <div key={i} className="py-4 border-t border-wsc-border">
-                  <div className="text-volt-bright text-[28px] font-light tracking-[-0.02em] leading-none mb-1">
+                  <div className="text-accent-on-light text-[28px] font-light tracking-[-0.02em] leading-none mb-1">
                     {m.val}
                   </div>
                   <div className="text-ink-light text-[11px] tracking-[0.14em] uppercase">{m.label}</div>
@@ -112,7 +112,7 @@ export default function Pickleball() {
               style={{ objectPosition: "center 45%" }}
             />
             <div className="bg-parchment-mid p-6 border-l-2 border-volt">
-              <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-2">Court Capacity</p>
+              <p className="text-accent-on-light text-[12px] tracking-[0.2em] uppercase mb-2">Court Capacity</p>
               <div className="space-y-2">
                 <p className="text-ink-mid text-[13px] leading-[1.6]">
                   <span className="text-ink font-normal">Court 7 (4 PB courts):</span> Max 16 players, 22 registrants
@@ -132,7 +132,7 @@ export default function Pickleball() {
           ref={scheduleRef}
           className={`max-w-[1440px] mx-auto transition-all duration-700 ease-out ${scheduleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Open Play Schedule</p>
+          <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Open Play Schedule</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-14">
             Fall / Winter / Spring hours.
           </h2>
@@ -194,7 +194,7 @@ export default function Pickleball() {
           ref={pricingRef}
           className={`max-w-[1440px] mx-auto transition-all duration-700 ease-out ${pricingVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Pricing</p>
+          <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Pricing</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-14">
             Open session pricing.
           </h2>
@@ -205,11 +205,11 @@ export default function Pickleball() {
               <div className="space-y-3">
                 <div className="flex justify-between py-3 border-b border-wsc-border">
                   <span className="text-ink-mid text-[14px]">Mon–Fri (3 hr session)</span>
-                  <span className="text-volt-bright text-[16px] font-light">$18 + tax</span>
+                  <span className="text-accent-on-light text-[16px] font-light">$18 + tax</span>
                 </div>
                 <div className="flex justify-between py-3 border-b border-wsc-border">
                   <span className="text-ink-mid text-[14px]">Sat–Sun (2.5 hr session)</span>
-                  <span className="text-volt-bright text-[16px] font-light">$15 + tax</span>
+                  <span className="text-accent-on-light text-[16px] font-light">$15 + tax</span>
                 </div>
               </div>
               <p className="text-ink-light text-[12px] mt-4 italic">Members can pre-register for sessions.</p>
@@ -219,11 +219,11 @@ export default function Pickleball() {
               <div className="space-y-3">
                 <div className="flex justify-between py-3 border-b border-wsc-border">
                   <span className="text-ink-mid text-[14px]">Mon–Fri (3 hr session)</span>
-                  <span className="text-volt-bright text-[16px] font-light">$23 + tax</span>
+                  <span className="text-accent-on-light text-[16px] font-light">$23 + tax</span>
                 </div>
                 <div className="flex justify-between py-3 border-b border-wsc-border">
                   <span className="text-ink-mid text-[14px]">Sat–Sun (2.5 hr session)</span>
-                  <span className="text-volt-bright text-[16px] font-light">$20 + tax</span>
+                  <span className="text-accent-on-light text-[16px] font-light">$20 + tax</span>
                 </div>
               </div>
               <p className="text-ink-light text-[12px] mt-4 italic">Non-members are walk-in only.</p>
@@ -239,7 +239,7 @@ export default function Pickleball() {
           className={`max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20 items-start transition-all duration-700 ease-out ${rentalVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
           <div>
-            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Private Court Rental</p>
+            <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Private Court Rental</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15]">
               Reserve your<br />own court.
             </h2>
@@ -258,7 +258,7 @@ export default function Pickleball() {
             <div className="space-y-4 mb-8">
               <div className="flex justify-between py-3 border-b border-wsc-border">
                 <span className="text-ink text-[14px]">Member Court Rental</span>
-                <span className="text-volt-bright text-[16px] font-light">$25 + tax / hr</span>
+                <span className="text-accent-on-light text-[16px] font-light">$25 + tax / hr</span>
               </div>
               <div className="flex justify-between py-3 border-b border-wsc-border">
                 <span className="text-ink text-[14px]">Guest Fee</span>
@@ -266,7 +266,7 @@ export default function Pickleball() {
               </div>
             </div>
             <div className="bg-parchment p-6 border-l-2 border-volt mb-6">
-              <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-2">Available Hours</p>
+              <p className="text-accent-on-light text-[12px] tracking-[0.2em] uppercase mb-2">Available Hours</p>
               <div className="space-y-1.5">
                 <p className="text-ink-mid text-[13px] leading-[1.6]">Mon – Thu: 8:00 PM – 11:00 PM</p>
                 <p className="text-ink-mid text-[13px] leading-[1.6]">Friday: 7:00 PM – 11:00 PM</p>
@@ -291,7 +291,7 @@ export default function Pickleball() {
           ref={classesRef}
           className={`max-w-[1440px] mx-auto transition-all duration-700 ease-out ${classesVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Instructional Classes</p>
+          <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Instructional Classes</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
             Learn and improve.
           </h2>
@@ -301,7 +301,7 @@ export default function Pickleball() {
 
           <div className="space-y-0">
             <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr_auto] gap-4 lg:gap-12 items-baseline py-8 border-b border-wsc-border">
-              <p className="text-volt text-[12px] tracking-[0.2em] uppercase">Level 2.0</p>
+              <p className="text-accent-on-light text-[12px] tracking-[0.2em] uppercase">Level 2.0</p>
               <div>
                 <h3 className="text-[20px] font-light tracking-[-0.01em] mb-2">Intro to Pickleball</h3>
                 <p className="text-ink-mid text-[14px] leading-[1.72] mb-3">
@@ -315,7 +315,7 @@ export default function Pickleball() {
                     "Real game experience through fun modified matches",
                   ].map((item, i) => (
                     <li key={i} className="text-ink-mid text-[13px] leading-[1.72] flex items-start gap-2">
-                      <span className="text-volt text-[10px] mt-1">—</span> {item}
+                      <span className="text-accent-on-light text-[10px] mt-1">—</span> {item}
                     </li>
                   ))}
                 </ul>
@@ -331,7 +331,7 @@ export default function Pickleball() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr_auto] gap-4 lg:gap-12 items-baseline py-8 border-b border-wsc-border">
-              <p className="text-volt text-[12px] tracking-[0.2em] uppercase">Level 2.5</p>
+              <p className="text-accent-on-light text-[12px] tracking-[0.2em] uppercase">Level 2.5</p>
               <div>
                 <h3 className="text-[20px] font-light tracking-[-0.01em] mb-2">Advanced Beginner: Developing Skills & Strategy</h3>
                 <p className="text-ink-mid text-[14px] leading-[1.72] mb-3">
@@ -345,7 +345,7 @@ export default function Pickleball() {
                     "Applying new techniques in structured gameplay",
                   ].map((item, i) => (
                     <li key={i} className="text-ink-mid text-[13px] leading-[1.72] flex items-start gap-2">
-                      <span className="text-volt text-[10px] mt-1">—</span> {item}
+                      <span className="text-accent-on-light text-[10px] mt-1">—</span> {item}
                     </li>
                   ))}
                 </ul>
@@ -435,7 +435,7 @@ export default function Pickleball() {
           className={`max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start transition-all duration-700 ease-out ${duprVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
           <div>
-            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">DUPR Ladders</p>
+            <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">DUPR Ladders</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-8">
               Competitive play.<br />Every Saturday.
             </h2>
@@ -471,7 +471,7 @@ export default function Pickleball() {
           ref={guidelinesRef}
           className={`max-w-[1440px] mx-auto transition-all duration-700 ease-out ${guidelinesVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Open Play Guidelines</p>
+          <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Open Play Guidelines</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
             How open play works.
           </h2>

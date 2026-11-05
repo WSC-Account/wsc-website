@@ -185,7 +185,7 @@ function FAQSection() {
         className={`max-w-[1440px] mx-auto transition-all duration-700 ease-out ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
       >
         <div className="mb-14 pb-8 border-b border-wsc-border">
-          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">
+          <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">
             Frequently Asked Questions
           </p>
           <h2 className="text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15]">
@@ -198,7 +198,7 @@ function FAQSection() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-14">
           {FAQ_ITEMS.map(cat => (
             <div key={cat.category}>
-              <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-6">
+              <p className="text-accent-on-light text-[12px] tracking-[0.2em] uppercase mb-6">
                 {cat.category}
               </p>
               <div className="space-y-0">
@@ -218,7 +218,7 @@ function FAQSection() {
                         aria-expanded={isOpen}
                         aria-controls={answerId}
                       >
-                        <span className="text-ink text-[14px] leading-[1.55] font-normal group-hover:text-volt transition-colors duration-200">
+                        <span className="text-ink text-[14px] leading-[1.55] font-normal group-hover:text-accent-on-light transition-colors duration-200">
                           {item.q}
                         </span>
                         <svg
@@ -240,6 +240,7 @@ function FAQSection() {
                         role="region"
                         aria-labelledby={questionId}
                         aria-hidden={!isOpen}
+                        inert={!isOpen}
                         className={`overflow-hidden transition-all duration-300 ease-out ${
                           isOpen
                             ? "max-h-[400px] opacity-100 pb-4"
@@ -303,7 +304,7 @@ export default function Membership() {
       <section id="membership-options" className="bg-parchment px-6 lg:px-14 py-24 lg:py-28 scroll-mt-[var(--site-header-height,130px)]">
         <div className="max-w-[1440px] mx-auto">
           <div className="mb-14 pb-8 border-b border-wsc-border">
-            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">
+            <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">
               Membership Options
             </p>
             <h2 className="text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15]">
@@ -317,14 +318,14 @@ export default function Membership() {
                 key={i}
                 className="bg-parchment-mid p-8 lg:p-10 border-t-2 border-transparent hover:border-volt transition-colors duration-300"
               >
-                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3">
+                <p className="text-accent-on-light text-[12px] tracking-[0.2em] uppercase mb-3">
                   {t.type}
                 </p>
                 <h3 className="text-[20px] font-light tracking-[-0.01em] mb-1">
                   {t.name}
                 </h3>
                 <div className="mb-2">
-                  <span className="text-volt-bright text-[28px] font-light">
+                  <span className="text-accent-on-light text-[28px] font-light">
                     {t.price}
                   </span>
                   <span className="text-ink-light text-[13px] ml-1">
@@ -338,7 +339,7 @@ export default function Membership() {
                       key={fi}
                       className="text-ink-mid text-[13px] leading-[1.6] flex items-start gap-2"
                     >
-                      <span className="text-volt text-[10px] mt-1">—</span> {f}
+                      <span className="text-accent-on-light text-[10px] mt-1">—</span> {f}
                     </li>
                   ))}
                 </ul>

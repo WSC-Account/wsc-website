@@ -82,7 +82,7 @@ export default function AdultTennis() {
         aria-labelledby="pathways-heading"
       >
         <div className="max-w-[1440px] mx-auto">
-          <p className="text-volt text-xs tracking-[0.2em] uppercase mb-4">
+          <p className="text-accent-on-light text-xs tracking-[0.2em] uppercase mb-4">
             Find your starting point
           </p>
           <h2
@@ -136,7 +136,7 @@ export default function AdultTennis() {
         className={`${section} bg-parchment-mid scroll-mt-[var(--site-header-height,130px)]`}
       >
         <div className="max-w-[1440px] mx-auto">
-          <p className="text-volt text-xs tracking-[0.2em] uppercase mb-4">
+          <p className="text-accent-on-light text-xs tracking-[0.2em] uppercase mb-4">
             Adult classes
           </p>
           <h2 className="text-3xl lg:text-4xl font-light mb-5">
@@ -157,7 +157,7 @@ export default function AdultTennis() {
                 key={item.name}
                 className="bg-parchment p-6 lg:p-8 scroll-mt-[var(--site-header-height,130px)]"
               >
-                <p className="text-volt text-xs tracking-wider uppercase mb-4">
+                <p className="text-accent-on-light text-xs tracking-wider uppercase mb-4">
                   {item.level}
                 </p>
                 <h3 className="text-xl font-light mb-3">{item.name}</h3>
@@ -201,7 +201,7 @@ export default function AdultTennis() {
         className={`${section} bg-parchment scroll-mt-[var(--site-header-height,130px)]`}
       >
         <div className="max-w-[1440px] mx-auto">
-          <p className="text-volt text-xs tracking-[0.2em] uppercase mb-4">
+          <p className="text-accent-on-light text-xs tracking-[0.2em] uppercase mb-4">
             Keep playing
           </p>
           <h2 className="text-3xl lg:text-4xl font-light mb-10">
