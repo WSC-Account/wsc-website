@@ -1,4 +1,4 @@
-import type { ImgHTMLAttributes } from "react";
+import React, { type ImgHTMLAttributes } from "react";
 import { imageDimensionsFor, responsiveAvifSrcSet, responsiveWebpSrcSet } from "@/lib/responsive-image";
 
 type ResponsiveImageProps = Omit<ImgHTMLAttributes<HTMLImageElement>, "src" | "srcSet" | "sizes"> & {

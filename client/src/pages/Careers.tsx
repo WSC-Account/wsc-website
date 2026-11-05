@@ -59,7 +59,7 @@ export default function Careers() {
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[0.75fr_1.45fr] gap-12 lg:gap-20 items-start">
           <div>
-            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Working at WSC</p>
+            <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Working at WSC</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-8">
               A supportive place for athletic and personal goals.
             </h2>
@@ -71,7 +71,7 @@ export default function Careers() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[3px]">
             {departments.map((department) => (
               <article key={department.name} className="bg-parchment-mid p-8 border-t-2 border-transparent hover:border-volt transition-colors duration-300">
-                <department.icon size={24} className="text-volt mb-5" />
+                <department.icon size={24} className="text-accent-on-light mb-5" />
                 <h3 className="text-[20px] font-light tracking-[-0.01em] mb-3">{department.name}</h3>
                 <p className="text-ink text-[13px] leading-[1.65] mb-4">{department.roles}</p>
                 <p className="text-ink-mid text-[14px] leading-[1.72]">{department.mission}</p>

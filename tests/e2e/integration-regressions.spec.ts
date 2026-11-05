@@ -58,16 +58,21 @@ test("branded CourtReserve links retain booking destinations and conversions", a
 
   events.length = 0;
   await page.goto("/fitness");
-  await page.locator(`a[href="${classes}"]`).first().click();
-  // Fitness waits for its advertising callback, with a timeout fallback, before navigating.
-  await expect(page).toHaveURL(classes);
-  expect(events.filter(event => event[1] === "booking_click")).toEqual([
+  const [fitnessBookingTab] = await Promise.all([
+    page.waitForEvent("popup"),
+    page.locator(`a[href="${classes}"]`).first().click(),
+  ]);
+  // The tracking stub never runs callbacks; native navigation must still succeed.
+  await expect(fitnessBookingTab).toHaveURL(classes);
+  await expect(page).toHaveURL(/\/fitness$/);
+  await expect.poll(() => events.filter(event => event[1] === "booking_click")).toEqual([
     ["event", "booking_click", expect.objectContaining({ link_url: classes, booking_provider: "CourtReserve" })],
   ]);
   expect(events.filter(event => event[1] === "conversion")).toEqual([
     ["event", "conversion", expect.objectContaining({ send_to: "AW-18217215416/-Y8cCL7y9-McELjL0u5D" })],
   ]);
   expect(events.filter(event => event[1] === "outbound_click")).toEqual([]);
+  await fitnessBookingTab.close();
 });
 
 test("Fall 1 registration rolls forward on an open page and retires summer links", async ({

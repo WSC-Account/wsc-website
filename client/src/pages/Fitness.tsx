@@ -3,7 +3,6 @@ import { trackAdvertisingConversion } from "@/lib/tracking";
  * 4B Design - Athletic Performance Lab Page
  * Covers: purpose, offerings, coaches, registration paths
  */
-import { useEffect } from "react";
 import { Link } from "wouter";
 import PageHero from "@/components/PageHero";
 import ResponsiveImage from "@/components/ResponsiveImage";
@@ -20,38 +19,12 @@ const TIER1_APL_URL = "https://www.tier1nw.com/apl";
 const CLASS_PASS_DISCLOSURE = "A $50/year Class Pass is required to register - get yours in CourtReserve.";
 const COURT_RESERVE_CONVERSION_ID = "AW-18217215416/-Y8cCL7y9-McELjL0u5D";
 
-declare global {
-  interface Window {
-    gtag_report_conversion?: (url?: string) => false;
-  }
-}
-
-function reportCourtReserveConversion(url?: string) {
-  let redirected = false;
-  const redirect = () => {
-    if (!url || redirected) return;
-    redirected = true;
-    window.location.href = url;
-  };
-
-  if (trackAdvertisingConversion(COURT_RESERVE_CONVERSION_ID, {
+function reportCourtReserveConversion() {
+  // Tracking must leave navigation, new tabs and modifier clicks to the browser.
+  trackAdvertisingConversion(COURT_RESERVE_CONVERSION_ID, {
     value: 1.0,
     currency: "USD",
-    event_callback: redirect,
-  })) {
-
-    if (url) {
-      window.setTimeout(redirect, 700);
-    }
-  } else {
-    redirect();
-  }
-
-  return false as const;
-}
-
-function gtag_report_conversion(url?: string) {
-  return reportCourtReserveConversion(url);
+  });
 }
 
 const offerings = [
@@ -129,14 +102,6 @@ const coachHighlights = [
 ];
 
 export default function Fitness() {
-  useEffect(() => {
-    window.gtag_report_conversion = gtag_report_conversion;
-
-    return () => {
-      delete window.gtag_report_conversion;
-    };
-  }, []);
-
   return (
     <div className="min-h-screen">
       <SEOHead {...SEO.apl} image={PERF_IMG} />
@@ -167,7 +132,7 @@ export default function Fitness() {
       <section id="free-fitness-assessment" className="scroll-mt-[var(--site-header-height,130px)] bg-parchment px-6 lg:px-14 py-16 lg:py-20" aria-labelledby="fitness-interest-form-heading">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16 lg:items-start">
           <div>
-            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Free Fitness Assessment</p>
+            <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Free Fitness Assessment</p>
             <h2 id="fitness-interest-form-heading" className="text-[clamp(26px,2.8vw,38px)] font-light leading-[1.15] mb-5">
               Free Fitness Assessment - WSC
             </h2>
@@ -198,7 +163,7 @@ export default function Fitness() {
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-12 lg:gap-20 items-start">
           <div>
-            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Who It's For</p>
+            <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Who It's For</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light leading-[1.15] mb-8">
               Athletes who want to move better, get stronger, and stay ready.
             </h2>
@@ -236,10 +201,7 @@ export default function Fitness() {
                 href={COURT_RESERVE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={event => {
-                  event.preventDefault();
-                  gtag_report_conversion(COURT_RESERVE_URL);
-                }}
+                onClick={reportCourtReserveConversion}
                 className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment transition-colors duration-200"
               >
                 Browse & Register
@@ -258,7 +220,7 @@ export default function Fitness() {
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto">
           <div className="max-w-[720px] mb-14">
-            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Offerings</p>
+            <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Offerings</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light leading-[1.15] mb-6">
               Training options for athletes, teams, and adults.
             </h2>
@@ -270,7 +232,7 @@ export default function Fitness() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[3px]">
             {offerings.map((item) => (
               <article key={item.title} className="bg-parchment-mid p-8 border-t-2 border-transparent hover:border-volt transition-colors duration-300">
-                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3">{item.audience}</p>
+                <p className="text-accent-on-light text-[12px] tracking-[0.2em] uppercase mb-3">{item.audience}</p>
                 <h3 className="text-[20px] font-light leading-[1.25] mb-4">{item.title}</h3>
                 <p className="text-ink-mid text-[14px] leading-[1.72]">{item.desc}</p>
               </article>
@@ -282,7 +244,7 @@ export default function Fitness() {
       <section className="bg-parchment-mid px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-20 items-start">
           <div>
-            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Class Lineup</p>
+            <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Class Lineup</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light leading-[1.15] mb-6">
               Small-group classes with focused outcomes.
             </h2>
@@ -296,10 +258,7 @@ export default function Fitness() {
               href={COURT_RESERVE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={event => {
-                event.preventDefault();
-                gtag_report_conversion(COURT_RESERVE_URL);
-              }}
+              onClick={reportCourtReserveConversion}
               className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment-dark transition-colors duration-200"
             >
               Register in CourtReserve
@@ -380,7 +339,7 @@ export default function Fitness() {
 
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto text-center">
-          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Get Started</p>
+          <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Get Started</p>
           <h2 className="text-[clamp(26px,3vw,42px)] font-light leading-[1.15] mb-4">
             Register for APL training.
           </h2>
@@ -395,10 +354,7 @@ export default function Fitness() {
               href={COURT_RESERVE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={event => {
-                event.preventDefault();
-                gtag_report_conversion(COURT_RESERVE_URL);
-              }}
+              onClick={reportCourtReserveConversion}
               className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment-dark transition-colors duration-200"
             >
               Register in CourtReserve

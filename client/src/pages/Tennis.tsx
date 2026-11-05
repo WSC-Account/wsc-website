@@ -230,7 +230,7 @@ export default function Tennis() {
           ref={programsRef}
           className={`max-w-[1440px] mx-auto transition-all duration-700 ease-out ${programsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Top-Tier Coaching</p>
+          <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Top-Tier Coaching</p>
           <h2 className="text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15] mb-8 lg:mb-14">
             Training pathways<br />for every level.
           </h2>
@@ -256,7 +256,7 @@ export default function Tennis() {
 
           {/* Tier 1 Performance NW */}
           <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr_auto] gap-4 lg:gap-12 items-baseline py-8 border-b border-wsc-border">
-            <p className="text-volt text-[12px] tracking-[0.2em] uppercase">Elite</p>
+            <p className="text-accent-on-light text-[12px] tracking-[0.2em] uppercase">Elite</p>
             <div>
               <h3 className="text-[20px] font-light tracking-[-0.01em] mb-2">Tier 1 Performance NW</h3>
               <p className="text-ink-mid text-[14px] leading-[1.72] mb-3">
@@ -269,7 +269,7 @@ export default function Tennis() {
                   "Learning facilities for Full-Time Academy kids",
                 ].map((item, i) => (
                   <li key={i} className="text-ink-mid text-[13px] leading-[1.72] flex items-start gap-2">
-                    <span className="text-volt text-[10px] mt-1">—</span> {item}
+                    <span className="text-accent-on-light text-[10px] mt-1">—</span> {item}
                   </li>
                 ))}
               </ul>
@@ -286,7 +286,7 @@ export default function Tennis() {
 
           {/* Tier 1 Core */}
           <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr_auto] gap-4 lg:gap-12 items-baseline py-8 border-b border-wsc-border">
-            <p className="text-volt text-[12px] tracking-[0.2em] uppercase">Juniors</p>
+            <p className="text-accent-on-light text-[12px] tracking-[0.2em] uppercase">Juniors</p>
             <div>
               <h3 className="text-[20px] font-light tracking-[-0.01em] mb-1">Tier 1 Core Tennis</h3>
               <p className="text-ink-light text-[11px] tracking-[0.08em] uppercase mb-3">Formerly RPM Tennis</p>
@@ -302,7 +302,7 @@ export default function Tennis() {
                   "Learning through play — fun and confidence building",
                 ].map((item, i) => (
                   <li key={i} className="text-ink-mid text-[13px] leading-[1.72] flex items-start gap-2">
-                    <span className="text-volt text-[10px] mt-1">—</span> {item}
+                    <span className="text-accent-on-light text-[10px] mt-1">—</span> {item}
                   </li>
                 ))}
               </ul>
@@ -319,7 +319,7 @@ export default function Tennis() {
 
           {/* Adult Tennis */}
           <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr_auto] gap-4 lg:gap-12 items-baseline py-8 border-b border-wsc-border">
-            <p className="text-volt text-[12px] tracking-[0.2em] uppercase">Adults</p>
+            <p className="text-accent-on-light text-[12px] tracking-[0.2em] uppercase">Adults</p>
             <div>
               <h3 className="text-[20px] font-light tracking-[-0.01em] mb-2">Adult Tennis</h3>
               <p className="text-ink-mid text-[14px] leading-[1.72] mb-3">
@@ -336,7 +336,7 @@ export default function Tennis() {
                   "Competition training",
                 ].map((item, i) => (
                   <li key={i} className="text-ink-mid text-[13px] leading-[1.72] flex items-start gap-2">
-                    <span className="text-volt text-[10px] mt-1">—</span> {item}
+                    <span className="text-accent-on-light text-[10px] mt-1">—</span> {item}
                   </li>
                 ))}
               </ul>
@@ -358,7 +358,7 @@ export default function Tennis() {
           className={`max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start transition-all duration-700 ease-out ${facilitiesVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
           <div>
-            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Facilities</p>
+            <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Facilities</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-8">
               Eight indoor courts.<br />One outdoor court.
             </h2>
@@ -373,7 +373,7 @@ export default function Tennis() {
                 { val: "Year", label: "Round Play" },
               ].map((m, i) => (
                 <div key={i} className="py-4 border-t border-wsc-border">
-                  <div className="text-volt-bright text-[28px] font-light tracking-[-0.02em] leading-none mb-1">
+                  <div className="text-accent-on-light text-[28px] font-light tracking-[-0.02em] leading-none mb-1">
                     {m.val}
                   </div>
                   <div className="text-ink-light text-[11px] tracking-[0.14em] uppercase">{m.label}</div>
@@ -419,7 +419,7 @@ export default function Tennis() {
         <div className="max-w-[1440px] mx-auto">
           <div className="grid grid-cols-1 gap-9 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20">
             <div>
-              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Our Coaches</p>
+              <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Our Coaches</p>
               <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-7">
                 Coaches who live the sport.
               </h2>
@@ -443,7 +443,7 @@ export default function Tennis() {
                   key={item.title}
                   className={`bg-parchment-mid p-8 lg:p-10 transition-all duration-700 ease-out ${coachesVisible[i] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
                 >
-                  <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3">{String(i + 1).padStart(2, "0")}</p>
+                  <p className="text-accent-on-light text-[12px] tracking-[0.2em] uppercase mb-3">{String(i + 1).padStart(2, "0")}</p>
                   <h3 className="text-[20px] font-light tracking-[-0.01em] mb-4">{item.title}</h3>
                   <p className="text-ink-mid text-[14px] leading-[1.72]">{item.desc}</p>
                 </article>
@@ -461,7 +461,7 @@ export default function Tennis() {
         >
           <div className="mb-9 grid grid-cols-1 gap-6 lg:mb-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20 lg:items-end">
             <div>
-              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Inside Tier 1 Training</p>
+              <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Inside Tier 1 Training</p>
               <h2 className="text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15]">
                 Coaches and players<br />on court together.
               </h2>
@@ -514,7 +514,7 @@ export default function Tennis() {
             <div className="grid grid-cols-2 gap-[3px] bg-parchment">
               <div className="col-span-2 flex flex-col justify-between bg-parchment p-7 lg:min-h-[226px]">
                 <div>
-                  <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3">{activeGalleryItem.label}</p>
+                  <p className="text-accent-on-light text-[12px] tracking-[0.2em] uppercase mb-3">{activeGalleryItem.label}</p>
                   <h3 className="text-[22px] font-light tracking-[-0.01em] leading-[1.15] mb-4">{activeGalleryItem.title}</h3>
                   <p className="text-ink-mid text-[14px] leading-[1.72]">{activeGalleryItem.detail}</p>
                 </div>
@@ -673,7 +673,7 @@ export default function Tennis() {
         <div className="max-w-[1440px] mx-auto">
           <div className="mb-10 grid grid-cols-1 gap-8 lg:mb-14 lg:grid-cols-[minmax(0,0.95fr)_minmax(320px,0.52fr)] lg:items-end">
             <div>
-              <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Adult Tennis</p>
+              <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Adult Tennis</p>
               <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-6">
                 Classes, socials, and matchplay.
               </h2>
@@ -699,7 +699,7 @@ export default function Tennis() {
                 key={classItem.name}
                 className={`bg-parchment p-6 border-t-2 border-transparent hover:border-volt transition-all duration-700 ease-out lg:p-8 ${adultVisible[i] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
-                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3">{classItem.level}</p>
+                <p className="text-accent-on-light text-[12px] tracking-[0.2em] uppercase mb-3">{classItem.level}</p>
                 <h3 className="text-[18px] font-light tracking-[-0.01em] mb-3">{classItem.name}</h3>
                 <p className="text-ink-mid text-[14px] leading-[1.72]">{classItem.desc}</p>
               </article>
@@ -708,7 +708,7 @@ export default function Tennis() {
 
           <div className="mt-8 grid grid-cols-1 gap-7 bg-parchment p-6 lg:mt-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(280px,0.55fr)] lg:gap-8 lg:p-8 lg:items-center">
             <div>
-              <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3">Friday Night UTR Matchplay</p>
+              <p className="text-accent-on-light text-[12px] tracking-[0.2em] uppercase mb-3">Friday Night UTR Matchplay</p>
               <h3 className="text-[20px] font-light tracking-[-0.01em] mb-3">Verified singles matches for juniors and adults.</h3>
               <p className="text-ink-mid text-[14px] leading-[1.72]">
                 Friday nights alternate between juniors 18 and under and adults 19+. Registration closes Wednesday night, draws post Thursday at 1:00 PM, and matches use Fast 4 scoring with opponents near each player's UTR level.
@@ -741,7 +741,7 @@ export default function Tennis() {
           className={`max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20 items-start transition-all duration-700 ease-out ${bookingVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
           <div>
-            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Court Booking</p>
+            <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Court Booking</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15]">
               Court Booking<br />Access Pass.
             </h2>
@@ -753,7 +753,7 @@ export default function Tennis() {
             <div className="space-y-4 mb-8">
               <div className="flex justify-between py-3 border-b border-wsc-border">
                 <span className="text-ink text-[14px]">Per 30 Minutes</span>
-                <span className="text-volt-bright text-[16px] font-light">$21.14 + tax</span>
+                <span className="text-accent-on-light text-[16px] font-light">$21.14 + tax</span>
               </div>
               <div className="flex justify-between py-3 border-b border-wsc-border">
                 <span className="text-ink text-[14px]">Booking Increments</span>
@@ -794,7 +794,7 @@ export default function Tennis() {
           className={`max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[0.85fr_1.35fr] gap-12 lg:gap-20 items-start transition-all duration-700 ease-out ${leagueVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
           <div>
-            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">USTA & SACT</p>
+            <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">USTA & SACT</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-8">
               Team tennis at WSC.
             </h2>
@@ -823,7 +823,7 @@ export default function Tennis() {
               },
             ].map((item) => (
               <article key={item.label} className="bg-parchment-mid p-8">
-                <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-3">{item.label}</p>
+                <p className="text-accent-on-light text-[12px] tracking-[0.2em] uppercase mb-3">{item.label}</p>
                 <p className="text-ink-mid text-[14px] leading-[1.72]">{item.desc}</p>
               </article>
             ))}

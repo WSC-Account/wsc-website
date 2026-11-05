@@ -1,5 +1,9 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import HomeFallback from "../../client/src/components/HomeFallback";
+import { HOME_HERO_TITLE, heroCollageImages } from "../../client/src/components/HomeHero";
 import { BLOG_CATEGORIES, BLOG_POSTS } from "../../client/src/lib/blog-data";
 import {
   imageDimensionsFor,
@@ -83,8 +87,8 @@ function imagePreload(image: string, sizes = "100vw", media?: string) {
 
 function responsiveImagePreload(route: StaticRoute) {
   if (route.path === "/") {
-    return imagePreload(route.image, "100vw", "(width < 1024px)") +
-      imagePreload("/images/wsc/golf-range-aerial.webp", "34vw", "(min-width: 1024px)");
+    const lead = heroCollageImages[0];
+    return imagePreload(lead.src, lead.sizes);
   }
   return imagePreload(route.image);
 }
@@ -96,14 +100,14 @@ function routeOutputPath(routePath: string) {
 }
 
 function staticShell(route: StaticRoute) {
+  if (route.path === "/") {
+    return `<div id="root">${renderToStaticMarkup(createElement(HomeFallback))}</div>`;
+  }
   const image = escapeHtml(route.image);
   const imageDimensions = imageDimensionsFor(route.image);
   const avif = responsiveAvifSrcSet(route.image);
   const webp = responsiveWebpSrcSet(route.image);
-  const desktopSources = route.path === "/"
-    ? `<source media="(min-width: 1024px)" type="image/avif" srcset="${escapeHtml(responsiveAvifSrcSet("/images/wsc/golf-range-aerial.webp") ?? "")}" sizes="34vw"><source media="(min-width: 1024px)" type="image/webp" srcset="${escapeHtml(responsiveWebpSrcSet("/images/wsc/golf-range-aerial.webp") ?? "")}" sizes="34vw">`
-    : "";
-  return `<div id="root"><section style="position:relative;min-height:100vh;background:#161310;color:#efe7d7;display:flex;align-items:flex-end;overflow:hidden;padding:150px 24px 64px;box-sizing:border-box;font-family:Inter,ui-sans-serif,system-ui,sans-serif;"><picture style="position:absolute;inset:0;display:block;">${desktopSources}<source type="image/avif" srcset="${escapeHtml(avif ?? "")}" sizes="100vw"><source type="image/webp" srcset="${escapeHtml(webp ?? "")}" sizes="100vw"><img src="${image}" alt="${escapeHtml(route.headline)} at Woodinville Sports Club" width="${imageDimensions.width}" height="${imageDimensions.height}" loading="eager" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:cover;filter:saturate(.62) brightness(.46);"></picture><div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(22,19,16,.78),rgba(22,19,16,.48),rgba(22,19,16,.16));"></div><div style="position:relative;z-index:1;max-width:760px;"><p style="margin:0 0 20px;color:#83b7ff;font-size:11px;letter-spacing:.22em;text-transform:uppercase;">${escapeHtml(route.eyebrow)}</p><h1 style="margin:0 0 22px;color:#efe7d7;font-size:clamp(40px,8vw,76px);font-weight:300;line-height:1.06;letter-spacing:0;">${escapeHtml(route.headline)}</h1><p style="margin:0;max-width:560px;color:rgba(239,231,215,.82);font-size:16px;line-height:1.72;">${escapeHtml(route.subtitle)}</p></div></section></div>`;
+  return `<div id="root"><section style="position:relative;min-height:100vh;background:#161310;color:#efe7d7;display:flex;align-items:flex-end;overflow:hidden;padding:150px 24px 64px;box-sizing:border-box;font-family:Inter,ui-sans-serif,system-ui,sans-serif;"><picture style="position:absolute;inset:0;display:block;"><source type="image/avif" srcset="${escapeHtml(avif ?? "")}" sizes="100vw"><source type="image/webp" srcset="${escapeHtml(webp ?? "")}" sizes="100vw"><img src="${image}" alt="${escapeHtml(route.headline)} at Woodinville Sports Club" width="${imageDimensions.width}" height="${imageDimensions.height}" loading="eager" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:cover;filter:saturate(.62) brightness(.46);"></picture><div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(22,19,16,.78),rgba(22,19,16,.48),rgba(22,19,16,.16));"></div><div style="position:relative;z-index:1;max-width:760px;"><p style="margin:0 0 20px;color:#83b7ff;font-size:11px;letter-spacing:.22em;text-transform:uppercase;">${escapeHtml(route.eyebrow)}</p><h1 style="margin:0 0 22px;color:#efe7d7;font-size:clamp(40px,8vw,76px);font-weight:300;line-height:1.06;letter-spacing:0;">${escapeHtml(route.headline)}</h1><p style="margin:0;max-width:560px;color:rgba(239,231,215,.82);font-size:16px;line-height:1.72;">${escapeHtml(route.subtitle)}</p></div></section></div>`;
 }
 
 function utilityStaticShell(route: StaticRoute) {
@@ -184,7 +188,7 @@ function baseRoutes(): StaticRoute[] {
           (entry.path === "/" ? "Woodinville, Washington" : entry.title),
         headline:
           utilityCopy?.headline ??
-          (entry.path === "/" ? "Level Up Your Game at WSC." : entry.title),
+          (entry.path === "/" ? HOME_HERO_TITLE.join(" ") : entry.title),
         subtitle: entry.description,
         robots: "robots" in entry ? entry.robots : "index, follow",
       };

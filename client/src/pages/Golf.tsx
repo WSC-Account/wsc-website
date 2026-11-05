@@ -151,7 +151,7 @@ export default function Golf() {
           className={`max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start transition-all duration-700 ease-out ${rangeVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
           <div>
-            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">WSC Golf Training Grounds</p>
+            <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">WSC Golf Training Grounds</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-8">
               Expansive golf grounds<br />for all-day practice.
             </h2>
@@ -168,7 +168,7 @@ export default function Golf() {
                 { val: "23+", label: "Covered Bays" },
               ].map((m, i) => (
                 <div key={i} className="py-4 border-t border-wsc-border">
-                  <div className="text-volt-bright text-[28px] font-light tracking-[-0.02em] leading-none mb-1">
+                  <div className="text-accent-on-light text-[28px] font-light tracking-[-0.02em] leading-none mb-1">
                     {m.val}
                   </div>
                   <div className="text-ink-light text-[11px] tracking-[0.14em] uppercase">{m.label}</div>
@@ -373,7 +373,7 @@ export default function Golf() {
           ref={pricingRef}
           className={`max-w-[1440px] mx-auto transition-all duration-700 ease-out ${pricingVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Range Pricing</p>
+          <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Range Pricing</p>
           <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-14">
             Open to the public.
           </h2>
@@ -387,7 +387,7 @@ export default function Golf() {
               <div key={i} className="bg-parchment-mid p-8 border-t-2 border-transparent hover:border-volt transition-colors duration-300">
                 <h3 className="text-[20px] font-light tracking-[-0.01em] mb-1">{p.name}</h3>
                 <p className="text-ink-light text-[13px] mb-3">{p.detail}</p>
-                <p className="text-volt-bright text-[24px] font-light mb-4">{p.price}</p>
+                <p className="text-accent-on-light text-[24px] font-light mb-4">{p.price}</p>
               </div>
             ))}
           </div>
@@ -399,11 +399,11 @@ export default function Golf() {
               <div className="space-y-2">
                 <div className="flex justify-between py-2 border-b border-wsc-border">
                   <span className="text-ink-mid text-[14px]">10 Medium Buckets</span>
-                  <span className="text-volt-bright text-[16px] font-light">$108 + tax</span>
+                  <span className="text-accent-on-light text-[16px] font-light">$108 + tax</span>
                 </div>
                 <div className="flex justify-between py-2">
                   <span className="text-ink-mid text-[14px]">10 Large Buckets</span>
-                  <span className="text-volt-bright text-[16px] font-light">$126 + tax</span>
+                  <span className="text-accent-on-light text-[16px] font-light">$126 + tax</span>
                 </div>
               </div>
             </div>
@@ -413,11 +413,11 @@ export default function Golf() {
               <div className="space-y-2">
                 <div className="flex justify-between py-2 border-b border-wsc-border">
                   <span className="text-ink-mid text-[14px]">Kids (under 12)</span>
-                  <span className="text-volt-bright text-[16px] font-light">$8 + tax</span>
+                  <span className="text-accent-on-light text-[16px] font-light">$8 + tax</span>
                 </div>
                 <div className="flex justify-between py-2">
                   <span className="text-ink-mid text-[14px]">Adults</span>
-                  <span className="text-volt-bright text-[16px] font-light">$10 + tax</span>
+                  <span className="text-accent-on-light text-[16px] font-light">$10 + tax</span>
                 </div>
               </div>
             </div>
@@ -442,7 +442,7 @@ export default function Golf() {
           className={`max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20 items-start transition-all duration-700 ease-out ${whyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
           <div>
-            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Why WSC Golf</p>
+            <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Why WSC Golf</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15]">
               Built for real<br />practice days.
             </h2>
@@ -462,7 +462,7 @@ export default function Golf() {
       <section className="bg-parchment px-6 lg:px-14 py-24 lg:py-28">
         <div className="max-w-[1440px] mx-auto">
           <div className="mb-14">
-            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Our Coaches</p>
+            <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Our Coaches</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15]">
               Expert instruction<br />at every level.
             </h2>
@@ -497,7 +497,7 @@ export default function Golf() {
                     </div>
                     <div>
                       <h3 className="text-[18px] font-light tracking-[-0.01em] mb-1">{coach.name}</h3>
-                      <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-1.5">{coach.title}</p>
+                      <p className="text-accent-on-light text-[12px] tracking-[0.2em] uppercase mb-1.5">{coach.title}</p>
                       <p className="text-ink-mid text-[11px] tracking-[0.08em] uppercase mb-5">{coach.credential}</p>
                       <p className="text-ink-mid text-[14px] leading-[1.72] italic">"{coach.philosophy}"</p>
                     </div>
@@ -518,7 +518,7 @@ export default function Golf() {
               />
             </div>
             <div className="bg-parchment-mid p-8 lg:p-10 flex flex-col justify-end">
-              <p className="text-volt text-[12px] tracking-[0.2em] uppercase mb-4">WSC Golf Team</p>
+              <p className="text-accent-on-light text-[12px] tracking-[0.2em] uppercase mb-4">WSC Golf Team</p>
               <h3 className="text-[clamp(24px,2.4vw,34px)] font-light tracking-[-0.02em] leading-[1.14] mb-5">
                 Instruction for every swing, every player.
               </h3>
@@ -581,7 +581,7 @@ export default function Golf() {
           className={`max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20 items-start transition-all duration-700 ease-out ${accessVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
           <div>
-            <p className="text-volt text-[13px] tracking-[0.22em] uppercase mb-5">Member Benefits</p>
+            <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Member Benefits</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15]">
               Court & Range<br />Access Pass.            </h2>
           </div>
