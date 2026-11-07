@@ -21,13 +21,13 @@ test("branded CourtReserve links retain booking destinations and conversions", a
   page,
   context,
 }) => {
-  const portal = "https://book.woodinvillesportsclub.com/Online/Portal/Index/6689";
-  const classes = "https://book.woodinvillesportsclub.com/Online/Events/List/6689/C7BR91B9SH6689";
+  const portal = "https://app.courtreserve.com/Online/Portal/Index/6689";
+  const classes = "https://app.courtreserve.com/Online/Events/List/6689/C7BR91B9SH6689";
   // Exercise real click/navigation behavior without sending analytics or booking requests.
   await context.route(/https:\/\/(?:www\.)?googletagmanager\.com\//, route =>
     route.fulfill({ status: 200, contentType: "application/javascript", body: "" })
   );
-  await context.route("https://book.woodinvillesportsclub.com/**", route =>
+  await context.route("https://app.courtreserve.com/**", route =>
     route.fulfill({ status: 200, contentType: "text/html", body: "<h1>Booking destination</h1>" })
   );
   const events: unknown[][] = [];
@@ -103,7 +103,7 @@ test("Fall 1 registration rolls forward on an open page and retires summer links
     page.getByRole("link", { name: "Register for Fall 2", exact: true })
   ).toHaveAttribute(
     "href",
-    "https://book.woodinvillesportsclub.com/Online/Portal/Index/6689"
+    "https://app.courtreserve.com/Online/Portal/Index/6689"
   );
   await expect(
     page.locator(

@@ -10,7 +10,7 @@ import { adultClasses, fallAdultSchedule } from "@/lib/adult-tennis";
 import { pacificDay } from "@/lib/session-calendar";
 
 const PORTAL =
-  "https://book.woodinvillesportsclub.com/Online/Portal/Index/6689";
+  "https://app.courtreserve.com/Online/Portal/Index/6689";
 const EVENT_DETAILS =
   "https://app.courtreserve.com/Online/Events/Details/6689/";
 const HELP =

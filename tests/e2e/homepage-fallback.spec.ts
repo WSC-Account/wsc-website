@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 const portal =
-  "https://book.woodinvillesportsclub.com/Online/Portal/Index/6689";
+  "https://app.courtreserve.com/Online/Portal/Index/6689";
 
 test.describe("homepage without JavaScript", () => {
   test.use({ javaScriptEnabled: false });
@@ -10,7 +10,7 @@ test.describe("homepage without JavaScript", () => {
     page,
     context,
   }) => {
-    await context.route("https://book.woodinvillesportsclub.com/**", route =>
+    await context.route("https://app.courtreserve.com/**", route =>
       route.fulfill({
         contentType: "text/html",
         body: "<h1>Booking destination</h1>",
