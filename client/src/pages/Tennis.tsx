@@ -680,6 +680,12 @@ export default function Tennis() {
               <p className="text-ink-mid text-[16px] leading-[1.82] max-w-[720px]">
                 {ADULT_CLASS_DETAILS}
               </p>
+              <Link
+                href="/tennis/adult#classes"
+                className="mt-4 inline-block text-ink underline underline-offset-4"
+              >
+                See adult tennis class times
+              </Link>
             </div>
             <div className="hidden lg:block">
               <ResponsiveImage
