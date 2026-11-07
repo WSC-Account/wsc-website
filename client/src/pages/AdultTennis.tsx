@@ -6,16 +6,24 @@ import StructuredData, {
   getBreadcrumbSchema,
 } from "@/components/StructuredData";
 import { SEO } from "@/lib/seo-data";
-import { adultClasses, ADULT_CLASS_DETAILS } from "@/lib/adult-tennis";
+import { adultClasses, fallAdultSchedule } from "@/lib/adult-tennis";
+import { pacificDay } from "@/lib/session-calendar";
 
-const PORTAL = "https://book.woodinvillesportsclub.com/Online/Portal/Index/6689";
+const PORTAL =
+  "https://book.woodinvillesportsclub.com/Online/Portal/Index/6689";
+const EVENT_DETAILS =
+  "https://book.woodinvillesportsclub.com/Online/Events/Details/6689/";
 const HELP =
   "mailto:cvordale@woodinvillesportsclub.com?subject=Adult%20Tennis%20-%20Class%20Placement";
 const button =
   "inline-flex min-h-11 items-center justify-center gap-2 px-6 py-3 text-sm no-underline transition-colors";
 const section = "px-6 py-16 lg:px-14 lg:py-24";
+const classLink =
+  "inline-flex items-baseline gap-1.5 text-ink underline-offset-4 hover:underline focus-visible:underline";
 
 export default function AdultTennis() {
+  const showSchedule = pacificDay() <= fallAdultSchedule.end;
+
   return (
     <div>
       <SEOHead
@@ -23,11 +31,13 @@ export default function AdultTennis() {
         image="/images/wsc/tennis-adult-clinic.webp"
       />
       <StructuredData
-        schemas={[getBreadcrumbSchema([
-          { name: "Home", url: "/" },
-          { name: "Tennis", url: "/tennis" },
-          { name: "Adult Tennis", url: SEO.adultTennis.path },
-        ])]}
+        schemas={[
+          getBreadcrumbSchema([
+            { name: "Home", url: "/" },
+            { name: "Tennis", url: "/tennis" },
+            { name: "Adult Tennis", url: SEO.adultTennis.path },
+          ]),
+        ]}
       />
 
       <section className="bg-dark-bg pt-[var(--site-header-height,130px)] text-parchment">
@@ -139,16 +149,109 @@ export default function AdultTennis() {
           <p className="text-accent-on-light text-xs tracking-[0.2em] uppercase mb-4">
             Adult classes
           </p>
+          {showSchedule && (
+            <div className="mb-12 lg:mb-16">
+              <h2 className="text-3xl lg:text-4xl font-light mb-3">
+                Adult tennis class schedule
+              </h2>
+              <p className="text-ink font-medium">{fallAdultSchedule.label}</p>
+              <p className="mt-2 mb-6 text-sm text-ink-mid">
+                All times Pacific. Select a class for dates, pricing, and
+                registration in CourtReserve.
+              </p>
+              <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
+                <div className="divide-y divide-wsc-border border border-wsc-border bg-parchment">
+                  {fallAdultSchedule.days.map(({ day, classes }) => (
+                    <div
+                      key={day}
+                      className="sm:grid sm:grid-cols-[8rem_minmax(0,1fr)]"
+                    >
+                      <h3 className="bg-parchment-mid/45 px-4 py-3 text-base font-medium sm:border-r sm:border-wsc-border sm:px-5">
+                        {day}
+                      </h3>
+                      <ul className="divide-y divide-wsc-border px-4 sm:px-5">
+                        {classes.map(({ name, time, event }) => (
+                          <li
+                            key={event}
+                            className="grid grid-cols-[8.5rem_minmax(0,1fr)] items-baseline gap-2 py-2.5 text-sm sm:grid-cols-[8.75rem_minmax(0,1fr)]"
+                          >
+                            <span className="text-ink-mid tabular-nums">
+                              {time}
+                            </span>
+                            <a
+                              href={`${EVENT_DETAILS}${event}&tab=dates`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={classLink}
+                              aria-label={`${name}, ${day}, ${time} in CourtReserve`}
+                            >
+                              <span>{name}</span>
+                              <ArrowUpRight
+                                size={13}
+                                className="shrink-0"
+                                aria-hidden="true"
+                              />
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+                <div className="bg-parchment border border-wsc-border">
+                  <h3 className="border-b border-wsc-border px-5 py-3 text-lg font-medium">
+                    Tuesday Shot Spotlight
+                  </h3>
+                  <ul className="divide-y divide-wsc-border px-4 sm:px-5">
+                    {fallAdultSchedule.spotlight.map(
+                      ({ date, name, time, event }) => (
+                        <li
+                          key={event}
+                          className="grid grid-cols-[8.5rem_minmax(0,1fr)] items-baseline gap-2 py-3 text-sm"
+                        >
+                          <span className="text-ink-mid tabular-nums">
+                            <span className="block font-medium text-ink">
+                              {date}
+                            </span>
+                            {time}
+                          </span>
+                          <a
+                            href={`${EVENT_DETAILS}${event}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={classLink}
+                            aria-label={`Shot Spotlight: ${name}, ${date}, ${time} in CourtReserve`}
+                          >
+                            <span>{name}</span>
+                            <ArrowUpRight
+                              size={13}
+                              className="shrink-0"
+                              aria-hidden="true"
+                            />
+                          </a>
+                        </li>
+                      )
+                    )}
+                  </ul>
+                </div>
+              </div>
+              <p className="mt-4 text-sm text-ink-mid">
+                Regular Thursday classes skip Thanksgiving (Nov 26). Check
+                CourtReserve for holiday programs and live availability.
+              </p>
+            </div>
+          )}
           <h2 className="text-3xl lg:text-4xl font-light mb-5">
-            Choose what you want to work on.
+            Find the right class for your game.
           </h2>
           <p className="text-ink-mid leading-relaxed max-w-3xl mb-4">
-            {ADULT_CLASS_DETAILS}
+            Adult classes meet weekly, with drop-ins opening one week prior when
+            available. Check CourtReserve for class and session pricing.
           </p>
           <p className="text-ink-mid leading-relaxed max-w-3xl mb-10">
             NTRP and UTR are different player rating systems. You don’t need to
-            know your rating to ask for help finding a class. Email Connor Vordale,
-            our Adult Tennis Director, for guidance.
+            know your rating to ask for help finding a class. Email Connor
+            Vordale, our Adult Tennis Director, for guidance.
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {adultClasses.map((item, index) => (
