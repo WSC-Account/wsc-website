@@ -1,7 +1,7 @@
 import { expect, test, type BrowserContext, type Page } from "@playwright/test";
 
 const BOOKING_URL =
-  "https://book.woodinvillesportsclub.com/Online/Events/List/6689/C7BR91B9SH6689";
+  "https://app.courtreserve.com/Online/Events/List/6689/C7BR91B9SH6689";
 const CONVERSION_ID = "AW-18217215416/-Y8cCL7y9-McELjL0u5D";
 
 type BookingTestWindow = Window & {
@@ -23,7 +23,7 @@ async function openFitness(
   // All remote traffic is intercepted, including the first request in a new tab.
   await context.route("**/*", route => {
     const url = new URL(route.request().url());
-    if (url.hostname === "book.woodinvillesportsclub.com") {
+    if (url.hostname === "app.courtreserve.com") {
       return route.fulfill({
         status: 200,
         contentType: "text/html",
@@ -57,7 +57,7 @@ async function openFitness(
       const link = event.target instanceof Element
         ? event.target.closest("a")
         : null;
-      if (link?.hostname !== "book.woodinvillesportsclub.com") return;
+      if (link?.hostname !== "app.courtreserve.com") return;
       testWindow.bookingTestClicks.push({
         defaultPrevented: event.defaultPrevented,
         button: event.button,
