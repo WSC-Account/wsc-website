@@ -12,7 +12,7 @@ import { pacificDay } from "@/lib/session-calendar";
 const PORTAL =
   "https://book.woodinvillesportsclub.com/Online/Portal/Index/6689";
 const EVENT_DETAILS =
-  "https://book.woodinvillesportsclub.com/Online/Events/Details/6689/";
+  "https://app.courtreserve.com/Online/Events/Details/6689/";
 const HELP =
   "mailto:cvordale@woodinvillesportsclub.com?subject=Adult%20Tennis%20-%20Class%20Placement";
 const button =
