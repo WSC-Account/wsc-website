@@ -16,6 +16,8 @@ import { useScrollReveal, useStaggerReveal } from "@/hooks/useScrollReveal";
 import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
 import { adultClasses, ADULT_CLASS_DETAILS } from "@/lib/adult-tennis";
+import { juniorCoreSchedule } from "@/lib/junior-core";
+import { pacificDay } from "@/lib/session-calendar";
 
 const TENNIS_COURTS_IMG = "/images/wsc/tennis-courts.webp";
 const TENNIS_PLAYER_IMG = "/images/wsc/tennis-player.webp";
@@ -36,45 +38,6 @@ const TIER1_CORE_URL = "https://www.tier1nw.com/tennis/intro-classes";
 const TIER1_COACHES_URL = "https://www.tier1nw.com/tennis#tennis-coaches";
 const SECTION_SPACING = "px-6 py-16 lg:px-14 lg:py-28";
 const SECTION_SPACING_TIGHT = "px-6 py-14 lg:px-14 lg:py-28";
-
-const academyTracks = [
-  {
-    name: "Tier 1 Afterschool Academy",
-    description: "Year-round training for junior players building technique, athletic habits, and match confidence after school.",
-  },
-  {
-    name: "Full Time Academy",
-    description: "A dedicated academy track for committed junior athletes pursuing a complete tennis and performance pathway.",
-  },
-];
-
-const corePathway = [
-  {
-    name: "JumpStart",
-    ages: "Ages 3-5",
-    color: "#4da3ff",
-  },
-  {
-    name: "Red Ball",
-    ages: "Ages 5-8",
-    color: "#ef4444",
-  },
-  {
-    name: "Orange Ball",
-    ages: "Ages 9-10",
-    color: "#f97316",
-  },
-  {
-    name: "Green Ball",
-    ages: "Ages 10-12",
-    color: "#22c55e",
-  },
-  {
-    name: "Yellow Ball",
-    ages: "Ages 12+",
-    color: "#facc15",
-  },
-];
 
 const programVisuals = [
   {
@@ -187,7 +150,6 @@ export default function Tennis() {
   const { containerRef: coachesRef, visibleItems: coachesVisible } = useStaggerReveal(3, { staggerDelay: 150, threshold: 0.08 });
   const { ref: galleryRef, isVisible: galleryVisible } = useScrollReveal({ threshold: 0.08 });
   const { ref: bookingRef, isVisible: bookingVisible } = useScrollReveal({ threshold: 0.1 });
-  const { containerRef: coreRef, visibleItems: coreVisible } = useStaggerReveal(5, { staggerDelay: 110, threshold: 0.08 });
   const { containerRef: adultRef, visibleItems: adultVisible } = useStaggerReveal(6, { staggerDelay: 90, threshold: 0.06 });
   const { ref: leagueRef, isVisible: leagueVisible } = useScrollReveal({ threshold: 0.08 });
   const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal({ threshold: 0.15 });
@@ -560,110 +522,58 @@ export default function Tennis() {
         </div>
       </section>
 
-      {/* Junior Performance Development */}
-      <section id="junior-tennis" className={`bg-dark-bg ${SECTION_SPACING} overflow-hidden scroll-mt-[var(--site-header-height,130px)]`}>
-        <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[0.82fr_1.18fr] gap-9 lg:gap-20 items-start lg:items-center">
-          <div>
-            <p className="text-volt-bright text-[13px] tracking-[0.22em] uppercase mb-5">Junior Performance Development</p>
-            <h2 className="text-parchment text-[clamp(30px,3.6vw,54px)] font-light tracking-[-0.03em] leading-[1.03] mb-6">
-              Build the complete junior athlete.
-            </h2>
-            <p className="text-parchment/78 text-[16px] leading-[1.82] mb-8 max-w-[560px]">
-              Tier 1 develops junior players through age-aware technical progressions, athletic movement, live-ball reps, and competitive habits. WSC shows the entry points here; Tier 1 carries athletes into the full tennis pathway, academy evaluation, and performance training.
-            </p>
-            <div className="flex flex-wrap gap-3 mb-9">
-              {["Junior Athletes", "Performance Pathway", "Tier 1 Tennis"].map((item) => (
-                <span key={item} className="text-parchment/75 text-[11px] tracking-[0.14em] uppercase border border-parchment/15 px-4 py-2">
-                  {item}
-                </span>
-              ))}
-            </div>
-            <a
-              href={TIER1_TENNIS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment transition-colors duration-200"
-            >
-              Explore Tier 1 Tennis
-              <ArrowUpRight className="h-4 w-4" aria-hidden="true" strokeWidth={1.8} />
-            </a>
-            <div className="mt-8 hidden grid-cols-2 gap-[3px] sm:grid">
-              <ResponsiveImage
-                src={TENNIS_JUNIOR_POINT_PLAY_IMG}
-                alt="Junior tennis player hitting a forehand during Tier 1 training at Woodinville Sports Club"
-                sizes="(min-width: 1024px) 20vw, 50vw"
-                loading="lazy"
-                className="aspect-[3/4] w-full object-cover saturate-[0.75] brightness-[0.88]"
-                style={{ objectPosition: "center 42%" }}
-              />
-              <ResponsiveImage
-                src={TENNIS_JUNIOR_BALL_BASKET_IMG}
-                alt="Junior tennis player carrying balls on a racquet at Woodinville Sports Club"
-                sizes="(min-width: 1024px) 20vw, 50vw"
-                loading="lazy"
-                className="aspect-[3/4] w-full object-cover saturate-[0.75] brightness-[0.88]"
-                style={{ objectPosition: "center 42%" }}
-              />
-            </div>
-          </div>
-
-          <div ref={coreRef} className="relative lg:pt-2">
-            <div className="absolute left-6 right-6 top-[39px] hidden h-px bg-parchment/15 md:block" />
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
-              {corePathway.map((level, i) => (
-                <article
-                  key={level.name}
-                  className={`relative bg-white/[0.045] border border-parchment/10 p-5 min-h-[132px] transition-all duration-700 ease-out hover:border-volt-bright/45 lg:min-h-[176px] lg:p-6 ${coreVisible[i] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-                >
-                  <div
-                    className="relative z-10 h-8 w-8 rounded-full border border-white/30 shadow-[0_0_24px_rgba(77,163,255,0.18)] mb-5 lg:mb-8"
-                    style={{ backgroundColor: level.color }}
-                  />
-                  <p className="text-volt-bright text-[11px] tracking-[0.18em] uppercase mb-3">{level.ages}</p>
-                  <h3 className="text-parchment text-[19px] font-light tracking-[-0.01em] leading-[1.2]">{level.name}</h3>
-                </article>
-              ))}
-            </div>
-            <div className="mt-5 border border-volt-bright/25 bg-volt-bright/[0.08] p-6 lg:p-7">
-              <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                <div>
-                  <p className="text-volt-bright text-[11px] tracking-[0.2em] uppercase mb-2">Primary academy tracks</p>
-                  <p className="text-parchment/78 text-[13px] leading-[1.7] max-w-[600px]">
-                    Want age-group pathways, academy options, evaluation details, and current programming? Continue to Tier 1 for the complete tennis overview.
-                  </p>
-                </div>
-                <a
-                  href={TIER1_TENNIS_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex shrink-0 items-center gap-2 self-start text-volt-bright text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt-bright pb-[3px]"
-                >
-                  View Tier 1 Tennis
-                  <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" strokeWidth={1.8} />
-                </a>
-              </div>
-              <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:mt-6">
-                {academyTracks.map((track) => (
-                  <a
-                    key={track.name}
-                    href={TIER1_TENNIS_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex min-h-[156px] flex-col justify-between border border-volt-bright/35 bg-dark-bg/60 p-5 no-underline transition-colors duration-200 hover:border-volt-bright hover:bg-dark-bg/80 lg:min-h-[178px]"
-                  >
-                    <div>
-                      <p className="text-volt-bright text-[11px] tracking-[0.18em] uppercase mb-4">Academy Track</p>
-                      <h3 className="text-parchment text-[clamp(22px,2vw,29px)] font-light tracking-[-0.02em] leading-[1.05]">{track.name}</h3>
-                      <p className="mt-4 text-parchment/70 text-[13px] leading-[1.6]">{track.description}</p>
-                    </div>
-                    <span className="mt-5 inline-flex items-center gap-2 text-volt-bright text-[11px] tracking-[0.14em] uppercase">
-                      View Tier 1
-                      <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" strokeWidth={1.8} />
-                    </span>
-                  </a>
+      {/* Junior Core classes */}
+      <section id="junior-tennis" className={`bg-parchment ${SECTION_SPACING} scroll-mt-[var(--site-header-height,130px)]`}>
+        <div className="max-w-[1440px] mx-auto">
+          <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Junior Tennis at WSC</p>
+          <h2 className="text-3xl lg:text-4xl font-light mb-4">Junior Core class times</h2>
+          <p className="text-ink-mid leading-relaxed max-w-3xl mb-6">
+            Build the foundations with Core Jump Start, Red Ball, Orange Ball, Green Ball, and Yellow Ball.
+            Find a weekly time below, then select it to view class details, placement guidance, pricing, and registration in CourtReserve.
+          </p>
+          {pacificDay() <= juniorCoreSchedule.end ? (
+            <>
+              <p className="font-medium text-ink mb-2">{juniorCoreSchedule.label}</p>
+              <p className="text-sm text-ink-mid mb-6">All times Pacific. Thursday classes skip Thanksgiving (Nov 26).</p>
+              <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                {juniorCoreSchedule.classes.map(({ name, times }) => (
+                  <article key={name} className="border border-wsc-border bg-parchment-mid/40">
+                    <h3 className="border-b border-wsc-border px-5 py-4 text-xl font-light">{name}</h3>
+                    <ul className="divide-y divide-wsc-border px-5">
+                      {times.map(({ day, time, event }) => (
+                        <li key={event} className="flex items-baseline justify-between gap-3 py-3 text-sm">
+                          <span className="text-ink-mid">{day}</span>
+                          <a
+                            href={`https://app.courtreserve.com/Online/Events/Details/6689/${event}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-baseline gap-1.5 text-ink underline underline-offset-4 hover:text-accent-on-light"
+                            aria-label={`${name}, ${day}, ${time} in CourtReserve`}
+                          >
+                            <span className="tabular-nums">{time}</span>
+                            <ArrowUpRight size={13} className="shrink-0" aria-hidden="true" />
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </article>
                 ))}
               </div>
+              <p className="mt-4 text-sm text-ink-mid">CourtReserve shows live availability, waitlists, and holiday programs.</p>
+            </>
+          ) : (
+            <a href={COURT_RESERVE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 text-ink underline underline-offset-4">
+              Check current Core class times in CourtReserve <ArrowUpRight size={16} aria-hidden="true" />
+            </a>
+          )}
+          <div className="mt-10 flex flex-col gap-5 border-t border-wsc-border pt-8 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h3 className="text-xl font-light mb-2">Explore the Academy pathway</h3>
+              <p className="text-ink-mid leading-relaxed max-w-2xl">Visit Tier 1 for Academy programs, player evaluations, and the full performance pathway.</p>
             </div>
+            <a href={TIER1_TENNIS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 bg-dark-bg px-6 py-3 text-sm text-parchment no-underline hover:bg-ink-mid">
+              Explore Tier 1 Academy <ArrowUpRight size={16} aria-hidden="true" />
+            </a>
           </div>
         </div>
       </section>
