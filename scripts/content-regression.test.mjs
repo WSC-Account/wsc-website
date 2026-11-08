@@ -716,11 +716,10 @@ test("personal training does not publish Dom's direct email", () => {
 test("junior tennis pathway sends performance-minded juniors to Tier 1 Tennis", () => {
   const tennis = read("client/src/pages/Tennis.tsx");
 
-  assert.match(tennis, /Junior Performance Development/);
+  assert.match(tennis, /Junior Core class times/);
   assert.match(tennis, /Explore Tier 1 Tennis/);
-  assert.match(tennis, /Primary academy tracks/);
-  assert.match(tennis, /Tier 1 Afterschool Academy/);
-  assert.match(tennis, /Full Time Academy/);
+  assert.match(tennis, /Explore the Academy pathway/);
+  assert.match(tennis, /Explore Tier 1 Academy/);
   assert.match(tennis, /https:\/\/www\.tier1nw\.com\/tennis/);
 });
 
