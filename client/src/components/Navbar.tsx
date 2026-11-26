@@ -19,7 +19,7 @@ const COURT_RESERVE_URL =
 
 const membershipLinks = [
   { href: "/membership#membership-options", label: "Membership Options" },
-  { href: "/passes", label: "Court & Range Access Pass" },
+  { href: "/membership#court-and-range", label: "Court & Range Access Pass" },
   { href: "/member-request", label: "Cancellation Request" },
 ];
 

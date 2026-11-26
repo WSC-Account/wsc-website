@@ -271,7 +271,7 @@
     .home-hero-collage {
       position: relative;
       z-index: auto;
-      height: clamp(18rem, 72vw, 32rem);
+      height: clamp(10rem, 42vw, 20rem);
       grid-template-rows: repeat(3, minmax(0, 1fr));
     }
 
@@ -336,6 +336,12 @@
     min-width: 0;
   }
 
+  @media (max-width: 639px) {
+    .page-hero-copy {
+      background: linear-gradient(0deg, rgb(0 0 0 / 82%), rgb(0 0 0 / 36%) 80%, transparent);
+    }
+  }
+
   @media (max-height: 520px) {
     .hero-safe-content {
       justify-content: flex-start !important;
@@ -344,8 +350,8 @@
       padding-bottom: 1.5rem !important;
     }
 
-    .hero-safe-content .hero-subtitle,
-    .hero-safe-content .hero-actions,
+    .hero-safe-content:not(.page-hero-copy) .hero-subtitle,
+    .hero-safe-content:not(.page-hero-copy) .hero-actions,
     .hero-safe-content .hero-stats {
       display: none !important;
     }

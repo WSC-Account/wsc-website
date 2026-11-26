@@ -4,7 +4,7 @@ import { Link } from "wouter";
 import { Instagram, ChevronRight, Quote } from "lucide-react";
 import ResponsiveImage from "@/components/ResponsiveImage";
 import HomeHero from "@/components/HomeHero";
-import { COURT_RESERVE_PORTAL_URL, TIER_1_TENNIS_URL } from "@/lib/booking-links";
+import { TIER_1_TENNIS_URL } from "@/lib/booking-links";
 import StructuredData, {
   getLocalBusinessSchema,
   getWebSiteSchema,
@@ -16,6 +16,7 @@ import { SEO } from "@/lib/seo-data";
 import { newsletterSubmissionMessage, submitWebsiteForm } from "@/lib/forms";
 import { notifyError, notifySuccess } from "@/lib/notify";
 import { useSessionCalendar } from "@/hooks/useSessionCalendar";
+import { membershipPasses } from "@/lib/membership-passes";
 import { summer2026Headline } from "@/lib/session-calendar";
 
 const InstagramFeed = lazy(() => import("@/components/InstagramFeed"));
@@ -40,9 +41,9 @@ const SUMMER_KIDS_IMG = "/images/wsc/summer-camp.webp";
 
 const campusFacts = [
   { label: "Tennis courts", detail: "8 indoor + 1 outdoor" },
-  { label: "Driving range", detail: "23+ covered bays · Free Toptracer" },
+  { label: "Driving range", detail: "23+ covered bays with ball tracking" },
   { label: "Swing Lab", detail: "4 golf simulators" },
-  { label: "Fitness centers", detail: "2 — Main Gym + APL" },
+  { label: "Fitness centers", detail: "Main Gym and Athletic Performance Lab" },
   { label: "Campus", detail: "67 acres" },
   { label: "Established", detail: "1976" },
 ];
@@ -60,7 +61,7 @@ const disciplines = [
   {
     tag: "Fitness",
     name: "Fitness Centers",
-    desc: "Main Gym + APL. Gym memberships, personal training, and coached strength and conditioning for youth and adults.",
+    desc: "Use the Main Gym for independent workouts or personal training. The Athletic Performance Lab offers coached strength and conditioning.",
     img: PERF_IMG,
     imageAlt: "Main gym at Woodinville Sports Club",
     imagePosition: "center",
@@ -245,19 +246,6 @@ export default function Home() {
 
       <HomeHero linkComponent={Link} />
 
-      <div className="border-b border-wsc-border bg-parchment px-6 lg:px-14">
-        <dl className="home-campus-facts mx-auto max-w-[1328px]">
-          {campusFacts.map(fact => (
-            <div key={fact.label}>
-              <dt className="text-[13px] text-ink-mid">{fact.label}</dt>
-              <dd className="mt-1.5 text-[15px] font-medium leading-[1.4] text-ink">
-                {fact.detail}
-              </dd>
-            </div>
-          ))}
-        </dl>
-      </div>
-
       {/* Now at WSC — dates, status, and registration come from the shared calendar. */}
       <section
         className="bg-parchment-mid px-6 py-10 lg:px-14 lg:py-12"
@@ -285,9 +273,9 @@ export default function Home() {
               {season.ctaLabel}
               <ChevronRight size={16} aria-hidden="true" />
             </a>
-            <Link href="/sessions" className="home-text-link">
-              Session dates
-            </Link>
+            {season.ctaHref !== "/sessions" && (
+              <Link href="/sessions" className="home-text-link">Session dates</Link>
+            )}
           </div>
         </div>
       </section>
@@ -397,6 +385,7 @@ export default function Home() {
       {/* ── SUPPORTING CAMPUS PROGRAMS ── */}
       <section
         className="bg-parchment-mid px-6 py-16 lg:px-14 lg:py-20"
+        id="club-sports"
         aria-labelledby="home-campus-title"
       >
         <div className="mx-auto max-w-[1440px]">
@@ -405,7 +394,7 @@ export default function Home() {
               id="home-campus-title"
               className="text-[30px] font-light leading-[1.15] tracking-[-0.02em]"
             >
-              More at the club.
+              Golf, pickleball and fitness
             </h2>
             <Link href="/membership" className="home-text-link">
               Memberships <ChevronRight size={16} aria-hidden="true" />
@@ -436,7 +425,7 @@ export default function Home() {
                   </Link>
                   {d.tag === "Fitness" && (
                     <Link href="/fitness" className="home-text-link">
-                      Explore APL <ChevronRight size={16} aria-hidden="true" />
+                      Explore coached training <ChevronRight size={16} aria-hidden="true" />
                     </Link>
                   )}
                 </div>
@@ -445,6 +434,19 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <div className="border-b border-wsc-border bg-parchment px-6 lg:px-14">
+        <dl className="home-campus-facts mx-auto max-w-[1328px]">
+          {campusFacts.map(fact => (
+            <div key={fact.label}>
+              <dt className="text-[13px] text-ink-mid">{fact.label}</dt>
+              <dd className="mt-1.5 text-[15px] font-medium leading-[1.4] text-ink">
+                {fact.detail}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
 
       {/* ── FACILITY GALLERY — Immersive Photo Grid ── */}
       <DeferredHomeSection delayMs={900}>
@@ -479,7 +481,7 @@ export default function Home() {
                   2,000 courses to play.
                 </p>
                 <Link
-                  href="/golf"
+                  href="/golf#swing-lab"
                   className="inline-flex items-center gap-1.5 text-ink text-[14px] font-medium no-underline border-b border-volt pb-[3px] group-hover:text-ink-mid transition-colors duration-200"
                 >
                   Explore Swing Lab
@@ -584,48 +586,27 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Pricing tiers */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-[3px] mb-8">
-            {[
-              {
-                name: "Family All-Access",
-                price: "$100/mo",
-                desc: "All household individuals — two adults max plus kids 17 and under. Includes class registration, court and range access, gym, sauna, locker rooms, plus golf simulator, range bucket, mini-golf, beverage, and golf happy hour perks.",
-              },
-              {
-                name: "Individual All-Access",
-                price: "$40/mo",
-                desc: "One 18+ individual. Full campus access including class registration, court and range access, gym, sauna, locker rooms, plus golf simulator, range bucket, mini-golf, beverage, and golf happy hour perks.",
-              },
-              {
-                name: "Court & Range Access",
-                price: "$120/yr",
-                desc: "Two 18+ individuals plus household. Enables court booking and class registration. Golf simulator booking with 7-day window, $4 off range buckets, and mini-golf discounts.",
-              },
-            ].map((m, i) => (
-              <div key={i} className="bg-parchment-mid p-7 lg:p-9">
-                <h3 className="text-[22px] font-normal tracking-[-0.01em] mb-4">
-                  {m.name}
-                </h3>
-                <p className="text-ink text-[34px] font-normal tracking-[-0.03em] mb-5">
-                  {m.price}
-                </p>
-                <p className="text-ink-mid text-[16px] leading-[1.65] mb-6">
-                  {m.desc}
-                </p>
-              </div>
+          <p className="mb-6 max-w-[65ch] text-[16px] leading-relaxed text-ink-mid">
+            Choose a pass for classes, court bookings or gym access. Prices are before tax. Class and court fees are separate.
+          </p>
+          <div className="grid gap-3 md:grid-cols-3">
+            {membershipPasses.map(pass => (
+              <article key={pass.id} className="flex flex-col bg-parchment-mid p-6 lg:p-8">
+                <h3 className="text-[22px] font-normal tracking-[-0.02em]">{pass.name}</h3>
+                <p className="mt-2 text-[16px] text-ink-mid">{pass.purpose}</p>
+                <dl className="mt-5 grow space-y-2 border-t border-wsc-border pt-4">
+                  {pass.rates.map(rate => (
+                    <div key={rate.label} className="flex flex-wrap items-baseline justify-between gap-x-2">
+                      <dt className="text-[15px] text-ink-mid">{rate.label}</dt>
+                      <dd className="text-[16px] font-medium">{rate.price} per {rate.period}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <Link href={`/membership#${pass.id}`} className="home-text-link mt-4 self-start">
+                  {pass.name} details
+                </Link>
+              </article>
             ))}
-          </div>
-
-          <div className="text-center">
-            <a
-              href={COURT_RESERVE_PORTAL_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block text-[14px] font-medium no-underline bg-volt-bright text-dark-bg px-10 py-3.5 hover:bg-parchment-mid hover:text-ink transition-colors duration-200"
-            >
-              Start Your Membership
-            </a>
           </div>
         </div>
       </section>

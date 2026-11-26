@@ -5,7 +5,7 @@ type RouteMetadata = {
   image: string;
   staticShell: boolean;
   sitemap: false | { changefreq: "weekly" | "monthly" | "yearly"; priority: string };
-  utilityHeader?: { eyebrow: string; headline: string };
+  utilityHeader?: { eyebrow: string; headline: string; subtitle?: string };
 };
 
 export const routeMetadata = JSON.parse(

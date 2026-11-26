@@ -189,7 +189,7 @@ function baseRoutes(): StaticRoute[] {
         headline:
           utilityCopy?.headline ??
           (entry.path === "/" ? HOME_HERO_TITLE.join(" ") : entry.title),
-        subtitle: entry.description,
+        subtitle: utilityCopy?.subtitle ?? entry.description,
         robots: "robots" in entry ? entry.robots : "index, follow",
       };
     });

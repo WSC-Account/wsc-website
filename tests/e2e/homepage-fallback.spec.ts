@@ -18,7 +18,7 @@ test.describe("homepage without JavaScript", () => {
     );
     await page.goto("/");
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-      /Train in\s*Woodinville\./
+      /Woodinville\s*Sports Club/
     );
     await expect(page.locator(".home-hero-collage img")).toHaveCount(7);
     await expect(
@@ -58,7 +58,7 @@ test("failed application scripts leave useful initial HTML and the correct image
   await page.route("**/*.js", route => route.abort("failed"));
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-    /Train in\s*Woodinville\./
+    /Woodinville\s*Sports Club/
   );
   await expect(
     page.getByRole("link", { name: "Adult Tennis", exact: true })

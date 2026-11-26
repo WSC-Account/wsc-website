@@ -11,6 +11,9 @@ export interface Session {
   blackout: string;
 }
 
+// Date this schedule was recorded; change it when the club supplies a new schedule.
+export const scheduleRecordedOn = "2026-09-20";
+
 export const sessions: Session[] = [
   {
     name: "Fall 1",
@@ -131,6 +134,12 @@ export function calendarDay(value: string): string | undefined {
   return `${match[3]}-${String(months.indexOf(match[1]) + 1).padStart(2, "0")}-${match[2].padStart(2, "0")}`;
 }
 
+// Format the club's Pacific calendar day without applying the visitor's time zone.
+export function formatClubDay(day: string) {
+  return new Intl.DateTimeFormat("en-US", { dateStyle: "long", timeZone: "UTC" })
+    .format(new Date(`${day}T12:00:00Z`));
+}
+
 export function pacificDay(now = new Date()) {
   const parts = new Intl.DateTimeFormat("en-US", {
     timeZone: "America/Los_Angeles",
@@ -149,7 +158,7 @@ export function sessionStatus(session: Session, today: string) {
     return { label: "In session", tone: "active" };
   const drop = calendarDay(session.sessionDrop);
   if (drop && today >= drop)
-    return { label: "Registration open", tone: "active" };
+    return { label: "Registration opened", tone: "active" };
   return { label: "Upcoming", tone: "future" };
 }
 
@@ -177,26 +186,26 @@ export function seasonalState(today: string, calendar: Session[] = sessions) {
   const open = ordered.find(
     s =>
       calendarDay(s.start)! > today &&
-      sessionStatus(s, today).label === "Registration open"
+      sessionStatus(s, today).label === "Registration opened"
   );
   const focus = open ?? current ?? next;
   const title = open
-    ? `${open.name} Registration Is Open`
+    ? `Registration opened for ${open.name}`
     : current
-      ? `${current.name} Is in Session`
+      ? `${current.name} classes are underway`
       : next
-        ? `${next.name} Starts ${next.start}`
+        ? `First day of ${next.name} is ${next.start}`
         : "Explore WSC Programs";
   const currentText = current
-    ? `${current.name} is in session through ${current.end}.`
+    ? `Classes for ${current.name} run through ${current.end}.`
     : "";
   const nextText = next
-    ? `${next.name} begins ${next.start}. ${
-        sessionStatus(next, today).label === "Registration open"
-          ? "Registration is open in CourtReserve."
+    ? `The first day of ${next.name} is ${next.start}. ${
+        sessionStatus(next, today).label === "Registration opened"
+          ? `Registration opened ${next.sessionDrop}.`
           : calendarDay(next.sessionDrop)
             ? `Registration opens ${next.sessionDrop}.`
-            : `Registration timing: ${next.sessionDrop}. Check CourtReserve for availability.`
+            : `The published estimate for registration is ${next.sessionDrop}. Check CourtReserve for availability.`
       }`
     : "";
   return {
