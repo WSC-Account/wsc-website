@@ -3,8 +3,8 @@ import { expect, test } from "@playwright/test";
 const criticalPages = [
   {
     path: "/",
-    heading: /Train in\s*Woodinville\./i,
-    mobileHeading: /Train in\s*Woodinville\./i,
+    heading: /Woodinville\s*Sports Club/i,
+    mobileHeading: /Woodinville\s*Sports Club/i,
   },
   { path: "/tennis", heading: /Tennis/i, mobileHeading: /Tennis/i },
   { path: "/golf", heading: /Golf/i, mobileHeading: /Golf/i },
@@ -15,8 +15,8 @@ const criticalPages = [
   },
   {
     path: "/membership",
-    heading: /Train Without Limits/i,
-    mobileHeading: /Train Without Limits/i,
+    heading: /Compare membership passes/i,
+    mobileHeading: /Compare membership passes/i,
   },
   {
     path: "/contact",
@@ -81,7 +81,7 @@ test.describe("critical visitor journeys", () => {
 
     await expect(page).toHaveURL(/\/sessions$/);
     await expect(page.getByRole("heading", { level: 1 })).toContainText(
-      "Mark your calendar"
+      "Session dates and registration"
     );
   });
 

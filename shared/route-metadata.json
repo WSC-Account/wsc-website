@@ -101,7 +101,8 @@
     },
     "utilityHeader": {
       "eyebrow": "Membership",
-      "headline": "Train Without Limits."
+      "headline": "Compare membership passes.",
+      "subtitle": "Choose a pass for classes, court reservations or gym access. Visiting the driving range? You can buy a bucket without a pass."
     }
   },
   "sessions": {
@@ -112,8 +113,9 @@
       "priority": "0.7"
     },
     "utilityHeader": {
-      "eyebrow": "WSC Session Calendar",
-      "headline": "Mark your calendar."
+      "eyebrow": "Published club calendar",
+      "headline": "Session dates and registration",
+      "subtitle": "Find when classes start, when registration opens and which holidays affect your session. CourtReserve lists individual class times and available spots."
     }
   },
   "events": {

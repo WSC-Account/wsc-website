@@ -12,6 +12,13 @@ const links = [
   { href: "/contact", label: "Contact" },
 ];
 
+const sportLinks = [
+  { href: "/golf", label: "Golf" },
+  { href: "/pickleball", label: "Pickleball" },
+  { href: "/gym", label: "Main Gym" },
+  { href: "/fitness", label: "Coached fitness classes" },
+];
+
 // Build-only navigation has no closed menus or controls that require JavaScript.
 // The application replaces this shell once it is ready.
 export default function HomeFallback() {
@@ -54,11 +61,30 @@ export default function HomeFallback() {
       </header>
       <main id="main-content">
         <HomeHero headerOffset={false} />
+        <section aria-labelledby="home-registration-title" className="bg-parchment-mid px-6 py-10 lg:px-14 lg:py-12">
+          <div className="mx-auto flex max-w-[1328px] flex-wrap items-center justify-between gap-5">
+            <div>
+              <h2 id="home-registration-title" className="text-[25px] font-normal leading-tight sm:text-[30px]">
+                Session dates and registration
+              </h2>
+              <p className="mt-3 text-[16px] leading-relaxed text-ink-mid">
+                Use the club calendar for session dates. Check CourtReserve for current class times and available spots.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-5">
+              <a href={COURT_RESERVE_PORTAL_URL} className="home-button bg-ink text-parchment hover:bg-ink-mid">
+                Check availability in CourtReserve
+              </a>
+              <a href="/sessions" className="home-text-link">Session dates</a>
+            </div>
+          </div>
+        </section>
         <nav
+          id="club-sports"
           aria-label="Explore the club"
           className="flex flex-wrap justify-center gap-x-8 gap-y-3 bg-parchment px-6 py-8"
         >
-          {links.map(link => (
+          {[...sportLinks, ...links].map(link => (
             <a key={link.href} href={link.href} className="home-text-link">
               {link.label}
             </a>

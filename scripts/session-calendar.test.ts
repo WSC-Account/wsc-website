@@ -14,7 +14,7 @@ test("today promotes Fall 2 registration while identifying Fall 1 as current", (
   const state = seasonalState("2026-09-20");
   assert.equal(state.current?.name, "Fall 1");
   assert.equal(state.next?.name, "Fall 2");
-  assert.equal(state.title, "Fall 2 Registration Is Open");
+  assert.equal(state.title, "Registration opened for Fall 2");
   assert.match(state.description, /October 5, 2026/);
   assert.equal(state.external, true);
   assert.equal(state.showSummer2026, false);
@@ -30,7 +30,7 @@ test("session boundaries include the entire last Pacific day", () => {
   assert.equal(next.current?.name, "Fall 2");
   assert.equal(next.next?.name, "Fall 3");
   assert.equal(next.open, undefined);
-  assert.equal(next.title, "Fall 2 Is in Session");
+  assert.equal(next.title, "Fall 2 classes are underway");
 });
 
 test("registration opens on the published drop day, not earlier", () => {
@@ -99,10 +99,10 @@ test("Fall 1 registration follows the published dates and rolls forward", () => 
   assert.equal(seasonalState("2026-08-02").open, undefined);
   for (const today of ["2026-08-03", "2026-08-24", "2026-08-30"]) {
     const state = seasonalState(today);
-    assert.equal(state.title, "Fall 1 Registration Is Open");
+    assert.equal(state.title, "Registration opened for Fall 1");
     assert.equal(state.ctaLabel, "Register for Fall 1");
     assert.equal(state.external, true);
   }
-  assert.equal(seasonalState("2026-08-31").title, "Fall 1 Is in Session");
+  assert.equal(seasonalState("2026-08-31").title, "Fall 1 classes are underway");
   assert.equal(seasonalState("2026-09-07").ctaLabel, "Register for Fall 2");
 });

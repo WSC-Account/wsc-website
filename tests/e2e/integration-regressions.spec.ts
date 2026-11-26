@@ -40,7 +40,7 @@ test("branded CourtReserve links retain booking destinations and conversions", a
   });
 
   await page.goto("/membership");
-  const signup = page.getByRole("link", { name: "Sign Up", exact: true }).first();
+  const signup = page.getByRole("link", { name: "Choose a pass in CourtReserve", exact: true }).first();
   await expect(signup).toHaveAttribute("href", portal);
   const [bookingTab] = await Promise.all([
     page.waitForEvent("popup"),
@@ -82,7 +82,7 @@ test("Fall 1 registration rolls forward on an open page and retires summer links
   await page.goto("/");
   await expect(
     page.getByRole("heading", {
-      name: "Fall 1 Registration Is Open",
+      name: "Registration opened for Fall 1",
       exact: true,
     })
   ).toBeVisible();
@@ -95,7 +95,7 @@ test("Fall 1 registration rolls forward on an open page and retires summer links
   await page.evaluate(() => window.dispatchEvent(new Event("focus")));
   await expect(
     page.getByRole("heading", {
-      name: "Fall 2 Registration Is Open",
+      name: "Registration opened for Fall 2",
       exact: true,
     })
   ).toBeVisible();
@@ -117,7 +117,7 @@ test("Fall 1 registration rolls forward on an open page and retires summer links
   await page.goto("/sessions");
   await expect(
     page.getByRole("heading", {
-      name: "Fall 2 Registration Is Open",
+      name: "Registration opened for Fall 2",
       exact: true,
     })
   ).toBeVisible();

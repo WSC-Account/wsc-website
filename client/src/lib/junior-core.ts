@@ -1,10 +1,12 @@
-// Verified against CourtReserve Core class details on November 7, 2026.
+// Fall 3 times from CourtReserve. Class descriptions follow the Tier 1 Core level guide.
 export const juniorCoreSchedule = {
   label: "Fall 3 · Nov 9–Dec 20, 2026",
   end: "2026-12-20",
+  verifiedOn: "November 7, 2026",
   classes: [
     {
       name: "Core Jump Start",
+      fit: "First time on court. Try movement games and first swings.",
       times: [
         {
           day: "Monday",
@@ -45,6 +47,7 @@ export const juniorCoreSchedule = {
     },
     {
       name: "Core Red Ball",
+      fit: "Learn to track the ball and start a rally.",
       times: [
         {
           day: "Monday",
@@ -85,6 +88,7 @@ export const juniorCoreSchedule = {
     },
     {
       name: "Core Orange Ball",
+      fit: "Practice aiming, serving and keeping a rally going.",
       times: [
         {
           day: "Monday",
@@ -115,6 +119,7 @@ export const juniorCoreSchedule = {
     },
     {
       name: "Core Green Ball",
+      fit: "Keep score and build points from longer rallies.",
       times: [
         {
           day: "Tuesday",
@@ -150,6 +155,7 @@ export const juniorCoreSchedule = {
     },
     {
       name: "Core Yellow Ball",
+      fit: "Play faster points and cover the full court independently.",
       times: [
         {
           day: "Monday",
@@ -175,6 +181,7 @@ export const juniorCoreSchedule = {
     },
     {
       name: "Core Red Ball (Match Play Focus)",
+      fit: "Practice playing points with a red ball.",
       times: [
         {
           day: "Friday",

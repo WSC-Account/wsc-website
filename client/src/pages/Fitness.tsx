@@ -16,7 +16,7 @@ const TRAINING_IMG = "/images/wsc/apl-strength-stability.webp";
 const COACH_JORDY_IMG = "/images/wsc/jordy-champagne.png";
 const COURT_RESERVE_URL = "https://app.courtreserve.com/Online/Events/List/6689/C7BR91B9SH6689";
 const TIER1_APL_URL = "https://www.tier1nw.com/apl";
-const CLASS_PASS_DISCLOSURE = "A $50/year Class Pass is required to register - get yours in CourtReserve.";
+const CLASS_PASS_DISCLOSURE = "Your membership must include class registration. The Class Registration Pass costs $50 per year plus tax. Class fees are separate.";
 const COURT_RESERVE_CONVERSION_ID = "AW-18217215416/-Y8cCL7y9-McELjL0u5D";
 
 function reportCourtReserveConversion() {
@@ -35,7 +35,7 @@ const offerings = [
   },
   {
     title: "Speed School",
-    audience: "Ages 12-18",
+    audience: "Youth athletes",
     desc: "Sprint mechanics, acceleration, change of direction, footwork, and agility work for athletes who need to move faster with control.",
   },
   {
@@ -64,24 +64,23 @@ const classSections = [
   {
     title: "Youth Programs",
     rows: [
-      { program: "Intro to Tennis Fitness - Red Ball", days: "Tue & Thu - 5:30-6:00pm", ages: "7+" },
-      { program: "Athletic Development - Orange & Green Ball", days: "Tue & Thu - 6:00-6:30pm", ages: "Ages 9-12" },
-      { program: "Athletic Development - Yellow Ball & Junior Academy", days: "Mon & Wed - 6:00-6:30pm", ages: "12 & Up" },
-      { program: "Elite Athletic Development - After School Academy (ASA)", days: "Mon-Thu - 6:30-7:00pm", ages: "ASA Athletes" },
-      { program: "Elite Athletic Development - Yellow Ball & Junior Academy (JA)", days: "Friday - 4:30-5:00pm", ages: "12 & Up" },
-      { program: "APL Lower Body Strength & Power", days: "Mon & Wed - 7:00-8:00pm", ages: "Youth" },
-      { program: "APL Push, Pull & Upper Body", days: "Tue & Thu - 7:00-8:00pm", ages: "Youth" },
-      { program: "Speed School", days: "Saturday - 10:30-11:30am", ages: "Ages 9+" },
-      { program: "Intro to Speed School", days: "Saturday - 11:30am-12:30pm", ages: "Ages 9+" },
+      { program: "Intro to Tennis Fitness for Red Ball", ages: "Ages 7+" },
+      { program: "Athletic Development for Orange and Green Ball", ages: "Ages 9 to 12" },
+      { program: "Athletic Development for Yellow Ball and Junior Academy", ages: "Ages 12+" },
+      { program: "Elite Athletic Development for After School Academy", ages: "After School Academy" },
+      { program: "Elite Athletic Development for Yellow Ball and Junior Academy", ages: "Ages 12+" },
+      { program: "APL Lower Body Strength & Power", ages: "Youth" },
+      { program: "APL Push, Pull & Upper Body", ages: "Youth" },
+      { program: "Speed School", ages: "Competitive juniors" },
+      { program: "Intro to Speed School", ages: "Junior athletes" },
     ],
   },
   {
     title: "Adult Programs",
     rows: [
-      { program: "Tennis Performance & Longevity", days: "Mon & Wed - 8:00-9:00pm", ages: "Adults" },
-      { program: "APL Adult Athletic Performance", days: "Tue & Thu - 8:00-9:00pm", ages: "Adults" },
-      { program: "HIIT Adult Fitness Class", days: "Friday - 5:00-6:00pm", ages: "Adults" },
-      { program: "HIIT Adult Fitness Class", days: "Saturday - 12:30-1:30pm", ages: "Adults" },
+      { program: "Tennis Performance & Longevity", ages: "Adults" },
+      { program: "APL Adult Athletic Performance", ages: "Adults" },
+      { program: "HIIT Adult Fitness Class", ages: "Adults" },
     ],
   },
 ];
@@ -121,37 +120,81 @@ export default function Fitness() {
       ]} />
       <PageHero
         eyebrow="Athletic Performance Lab"
-        headline="Where Champions Are Built."
-        subtitle="The Athletic Performance Lab is WSC's dedicated coaching program for strength, speed, power, agility, durability, and confident movement for youth and adult athletes."
+        headline="Strength and conditioning"
+        subtitle="Youth athletes, adults and teams train with coaches in the Athletic Performance Lab. Find a group class or request a free assessment to plan your training."
+        actions={[
+          { label: "Find a class", href: "#class-schedule" },
+          { label: "Request Free Assessment", href: "#free-fitness-assessment" },
+        ]}
         image={PERF_IMG}
         imagePosition="center 55%"
         avoidHeaderCrop
         overlayClassName="bg-gradient-to-r from-dark-bg/80 via-dark-bg/45 to-dark-bg/15"
       />
 
+      <section id="class-schedule" className="bg-parchment-mid px-6 lg:px-14 py-24 lg:py-28">
+        <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] gap-12 lg:gap-20 items-start">
+          <div>
+            <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Group training</p>
+            <h2 className="text-[clamp(26px,2.8vw,38px)] font-light leading-[1.15] mb-6">
+              Find a youth or adult class
+            </h2>
+            <p className="text-ink-mid text-[16px] leading-[1.82] mb-8">
+              Use this guide to find a program by age or training group. For the current dates, age requirements, prices and available places, check each class in CourtReserve.
+            </p>
+            <p className="text-ink text-[14px] leading-[1.65] mb-8 border-l-2 border-volt pl-5">
+              {CLASS_PASS_DISCLOSURE}
+            </p>
+            <a
+              href={COURT_RESERVE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={reportCourtReserveConversion}
+              className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment-dark transition-colors duration-200"
+            >
+              Check current times in CourtReserve
+            </a>
+          </div>
+
+          <div className="min-w-0 space-y-8">
+            {classSections.map((section) => (
+              <div key={section.title} className="bg-parchment">
+                <div className="px-5 py-4 border-b border-ink/10">
+                  <h3 className="text-[18px] font-light leading-[1.25]">{section.title}</h3>
+                </div>
+                <table className="w-full table-fixed border-collapse text-left">
+                  <caption className="sr-only">{section.title} and eligible training groups</caption>
+                  <thead>
+                    <tr className="bg-parchment-dark/45 text-xs text-ink-mid sm:text-sm">
+                      <th scope="col" className="w-2/3 px-3 py-3 sm:px-5">Program</th>
+                      <th scope="col" className="px-2 py-3 sm:px-3">Who can join</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {section.rows.map(row => (
+                      <tr key={row.program} className="border-t border-ink/10 align-top text-sm leading-relaxed text-ink-mid">
+                        <th scope="row" className="px-3 py-4 font-normal text-ink sm:px-5">{row.program}</th>
+                        <td className="px-2 py-4 sm:px-3">{row.ages}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="free-fitness-assessment" className="scroll-mt-[var(--site-header-height,130px)] bg-parchment px-6 lg:px-14 py-16 lg:py-20" aria-labelledby="fitness-interest-form-heading">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16 lg:items-start">
           <div>
-            <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Free Fitness Assessment</p>
+            <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">For new and returning athletes</p>
             <h2 id="fitness-interest-form-heading" className="text-[clamp(26px,2.8vw,38px)] font-light leading-[1.15] mb-5">
-              Free Fitness Assessment - WSC
+              Free Fitness Assessment
             </h2>
             <p className="text-ink-mid text-[16px] leading-[1.75] max-w-[620px] mb-6">
-              Interested in a complimentary 30-45 minute fitness assessment with one of our certified S&C coaches? Fill out this form and we'll reach out within 2 business days to schedule your session. No commitment required.
+              Meet with a certified strength and conditioning coach for 30 to 45 minutes to discuss your goals and decide where to start. Send your request here. The team will contact you within two business days to schedule a time.
             </p>
-            <Link
-              href="/free-fitness-assessment"
-              className="mb-6 inline-block text-[12px] tracking-[0.14em] uppercase no-underline text-ink border border-ink/20 px-6 py-3 hover:bg-ink/5 transition-colors duration-200"
-            >
-              Request Free Assessment
-            </Link>
-            <div className="grid grid-cols-1 gap-[3px] sm:grid-cols-3">
-              {["30-45 minutes", "Certified S&C coaches", "Reply within 2 business days"].map((item) => (
-                <div key={item} className="bg-parchment-mid p-5">
-                  <p className="text-[12px] uppercase tracking-[0.14em] leading-[1.45] text-ink">{item}</p>
-                </div>
-              ))}
-            </div>
           </div>
           <div className="bg-parchment-mid border border-wsc-border p-6 lg:p-8">
             <p className="text-ink-light text-[12px] leading-[1.6] mb-5">* Indicates required question</p>
@@ -225,7 +268,7 @@ export default function Fitness() {
               Training options for athletes, teams, and adults.
             </h2>
             <p className="text-ink-mid text-[16px] leading-[1.82]">
-              APL programming gives athletes a clear place to register for coached strength and conditioning without mixing it into the general fitness center experience.
+              Compare programs by who they serve and what you will work on. For individual coaching, you can request a personal trainer.
             </p>
           </div>
 
@@ -236,62 +279,6 @@ export default function Fitness() {
                 <h3 className="text-[20px] font-light leading-[1.25] mb-4">{item.title}</h3>
                 <p className="text-ink-mid text-[14px] leading-[1.72]">{item.desc}</p>
               </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-parchment-mid px-6 lg:px-14 py-24 lg:py-28">
-        <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-20 items-start">
-          <div>
-            <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Class Lineup</p>
-            <h2 className="text-[clamp(26px,2.8vw,38px)] font-light leading-[1.15] mb-6">
-              Small-group classes with focused outcomes.
-            </h2>
-            <p className="text-ink-mid text-[16px] leading-[1.82] mb-8">
-              Current class options include foundations, strength blocks, speed development, upper-body and lower-body emphasis, and adult athletic performance sessions.
-            </p>
-            <p className="text-ink text-[14px] leading-[1.65] mb-8 border-l-2 border-volt pl-5">
-              {CLASS_PASS_DISCLOSURE}
-            </p>
-            <a
-              href={COURT_RESERVE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={reportCourtReserveConversion}
-              className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment-dark transition-colors duration-200"
-            >
-              Register in CourtReserve
-            </a>
-          </div>
-
-          <div className="space-y-8">
-            {classSections.map((section) => (
-              <div key={section.title} className="bg-parchment">
-                <div className="px-5 py-4 border-b border-ink/10">
-                  <h3 className="text-[18px] font-light leading-[1.25]">{section.title}</h3>
-                </div>
-                <div className="overflow-x-auto" tabIndex={0} role="region" aria-label={`${section.title} APL schedule`}>
-                  <table className="w-full min-w-[720px] border-collapse text-left">
-                    <thead>
-                      <tr className="bg-parchment-dark/45">
-                        <th scope="col" className="px-5 py-3 text-[11px] tracking-[0.18em] uppercase text-ink-mid font-normal">Program</th>
-                        <th scope="col" className="px-5 py-3 text-[11px] tracking-[0.18em] uppercase text-ink-mid font-normal">Days & Time</th>
-                        <th scope="col" className="px-5 py-3 text-[11px] tracking-[0.18em] uppercase text-ink-mid font-normal">Ages</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {section.rows.map((row) => (
-                        <tr key={`${section.title}-${row.program}-${row.days}`} className="border-t border-ink/10">
-                          <td className="px-5 py-4 text-[15px] leading-[1.4] text-ink">{row.program}</td>
-                          <td className="px-5 py-4 text-[14px] leading-[1.45] text-ink-mid">{row.days}</td>
-                          <td className="px-5 py-4 text-[14px] leading-[1.45] text-ink-mid">{row.ages}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
             ))}
           </div>
         </div>

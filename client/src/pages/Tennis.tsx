@@ -17,7 +17,7 @@ import SEOHead from "@/components/SEOHead";
 import { SEO } from "@/lib/seo-data";
 import { adultClasses, ADULT_CLASS_DETAILS } from "@/lib/adult-tennis";
 import { juniorCoreSchedule } from "@/lib/junior-core";
-import { pacificDay } from "@/lib/session-calendar";
+import { useSessionCalendar } from "@/hooks/useSessionCalendar";
 
 const TENNIS_COURTS_IMG = "/images/wsc/tennis-courts.webp";
 const TENNIS_PLAYER_IMG = "/images/wsc/tennis-player.webp";
@@ -135,6 +135,8 @@ const coachHighlights = [
 ];
 
 export default function Tennis() {
+  const { today } = useSessionCalendar();
+  const showPublishedTimes = today <= juniorCoreSchedule.end;
   const [activeGalleryIndex, setActiveGalleryIndex] = useState(0);
   const activeGalleryItem = trainingGallery[activeGalleryIndex];
   const showPreviousGalleryItem = () => {
@@ -173,18 +175,16 @@ export default function Tennis() {
       ]} />
       <PageHero
         eyebrow="Tier 1 Tennis"
-        headline="Elevate Your Tennis Game at WSC."
-        subtitle="World-class instruction and facilities for players of all levels. Home of Tier 1 Sports — one of the nation's leading developmental programs."
+        headline="Tennis classes and court rentals"
+        subtitle="Start with junior classes from age 3, find adult lessons and matchplay, or book a court for your own group."
+        actions={[
+          { label: "Junior classes", href: "#junior-tennis" },
+          { label: "Adult classes", href: "/tennis/adult" },
+          { label: "Court rental rates", href: "#court-booking" },
+        ]}
         image={TENNIS_HERO_IMG}
         imagePosition="0% 8%"
       />
-
-      <nav aria-label="Tennis pathways" className="bg-dark-bg px-6 py-6 lg:px-14">
-        <div className="max-w-[1440px] mx-auto flex flex-wrap gap-4">
-          <Link href="/tennis/adult" className="border border-parchment/40 px-6 py-3 text-parchment no-underline hover:bg-parchment/10">Explore Adult Tennis</Link>
-          <a href="#junior-tennis" className="border border-parchment/40 px-6 py-3 text-parchment no-underline hover:bg-parchment/10">Explore Junior Tennis</a>
-        </div>
-      </nav>
 
       {/* Programs */}
       <section className={`bg-parchment ${SECTION_SPACING}`}>
@@ -192,9 +192,9 @@ export default function Tennis() {
           ref={programsRef}
           className={`max-w-[1440px] mx-auto transition-all duration-700 ease-out ${programsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Top-Tier Coaching</p>
+          <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Tennis programs</p>
           <h2 className="text-[clamp(26px,2.8vw,40px)] font-light tracking-[-0.02em] leading-[1.15] mb-8 lg:mb-14">
-            Training pathways<br />for every level.
+            Choose a tennis program.
           </h2>
 
           <div className="mb-10 grid grid-cols-1 gap-[3px] md:grid-cols-3 lg:mb-14">
@@ -222,7 +222,7 @@ export default function Tennis() {
             <div>
               <h3 className="text-[20px] font-light tracking-[-0.01em] mb-2">Tier 1 Performance NW</h3>
               <p className="text-ink-mid text-[14px] leading-[1.72] mb-3">
-                Elite youth academy for aspiring champions. Full-time and after-school options with intensive training programs and top-notch facilities.
+                Full time and after school training for juniors preparing for tournaments and college tennis.
               </p>
               <ul className="space-y-1.5">
                 {[
@@ -275,7 +275,7 @@ export default function Tennis() {
               rel="noopener noreferrer"
               className="text-ink text-[12px] tracking-[0.12em] uppercase no-underline border-b border-volt pb-[3px]"
             >
-              Learn More About Tier 1 Core
+              Read the Core level guide
             </a>
           </div>
 
@@ -322,17 +322,15 @@ export default function Tennis() {
           <div>
             <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Facilities</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15] mb-8">
-              Eight indoor courts.<br />One outdoor court.
+              Where you can play.
             </h2>
             <p className="text-ink-mid text-[16px] leading-[1.82] mb-8">
-              Our indoor tennis facility provides year-round play through Pacific Northwest weather, with one outdoor court available for fresh-air hitting when conditions allow. Professional-grade surfaces and consistent indoor lighting support focused training conditions.
+              Play indoors year round or reserve the outdoor court when conditions allow.
             </p>
             <div className="grid grid-cols-2 gap-6">
               {[
                 { val: "8", label: "Indoor Courts" },
-                { val: "3+", label: "Age Groups" },
-                { val: "UTR", label: "Matchplay" },
-                { val: "Year", label: "Round Play" },
+                { val: "1", label: "Outdoor court" },
               ].map((m, i) => (
                 <div key={i} className="py-4 border-t border-wsc-border">
                   <div className="text-accent-on-light text-[28px] font-light tracking-[-0.02em] leading-none mb-1">
@@ -525,55 +523,67 @@ export default function Tennis() {
       {/* Junior Core classes */}
       <section id="junior-tennis" className={`bg-parchment ${SECTION_SPACING} scroll-mt-[var(--site-header-height,130px)]`}>
         <div className="max-w-[1440px] mx-auto">
-          <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Junior Tennis at WSC</p>
-          <h2 className="text-3xl lg:text-4xl font-light mb-4">Junior Core class times</h2>
-          <p className="text-ink-mid leading-relaxed max-w-3xl mb-6">
-            Build the foundations with Core Jump Start, Red Ball, Orange Ball, Green Ball, and Yellow Ball.
-            Find a weekly time below, then select it to view class details, placement guidance, pricing, and registration in CourtReserve.
-          </p>
-          {pacificDay() <= juniorCoreSchedule.end ? (
+          <div className="mb-8 grid gap-5 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,0.8fr)] lg:gap-12">
+            <div>
+              <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-4">Junior Tennis at WSC</p>
+              <h2 className="text-3xl lg:text-4xl font-light mb-4">{showPublishedTimes ? "Junior Core class times" : "Junior Core class levels"}</h2>
+              <p className="text-ink-mid leading-relaxed max-w-3xl mb-3">
+                Core is the starting point for juniors ages 3 and up. You can register without an evaluation.
+                You’ll need a <Link href="/membership" className="text-ink underline underline-offset-4">pass that includes class registration</Link>.
+              </p>
+              <a href="mailto:Tier1@woodinvillesportsclub.com?subject=Junior%20Core%20placement" className="inline-flex min-h-11 items-center text-ink underline underline-offset-4">
+                Ask a coach which level fits your child
+              </a>
+            </div>
+            <aside className="self-center border-l-2 border-volt pl-5">
+              <h3 className="text-lg font-medium mb-2">Explore the Academy pathway</h3>
+              <p className="text-ink-mid leading-relaxed">For juniors ready for tournament training. See programs and player evaluations at Tier 1.</p>
+              <a href={TIER1_TENNIS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 text-ink underline underline-offset-4">
+                Explore Tier 1 Academy <ArrowUpRight size={16} aria-hidden="true" />
+              </a>
+            </aside>
+          </div>
+          {showPublishedTimes ? (
             <>
               <p className="font-medium text-ink mb-2">{juniorCoreSchedule.label}</p>
-              <p className="text-sm text-ink-mid mb-6">All times Pacific. Thursday classes skip Thanksgiving (Nov 26).</p>
-              <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-                {juniorCoreSchedule.classes.map(({ name, times }) => (
-                  <article key={name} className="border border-wsc-border bg-parchment-mid/40">
-                    <h3 className="border-b border-wsc-border px-5 py-4 text-xl font-light">{name}</h3>
-                    <ul className="divide-y divide-wsc-border px-5">
-                      {times.map(({ day, time, event }) => (
-                        <li key={event} className="flex items-baseline justify-between gap-3 py-3 text-sm">
-                          <span className="text-ink-mid">{day}</span>
-                          <a
-                            href={`https://app.courtreserve.com/Online/Events/Details/6689/${event}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-baseline gap-1.5 text-ink underline underline-offset-4 hover:text-accent-on-light"
-                            aria-label={`${name}, ${day}, ${time} in CourtReserve`}
-                          >
-                            <span className="tabular-nums">{time}</span>
-                            <ArrowUpRight size={13} className="shrink-0" aria-hidden="true" />
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </article>
-                ))}
-              </div>
-              <p className="mt-4 text-sm text-ink-mid">CourtReserve shows live availability, waitlists, and holiday programs.</p>
+              <p className="text-sm text-ink-mid mb-6 max-w-3xl">
+                Times checked against CourtReserve on {juniorCoreSchedule.verifiedOn}. All times Pacific. Thursday classes skip Thanksgiving (Nov 26).
+                Select a time for live availability, pricing and registration.
+              </p>
             </>
           ) : (
-            <a href={COURT_RESERVE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 text-ink underline underline-offset-4">
+            <a href={COURT_RESERVE_URL} target="_blank" rel="noopener noreferrer" className="mb-6 inline-flex min-h-11 items-center gap-2 text-ink underline underline-offset-4">
               Check current Core class times in CourtReserve <ArrowUpRight size={16} aria-hidden="true" />
             </a>
           )}
-          <div className="mt-10 flex flex-col gap-5 border-t border-wsc-border pt-8 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h3 className="text-xl font-light mb-2">Explore the Academy pathway</h3>
-              <p className="text-ink-mid leading-relaxed max-w-2xl">Visit Tier 1 for Academy programs, player evaluations, and the full performance pathway.</p>
-            </div>
-            <a href={TIER1_TENNIS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 bg-dark-bg px-6 py-3 text-sm text-parchment no-underline hover:bg-ink-mid">
-              Explore Tier 1 Academy <ArrowUpRight size={16} aria-hidden="true" />
-            </a>
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {juniorCoreSchedule.classes.map(({ name, fit, times }) => (
+              <article key={name} className="border border-wsc-border bg-parchment-mid/40">
+                <div className="px-5 py-4">
+                  <h3 className="text-xl font-light">{name}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-mid">{fit}</p>
+                </div>
+                {showPublishedTimes && (
+                  <ul className="divide-y divide-wsc-border border-t border-wsc-border px-5">
+                    {times.map(({ day, time, event }) => (
+                      <li key={event} className="flex items-baseline justify-between gap-3 py-3 text-sm">
+                        <span className="text-ink-mid">{day}</span>
+                        <a
+                          href={`https://app.courtreserve.com/Online/Events/Details/6689/${event}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-baseline gap-1.5 text-ink underline underline-offset-4 hover:text-accent-on-light"
+                          aria-label={`${name}, ${day}, ${time} in CourtReserve`}
+                        >
+                          <span className="tabular-nums">{time}</span>
+                          <ArrowUpRight size={13} className="shrink-0" aria-hidden="true" />
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -635,7 +645,7 @@ export default function Tennis() {
                 rel="noopener noreferrer"
                 className="mt-6 inline-flex items-center justify-center text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment-dark transition-colors duration-200"
               >
-                Register
+                Check matchplay registration
               </a>
             </div>
             <ResponsiveImage
@@ -651,7 +661,7 @@ export default function Tennis() {
       </section>
 
       {/* Court Booking */}
-      <section className={`bg-parchment-mid ${SECTION_SPACING_TIGHT}`}>
+      <section id="court-booking" className={`bg-parchment-mid ${SECTION_SPACING_TIGHT}`}>
         <div
           ref={bookingRef}
           className={`max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20 items-start transition-all duration-700 ease-out ${bookingVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
@@ -659,16 +669,16 @@ export default function Tennis() {
           <div>
             <p className="text-accent-on-light text-[13px] tracking-[0.22em] uppercase mb-5">Court Booking</p>
             <h2 className="text-[clamp(26px,2.8vw,38px)] font-light tracking-[-0.02em] leading-[1.15]">
-              Court Booking<br />Access Pass.
+              Tennis court rental rates.
             </h2>
           </div>
           <div>
             <p className="text-ink-mid text-[16px] leading-[1.82] mb-6">
-              $120 + tax annual fee for the Court Booking Access Pass. Reserve courts up to 7 days in advance using CourtReserve or by visiting/calling our front desk.
+              The Court &amp; Range Access Pass costs $120 plus tax per year. Pass holders can reserve courts up to 7 days ahead. Court time and guest fees are charged separately.
             </p>
             <div className="space-y-4 mb-8">
               <div className="flex justify-between py-3 border-b border-wsc-border">
-                <span className="text-ink text-[14px]">Per 30 Minutes</span>
+                <span className="text-ink text-[14px]">Court rental per 30 minutes</span>
                 <span className="text-accent-on-light text-[16px] font-light">$21.14 + tax</span>
               </div>
               <div className="flex justify-between py-3 border-b border-wsc-border">
@@ -688,7 +698,7 @@ export default function Tennis() {
                 href="/membership"
                 className="inline-block text-[12px] tracking-[0.14em] uppercase no-underline bg-volt-bright text-dark-bg px-8 py-3.5 hover:bg-parchment transition-colors duration-200"
               >
-                Membership Sign Up
+                Compare booking passes
               </Link>
               <a
                 href={COURT_RESERVE_URL}

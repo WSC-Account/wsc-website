@@ -1,10 +1,9 @@
 import React, { type ElementType } from "react";
-import { ChevronRight } from "lucide-react";
 import ResponsiveImage from "./ResponsiveImage";
 
-export const HOME_HERO_TITLE = ["Train in", "Woodinville."] as const;
+export const HOME_HERO_TITLE = ["Woodinville", "Sports Club"] as const;
 export const HOME_HERO_SUBTITLE =
-  "Adult classes, junior programs from age 3, and Tier 1 academy training.";
+  "Tennis for adults and juniors from age 3, plus golf, pickleball and fitness on one campus.";
 
 export const heroCollageImages = [
   {
@@ -101,7 +100,7 @@ export default function HomeHero({
           className="home-hero-shade absolute inset-0 -z-10"
           aria-hidden="true"
         />
-        <div className="home-hero-copy mx-auto w-full max-w-[1440px] px-6 py-9 sm:py-12 lg:px-14 lg:py-20">
+        <div className="home-hero-copy mx-auto w-full max-w-[1440px] px-6 py-7 sm:py-10 lg:px-14 lg:py-12">
           <h1
             id="home-title"
             className="max-w-[560px] text-[clamp(42px,5vw,72px)] font-light leading-[1.04] tracking-[-0.035em] text-parchment"
@@ -113,12 +112,12 @@ export default function HomeHero({
           <p className="mt-5 max-w-[360px] text-[17px] leading-[1.6] text-parchment">
             {HOME_HERO_SUBTITLE}
           </p>
-          <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
+          <div className="mt-6 flex flex-wrap items-center gap-3">
             <Link
               href="/tennis/adult"
               className="home-button bg-volt-bright text-dark-bg hover:bg-parchment"
             >
-              Adult Tennis <ChevronRight size={16} aria-hidden="true" />
+              Adult Tennis
             </Link>
             <Link
               href="/tennis#junior-tennis"
@@ -127,6 +126,12 @@ export default function HomeHero({
               Junior Tennis
             </Link>
           </div>
+          <Link
+            href="/#club-sports"
+            className="mt-2 inline-flex min-h-11 items-center text-[15px] font-medium text-parchment underline underline-offset-4 hover:text-white"
+          >
+            Golf, pickleball and fitness
+          </Link>
         </div>
       </div>
     </section>

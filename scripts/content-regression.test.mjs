@@ -342,7 +342,7 @@ test("membership auto-renewal is clearly disclosed", () => {
   const membership = read("client/src/pages/Membership.tsx");
   const policies = read("client/src/pages/Policies.tsx");
 
-  assert.match(membership, /All Memberships:[\s\S]*?Auto-renew/i);
+  assert.match(membership, /All passes renew automatically each month or year until cancelled/i);
   assert.match(policies, /All memberships auto-renew/i);
 });
 
@@ -743,7 +743,7 @@ test("home facility chart includes golf sims and both fitness centers", () => {
 
   assert.match(home, /Indoor Golf Sims/);
   assert.match(home, /Fitness Centers/);
-  assert.match(home, /Main Gym \+ APL/);
+  assert.match(home, /Main Gym and Athletic Performance Lab/);
 });
 
 test("active seasonal surfaces use the shared calendar instead of fixed Fall 1 copy", () => {
